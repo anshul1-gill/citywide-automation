@@ -161,7 +161,7 @@ public class AddEmployeeTest extends BaseTest {
 		softAssert.assertEquals(addEmployeePage.getOCSprayDateOfExpirationData(),
 				HRManagementConstants.OC_SPRAY_EXPIRATION_DATE);
 
-		//
+		
 		addEmployeePage.doClickAddOtherPermit();
 		softAssert.assertTrue(addEmployeePage.isOtherPermitTextDisplayed());
 		addEmployeePage.fillOtherPermitForm(HRManagementConstants.OTHER_PERMIT_NUMBER,
@@ -178,7 +178,7 @@ public class AddEmployeeTest extends BaseTest {
 
 		// Pay Information
 		addEmployeePage.doClickPayInformationTab();
-		addEmployeePage.fillPayInformation(HRManagementConstants.EMPLOYEE_PAY_RATEP, HRManagementConstants.PAY_CYCYLE,
+		addEmployeePage.fillPayInformation(HRManagementConstants.EMPLOYEE_PAY_RATE, HRManagementConstants.PAY_CYCYLE,
 				HRManagementConstants.ALLOWANCE_RATE, HRManagementConstants.ALLOWANCE_TYPE);
 		addEmployeePage.fillCommissionInfo(HRManagementConstants.COMMISSION_NAME, HRManagementConstants.COMMISSION_TYPE,
 				HRManagementConstants.COMMISSION_RATE, HRManagementConstants.COMMISSION_CYCLE,

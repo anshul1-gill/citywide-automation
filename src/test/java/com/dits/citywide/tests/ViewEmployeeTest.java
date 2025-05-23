@@ -48,7 +48,7 @@ public class ViewEmployeeTest extends BaseTest {
 						+ HRManagementConstants.RESIDENCE_ADDRESS_STREET_NAME + " "
 						+ HRManagementConstants.RESIDENCE_ADDRESS_STE_NUMBER + " "
 						+ HRManagementConstants.RESIDENCE_ADDRESS_CITY + ", "
-						+ HRManagementConstants.RESIDENCE_ADDRESS_STATE_1 + " "
+						+ HRManagementConstants.RESIDENCE_ADDRESS_STATE + " "
 						+ HRManagementConstants.RESIDENCE_ADDRESS_ZIPCODE);
 
 //		softAssert.assertEquals(
@@ -178,7 +178,7 @@ public class ViewEmployeeTest extends BaseTest {
 //				DateFormatterUtils.getMonthNumber(HRManagementConstants.EMPLOYMENT_HIRE_MONTH) + "/"
 //						+ HRManagementConstants.EMPLOYMENT_HIRE_DATE + "/"
 //						+ HRManagementConstants.EMPLOYMENT_HIRE_YEAR);
-		softAssert.assertEquals(viewEmployeePage.getPayRateData(), "$ " + HRManagementConstants.EMPLOYEE_PAY_RATEP);
+		softAssert.assertEquals(viewEmployeePage.getPayRateData(), "$ " + HRManagementConstants.EMPLOYEE_PAY_RATE);
 
 		softAssert.assertEquals(viewEmployeePage.getCommissionCycleData(), HRManagementConstants.COMMISSION_CYCLE);
 		softAssert.assertEquals(viewEmployeePage.getCommissionNameData(), HRManagementConstants.COMMISSION_NAME);

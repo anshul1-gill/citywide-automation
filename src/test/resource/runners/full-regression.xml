@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Citywide Regression Suite">
+
+	<!-- 
+	<listeners>
+		<listener class-name=""></listener>
+	</listeners>
+	-->
+
+	<test name="Login Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.LoginTest" />
+		</classes>
+	</test>
+
+	<test name="Login Validation Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.LoginNegativeScenariosTest" />
+		</classes>
+	</test>
+
+	<test name="Apply Leave Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.ApplyLeaveTest" />
+		</classes>
+	</test>
+
+	<test name="Logout Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.LogoutTest" />
+		</classes>
+	</test>
+
+</suite> 

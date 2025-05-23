@@ -10,6 +10,7 @@ import org.testng.asserts.SoftAssert;
 import com.dits.citywide.driverfactory.DriverFactory;
 import com.dits.citywide.pages.AddEmployeePage;
 import com.dits.citywide.pages.ApplyLeavePage;
+import com.dits.citywide.pages.CallsPage;
 import com.dits.citywide.pages.DashboardPage;
 import com.dits.citywide.pages.EmployeesPage;
 import com.dits.citywide.pages.FieldAgentStartShiftPage;
@@ -33,6 +34,7 @@ public class BaseTest {
 	protected ViewEmployeePage viewEmployeePage;
 	protected SchedulingPage schedulingPage;
 	protected FieldAgentStartShiftPage fieldAgentStartShiftPage;
+	protected CallsPage callsPage;
 
 	@BeforeTest
 	public void browserSetUp() {

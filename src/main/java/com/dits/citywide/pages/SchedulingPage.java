@@ -38,8 +38,16 @@ public class SchedulingPage {
 	private By dropdownScheduledBreak = By
 			.xpath("//label[contains(text(),'Scheduled break')]/..//div[@class='ant-select-selector']");
 	private By dropdownScheduledBreakValues = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[4]/div/div");
-	private By txtboxAddNotes = By.xpath("//div[@class='ant-flex css-yw7p3q ant-flex-align-center']/textarea");
+	private By txtboxAddNotes = By.xpath("//textarea[@placeholder='Add Notes']");
 	private By btnCreateShift = By.xpath("//span[contains(text(),'Create Shift')]");
+	private By successMsgShiftAdd = By.xpath("//div[contains(text(),'Shift added successfully')]");
+
+	private By btnPublish = By.xpath("//span[contains(text(),'Publish')]");
+	private By txtAreYouSure = By.xpath("//h2[@id='swal2-title']");
+	private By txtThisActionWillPublishShifts = By.xpath("//h2[@id='swal2-title']");
+	private By btnOk = By.xpath("//button[contains(text(),'OK')]");
+	private By btnCancel = By.xpath("//button[contains(text(),'Cancel')]");
+	private By successMsgPublish = By.xpath("//div[contains(text(),'Shifts published successfully!')]");
 
 	public SchedulingPage(WebDriver driver) {
 		this.driver = driver;
@@ -106,6 +114,35 @@ public class SchedulingPage {
 			}
 		}
 		return -1;
+	}
+
+	public String getSuccessMessageShiftAdded() {
+		return elementUtils.waitForElementVisible(successMsgShiftAdd, Constants.DEFAULT_WAIT).getText().trim();
+	}
+
+	public void clickPublishButton() {
+		elementUtils.waitForInvisibilityOfElementLocated(successMsgShiftAdd, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(btnPublish, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getAreYouSureText() {
+		return elementUtils.waitForElementVisible(txtAreYouSure, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getPublishShiftsConfirmationText() {
+		return elementUtils.waitForElementVisible(txtThisActionWillPublishShifts, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public void clickOkButton() {
+		elementUtils.waitForElementToBeClickable(btnOk, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void clickCancelButton() {
+		elementUtils.waitForElementToBeClickable(btnCancel, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getSuccessMessageAfterPublish() {
+		return elementUtils.waitForElementVisible(successMsgPublish, Constants.DEFAULT_WAIT).getText();
 	}
 
 }

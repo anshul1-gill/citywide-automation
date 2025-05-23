@@ -25,6 +25,17 @@ public class AddShiftTest extends BaseTest {
 		schedulingPage.fillShiftForm(SchedulingConstant.ASSIGN_SHIFT, prop.getProperty("employeeID"),
 				SchedulingConstant.SCHEDULED_BREAK, SchedulingConstant.ADD_NOTES);
 
+		softAssert.assertEquals(schedulingPage.getSuccessMessageShiftAdded(),
+				SchedulingConstant.SUCCESS_MESSAGE_ADD_SHIFT);
+
+		schedulingPage.clickPublishButton();
+		softAssert.assertEquals(schedulingPage.getAreYouSureText(), SchedulingConstant.ARE_YOU_SURE);
+		softAssert.assertEquals(schedulingPage.getPublishShiftsConfirmationText(),
+				SchedulingConstant.ACTION_WILL_PUBLISH_SHIFTS);
+		schedulingPage.clickOkButton();
+		softAssert.assertEquals(schedulingPage.getSuccessMessageAfterPublish(),
+				SchedulingConstant.SUCCESS_PUBLISH_MESSAGE);
+
 	}
 
 }

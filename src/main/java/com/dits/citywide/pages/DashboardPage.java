@@ -30,6 +30,8 @@ public class DashboardPage {
 	private By permissionError = By
 			.xpath("//h3[contains(text(),'You may not have the correct permissions to view the page.')]");
 
+	private By tabCalls = By.xpath("//span[contains(text(),'Calls')]");
+
 	public DashboardPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
@@ -113,6 +115,11 @@ public class DashboardPage {
 
 	public String getCurrentUrl() {
 		return driver.getCurrentUrl();
+	}
+
+	public CallsPage doClickCallsTab() {
+		elementUtils.waitForElementToBeClickable(tabCalls, Constants.DEFAULT_WAIT).click();
+		return new CallsPage(driver);
 	}
 
 }

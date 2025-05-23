@@ -129,7 +129,7 @@ public class AddEmployeePage {
 	// License Details
 	private By btnAddLicenseDetails = By.xpath("//span[contains(text(), 'Add License Details')]");
 	private By txtDriverLicense = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 	private By dropdownLicenseState = By.xpath("(//span[@class='ant-select-selection-search'])[2]");
 	private By txtboxDriverLicenseNumber = By.id("permit_number");
 	private By calenderDateOfIssue = By.xpath("(//div[@class='ant-picker-input'])[1]");
@@ -149,7 +149,7 @@ public class AddEmployeePage {
 	// Guard Card
 	private By btnAddGuardCard = By.xpath("//span[contains(text(), 'Add Guard Card')]");
 	private By txtGuardCard = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 	private By txtboxGuardCardPermitNumber = By.id("permit_number");
 
 	private By calenderDateOfIssueGuardCard = By.xpath("//label[@title='Date of Issue']");
@@ -168,7 +168,7 @@ public class AddEmployeePage {
 	// Firearms Qualification
 	private By btnAddFirearmsQualification = By.xpath("//span[contains(text(), 'Add Firearms Qualification')]");
 	private By txtFirearmsQualification = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 
 	private By txtboxFirearmsPermitNumber = By.id("permit_number");
 	private By calenderDateOfIssueFirearms = By.xpath("//label[@title='Date of Issue']");
@@ -193,7 +193,7 @@ public class AddEmployeePage {
 	// Baton
 	private By btnAddBaton = By.xpath("//span[contains(text(), 'Add Baton')]");
 	private By txtBaton = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 	private By txtboxBatonPermitNumber = By.id("permit_number");
 	private By calenderDateOfIssueBaton = By.xpath("//label[@title='Date of Issue']");
 	private By calenderDateOfIssueSearchBaton = By.id("date_of_issue");
@@ -212,7 +212,7 @@ public class AddEmployeePage {
 	// ECD
 	private By btnAddECD = By.xpath("//span[contains(text(), 'Add ECD')]");
 	private By txtECD = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 	private By txtboxPermitNumberECD = By.id("permit_number");
 	private By calenderDateOfIssueECD = By.xpath("//label[@title='Date of Issue']");
 	private By calenderDateOfIssueSearchECD = By.id("date_of_issue");
@@ -230,7 +230,7 @@ public class AddEmployeePage {
 	// OC Spray
 	private By btnAddOCSpray = By.xpath("//span[contains(text(), 'Add OC Spray')]");
 	private By txtOCSpray = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 	private By txtboxPermitNumberOCSpray = By.id("permit_number");
 	private By calenderDateOfIssueOCSpray = By.xpath("//label[@title='Date of Issue']");
 	private By calenderDateOfIssueSearchOCSpray = By.id("date_of_issue");
@@ -248,7 +248,7 @@ public class AddEmployeePage {
 	// Other Permit
 	private By btnAddOtherPermit = By.xpath("//span[contains(text(), 'Add Other Permit')]");
 	private By txtOtherPermit = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 	private By txtboxPermitNumberOtherPermit = By.id("permit_number");
 	private By calenderDateOfIssueOtherPermit = By.xpath("//label[@title='Date of Issue']");
 	private By calenderDateOfIssueSearchOtherPermit = By.id("date_of_issue");
@@ -291,7 +291,7 @@ public class AddEmployeePage {
 	// Upload Document
 	private By btnAddAdditionalDocument = By.xpath("//span[normalize-space()='Add Additional Document']");
 	private By txtAdditionalDocument = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 	private By txtboxName = By.id("Name0");
 	private By txtboxDescription = By.id("Description0");
 	private By btnSaveAdditionalDocument = By
@@ -325,7 +325,7 @@ public class AddEmployeePage {
 	private By tabReferences = By.xpath("//div[text()='References' and @class='menuItem']");
 	private By btnAddUserReference = By.xpath("//span[contains(text(),'Add User Reference')]");
 	private By txtUserReferences = By.xpath(
-			"//div[@class='ant-card ant-card-bordered overview CHS-card css-yw7p3q']//span[@class='baseTitle']");
+			"//div[@class='ant-card ant-card-bordered overview CHS-card css-wiy3tm']//span[@class='baseTitle']");
 
 	private By userReferencesName = By.id("reference_name");
 	private By userReferencesRelationship = By.id("reference_relationship");
