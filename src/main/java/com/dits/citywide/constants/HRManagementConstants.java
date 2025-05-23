@@ -39,11 +39,10 @@ public class HRManagementConstants {
 	public static final String RESIDENCE_ADDRESS_STREET_NAME = "13th Street";
 	public static final String RESIDENCE_ADDRESS_STREET = "47 W";
 	public static final String RESIDENCE_ADDRESS_STE_NUMBER = "45";
-	public static final String RESIDENCE_ADDRESS_CITY = "New York";
+	
+	public static final String RESIDENCE_ADDRESS_ZIPCODE = "90251"; // City, State and Country depends on zip code
+	public static final String RESIDENCE_ADDRESS_CITY = "Hawthorne";
 	public static final String RESIDENCE_ADDRESS_STATE = "CA";
-	public static final String RESIDENCE_ADDRESS_STATE_1 = "NY"; // Using just pass the text cases currently bug in
-																	// state selection
-	public static final String RESIDENCE_ADDRESS_ZIPCODE = "10011";
 	public static final String RESIDENCE_ADDRESS_COUNTRY = "United States";
 
 	public static final String PERSONAL_INFO_NOTES = "Enter accurate personal details including full name, DOB, contact, email, and address. "
@@ -65,7 +64,7 @@ public class HRManagementConstants {
 	public static final String EMPLOYMENT_TYPE = "Full time shift";
 
 	// Department Type
-	public static final String DEPARTMENT_TYPE = "Fire department";
+	public static final String DEPARTMENT_TYPE = "Senior Dep";
 	public static final String EMPLOYEE_INFO_ADDED_SUCCESS_MESSAGE = "Employee information updated successfully";
 
 // Permits
@@ -112,7 +111,7 @@ public class HRManagementConstants {
 	public static final String OTHER_PERMIT_EXPIRATION_DATE = "11/22/2028";
 
 // Pay Information
-	public static final String EMPLOYEE_PAY_RATEP = "12";
+	public static final String EMPLOYEE_PAY_RATE = "12";
 	public static final String PAY_CYCYLE = "Weekly";
 	public static final String ALLOWANCE_RATE = "10";
 	public static final String ALLOWANCE_TYPE = "Rental Allowance";
@@ -165,5 +164,7 @@ public class HRManagementConstants {
 	public static final String POPUP_MESSAGE_ACTION_WILL_CANCEL_LEAVE = "This action will cancel this leave.";
 	public static final String CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
 
+	// Calls Tab
+	public static final String OFFICER_RECEIVED_VIA = "Radio";
 
 }

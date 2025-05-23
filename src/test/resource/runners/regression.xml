@@ -9,33 +9,47 @@
 	</listeners>
 	-->
 
-	<test name="Login Test">
+	<test name="Add Employee Test">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.LoginTest" />
+				name="com.dits.citywide.tests.AddEmployeeTest" />
 		</classes>
 	</test>
 
-	<test name="Login Validation Test">
+	<test name="View Employee Test">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.LoginNegativeScenariosTest" />
+				name="com.dits.citywide.tests.ViewEmployeeTest" />
 		</classes>
 	</test>
 
-
-	<test name="Apply Leave Test">
+	<test name="Add Shift Test">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.ApplyLeaveTest" />
+				name="com.dits.citywide.tests.AddShiftTest" />
 		</classes>
 	</test>
 
-	<test name="Logout Test">
+	<test name="Field Agent View Shift Test">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.LogoutTest" />
+				name="com.dits.citywide.tests.FieldAgentViewShiftTest" />
 		</classes>
 	</test>
+
+	<test name="Field Agent Start Shift Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.FieldAgentStartShiftTest" />
+		</classes>
+	</test>
+
+	<test name="Add New Call Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.AddNewCallTest" />
+		</classes>
+	</test>
+
 
 </suite> 
