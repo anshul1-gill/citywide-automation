@@ -165,6 +165,5 @@ public class HRManagementConstants {
 	public static final String CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
 
 	// Calls Tab
-	public static final String OFFICER_RECEIVED_VIA = "Radio";
 
 }

@@ -51,5 +51,19 @@
 		</classes>
 	</test>
 
+	<test name="Field Agent Call Action Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.FieldAgentCallActionTest" />
+		</classes>
+	</test>
+
+	<test name="Field Agent Add Patrol Logs For Call Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.FieldAgentAddPatrolLogsForCallTest" />
+		</classes>
+	</test>
+
 
 </suite> 

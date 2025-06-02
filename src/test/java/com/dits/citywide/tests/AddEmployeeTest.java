@@ -64,7 +64,7 @@ public class AddEmployeeTest extends BaseTest {
 		addEmployeePage.doClickEmploymentInformationTab();
 
 		String employeeId = addEmployeePage.getEmployeeID();
-		System.out.println(employeeId);
+		System.out.println(employeeId); // Print ID
 		driverFactory.updatePropertyValue("employeeID", employeeId);
 
 		addEmployeePage.fillEmploymentInformation(HRManagementConstants.EMPLOYMENT_STATUS,

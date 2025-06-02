@@ -21,8 +21,19 @@ public class CallsPage {
 	private By dropdownPatrolSite = By.xpath("//label[@for=\"site_search\"]");
 	private By searchboxPatrolSite = By.cssSelector("input[placeholder='Search...']");
 	private By patrolSiteValues = By.xpath("//div[@class='list-none m-0 p-0']/div/span");
-	private By checkboxAssignedAgent = By.xpath("//div[contains(@class,'assigned-agents')]");
+
+	// Reporting Person
+	private By txtboxFirstName = By.xpath("//input[@id='rp_first_name']");
+	private By txtboxLastName = By.xpath("//input[@id='rp_last_name']");
+	private By txtboxPhoneNumber = By.xpath("//input[@id='rp_phone_number']");
+
+//	private By checkboxAssignedAgent = By.xpath("//div[contains(@class,'assigned-agents')]");
 	private By btnSaveAddNewCall = By.xpath("//button[@type='submit']");
+
+	private By successMessage = By.xpath("//h2[@id='swal2-title']/span[@class='text-white']");
+
+	private By dataCallId = By
+			.xpath("(//tr[@class='bg-white dark:bg-gray-800 dark:text-white bordered-tr']/td[3])[1]/a");
 
 	public CallsPage(WebDriver driver) {
 		this.driver = driver;
@@ -44,12 +55,30 @@ public class CallsPage {
 		elementUtils.selectElementThroughLocator(patrolSiteValues, patrolSite, Constants.SHORT_TIME_OUT_WAIT);
 	}
 
-	public void selectAvailableUnits() {
-		elementUtils.waitForElementToBeClickable(checkboxAssignedAgent, Constants.DEFAULT_WAIT).click();
+	public void fillReportingPersonForm(String firstName, String lastName, String phoneNumber) {
+		elementUtils.waitForElementVisible(txtboxFirstName, Constants.DEFAULT_WAIT).sendKeys(firstName);
+		elementUtils.waitForElementVisible(txtboxLastName, Constants.DEFAULT_WAIT).sendKeys(lastName);
+		elementUtils.waitForElementVisible(txtboxPhoneNumber, Constants.DEFAULT_WAIT).sendKeys(phoneNumber);
+	}
+
+	public void selectAvailableUnits(String userId) {
+		// elementUtils.waitForElementToBeClickable(checkboxAssignedAgent,
+		// Constants.DEFAULT_WAIT).click();
+		String userid = userId;
+		By label = By.xpath("//label[contains(normalize-space(), '" + userid + "')]");
+		elementUtils.waitForElementToBeClickable(label, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void doClickSaveAddNewCall() {
 		elementUtils.waitForElementToBeClickable(btnSaveAddNewCall, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getSuccessMessageText() {
+		return elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getCallId() {
+		return elementUtils.waitForElementVisible(dataCallId, Constants.DEFAULT_WAIT).getText();
 	}
 
 }

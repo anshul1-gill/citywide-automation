@@ -31,8 +31,6 @@ public class FieldAgentStartShiftTest extends BaseTest {
 				FieldAgentConstants.WELCOME_TEXT);
 		fieldAgentStartShiftPage.doClickStartShiftBegin();
 
-		Thread.sleep(120000);
-
 		softAssert.assertAll();
 	}
 
