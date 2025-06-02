@@ -16,8 +16,9 @@ public class FieldAgentViewShiftTest extends BaseTest {
 
 	@Test
 	public void viewShiftDetailsTest() throws InterruptedException {
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		fieldAgentStartShiftPage.btnMarkAsRead();
+		fieldAgentStartShiftPage.doClickTabStartShift();
 		fieldAgentStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);
 
 		softAssert.assertTrue(fieldAgentStartShiftPage.getSite().contains(HRManagementConstants.SITE),
@@ -27,8 +28,6 @@ public class FieldAgentViewShiftTest extends BaseTest {
 		softAssert.assertTrue(fieldAgentStartShiftPage.getAddress(), "Address not found!");
 		softAssert.assertEquals(fieldAgentStartShiftPage.getNotes(), SchedulingConstant.ADD_NOTES);
 		fieldAgentStartShiftPage.doClickViewSite();
-		
 
-		Thread.sleep(5000);
 	}
 }

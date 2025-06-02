@@ -13,6 +13,7 @@ import com.dits.citywide.pages.ApplyLeavePage;
 import com.dits.citywide.pages.CallsPage;
 import com.dits.citywide.pages.DashboardPage;
 import com.dits.citywide.pages.EmployeesPage;
+import com.dits.citywide.pages.FieldAgentCallsPage;
 import com.dits.citywide.pages.FieldAgentStartShiftPage;
 import com.dits.citywide.pages.LeaveRequestsPage;
 import com.dits.citywide.pages.LoginPage;
@@ -35,6 +36,7 @@ public class BaseTest {
 	protected SchedulingPage schedulingPage;
 	protected FieldAgentStartShiftPage fieldAgentStartShiftPage;
 	protected CallsPage callsPage;
+	protected FieldAgentCallsPage fieldAgentCallsPage;
 
 	@BeforeTest
 	public void browserSetUp() {
