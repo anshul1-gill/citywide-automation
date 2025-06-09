@@ -22,6 +22,7 @@ public class OperationsHubConstant {
 	public static final String ARRIVE_TIME = "13:30";
 	public static final String DEPART_DATE = "11/22/2025";
 	public static final String DEPART_TIME = "19:30";
+
 	public static final String ACTIVITY_CODE = "10-17";
 
 	public static final String STREET_NUMBER = "12";
@@ -33,7 +34,13 @@ public class OperationsHubConstant {
 	public static final String DESCRIPTION = "Assignment completed";
 
 	public static final String REPORT_PHOTO_VIDEO_LINK = "./src/test/resource/testdata/image.jpeg";
+	public static final String FILE_NAME = "File 1";
+	public static final String FILE_DESCRIPTION = "Description 1";
 
 	public static final String REPORT_CONFRIMATION_MESSAGE = "You want to save this report without any photo";
+
+	// All Report
+	public static final String START_SHIFT_ACTIVITY_CODE = "SS";
+	public static final String END_SHIFT_ACTIVITY_CODE = "EOS";
 
 }

@@ -18,6 +18,7 @@ public class DashboardPage {
 	private By lnkLeaveRequests = By.xpath("//span[contains(text(),'Leave Requests')]");
 	private By lnkProfileMenu = By.xpath("//i[@class='ml-1 text-xs fa-solid fa-chevron-down']");
 	private By lnkScheduling = By.xpath("//span[contains(text(),'Scheduling')]");
+	private By lnkCompanySettings = By.xpath("//span[normalize-space()='Company Settings']");
 
 	// Logout
 	private By btnLogout = By.id("user-menu-item-2");
@@ -121,5 +122,11 @@ public class DashboardPage {
 		elementUtils.waitForElementToBeClickable(tabCalls, Constants.DEFAULT_WAIT).click();
 		return new CallsPage(driver);
 	}
+	
+	public CompanySettingsPage doClickCompanySettingsTab() {
+		elementUtils.waitForElementToBeClickable(lnkCompanySettings, Constants.DEFAULT_WAIT).click();
+		return new CompanySettingsPage(driver);
+	}
+
 
 }

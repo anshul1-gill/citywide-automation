@@ -16,6 +16,7 @@ public class FieldAgentAddPatrolLogsForCallTest extends BaseTest {
 
 	@Test
 	public void addPatrolLogsForCallTest() throws InterruptedException {
+		Thread.sleep(2000);
 		fieldAgentCallsPage = fieldAgentStartShiftPage.doClickCallsTab();
 		fieldAgentCallsPage.doClickAddPatrolLogsForCall(prop.getProperty("callid"));
 		fieldAgentCallsPage.fillNewOfficerReportEntry(OperationsHubConstant.ARRIVE_DATE,

@@ -66,10 +66,13 @@ public class CallsPage {
 		// Constants.DEFAULT_WAIT).click();
 		String userid = userId;
 		By label = By.xpath("//label[contains(normalize-space(), '" + userid + "')]");
-		elementUtils.waitForElementToBeClickable(label, Constants.DEFAULT_WAIT).click();
+		// elementUtils.waitForElementToBeClickable(label,
+		// Constants.DEFAULT_WAIT).click();
+		elementUtils.doClickWithActionsAndWait(label, Constants.DEFAULT_WAIT);
 	}
 
 	public void doClickSaveAddNewCall() {
+		elementUtils.waitForElementVisible(btnSaveAddNewCall, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnSaveAddNewCall, Constants.DEFAULT_WAIT).click();
 	}
 
