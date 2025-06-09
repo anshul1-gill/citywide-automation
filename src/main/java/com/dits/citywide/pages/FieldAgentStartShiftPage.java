@@ -33,7 +33,7 @@ public class FieldAgentStartShiftPage {
 
 	private By tabCalls = By.xpath("//span[contains(text(),'Calls')]");
 
-	// End Shift
+	private By btnReportsTab = By.xpath("//span[normalize-space()='Reports']");
 
 	public FieldAgentStartShiftPage(WebDriver driver) {
 		this.driver = driver;
@@ -42,12 +42,12 @@ public class FieldAgentStartShiftPage {
 
 	public void btnMarkAsRead() {
 		try {
-			elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.LONG_TIME_OUT_WAIT);
+			elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 
 			if (elementUtils.doIsDisplayed(txtMessageOfTheWeek, Constants.SHORT_TIME_OUT_WAIT)
 					&& elementUtils.doIsDisplayed(btnMarkAsRead, Constants.SHORT_TIME_OUT_WAIT)) {
 
-				elementUtils.waitForElementVisible(txtMessageOfTheWeek, Constants.DEFAULT_WAIT);
+				elementUtils.waitForElementVisible(txtMessageOfTheWeek, Constants.SHORT_TIME_OUT_WAIT);
 				elementUtils.waitForElementVisible(btnMarkAsRead, Constants.SHORT_TIME_OUT_WAIT).click();
 				System.out.println("Clicked on 'Mark As Read' button.");
 			} else {
@@ -62,14 +62,16 @@ public class FieldAgentStartShiftPage {
 		elementUtils.waitForElementToBeClickable(tabStartShift, Constants.DEFAULT_WAIT).click();
 	}
 
-	public void viewShiftDetails(String day) {
+	public void viewShiftDetails(String day) throws InterruptedException {
 
 		if (day.length() == 1) {
 			day = "0" + day;
 		}
-		String dayxpath = "//td[contains(@class, 'ant-picker-cell-in-view')]//div[@class='ant-picker-calendar-date-value' and text()='"
-				+ day + "']//following-sibling::div";
-		elementUtils.doClickWithActionsAndWait(By.xpath(dayxpath), Constants.DEFAULT_WAIT);
+		String dayxpath = "//td[contains(@class, 'ant-picker-cell-in-view')]//div[@class='ant-picker-calendar-date-value' and normalize-space(text())='"
+				+ day + "']/following-sibling::div";
+		elementUtils.waitForElementVisible(By.xpath(dayxpath), Constants.DEFAULT_WAIT);
+		elementUtils.doActionsClick(By.xpath(dayxpath));
+
 	}
 
 	public String getSite() {
@@ -104,12 +106,15 @@ public class FieldAgentStartShiftPage {
 		return elementUtils.doIsDisplayed(btnStartShift, Constants.DEFAULT_WAIT);
 	}
 
+	// End Shift
+
 	public boolean isEndShiftButtonVisible() {
 		return elementUtils.doIsDisplayed(btnEndShift, Constants.DEFAULT_WAIT);
 	}
 
-	public void doClickEndShift() {
+	public FieldAgentReportsPage doClickEndShift() {
 		elementUtils.waitForElementToBeClickable(btnEndShift, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentReportsPage(driver);
 	}
 
 	// Start Shift Page
@@ -121,13 +126,19 @@ public class FieldAgentStartShiftPage {
 		return elementUtils.waitForElementVisible(txtWelcomeDescription, Constants.DEFAULT_WAIT).getText();
 	}
 
-	public void doClickStartShiftBegin() {
+	public FieldAgentReportsPage doClickStartShiftBegin() {
 		elementUtils.waitForElementToBeClickable(btnStartShiftBegin, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentReportsPage(driver);
 	}
 
 	public FieldAgentCallsPage doClickCallsTab() {
 		elementUtils.waitForElementToBeClickable(tabCalls, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentCallsPage(driver);
+	}
+
+	public FieldAgentReportsPage clickOnReportsTab() {
+		elementUtils.waitForElementToBeClickable(btnReportsTab, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentReportsPage(driver);
 	}
 
 }

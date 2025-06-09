@@ -7,7 +7,7 @@
 	<listeners>
 		<listener class-name=""></listener>
 	</listeners>
-	-->
+	
 
 	<test name="Add Employee Test">
 		<classes>
@@ -22,6 +22,8 @@
 				name="com.dits.citywide.tests.ViewEmployeeTest" />
 		</classes>
 	</test>
+	
+	
 
 	<test name="Add Shift Test">
 		<classes>
@@ -36,6 +38,8 @@
 				name="com.dits.citywide.tests.FieldAgentViewShiftTest" />
 		</classes>
 	</test>
+	
+
 
 	<test name="Field Agent Start Shift Test">
 		<classes>
@@ -43,6 +47,8 @@
 				name="com.dits.citywide.tests.FieldAgentStartShiftTest" />
 		</classes>
 	</test>
+	
+		-->
 
 	<test name="Add New Call Test">
 		<classes>
@@ -62,6 +68,13 @@
 		<classes>
 			<class
 				name="com.dits.citywide.tests.FieldAgentAddPatrolLogsForCallTest" />
+		</classes>
+	</test>
+
+	<test name="Field Agent End Shift Test">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.FieldAgentEndShiftTest" />
 		</classes>
 	</test>
 

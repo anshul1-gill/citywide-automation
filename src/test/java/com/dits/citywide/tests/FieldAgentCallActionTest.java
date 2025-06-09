@@ -16,6 +16,7 @@ public class FieldAgentCallActionTest extends BaseTest {
 
 	@Test
 	public void callActionTest() throws InterruptedException {
+		Thread.sleep(2000);
 		fieldAgentCallsPage = fieldAgentStartShiftPage.doClickCallsTab();
 		fieldAgentCallsPage.doClickCallAction(prop.getProperty("callid"));
 		fieldAgentCallsPage.doClickEnroute();

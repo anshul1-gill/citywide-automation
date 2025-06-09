@@ -11,9 +11,11 @@ import com.dits.citywide.driverfactory.DriverFactory;
 import com.dits.citywide.pages.AddEmployeePage;
 import com.dits.citywide.pages.ApplyLeavePage;
 import com.dits.citywide.pages.CallsPage;
+import com.dits.citywide.pages.CompanySettingsPage;
 import com.dits.citywide.pages.DashboardPage;
 import com.dits.citywide.pages.EmployeesPage;
 import com.dits.citywide.pages.FieldAgentCallsPage;
+import com.dits.citywide.pages.FieldAgentReportsPage;
 import com.dits.citywide.pages.FieldAgentStartShiftPage;
 import com.dits.citywide.pages.LeaveRequestsPage;
 import com.dits.citywide.pages.LoginPage;
@@ -37,6 +39,8 @@ public class BaseTest {
 	protected FieldAgentStartShiftPage fieldAgentStartShiftPage;
 	protected CallsPage callsPage;
 	protected FieldAgentCallsPage fieldAgentCallsPage;
+	protected FieldAgentReportsPage fieldAgentReportsPage;
+	protected CompanySettingsPage companySettingsPage;
 
 	@BeforeTest
 	public void browserSetUp() {
