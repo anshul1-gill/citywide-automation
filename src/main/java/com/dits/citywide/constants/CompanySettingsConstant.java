@@ -40,7 +40,16 @@ public class CompanySettingsConstant {
 	public static final String CUSTOM_HOLIDAY_START_TIME = "08:00";
 	public static final String CUSTOM_HOLIDAY_END_TIME = "17:00";
 	public static final String CUSTOM_HOLIDAY_RECURRING = "No";
-	public static final String CUSTOM_HOLIDAY_PAYMENT_TYPE = "Paid";
+	public static final String CUSTOM_HOLIDAY_PAYMENT_TYPE = "Unpaid";
 	public static final String CUSTOM_HOLIDAY_DESCRIPTION = "This is a test custom holiday description.";
+
+	// Update Custom Holiday
+	public static final String CUSTOM_HOLIDAY_EDIT_NAME = "Custom Holiday Test Updated";
+	public static final String CUSTOM_HOLIDAY_EDIT_START_DATE = "06/14/2025"; // Format: MM/dd/yyyy
+	public static final String CUSTOM_HOLIDAY_EDIT_START_TIME = "09:00";
+	public static final String CUSTOM_HOLIDAY_EDIT_END_TIME = "18:00";
+	public static final String CUSTOM_HOLIDAY_EDIT_RECURRING = "Yes";
+	public static final String CUSTOM_HOLIDAY_EDIT_PAYMENT_TYPE = "Unpaid";
+	public static final String CUSTOM_HOLIDAY_EDIT_DESCRIPTION = "Updated description for the custom holiday.";
 
 }
