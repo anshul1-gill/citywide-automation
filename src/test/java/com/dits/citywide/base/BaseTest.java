@@ -10,6 +10,7 @@ import org.testng.asserts.SoftAssert;
 import com.dits.citywide.driverfactory.DriverFactory;
 import com.dits.citywide.pages.AddEmployeePage;
 import com.dits.citywide.pages.ApplyLeavePage;
+import com.dits.citywide.pages.BreaksPage;
 import com.dits.citywide.pages.CallsPage;
 import com.dits.citywide.pages.CompanySettingsPage;
 import com.dits.citywide.pages.DashboardPage;
@@ -17,6 +18,7 @@ import com.dits.citywide.pages.EmployeesPage;
 import com.dits.citywide.pages.FieldAgentCallsPage;
 import com.dits.citywide.pages.FieldAgentReportsPage;
 import com.dits.citywide.pages.FieldAgentStartShiftPage;
+import com.dits.citywide.pages.HolidaysPage;
 import com.dits.citywide.pages.LeaveRequestsPage;
 import com.dits.citywide.pages.LoginPage;
 import com.dits.citywide.pages.SchedulingPage;
@@ -41,6 +43,8 @@ public class BaseTest {
 	protected FieldAgentCallsPage fieldAgentCallsPage;
 	protected FieldAgentReportsPage fieldAgentReportsPage;
 	protected CompanySettingsPage companySettingsPage;
+	protected BreaksPage breaksPage;
+	protected HolidaysPage holidaysPage;
 
 	@BeforeTest
 	public void browserSetUp() {

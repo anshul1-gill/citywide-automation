@@ -120,4 +120,14 @@ public class CompanySettingsPage {
 		return elementUtils.doIsDisplayed(lnkRespondingAgencies, Constants.DEFAULT_WAIT);
 	}
 
+	public BreaksPage clickBreaksLink() {
+		elementUtils.waitForElementToBeClickable(lnkBreaks, Constants.DEFAULT_WAIT).click();
+		return new BreaksPage(driver);
+	}
+
+	public HolidaysPage clickHolidaysLink() {
+		elementUtils.waitForElementToBeClickable(lnkHolidays, Constants.DEFAULT_WAIT).click();
+		return new HolidaysPage(driver);
+	}
+
 }
