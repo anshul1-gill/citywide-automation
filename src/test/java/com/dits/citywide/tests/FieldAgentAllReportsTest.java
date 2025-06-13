@@ -7,7 +7,7 @@ import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.HRManagementConstants;
 import com.dits.citywide.constants.OperationsHubConstant;
 
-public class AllReportsTest extends BaseTest {
+public class FieldAgentAllReportsTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -26,11 +26,8 @@ public class AllReportsTest extends BaseTest {
 				+ " " + HRManagementConstants.FIRST_NAME + " " + HRManagementConstants.LAST_NAME);
 		softAssert.assertEquals(fieldAgentReportsPage.getArriveDataStartOfShift(),
 				prop.getProperty("startShiftDateTime"));
-
 		softAssert.assertEquals(fieldAgentReportsPage.getActivityCodeDataStartOfShift(),
 				OperationsHubConstant.START_SHIFT_ACTIVITY_CODE);
-		
-		Thread.sleep(12000);
 
 		softAssert.assertAll();
 	}
