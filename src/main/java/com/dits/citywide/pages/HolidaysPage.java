@@ -33,6 +33,7 @@ public class HolidaysPage {
 	private By btnSubmitAddHoliday = By.xpath("//button[contains(@type,'submit')]");
 
 	private By dataHolidayName = By.xpath("(//td[@data-label='Holiday Name'])[1]");
+	private By dataHolidayStartDate = By.xpath("(//td[@data-label='Date'])[1]");
 	private By dataHolidayStartTime = By.xpath("(//td[@data-label='Start Time'])[1]");
 	private By dataHolidayEndTime = By.xpath("(//td[@data-label='End Time'])[1]");
 	private By dataHolidayRecurring = By.xpath("(//td[@data-label='Recurring'])[1]");
@@ -58,10 +59,25 @@ public class HolidaysPage {
 	private By dropdownPaymentTypeCustom = By.xpath("(//div[contains(@class,'ant-select-selector')])[6]");
 	private By valuesPaymentTypeCustom = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[2]/div/div");
 	private By txtboxDescriptionCustom = By.xpath("(//textarea[@placeholder='Description'])[2]");
+	private By btnSubmitCustomHoliday = By.xpath("(//button[contains(@type,'submit')])[2]");
+
+	// For updating custom holiday
+	private By txtboxUpdateCustomHolidayName = By.xpath("//input[@id='holiday_name' and @placeholder='Holiday Name']");
+	private By txtboxUpdateCustomHolidayDate = By.xpath("//input[@id='date']");
+	private By startTimeCustomUpdate = By.xpath("//input[@id='775']");
+	private By endTimeCustomUpdate = By.xpath("//input[@id='776']");
+	private By dropdownUpdateRecurringCustom = By.xpath("(//div[contains(@class,'ant-select-selector')])[1]");
+	private By valuesRecurringCustomUpdate = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[2]/div/div");
+	private By dropdownUpdatePaymentTypeCustom = By.xpath("(//div[contains(@class,'ant-select-selector')])[2]");
+	private By valuesUpdatePaymentTypeCustom = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[1]/div/div");
 
 	public HolidaysPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
+	}
+
+	public void waitForLoaderToDisappear() {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 	}
 
 	public boolean isHolidayPageTitleDisplayed() {
@@ -103,12 +119,12 @@ public class HolidaysPage {
 		elementUtils.waitForElementToBeClickable(btnAddFederalHoliday, Constants.DEFAULT_WAIT).click();
 	}
 
-	public void doClickAddCustomHolidayButton() {
-		elementUtils.waitForElementToBeClickable(btnAddCustomHoliday, Constants.DEFAULT_WAIT).click();
-	}
-
 	public String getDataHolidayName() {
 		return elementUtils.waitForElementVisible(dataHolidayName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getDataHolidayStartDate() {
+		return elementUtils.waitForElementVisible(dataHolidayStartDate, Constants.DEFAULT_WAIT).getText();
 	}
 
 	public String getDataHolidayStartTime() {
@@ -195,9 +211,15 @@ public class HolidaysPage {
 	}
 
 	// Custom Holiday
+
+	public void doClickAddCustomHolidayButton() {
+		elementUtils.waitForElementToBeClickable(btnAddCustomHoliday, Constants.DEFAULT_WAIT).click();
+		waitForLoaderToDisappear();
+	}
+
 	public void fillCustomHolidayDetails(String holidayName, String holidayDate, String startTime, String endTime,
 			String recurring, String paymentType, String description) throws InterruptedException {
-		
+
 		elementUtils.waitForElementVisible(txtboxCustomHolidayName, Constants.DEFAULT_WAIT).sendKeys(holidayName);
 		elementUtils.waitForElementVisible(txtboxCustomHolidayDate, Constants.DEFAULT_WAIT).sendKeys(holidayDate);
 		elementUtils.waitForElementToBeClickable(startTimeCustom, Constants.SHORT_TIME_OUT_WAIT).click();
@@ -209,7 +231,47 @@ public class HolidaysPage {
 		elementUtils.waitForElementToBeClickable(dropdownPaymentTypeCustom, Constants.SHORT_TIME_OUT_WAIT).click();
 		elementUtils.selectElementThroughLocator(valuesPaymentTypeCustom, paymentType, Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.waitForElementVisible(txtboxDescriptionCustom, Constants.DEFAULT_WAIT).sendKeys(description);
-		
+	}
+
+	public void doClickSubmitCustomHolidayButton() {
+		elementUtils.waitForElementToBeClickable(btnSubmitCustomHoliday, Constants.SHORT_TIME_OUT_WAIT).click();
+		waitForLoaderToDisappear();
+	}
+
+	public void updateCustomHoliday(String holidayName, String holidayDate, String startTime, String endTime,
+			String recurring, String paymentType, String description) throws InterruptedException {
+		// elementUtils.waitForElementVisible(txtboxCustomHolidayName,
+		// Constants.DEFAULT_WAIT).sendKeys(holidayName);
+
+		elementUtils.waitForElementVisible(txtboxUpdateCustomHolidayName, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateCustomHolidayName);
+		elementUtils.doActionsSendKeys(txtboxUpdateCustomHolidayName, holidayName);
+
+		// elementUtils.waitForElementVisible(txtboxCustomHolidayDate,
+		// Constants.DEFAULT_WAIT).sendKeys(holidayDate);
+		elementUtils.waitForElementVisible(txtboxUpdateCustomHolidayDate, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateCustomHolidayDate);
+		elementUtils.doActionsSendKeys(txtboxUpdateCustomHolidayDate, holidayDate);
+
+		elementUtils.waitForElementVisible(startTimeCustomUpdate, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(startTimeCustomUpdate);
+		elementUtils.doActionsSendKeys(startTimeCustomUpdate, startTime);
+
+		elementUtils.waitForElementVisible(endTimeCustomUpdate, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(endTimeCustomUpdate);
+		elementUtils.doActionsSendKeys(endTimeCustomUpdate, endTime);
+
+		elementUtils.waitForElementToBeClickable(dropdownUpdateRecurringCustom, Constants.SHORT_TIME_OUT_WAIT).click();
+		elementUtils.selectElementThroughLocator(valuesRecurringCustomUpdate, recurring, Constants.SHORT_TIME_OUT_WAIT);
+
+		elementUtils.waitForElementToBeClickable(dropdownUpdatePaymentTypeCustom, Constants.SHORT_TIME_OUT_WAIT)
+				.click();
+		elementUtils.selectElementThroughLocator(valuesUpdatePaymentTypeCustom, paymentType,
+				Constants.SHORT_TIME_OUT_WAIT);
+
+		elementUtils.waitForElementVisible(txtboxDescription, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxDescription);
+		elementUtils.doActionsSendKeys(txtboxDescription, description);
 	}
 
 }
