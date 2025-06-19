@@ -52,4 +52,20 @@ public class CompanySettingsConstant {
 	public static final String CUSTOM_HOLIDAY_EDIT_PAYMENT_TYPE = "Unpaid";
 	public static final String CUSTOM_HOLIDAY_EDIT_DESCRIPTION = "Updated description for the custom holiday.";
 
+	// Add Leave Data
+	public static final String LEAVE_NAME = "Vacation Leave";
+	public static final String NUMBER_OF_DAYS = "10";
+	public static final String LEAVE_DESCRIPTION = "Annual vacation leave for employees";
+
+	// Update Leave Data
+	public static final String LEAVE_EDIT_NAME = "Vacation Leave Updated";
+	public static final String LEAVE_EDIT_NUMBER_OF_DAYS = "12";
+	public static final String LEAVE_EDIT_DESCRIPTION = "Updated annual vacation leave description for employees";
+
+	// Add Activity Template Data
+	public static final String ACTIVITY_TEMPLATE_NAME = "Activity Template Test";
+	public static final String ACTIVITY_CODE_NAME = "10-16";
+	public static final String QUESTION_TYPE = "LARGE TEXT AREA";
+	public static final String QUESTION_TEXT = "What are your goals for this year?";
+
 }

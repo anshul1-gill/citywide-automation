@@ -3,26 +3,30 @@ package com.dits.citywide.base;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.asserts.SoftAssert;
 
 import com.dits.citywide.driverfactory.DriverFactory;
-import com.dits.citywide.pages.AddEmployeePage;
-import com.dits.citywide.pages.ApplyLeavePage;
-import com.dits.citywide.pages.BreaksPage;
-import com.dits.citywide.pages.CallsPage;
-import com.dits.citywide.pages.CompanySettingsPage;
-import com.dits.citywide.pages.DashboardPage;
-import com.dits.citywide.pages.EmployeesPage;
-import com.dits.citywide.pages.FieldAgentCallsPage;
-import com.dits.citywide.pages.FieldAgentReportsPage;
-import com.dits.citywide.pages.FieldAgentStartShiftPage;
-import com.dits.citywide.pages.HolidaysPage;
-import com.dits.citywide.pages.LeaveRequestsPage;
-import com.dits.citywide.pages.LoginPage;
-import com.dits.citywide.pages.SchedulingPage;
-import com.dits.citywide.pages.ViewEmployeePage;
+import com.dits.citywide.pages.admin.AddEmployeePage;
+import com.dits.citywide.pages.admin.ApplyLeavePage;
+import com.dits.citywide.pages.admin.BreaksPage;
+import com.dits.citywide.pages.admin.CallsPage;
+import com.dits.citywide.pages.admin.CompanySettingsPage;
+import com.dits.citywide.pages.admin.DashboardPage;
+import com.dits.citywide.pages.admin.EmployeesPage;
+import com.dits.citywide.pages.admin.HolidaysPage;
+import com.dits.citywide.pages.admin.LeaveRequestsPage;
+import com.dits.citywide.pages.admin.LeavesPage;
+import com.dits.citywide.pages.admin.LoginPage;
+import com.dits.citywide.pages.admin.SchedulingPage;
+import com.dits.citywide.pages.admin.ViewEmployeePage;
+import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentLeaveRequestsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
 
 public class BaseTest {
 
@@ -45,8 +49,11 @@ public class BaseTest {
 	protected CompanySettingsPage companySettingsPage;
 	protected BreaksPage breaksPage;
 	protected HolidaysPage holidaysPage;
+	protected LeavesPage leavesPage;
+	protected FieldAgentLeaveRequestsPage fieldAgentLeaveRequestsPage;
 
-	@BeforeTest
+	// @BeforeTest
+	@BeforeClass
 	public void browserSetUp() {
 		driverFactory = new DriverFactory();
 		prop = driverFactory.initProperties();
@@ -55,7 +62,8 @@ public class BaseTest {
 		softAssert = new SoftAssert();
 	}
 
-	@AfterTest
+	// @AfterTest
+	@AfterClass
 	public void tearDown() {
 		driver.quit();
 	}
