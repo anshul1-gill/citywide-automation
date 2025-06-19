@@ -4,6 +4,44 @@ public class FieldAgentConstants {
 
 	// Welcome Text
 	public static final String WELCOME_TEXT = "Hope you are doing well. Lets begin your shift, remember shift also includes breaks please dont hesitate for one !!";
-	
+
+// HR Management 
+	// Leavve Request Data
+	public static final String LEAVE_TYPE = "Study";
+
+	public static final String LEAVE_FROM_MONTH = "Jun";
+	public static final String LEAVE_FROM_YEAR = "2025";
+	public static final String LEAVE_FROM_DATE = "20";
+
+	public static final String LEAVE_TO_MONTH = "Jun";
+	public static final String LEAVE_TO_YEAR = "2025";
+	public static final String LEAVE_TO_DATE = "25";
+
+	public static final String LEAVE_START_TIME = "04:30";
+	public static final String LEAVE_END_TIME = "05:30";
+
+	public static final String LEAVE_DESCRIPTION = "Need to attend a workshop on urban planning and development.";
+
+	// Edit Leave Request Data
+	public static final String EDIT_LEAVE_TYPE = "Sick leave";
+
+	public static final String EDIT_LEAVE_FROM_MONTH = "Jun";
+	public static final String EDIT_LEAVE_FROM_YEAR = "2025";
+	public static final String EDIT_LEAVE_FROM_DATE = "21";
+
+	public static final String EDIT_LEAVE_TO_MONTH = "Jun";
+	public static final String EDIT_LEAVE_TO_YEAR = "2025";
+	public static final String EDIT_LEAVE_TO_DATE = "22";
+
+	public static final String EDIT_LEAVE_START_TIME = "06:30";
+	public static final String EDIT_LEAVE_END_TIME = "07:30";
+
+	public static final String EDIT_LEAVE_DESCRIPTION = "Need to take a day off due to health issues.";
+
+	public static final String LEAVE_CANCEL_VALIDATION_MESSAGE = "This action will cancel this leave.";
+
+	public static final String LEAVE_CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
+
+	public static final String LEAVE_STATUS = "Canceled";
 
 }

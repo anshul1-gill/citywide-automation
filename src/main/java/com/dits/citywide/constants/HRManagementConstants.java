@@ -39,7 +39,7 @@ public class HRManagementConstants {
 	public static final String RESIDENCE_ADDRESS_STREET_NAME = "13th Street";
 	public static final String RESIDENCE_ADDRESS_STREET = "47 W";
 	public static final String RESIDENCE_ADDRESS_STE_NUMBER = "45";
-	
+
 	public static final String RESIDENCE_ADDRESS_ZIPCODE = "90251"; // City, State and Country depends on zip code
 	public static final String RESIDENCE_ADDRESS_CITY = "Hawthorne";
 	public static final String RESIDENCE_ADDRESS_STATE = "CA";
@@ -163,6 +163,10 @@ public class HRManagementConstants {
 	public static final String POPUP_MESSAGE_ARE_YOU_SURE = "Are you sure?";
 	public static final String POPUP_MESSAGE_ACTION_WILL_CANCEL_LEAVE = "This action will cancel this leave.";
 	public static final String CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
+	public static final String LEAVE_CANCEL_VALIDATION_MESSAGE = "Are you sure you want to decline this leave?";
+
+	public static final String DECLINE_REASON = "Declined due to insufficient leave balance.";
+	public static final String DECLINED_CONFIRMATION_MESSAGE = "Leave declined successfully";
 
 	// Calls Tab
 

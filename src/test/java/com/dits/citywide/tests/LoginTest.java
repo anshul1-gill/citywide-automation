@@ -6,7 +6,7 @@ import com.dits.citywide.base.BaseTest;
 
 public class LoginTest extends BaseTest {
 
-	@Test
+	@Test()
 	public void loginTest() throws InterruptedException {
 
 		softAssert.assertTrue(loginPage.isCompanyLogoHeaderDisplayed(), "Company logo in the header is not displayed");
