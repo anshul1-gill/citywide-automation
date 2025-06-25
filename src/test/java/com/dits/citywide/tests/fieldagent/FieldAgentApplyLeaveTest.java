@@ -8,7 +8,7 @@ import com.dits.citywide.constants.FieldAgentConstants;
 
 public class FieldAgentApplyLeaveTest extends BaseTest {
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void performLogin() throws InterruptedException {
 		fieldAgentStartShiftPage = loginPage.doLoginFieldAgent(prop.getProperty("employeeID"),
 				prop.getProperty("employeePassword"));

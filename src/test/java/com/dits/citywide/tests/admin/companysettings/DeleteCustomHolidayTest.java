@@ -1,4 +1,4 @@
-package com.dits.citywide.tests.companysettings;
+package com.dits.citywide.tests.admin.companysettings;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.CompanySettingsConstant;
 
-public class DeleteFederalHolidayTest extends BaseTest {
+public class DeleteCustomHolidayTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -14,17 +14,16 @@ public class DeleteFederalHolidayTest extends BaseTest {
 	}
 
 	@Test
-	public void deleteFederalHolidayTest() {
+	public void deleteCustomHolidayTest() throws InterruptedException {
 		companySettingsPage = dashboardPage.doClickCompanySettingsTab();
 		holidaysPage = companySettingsPage.clickHolidaysLink();
-		holidaysPage.clickDeleteHolidayButton(CompanySettingsConstant.HOLIDAY_EDIT_NAME);
+		holidaysPage.clickDeleteHolidayButton(CompanySettingsConstant.CUSTOM_HOLIDAY_EDIT_NAME);
+		holidaysPage.doClickOkDeleteHolidayButton();
 
 		softAssert.assertEquals(holidaysPage.getDeleteConfirmationMessage(),
-				CompanySettingsConstant.DELETE_HOLIDAY_CONFIRMATION_MESSAGE,
-				"Delete holiday confirmation message is not displayed");
-		holidaysPage.doClickOkDeleteHolidayButton();
+				CompanySettingsConstant.DELETE_HOLIDAY_CONFIRMATION_MESSAGE);
 		softAssert.assertTrue(holidaysPage.isDeleteSuccessMessageDisplayed(),
-				"Federal holiday is not deleted successfully");
+				"Delete holiday confirmation popup is not displayed");
 
 		softAssert.assertAll();
 	}

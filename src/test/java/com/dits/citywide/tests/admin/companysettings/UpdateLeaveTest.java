@@ -1,4 +1,4 @@
-package com.dits.citywide.tests.companysettings;
+package com.dits.citywide.tests.admin.companysettings;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

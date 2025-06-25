@@ -1,4 +1,4 @@
-package com.dits.citywide.tests.hrmanagement;
+package com.dits.citywide.tests.admin.hrmanagement;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,7 +9,7 @@ import com.dits.citywide.constants.HRManagementConstants;
 
 public class DeclineLeaveRequestsTest extends BaseTest {
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void performLogin() throws InterruptedException {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}
@@ -47,6 +47,10 @@ public class DeclineLeaveRequestsTest extends BaseTest {
 
 		softAssert.assertEquals(leaveRequestsPage.getCancelConfirmationMessage(),
 				HRManagementConstants.DECLINED_CONFIRMATION_MESSAGE);
+
+		softAssert.assertEquals(
+				leaveRequestsPage.getDeclinedStatus(prop.getProperty("employeeID"), FieldAgentConstants.LEAVE_TYPE),
+				HRManagementConstants.STATUS_DECLINED);
 		softAssert.assertAll();
 	}
 

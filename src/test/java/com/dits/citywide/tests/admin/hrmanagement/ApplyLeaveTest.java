@@ -1,4 +1,4 @@
-package com.dits.citywide.tests.hrmanagement;
+package com.dits.citywide.tests.admin.hrmanagement;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

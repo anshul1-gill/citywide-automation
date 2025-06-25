@@ -31,15 +31,16 @@ public class LeaveRequestsPage {
 	private By dataEndTime = By.xpath("(//td[@data-label='End Time'])[1]");
 	private By dataTotalDays = By.xpath("(//td[@data-label='Total Days'])[1]");
 
+	// Approve
 	private By txtAreYouSure = By.xpath("//h2[@id='swal2-title']");
-	private By txtThisActionWillCancelThisLeave = By.cssSelector("#swal2-html-container");
+	private By txtThisActionWillApproveThisLeave = By.cssSelector("#swal2-html-container");
 	private By btnOk = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	private By btnCancel = By.xpath("//button[@class='swal2-cancel red-cancel-button swal2-styled']");
 
-	private By msgCancelConfirmationMessage = By.xpath(
+	private By msgConfirmationMessage = By.xpath(
 			"//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']/following-sibling::div");
 
-	// Declined and Approved
+	// Declined
 	private By txtCancelValidationMessage = By.xpath("//span[@class='baseTitle']");
 	private By txtboxDeclinedReason = By.xpath("//textarea[@id='reason']");
 	private By btnSubmitDecline = By.xpath("//button[@type='submit']");
@@ -133,7 +134,6 @@ public class LeaveRequestsPage {
 		String statusxpath = "//tr[td[contains(text(),'" + id + "')] and td[contains(text(),'" + leavetype
 				+ "')]]//div[contains(@class,'status-canceled')]";
 		return elementUtils.waitForElementVisible(By.xpath(statusxpath), Constants.DEFAULT_WAIT).getText();
-
 	}
 
 	public String getDeclinedStatus(String employeeID, String leaveType) {
@@ -144,26 +144,20 @@ public class LeaveRequestsPage {
 		String statusxpath = "//tr[td[contains(text(),'" + id + "')] and td[contains(text(),'" + leavetype
 				+ "')]]//div[contains(@class,'status-declined')]";
 		return elementUtils.waitForElementVisible(By.xpath(statusxpath), Constants.DEFAULT_WAIT).getText();
-
 	}
 
-	public String getApprovedStatus(String employeeID, String leaveType) {
-
-		String id = employeeID;
-		String leavetype = leaveType;
-
-		String statusxpath = "//tr[td[contains(text(),'" + id + "')] and td[contains(text(),'" + leavetype
-				+ "')]]//div[contains(@class,'status-completed')]";
-		return elementUtils.waitForElementVisible(By.xpath(statusxpath), Constants.DEFAULT_WAIT).getText();
-
+	public String getCancelConfirmationMessage() {
+		return elementUtils.waitForElementVisible(msgConfirmationMessage, Constants.DEFAULT_WAIT).getText();
 	}
 
+	// Approive Leave Requests Confirmation
+	
 	public String getAreYouSureText() {
 		return elementUtils.waitForElementVisible(txtAreYouSure, Constants.DEFAULT_WAIT).getText();
 	}
 
-	public String getCancelLeaveWarningText() {
-		return elementUtils.waitForElementVisible(txtThisActionWillCancelThisLeave, Constants.DEFAULT_WAIT).getText();
+	public String getApproveLeaveWarningText() {
+		return elementUtils.waitForElementVisible(txtThisActionWillApproveThisLeave, Constants.DEFAULT_WAIT).getText();
 	}
 
 	public void doClickOk() {
@@ -174,8 +168,18 @@ public class LeaveRequestsPage {
 		elementUtils.waitForElementToBeClickable(btnCancel, Constants.DEFAULT_WAIT).click();
 	}
 
-	public String getCancelConfirmationMessage() {
-		return elementUtils.waitForElementVisible(msgCancelConfirmationMessage, Constants.DEFAULT_WAIT).getText();
+	public String getApprovedConfirmationMessage() {
+		return elementUtils.waitForElementVisible(msgConfirmationMessage, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getApprovedStatus(String employeeID, String leaveType) {
+
+		String id = employeeID;
+		String leavetype = leaveType;
+
+		String statusxpath = "//tr[td[contains(text(),'" + id + "')] and td[contains(text(),'" + leavetype
+				+ "')]]//div[contains(@class,'status-completed')]";
+		return elementUtils.waitForElementVisible(By.xpath(statusxpath), Constants.DEFAULT_WAIT).getText();
 	}
 
 }

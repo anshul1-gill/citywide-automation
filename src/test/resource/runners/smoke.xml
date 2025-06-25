@@ -6,37 +6,35 @@
 	<!-- 
 	<listeners>
 		<listener class-name=""></listener>
-	</listeners>
-		-->
+	</listeners>	
+	-->
 
 	<test name="Add Employee Test">
+
 		<classes>
 			<class
-				name="com.dits.citywide.tests.AddEmployeeTest" />
+				name="com.dits.citywide.tests.admin.hrmanagement.AddEmployeeTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ViewEmployeeTest" />
 		</classes>
 	</test>
 
-	<test name="View Employee Test">
+	<test name="Decline Leave Flow">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.ViewEmployeeTest" />
+				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsTest" />
 		</classes>
 	</test>
 
-
-	<test name="Add Shift Test">
+	<test name="Approve Leave Flow">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.AddShiftTest" />
-		</classes>
-	</test>
-
-	<test name="Field Agent View Shift Test">
-		<classes>
+				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
 			<class
-				name="com.dits.citywide.tests.FieldAgentViewShiftTest" />
+				name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsTest" />
 		</classes>
 	</test>
-
 
 </suite> 
