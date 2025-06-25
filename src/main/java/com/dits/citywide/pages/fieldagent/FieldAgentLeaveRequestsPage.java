@@ -161,8 +161,6 @@ public class FieldAgentLeaveRequestsPage {
 		elementUtils.waitForElementVisible(txtboxDescription, Constants.DEFAULT_WAIT);
 		elementUtils.clearTextBoxWithActions(txtboxDescription);
 		elementUtils.doActionsSendKeys(txtboxDescription, description);
-//		elementUtils.waitForElementVisible(txtboxDescription, Constants.DEFAULT_WAIT).clear();
-//		elementUtils.waitForElementVisible(txtboxDescription, Constants.DEFAULT_WAIT).sendKeys(description);
 
 	}
 

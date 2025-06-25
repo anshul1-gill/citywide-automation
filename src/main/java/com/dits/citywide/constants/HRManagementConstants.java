@@ -3,9 +3,9 @@ package com.dits.citywide.constants;
 public class HRManagementConstants {
 
 // Personal Information
-	public static final String FIRST_NAME = "John";
-	public static final String MIDDLE_NAME = "William";
-	public static final String LAST_NAME = "Carter";
+	public static final String FIRST_NAME = "Amit";
+	public static final String MIDDLE_NAME = "Kumar";
+	public static final String LAST_NAME = "Singh";
 	public static final String GENDER = "Male";
 	public static final String BIRTH_MONTH = "Feb";
 	public static final String BIRTH_YEAR = "2000";
@@ -64,7 +64,7 @@ public class HRManagementConstants {
 	public static final String EMPLOYMENT_TYPE = "Full time shift";
 
 	// Department Type
-	public static final String DEPARTMENT_TYPE = "Senior Dep";
+	public static final String DEPARTMENT_TYPE = "Dispatch";
 	public static final String EMPLOYEE_INFO_ADDED_SUCCESS_MESSAGE = "Employee information updated successfully";
 
 // Permits
@@ -112,14 +112,14 @@ public class HRManagementConstants {
 
 // Pay Information
 	public static final String EMPLOYEE_PAY_RATE = "12";
-	public static final String PAY_CYCYLE = "Weekly";
+	public static final String PAY_CYCYLE = "Hourly";
 	public static final String ALLOWANCE_RATE = "10";
 	public static final String ALLOWANCE_TYPE = "Rental Allowance";
 
 	public static final String COMMISSION_NAME = "Education Reform";
 	public static final String COMMISSION_TYPE = "Price";
 	public static final String COMMISSION_RATE = "10";
-	public static final String COMMISSION_CYCLE = "Monthly";
+	public static final String COMMISSION_CYCLE = "Salary";
 	public static final String EFFECTIVE_DATE = "02/12/2025";
 
 	public static final String PAY_INFO_ADDED_SUCCESS_MESSAGE = "Pay information updated successfully";
@@ -161,12 +161,14 @@ public class HRManagementConstants {
 			+ "I will ensure all pending tasks are completed before my leave.";
 
 	public static final String POPUP_MESSAGE_ARE_YOU_SURE = "Are you sure?";
-	public static final String POPUP_MESSAGE_ACTION_WILL_CANCEL_LEAVE = "This action will cancel this leave.";
-	public static final String CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
-	public static final String LEAVE_CANCEL_VALIDATION_MESSAGE = "Are you sure you want to decline this leave?";
+	public static final String POPUP_MESSAGE_ACTION_WILL_APPROVE_LEAVE = "This action will approve this leave.";
+	public static final String APPROVED_CONFIRMATION_MESSAGE = "Leave approved successfully";
+	public static final String STATUS_APPROVED = "Approved";
 
+	public static final String LEAVE_CANCEL_VALIDATION_MESSAGE = "Are you sure you want to decline this leave?";
 	public static final String DECLINE_REASON = "Declined due to insufficient leave balance.";
 	public static final String DECLINED_CONFIRMATION_MESSAGE = "Leave declined successfully";
+	public static final String STATUS_DECLINED = "Declined";
 
 	// Calls Tab
 

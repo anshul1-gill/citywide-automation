@@ -1,4 +1,4 @@
-package com.dits.citywide.tests.hrmanagement;
+package com.dits.citywide.tests.admin.hrmanagement;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,12 +10,12 @@ import com.dits.citywide.utilities.RandomEmailGenerator;
 
 public class AddEmployeeTest extends BaseTest {
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void performLogin() throws InterruptedException {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}
 
-	@Test
+	@Test(groups = "employee-add")
 	public void addNewEmployeeTest() throws InterruptedException {
 
 		dashboardPage.doClickHRManagement();
