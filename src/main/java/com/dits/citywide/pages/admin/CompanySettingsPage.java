@@ -134,10 +134,20 @@ public class CompanySettingsPage {
 		elementUtils.waitForElementToBeClickable(lnkLeaves, Constants.DEFAULT_WAIT).click();
 		return new LeavesPage(driver);
 	}
-	
+
 	public ActivityTemplatePage clickActivityCodeLink() {
 		elementUtils.waitForElementToBeClickable(lnkActivityCode, Constants.DEFAULT_WAIT).click();
 		return new ActivityTemplatePage(driver);
+	}
+
+	public BeatsPage clickBeatsLink() {
+		elementUtils.waitForElementToBeClickable(lnkBeats, Constants.DEFAULT_WAIT).click();
+		return new BeatsPage(driver);
+	}
+
+	public ViolationsPage clickViolationsLink() {
+		elementUtils.waitForElementToBeClickable(lnkViolations, Constants.DEFAULT_WAIT).click();
+		return new ViolationsPage(driver);
 	}
 
 }

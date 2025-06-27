@@ -68,4 +68,45 @@ public class CompanySettingsConstant {
 	public static final String QUESTION_TYPE = "LARGE TEXT AREA";
 	public static final String QUESTION_TEXT = "What are your goals for this year?";
 
+	// Add Beats Data
+	public static final String BEAT_ID = "B001";
+	public static final String BEAT_NAME = "Downtown Beat";
+	public static final String SHIFT_TYPE = "Night";
+	public static final String NUMBER_OF_SITES = "Richmond";
+
+	// Update Beats Data
+
+	public static final String BEAT_EDIT_ID = "B002";
+	public static final String BEAT_EDIT_NAME = "Uptown Beat";
+	public static final String BEAT_EDIT_SHIFT_TYPE = "Daytime";
+	public static final String BEAT_EDIT_NUMBER_OF_SITES = "Houston";
+
+	public static final String DELETED_BEAT_SUCCESS_MESSAGE = "Beat deleted successfully";
+
+	// Add Violation Data
+	public static final String VIOLATION_NAME = "Speeding Violation";
+	public static final String VIOLATION_DESCRIPTION = "Exceeding the speed limit by more than 20 mph";
+	public static final String VIOLATION_BRANCH = "Riverside";
+
+	public static final String ADD_VIOLATION_SUCCESS_MESSAGE = "Parking violation added successfully";
+
+	public static final String VIOLATION_EDIT_NAME = "Speeding Violation Updated";
+	public static final String VIOLATION_EDIT_DESCRIPTION = "Exceeding the speed limit by more than 30 mph";
+	public static final String VIOLATION_EDIT_BRANCH = "Downtown";
+
+	public static final String UPDATE_VIOLATION_SUCCESS_MESSAGE = "Parking violation updated successfully";
+
+	public static final String DELETE_VIOLATION_SUCCESS_MESSAGE = "Violation deleted successfully]";
+
+	// Add Charges Data
+	public static final String CHARGE_CODE = "CHG001";
+	public static final String CHARGE_DESCRIPTION = "Charge for parking violations exceeding 30 minutes";
+	public static final String ADD_CHARGE_SUCCESS_MESSAGE = "Charge code added successfully";
+	
+	public static final String CHARGE_EDIT_CODE = "CHG002";
+	public static final String CHARGE_EDIT_DESCRIPTION = "Updated charge for parking violations exceeding 30 minutes";
+	
+	public static final String UPDATE_CHARGE_SUCCESS_MESSAGE = "Charge code updated successfully";
+	
+	public static final String DELETE_CHARGE_SUCCESS_MESSAGE = "Charges deleted deleted successfully";
 }
