@@ -515,6 +515,26 @@ public class ElementUtils {
 			System.out.println("Error while pressing Escape key: " + e.getMessage());
 		}
 	}
+	
+	public void pressDeleteKey() {
+	    try {
+	        Actions actions = new Actions(driver);
+	        actions.sendKeys(Keys.DELETE).perform();
+	    } catch (Exception e) {
+	        System.out.println("Error while pressing Delete key: " + e.getMessage());
+	    }
+	}
+	
+	public void pressEscKey() {
+	    try {
+	        Actions actions = new Actions(driver);
+	        actions.sendKeys(Keys.ESCAPE).perform();
+	    } catch (Exception e) {
+	        System.out.println("Error while pressing Escape key: " + e.getMessage());
+	    }
+	}
+
+
 
 	public void clearTextBoxWithKeys(By locator) {
 	    try {
