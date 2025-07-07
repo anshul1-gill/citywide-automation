@@ -149,5 +149,20 @@ public class CompanySettingsPage {
 		elementUtils.waitForElementToBeClickable(lnkViolations, Constants.DEFAULT_WAIT).click();
 		return new ViolationsPage(driver);
 	}
+	
+	public ActivityTemplatePage clickActivityTemplatesLink() {
+		elementUtils.waitForElementToBeClickable(lnkActivityTemplates, Constants.DEFAULT_WAIT).click();
+		return new ActivityTemplatePage(driver);
+	}
+	
+	public RespondingAgenciesPage clickRespondingAgenciesLink() {
+		elementUtils.waitForElementToBeClickable(lnkRespondingAgencies, Constants.DEFAULT_WAIT).click();
+		return new RespondingAgenciesPage(driver);
+	} 
+	
+	public HRConfigurationsPage clickHRConfigurationsLink() {
+		elementUtils.waitForElementToBeClickable(lnkHRConfigurations, Constants.DEFAULT_WAIT).click();
+		return new HRConfigurationsPage(driver);
+	}
 
 }
