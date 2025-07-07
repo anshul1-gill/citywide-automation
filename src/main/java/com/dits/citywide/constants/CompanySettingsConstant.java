@@ -102,11 +102,101 @@ public class CompanySettingsConstant {
 	public static final String CHARGE_CODE = "CHG001";
 	public static final String CHARGE_DESCRIPTION = "Charge for parking violations exceeding 30 minutes";
 	public static final String ADD_CHARGE_SUCCESS_MESSAGE = "Charge code added successfully";
-	
+
 	public static final String CHARGE_EDIT_CODE = "CHG002";
 	public static final String CHARGE_EDIT_DESCRIPTION = "Updated charge for parking violations exceeding 30 minutes";
-	
+
 	public static final String UPDATE_CHARGE_SUCCESS_MESSAGE = "Charge code updated successfully";
-	
+
 	public static final String DELETE_CHARGE_SUCCESS_MESSAGE = "Charges deleted deleted successfully";
+
+	// Add new template data
+	public static final String ACTIVITY_TEMPLATE_NAME_TEST = "Activity Template Test";
+	public static final String ACTIVITY_CODE_TEST = "Prisoner";
+	public static final String QUESTION_TYPE_TEST = "LARGE TEXT AREA";
+	public static final String QUESTION_TEXT_TEST = "What are your goals for this year?";
+
+	public static final String ADD_NEW_TEMPLATE_CONTENT = "Sample Template Content";
+	public static final String ACTIVITY_TEMPLATE_SUCCESS_MESSAGE = "Activity template added successfully";
+
+	// Update Template Data
+
+	public static final String QUESTION_TYPE_UPDATED = "SINGLE LINE TEXT";
+	public static final String QUESTION_TEXT_UPDATED = "Updated question text for the activity template";
+
+	// Responding Agencies Data
+	public static final String AGENCY_TYPE_NAME = "Fire Department";
+	public static final String ADD_AGENCY_TYPE_SUCCESS_MESSAGE = "Agency type added successfully";
+
+	// Update Agency Type Data
+	public static final String AGENCY_TYPE_NAME_UPDATED = "Fire Department Updated";
+	public static final String UPDATE_AGENCY_TYPE_SUCCESS_MESSAGE = "Agency type updated successfully";
+
+	public static final String DELETE_AGENCY_TYPE_SUCCESS_MESSAGE = "Agency type deleted successfully";
+
+	// Add Agency Data
+
+	public static final String AGENCY_TYPE = "Fire";
+	public static final String AGENCY_NAME = "City Fire Department";
+	public static final String AGENCY_CONTACT_NUMBER = "123456789";
+	public static final String AGENCY_ALTERNATE_PHONE_NUMBER = "987654321";
+	public static final String AGENCY_LIAISON_OFFICER = "John Doe";
+
+	public static final String ADD_AGENCY_SUCCESS_MESSAGE = "Agency added successfully";
+
+	// Update Agency Data
+	public static final String AGENCY_TYPE_UPDATED = "Other";
+	public static final String AGENCY_NAME_UPDATED = "City Fire Department Updated";
+	public static final String AGENCY_CONTACT_NUMBER_UPDATED = "1234567890";
+	public static final String AGENCY_ALTERNATE_PHONE_NUMBER_UPDATED = "0987654321";
+	public static final String AGENCY_LIAISON_OFFICER_UPDATED = "Jane Doe";
+
+	public static final String UPDATE_AGENCY_SUCCESS_MESSAGE = "Agency updated successfully";
+
+	public static final String DELETE_AGENCY_SUCCESS_MESSAGE = "Agency deleted successfully";
+
+	// HR Configurations Data
+	// Add Notification Type Data
+	public static final String NOTIFICATION_TYPE_NAME = "New Employee Onboarding";
+	public static final String EMPLOYEE_NAME = "John Smith";
+	public static final String NOTIFICATION_EMAILS = "john@yopmail.com";
+
+	public static final String ADD_NOTIFICATION_TYPE_SUCCESS_MESSAGE = "Notification type added successfully";
+
+	// Allowance Type Data
+	public static final String ALLOWANCE_TYPE_NAME = "Housing Allowance";
+	public static final String ADD_ALLOWANCE_TYPE_SUCCESS_MESSAGE = "Allowance type created successfully";
+
+	public static final String ALLOWANCE_TYPE_UPDATED_NAME = "Housing Allowance Updated";
+	public static final String ALLOWANCE_TYPE_UPDATE_SUCCESS_MESSAGE = "Allowance type updated successfully";
+
+	public static final String ALLOWANCE_TYPE_DELETE_SUCCESS_MESSAGE = "Allowance type deleted successfully";
+
+	// Department Data
+	public static final String DEPARTMENT_NAME = "Human Resources";
+	public static final String ADD_DEPARTMENT_SUCCESS_MESSAGE = "Department added successfully";
+
+	public static final String DEPARTMENT_UPDATED_NAME = "Human Resources Updated";
+	public static final String DEPARTMENT_UPDATE_SUCCESS_MESSAGE = "Department updated successfully";
+
+	public static final String DEPARTMENT_DELETE_SUCCESS_MESSAGE = "Department deleted successfully";
+
+	// WC Class Code Data
+	public static final String WC_CLASS_CODE_NAME = "Class Code 1234";
+	public static final String ADD_WC_CLASS_CODE_SUCCESS_MESSAGE = "WC Class code added successfully";
+
+	public static final String WC_CLASS_CODE_UPDATED_NAME = "Class Code 1234 Updated";
+	public static final String WC_CLASS_CODE_UPDATE_SUCCESS_MESSAGE = "WC Class code updated successfully";
+
+	public static final String WC_CLASS_CODE_DELETE_SUCCESS_MESSAGE = "WC class code deleted successfully";
+
+	// Employment Type Data
+	public static final String EMPLOYMENT_TYPE_NAME = "Full-Time";
+	public static final String ADD_EMPLOYMENT_TYPE_SUCCESS_MESSAGE = "Employment type added successfully";
+
+	public static final String EMPLOYMENT_TYPE_EDIT_NAME = "Full-Time Updated";
+	public static final String EMPLOYMENT_TYPE_UPDATE_SUCCESS_MESSAGE = "Employment type updated successfully";
+
+	public static final String EMPLOYMENT_TYPE_DELETE_SUCCESS_MESSAGE = "Employment type deleted successfully";
+
 }

@@ -4,12 +4,11 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.asserts.SoftAssert;
 
 import com.dits.citywide.driverfactory.DriverFactory;
+import com.dits.citywide.pages.admin.ActivityTemplatePage;
 import com.dits.citywide.pages.admin.AddEmployeePage;
 import com.dits.citywide.pages.admin.ApplyLeavePage;
 import com.dits.citywide.pages.admin.BeatsPage;
@@ -18,10 +17,12 @@ import com.dits.citywide.pages.admin.CallsPage;
 import com.dits.citywide.pages.admin.CompanySettingsPage;
 import com.dits.citywide.pages.admin.DashboardPage;
 import com.dits.citywide.pages.admin.EmployeesPage;
+import com.dits.citywide.pages.admin.HRConfigurationsPage;
 import com.dits.citywide.pages.admin.HolidaysPage;
 import com.dits.citywide.pages.admin.LeaveRequestsPage;
 import com.dits.citywide.pages.admin.LeavesPage;
 import com.dits.citywide.pages.admin.LoginPage;
+import com.dits.citywide.pages.admin.RespondingAgenciesPage;
 import com.dits.citywide.pages.admin.SchedulingPage;
 import com.dits.citywide.pages.admin.ViewEmployeePage;
 import com.dits.citywide.pages.admin.ViolationsPage;
@@ -55,6 +56,9 @@ public class BaseTest {
 	protected FieldAgentLeaveRequestsPage fieldAgentLeaveRequestsPage;
 	protected BeatsPage beatsPage;
 	protected ViolationsPage violationsPage;
+	protected ActivityTemplatePage activityTemplatePage;
+	protected RespondingAgenciesPage respondingAgenciesPage;
+	protected HRConfigurationsPage hrConfigurationsPage;
 
 	// @BeforeTest
 	@BeforeClass
