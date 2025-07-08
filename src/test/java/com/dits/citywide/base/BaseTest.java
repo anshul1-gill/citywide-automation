@@ -15,6 +15,7 @@ import com.dits.citywide.pages.admin.BeatsPage;
 import com.dits.citywide.pages.admin.BreaksPage;
 import com.dits.citywide.pages.admin.CallsPage;
 import com.dits.citywide.pages.admin.CompanySettingsPage;
+import com.dits.citywide.pages.admin.CourseCategoriesPage;
 import com.dits.citywide.pages.admin.DashboardPage;
 import com.dits.citywide.pages.admin.EmployeesPage;
 import com.dits.citywide.pages.admin.HRConfigurationsPage;
@@ -24,6 +25,7 @@ import com.dits.citywide.pages.admin.LeavesPage;
 import com.dits.citywide.pages.admin.LoginPage;
 import com.dits.citywide.pages.admin.RespondingAgenciesPage;
 import com.dits.citywide.pages.admin.SchedulingPage;
+import com.dits.citywide.pages.admin.TrainingPage;
 import com.dits.citywide.pages.admin.ViewEmployeePage;
 import com.dits.citywide.pages.admin.ViolationsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
@@ -59,6 +61,8 @@ public class BaseTest {
 	protected ActivityTemplatePage activityTemplatePage;
 	protected RespondingAgenciesPage respondingAgenciesPage;
 	protected HRConfigurationsPage hrConfigurationsPage;
+	protected TrainingPage trainingPage;
+	protected CourseCategoriesPage courseCategoriesPage;
 
 	// @BeforeTest
 	@BeforeClass

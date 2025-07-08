@@ -104,7 +104,7 @@ public class ElementUtils {
 
 	// ---------- Get Text ------------------------------
 
-	public String getText(By by) {
+	public String getTextWithoutWait(By by) {
 		return getElement(by).getText();
 	}
 
