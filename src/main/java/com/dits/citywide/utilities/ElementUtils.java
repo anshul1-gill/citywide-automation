@@ -1,5 +1,6 @@
 package com.dits.citywide.utilities;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 
@@ -40,6 +41,19 @@ public class ElementUtils {
 		wait.until(ExpectedConditions.and(ExpectedConditions.visibilityOfElementLocated(locator),
 				ExpectedConditions.elementToBeClickable(locator)));
 	}
+	
+	public void uploadFile(By fileUploadLocator, String relativeFilePath) {
+		try {
+			WebElement fileInput = driver.findElement(fileUploadLocator);
+			String absolutePath = new File(relativeFilePath).getAbsolutePath();
+			System.out.println("Uploading file from path: " + absolutePath);
+			fileInput.sendKeys(absolutePath);
+		} catch (Exception e) {
+			System.err.println("File upload failed: " + e.getMessage());
+			throw e;
+		}
+	}
+
 
 	// ----------------- Click on Button -------------------------
 	public void doClick(By by) {

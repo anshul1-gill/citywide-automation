@@ -13,11 +13,12 @@ public class CourseCategoriesPage {
 
 	private By txtHeadingCategories = By.xpath("//h1[normalize-space()='Categories']");
 	private By btnAddNewCategory = By.xpath("//span[normalize-space()='Add New Category']");
+	
 	private By txtboxCategoryName = By.xpath("//input[@id='name']");
 	private By btnSaveCategory = By.xpath("//button[@type='submit']");
+	
 
 	private By getCategoryName = By.xpath("(//td[@data-label='Category Name'])[1]");
-
 	private By btnUpdateCategory = By.xpath("//span[normalize-space()='Update']");
 
 	private By successMessage = By.xpath("//div[@class='Toastify__toast-body']/div/following-sibling::div");
