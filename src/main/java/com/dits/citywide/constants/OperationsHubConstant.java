@@ -7,8 +7,26 @@ public class OperationsHubConstant {
 	public static final String REPORTING_PERSON_FIRST_NAME = "Tom";
 	public static final String REPORTING_PERSON_LAST_NAME = "Cruise";
 	public static final String REPORTING_PERSON_PHONE_NUMBER = "9876543210";
+	public static final String REPORTING_PERSON_DEMEANOR = "Agitated";
 
 	public static final String CALL_CREATED_SUCCESSFULLY = "Call Created Successfully.";
+
+	// Suspect Description
+	public static final String SUSPECT_NAME = "John Doe";
+	public static final String SUSPECT_GENDER = "Male";
+	public static final String SUSPECT_RACE = "White";
+	public static final String SUSPECT_HAIR_TYPE = "Short";
+	public static final String SUSPECT_HAIR_COLOR = "Red";
+	public static final String SUSPECT_EYE_COLOR = "Blue";
+	public static final String SUSPECT_HEIGHT = "7' 3";
+	public static final String SUSPECT_BUILD = "Thin";
+	public static final String SUSPECT_WEIGHT = "180";
+	public static final String SUSPECT_AGE = "30";
+	public static final String SUSPECT_CLOTHING_WORN = "Black Jacket";
+	public static final String SUSPECT_LAST_KNOWN_DIRECTION = "North";
+	
+	// Calls Description
+	public static final String CALL_DESCRIPTION = "This is a test call description for the suspect.";
 
 	// Calls Success Message
 	public static final String OFFICER_ENROUTE_SUCCESSFULLY = "Officer Enroute.";

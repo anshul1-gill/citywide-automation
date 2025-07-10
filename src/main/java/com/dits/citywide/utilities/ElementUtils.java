@@ -41,7 +41,7 @@ public class ElementUtils {
 		wait.until(ExpectedConditions.and(ExpectedConditions.visibilityOfElementLocated(locator),
 				ExpectedConditions.elementToBeClickable(locator)));
 	}
-	
+
 	public void uploadFile(By fileUploadLocator, String relativeFilePath) {
 		try {
 			WebElement fileInput = driver.findElement(fileUploadLocator);
@@ -53,7 +53,6 @@ public class ElementUtils {
 			throw e;
 		}
 	}
-
 
 	// ----------------- Click on Button -------------------------
 	public void doClick(By by) {
@@ -243,12 +242,11 @@ public class ElementUtils {
 			throw new RuntimeException("Failed to click the element after multiple attempts.");
 		}
 	}
-	
-	public List<WebElement> waitForVisibilityOfAllElements(By locator, int timeout) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-	    return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-	}
 
+	public List<WebElement> waitForVisibilityOfAllElements(By locator, int timeout) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+	}
 
 	public void selectElementThroughLocatorWithExactMatch(By locator, String fieldName, int timeOut) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
@@ -260,6 +258,7 @@ public class ElementUtils {
 			try {
 				// Wait for all elements matching the locator to be visible
 				List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+
 				for (WebElement e : elements) {
 					String eleText = e.getText();
 
@@ -295,7 +294,6 @@ public class ElementUtils {
 
 				for (WebElement e : elements) {
 					String eleText = e.getText().trim();
-					System.out.println("Dropdown option: " + eleText);
 
 					if (eleText.equalsIgnoreCase(fieldName.trim())) {
 						try {
@@ -452,8 +450,8 @@ public class ElementUtils {
 		actions.doubleClick(element).perform();
 	}
 
-	public void selectElementFromVirtualDropdown(By optionLocator, String visibleText) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	public void selectElementFromVirtualDropdown(By optionLocator, String visibleText, int timeout) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		boolean elementClicked = false;
@@ -529,66 +527,58 @@ public class ElementUtils {
 			System.out.println("Error while pressing Escape key: " + e.getMessage());
 		}
 	}
-	
+
 	public void pressDeleteKey() {
-	    try {
-	        Actions actions = new Actions(driver);
-	        actions.sendKeys(Keys.DELETE).perform();
-	    } catch (Exception e) {
-	        System.out.println("Error while pressing Delete key: " + e.getMessage());
-	    }
+		try {
+			Actions actions = new Actions(driver);
+			actions.sendKeys(Keys.DELETE).perform();
+		} catch (Exception e) {
+			System.out.println("Error while pressing Delete key: " + e.getMessage());
+		}
 	}
-	
+
 	public void pressEscKey() {
-	    try {
-	        Actions actions = new Actions(driver);
-	        actions.sendKeys(Keys.ESCAPE).perform();
-	    } catch (Exception e) {
-	        System.out.println("Error while pressing Escape key: " + e.getMessage());
-	    }
+		try {
+			Actions actions = new Actions(driver);
+			actions.sendKeys(Keys.ESCAPE).perform();
+		} catch (Exception e) {
+			System.out.println("Error while pressing Escape key: " + e.getMessage());
+		}
 	}
-
-
 
 	public void clearTextBoxWithKeys(By locator) {
-	    try {
-	        WebElement element = driver.findElement(locator);
-	        element.click(); // Focus the field
+		try {
+			WebElement element = driver.findElement(locator);
+			element.click(); // Focus the field
 
-	        // Dynamically select the correct key for CMD (Mac) or CTRL (Windows/Linux)
-	        Keys selectAllKey = System.getProperty("os.name").toLowerCase().contains("mac") ? Keys.COMMAND : Keys.CONTROL;
+			// Dynamically select the correct key for CMD (Mac) or CTRL (Windows/Linux)
+			Keys selectAllKey = System.getProperty("os.name").toLowerCase().contains("mac") ? Keys.COMMAND
+					: Keys.CONTROL;
 
-	        // Perform Select All and Delete
-	        element.sendKeys(Keys.chord(selectAllKey, "a")); // CMD/CTRL + A
-	        element.sendKeys(Keys.DELETE); // Delete selected text
-	    } catch (Exception e) {
-	        System.out.println("Error while clearing text box with keys: " + e.getMessage());
-	    }
+			// Perform Select All and Delete
+			element.sendKeys(Keys.chord(selectAllKey, "a")); // CMD/CTRL + A
+			element.sendKeys(Keys.DELETE); // Delete selected text
+		} catch (Exception e) {
+			System.out.println("Error while clearing text box with keys: " + e.getMessage());
+		}
 	}
-	
+
 	public void clearTextBoxWithActions(By locator) {
-	    try {
-	        WebElement element = driver.findElement(locator);
-	        element.click(); // Focus the field
+		try {
+			WebElement element = driver.findElement(locator);
+			element.click(); // Focus the field
 
-	        // Detect OS and choose appropriate key
-	        Keys selectAllKey = System.getProperty("os.name").toLowerCase().contains("mac") ? Keys.COMMAND : Keys.CONTROL;
+			// Detect OS and choose appropriate key
+			Keys selectAllKey = System.getProperty("os.name").toLowerCase().contains("mac") ? Keys.COMMAND
+					: Keys.CONTROL;
 
-	        // Use Actions to clear text
-	        Actions actions = new Actions(driver);
-	        actions.keyDown(selectAllKey)
-	               .sendKeys("a")
-	               .keyUp(selectAllKey)
-	               .sendKeys(Keys.DELETE)
-	               .build()
-	               .perform();
-	    } catch (Exception e) {
-	        System.out.println("Error while clearing text box using Actions: " + e.getMessage());
-	    }
+			// Use Actions to clear text
+			Actions actions = new Actions(driver);
+			actions.keyDown(selectAllKey).sendKeys("a").keyUp(selectAllKey).sendKeys(Keys.DELETE).build().perform();
+		} catch (Exception e) {
+			System.out.println("Error while clearing text box using Actions: " + e.getMessage());
+		}
 	}
-
-	
-
 
 	public void scrollInsideDropdownToText(By dropdownValuesLocator, String visibleText) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -630,31 +620,29 @@ public class ElementUtils {
 			throw new NoSuchElementException("Option '" + visibleText + "' not found in dropdown.");
 		}
 	}
-	
+
 	public void scrollAndClick(By locator, int timeout) {
-	    WebElement element = waitForElementVisible(locator, timeout);
-	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-	    new Actions(driver).moveToElement(element).pause(Duration.ofMillis(500)).click().perform();
+		WebElement element = waitForElementVisible(locator, timeout);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		new Actions(driver).moveToElement(element).pause(Duration.ofMillis(500)).click().perform();
 	}
-	
+
 	public void moveToElementAndClick(By locator, int timeoutInSeconds) {
-	    try {
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-	        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
-	        // Scroll into view using JS (especially important for virtualized elements)
-	        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-	        Thread.sleep(300); // Optional small pause
+			// Scroll into view using JS (especially important for virtualized elements)
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			Thread.sleep(300); // Optional small pause
 
-	        // Move and click using Actions
-	        Actions actions = new Actions(driver);
-	        actions.moveToElement(element).pause(Duration.ofMillis(300)).click().perform();
-	    } catch (Exception e) {
-	        System.out.println("Failed to move and click on element located by: " + locator);
-	        e.printStackTrace();
-	    }
+			// Move and click using Actions
+			Actions actions = new Actions(driver);
+			actions.moveToElement(element).pause(Duration.ofMillis(300)).click().perform();
+		} catch (Exception e) {
+			System.out.println("Failed to move and click on element located by: " + locator);
+			e.printStackTrace();
+		}
 	}
-
-
 
 }
