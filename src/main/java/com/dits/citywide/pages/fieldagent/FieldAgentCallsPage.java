@@ -22,14 +22,15 @@ public class FieldAgentCallsPage {
 
 	private By txtCallActions = By.xpath("//h2[contains(text(),'Call Actions')]");
 	private By txtAssignedUnits = By.xpath("//h2[contains(text(),'Assigned Units')]");
-	private By btnEnroute = By.xpath("//td[@data-label='Enroute']/button");
-	private By btnArrive = By.xpath("//td[@data-label='Arrive']/button");
-	private By btnCleared = By.xpath("//td[@data-label='Cleared']/button");
-	private By successMessage = By.xpath("//span[@class='text-white']");
+	private By btnEnroute = By.xpath("//div[@class='c-cursor-pointer']");
+	private By btnArrive = By.xpath("//div[@class='c-cursor-pointer']");
+	private By btnCleared = By.xpath("//div[@class='c-cursor-pointer']");
 	private By txtCallNotes = By.xpath("//h2[contains(text(),'Call Notes')]");
-	private By txtboxNotes = By.id("info_message");
-	private By btnSaveNote = By.xpath("//button[normalize-space()='Save Note']");
-	private By btnCloseCallAction = By.cssSelector("span[class='close text-[2.2rem] cursor-pointer']");
+	private By txtboxNotes = By.xpath("//textarea[@id='info_message']");
+	private By btnSaveNote = By.xpath("//button[@type='submit']");
+	private By btnCloseCallAction = By.xpath("//span[@aria-label='close']");
+	
+	private By successMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
 
 	// New Officer Report Entry
 	private By calenderArriveDate = By.xpath("//input[@id='arrive_date']");
@@ -72,8 +73,8 @@ public class FieldAgentCallsPage {
 
 	public void doClickCallAction(String callId) {
 		String callid = callId;
-		String callidxpath = "//a[contains(text(),'" + callid
-				+ "')]/ancestor::td/following-sibling::td//button[@title='Call Action']";
+		String callidxpath = "(//a[contains(text(),'" + callid
+				+ "')]/ancestor::td/following-sibling::td[8]//div[@class='actionicons editPencil'])[2]";
 		elementUtils.waitForElementVisible(By.xpath(callidxpath), Constants.DEFAULT_WAIT).click();
 	}
 
@@ -109,7 +110,7 @@ public class FieldAgentCallsPage {
 
 	public void addNotesAndSave(String notes) {
 		elementUtils.waitForElementVisible(txtboxNotes, Constants.DEFAULT_WAIT).sendKeys(notes);
-		elementUtils.waitForElementToBeClickable(btnSaveNote, Constants.DEFAULT_WAIT).click();
+		elementUtils.doClickWithActionsAndWait(btnSaveNote, Constants.DEFAULT_WAIT);
 	}
 
 	public void closeCallActionPopup() {
@@ -154,7 +155,6 @@ public class FieldAgentCallsPage {
 
 	public void doClickOk() {
 		elementUtils.waitForElementToBeClickable(btnOk, Constants.DEFAULT_WAIT).click();
-
 	}
 
 }
