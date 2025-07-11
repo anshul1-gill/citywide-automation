@@ -11,6 +11,9 @@ public class CallsPage {
 	private WebDriver driver;
 	private ElementUtils elementUtils;
 
+	private By tabOpenCalls = By.xpath("//div[@id='rc-tabs-0-tab-open-calls']");
+	private By tabClosedCalls = By.xpath("//div[@id='rc-tabs-0-tab-past-calls']");
+
 	// Calls Section
 	private By btnAddNewCall = By.xpath("//span[normalize-space()='Add New Call']");
 
@@ -34,6 +37,7 @@ public class CallsPage {
 
 	private By successMessage = By.xpath("//h2[@id='swal2-title']/span[@class='text-white']");
 
+	private By dataAssignedTo = By.xpath("(//div[@class='call-status'])[1]/p");
 	private By dataCallId = By.xpath("(//td[@data-label='Call #'])[1]/a");
 	private By dataActivityCode = By.xpath("(//td[@data-label='Activity Code'])[1]");
 	private By dataSite = By.xpath("(//td[@data-label='Site'])[1]/a");
@@ -64,6 +68,22 @@ public class CallsPage {
 	}
 
 	// Calls
+	public boolean isOpenCallsTabDisplayed() {
+		return elementUtils.doIsDisplayed(tabOpenCalls, Constants.DEFAULT_WAIT);
+	}
+
+	public boolean isClosedCallsTabDisplayed() {
+		return elementUtils.doIsDisplayed(tabClosedCalls, Constants.DEFAULT_WAIT);
+	}
+
+	public void doClickOpenCallsTab() {
+		elementUtils.waitForElementToBeClickable(tabOpenCalls, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void doClickClosedCallsTab() {
+		elementUtils.waitForElementToBeClickable(tabClosedCalls, Constants.DEFAULT_WAIT).click();
+	}
+
 	public void doClickAddNewCallButton() {
 		elementUtils.waitForElementToBeClickable(btnAddNewCall, Constants.DEFAULT_WAIT).click();
 	}
@@ -163,9 +183,21 @@ public class CallsPage {
 	public String getSuccessMessageText() {
 		return elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT).getText();
 	}
+	
+	public String getAssignedTo() {
+		return elementUtils.waitForElementVisible(dataAssignedTo, Constants.DEFAULT_WAIT).getText();
+	}
 
 	public String getCallId() {
 		return elementUtils.waitForElementVisible(dataCallId, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getActivityCode() {
+		return elementUtils.waitForElementVisible(dataActivityCode, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getSite() {
+		return elementUtils.waitForElementVisible(dataSite, Constants.DEFAULT_WAIT).getText();
 	}
 
 }
