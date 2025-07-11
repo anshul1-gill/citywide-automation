@@ -12,6 +12,7 @@ public class TrainingConstants {
 	public static final String CATEGORY_NAME_DELETED = "Category deleted successfully!";
 
 	// Certificate Constants
+	public static final String CERTIFICATE_HEADING = "Certificates";
 	public static final String CERTIFICATE_NAME = "Automation Testing Certificate";
 	public static final String CERTIFICATE_SERIAL_NUMBER = "1234567890";
 	// public static final String CERTIFICATE_FILE_PATH =
@@ -20,5 +21,14 @@ public class TrainingConstants {
 			+ "/Downloads/automation_test_file.pdf";
 
 	public static final String CERTIFICATE_DESCRIPTION = "This is a test certificate description.";
+
+	public static final String ADDED_CERTIFICATE_SUCCESS_MESSAGE = "Certificate added successfully";
+
+	public static final String UPDATED_CERTIFICATE_NAME = "Automation Testing Certificate Updated";
+	public static final String UPDATED_SERIAL_NUMBER = "987654321";
+	public static final String UPDATED_DESCRIPTION = "This is an updated test certificate description.";
+	public static final String UPDATED_CERTIFICATE_SUCCESS_MESSAGE = "Certificate updated successfully";
+
+	public static final String CERTIFICATE_DELETED_SUCCESS_MESSAGE = "Certificate deleted successfully";
 
 }
