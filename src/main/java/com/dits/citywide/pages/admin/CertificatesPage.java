@@ -24,6 +24,15 @@ public class CertificatesPage {
 	private By txtboxCertificateDescription = By.xpath("//textarea[@id='notes']");
 	private By btnSaveCertificate = By.xpath("//button[@type='submit']");
 
+	private By dataCertificateName = By.xpath("(//td[@data-label='Certificate Name'])[1]");
+	private By dataAdddedBy = By.xpath("(//td[@data-label='Added By'])[1]");
+	private By dataDescription = By.xpath("(//td[@data-label='Description'])[1]");
+	private By dataCreatedAt = By.xpath("(//td[@data-label='Created At'])[1]/span");
+
+	private By sucessMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
+	private By btnOkDelete = By.xpath("//button[normalize-space()='OK']");
+
+
 	public CertificatesPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
@@ -35,6 +44,10 @@ public class CertificatesPage {
 
 	public void clickOnAddNewCertificate() {
 		elementUtils.waitForElementToBeClickable(btnAddNewCertificate, Constants.DEFAULT_WAIT).click();
+	}
+
+	public boolean isAddNewCertificateButtonDisplayed() {
+		return elementUtils.doIsDisplayed(btnAddNewCertificate, Constants.DEFAULT_WAIT);
 	}
 
 	public boolean isConfirmationMessageFileUploadDisplayed() {
@@ -59,6 +72,66 @@ public class CertificatesPage {
 
 	public void clickOnSaveCertificate() {
 		elementUtils.waitForElementToBeClickable(btnSaveCertificate, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getCertificateName() {
+		return elementUtils.getText(dataCertificateName, Constants.DEFAULT_WAIT);
+	}
+
+	public String getAddedBy() {
+		return elementUtils.getText(dataAdddedBy, Constants.DEFAULT_WAIT);
+	}
+
+	public String getDescription() {
+		return elementUtils.getText(dataDescription, Constants.DEFAULT_WAIT);
+	}
+
+	public String getCreatedDate() {
+		return elementUtils.getText(dataCreatedAt, Constants.DEFAULT_WAIT);
+	}
+
+	public String getSuccessMessage() {
+		return elementUtils.getText(sucessMessage, Constants.DEFAULT_WAIT);
+	}
+
+	// Update Certificate
+	public void clickEditCertificateButton(String certificateName) {
+		String editXpath = "(//td[@data-label='Certificate Name' and normalize-space()='" + certificateName
+				+ "']/following-sibling::td//div[@class='actionicons editPencil'])[1]";
+		elementUtils.waitForElementToBeClickable(By.xpath(editXpath), Constants.DEFAULT_WAIT).click();
+	}
+
+	public void updateCertificateName(String updatedCertificateName, String updatedSerialNumber,
+			String updatedDescription) {
+		elementUtils.waitForElementVisible(txtboxCertificateName, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxCertificateName);
+		elementUtils.doActionsSendKeys(txtboxCertificateName, updatedCertificateName);
+
+		elementUtils.waitForElementVisible(txtboxSerialNumber, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxSerialNumber);
+		elementUtils.doActionsSendKeys(txtboxSerialNumber, updatedSerialNumber);
+		
+		elementUtils.waitForElementVisible(txtboxCertificateDescription, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxCertificateDescription);
+		elementUtils.doActionsSendKeys(txtboxCertificateDescription, updatedDescription);
+
+		elementUtils.waitForElementToBeClickable(btnSaveCertificate, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void clickOnSaveUpdatedCertificate() {
+		elementUtils.waitForElementToBeClickable(btnSaveCertificate, Constants.DEFAULT_WAIT).click();
+	}
+
+	// Delete Certificate
+	public void clickDeleteCertificateButton(String certificateName) {
+		String editXpath = "//td[@data-label='Certificate Name' and normalize-space()='" + certificateName
+				+ "']/following-sibling::td//div[@class='actionicons deleteIcon']";
+		elementUtils.waitForElementToBeClickable(By.xpath(editXpath), Constants.DEFAULT_WAIT).click();
+	}
+	
+	public void clickOnDeleteButton() {
+		elementUtils.waitForElementToBeClickable(btnOkDelete, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForInvisibilityOfElementLocated(btnOkDelete, Constants.DEFAULT_WAIT);
 	}
 
 }
