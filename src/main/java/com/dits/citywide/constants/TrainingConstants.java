@@ -31,4 +31,29 @@ public class TrainingConstants {
 
 	public static final String CERTIFICATE_DELETED_SUCCESS_MESSAGE = "Certificate deleted successfully";
 
+	// Course Constants
+	// Add New Course data
+	public static final String COURSE_NAME = "Automation Testing Course";
+	public static final String CERTIFICATE = CERTIFICATE_NAME;
+	public static final String CATEGORY = CATEGORY_NAME;
+	public static final String PAYMENT_TYPE = "Paid";
+	public static final String COURSE_DURATION = "Weeks";
+	public static final String COURSE_DURATION_VALUE = "4";
+	public static final String COURSE_COMPLETION_TIME = "Days";
+	public static final String COURSE_COMPLETION_TIME_VALUE = "30";
+	public static final String COURSE_EXPIRATION_DATE = "08/30/2025";
+	public static final String COURSE_DESCRIPTION = "This is a test course description.";
+	public static final String ASSESSMENT = "Yes";
+	public static final String INSTRUCTOR = "Guest";
+	public static final String INSTRUCTOR_NAME = "John Doe";
+	public static final String COURSE_EVALUATOR = "763";
+	public static final String REQUIRES_COURSE_COMPLETION_TO_SCHEDULE = "Yes";
+
+	// Module Constants
+	public static final String MODULE_NAME = "Module 1";
+	public static final String MODULE_DURATION = "2";
+	public static final String MODULE_CONTENT = "This is a test module content.";
+	public static final String MODULE_FILE_PATH = System.getProperty("user.home") + "/Downloads/automation_test_file.pdf";
+	public static final String MODULE_FILE_NAME = "https://www.google.com";
+
 }
