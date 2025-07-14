@@ -30,5 +30,10 @@ public class TrainingPage {
 		elementUtils.waitForElementToBeClickable(lnkCertificates, Constants.DEFAULT_WAIT).click();
 		return new CertificatesPage(driver);
 	}
+	
+	public TotalCoursesPage clickOnTotalCourses() {
+		elementUtils.waitForElementToBeClickable(lnkTotalCourses, Constants.DEFAULT_WAIT).click();
+		return new TotalCoursesPage(driver);
+	}
 
 }

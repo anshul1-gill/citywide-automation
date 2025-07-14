@@ -26,6 +26,7 @@ import com.dits.citywide.pages.admin.LeavesPage;
 import com.dits.citywide.pages.admin.LoginPage;
 import com.dits.citywide.pages.admin.RespondingAgenciesPage;
 import com.dits.citywide.pages.admin.SchedulingPage;
+import com.dits.citywide.pages.admin.TotalCoursesPage;
 import com.dits.citywide.pages.admin.TrainingPage;
 import com.dits.citywide.pages.admin.ViewEmployeePage;
 import com.dits.citywide.pages.admin.ViolationsPage;
@@ -65,6 +66,7 @@ public class BaseTest {
 	protected TrainingPage trainingPage;
 	protected CourseCategoriesPage courseCategoriesPage;
 	protected CertificatesPage certificatesPage;
+	protected TotalCoursesPage totalCoursesPage;
 
 	// @BeforeTest
 	@BeforeClass
