@@ -38,6 +38,8 @@ public class FieldAgentStartShiftPage {
 	private By menuHRManagement = By.xpath("//p[@title='HR Management']");
 	private By tabLeaverequests = By.xpath("//span[normalize-space()='Leave Requests']");
 
+	private By tabMyCourses = By.xpath("//span[normalize-space()='My Courses']");
+
 	public FieldAgentStartShiftPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
@@ -152,6 +154,11 @@ public class FieldAgentStartShiftPage {
 	public FieldAgentLeaveRequestsPage clickOnLeaveRequestsTab() {
 		elementUtils.waitForElementToBeClickable(tabLeaverequests, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentLeaveRequestsPage(driver);
+	}
+
+	public FieldAgentMyCoursesPage clickOnMyCoursesTab() {
+		elementUtils.waitForElementToBeClickable(tabMyCourses, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentMyCoursesPage(driver);
 	}
 
 }

@@ -12,7 +12,7 @@ public class TrainingPage {
 	private ElementUtils elementUtils;
 
 	private By lnkTotalCourses = By.xpath("//h4[normalize-space()='Total Courses']");
-	private By lnkAssessmentsResults = By.xpath("//h4[normalize-space()='Assessments Results']");
+	private By lnkAssessmentsResults = By.xpath("//h4[normalize-space()='Assessment Status']");
 	private By lnkCertificates = By.xpath("//h4[normalize-space()='Certificates']");
 	private By lnkCourseCategories = By.xpath("//h4[normalize-space()='Course Categories']");
 
@@ -25,15 +25,21 @@ public class TrainingPage {
 		elementUtils.waitForElementToBeClickable(lnkCourseCategories, Constants.DEFAULT_WAIT).click();
 		return new CourseCategoriesPage(driver);
 	}
-	
+
 	public CertificatesPage clickOnCertificates() {
 		elementUtils.waitForElementToBeClickable(lnkCertificates, Constants.DEFAULT_WAIT).click();
 		return new CertificatesPage(driver);
 	}
-	
+
 	public TotalCoursesPage clickOnTotalCourses() {
 		elementUtils.waitForElementToBeClickable(lnkTotalCourses, Constants.DEFAULT_WAIT).click();
 		return new TotalCoursesPage(driver);
+	}
+
+	public AssessmentsResultsPage clickOnAssessmentsResults() {
+		elementUtils.waitForElementVisible(lnkAssessmentsResults, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(lnkAssessmentsResults, Constants.DEFAULT_WAIT).click();
+		return new AssessmentsResultsPage(driver);
 	}
 
 }

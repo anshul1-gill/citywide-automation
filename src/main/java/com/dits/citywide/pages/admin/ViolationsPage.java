@@ -63,7 +63,7 @@ public class ViolationsPage {
 				.sendKeys(violationDescription);
 		elementUtils.waitForElementVisible(dropdownBranch, Constants.DEFAULT_WAIT).click();
 		elementUtils.selectElementThroughLocator(selectBranchValue, branch, Constants.DEFAULT_WAIT);
-		elementUtils.pressEscKey();
+		elementUtils.pressEscapeKey();
 	}
 
 	public void clickSaveButton() {

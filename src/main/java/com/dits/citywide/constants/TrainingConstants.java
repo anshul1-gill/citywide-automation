@@ -37,11 +37,9 @@ public class TrainingConstants {
 	public static final String CERTIFICATE = CERTIFICATE_NAME;
 	public static final String CATEGORY = CATEGORY_NAME;
 	public static final String PAYMENT_TYPE = "Paid";
-	public static final String COURSE_DURATION = "Weeks";
-	public static final String COURSE_DURATION_VALUE = "4";
-	public static final String COURSE_COMPLETION_TIME = "Days";
-	public static final String COURSE_COMPLETION_TIME_VALUE = "30";
-	public static final String COURSE_EXPIRATION_DATE = "08/30/2025";
+	public static final String ASSIGNMENT_DURATION = "4";
+	public static final String DEADLINE_TYPE = "Days";
+	public static final String COMPLITION_DEADLINE = "30";
 	public static final String COURSE_DESCRIPTION = "This is a test course description.";
 	public static final String ASSESSMENT = "Yes";
 	public static final String INSTRUCTOR = "Guest";
@@ -51,9 +49,61 @@ public class TrainingConstants {
 
 	// Module Constants
 	public static final String MODULE_NAME = "Module 1";
-	public static final String MODULE_DURATION = "2";
+	public static final String MODULE_DURATION = "00:30";
 	public static final String MODULE_CONTENT = "This is a test module content.";
-	public static final String MODULE_FILE_PATH = System.getProperty("user.home") + "/Downloads/automation_test_file.pdf";
+	public static final String MODULE_FILE_PATH = System.getProperty("user.home")
+			+ "/Downloads/automation_test_file.pdf";
 	public static final String MODULE_FILE_NAME = "https://www.google.com";
+
+	public static final String MODULE_ADDED_SUCCESS_MESSAGE = "Module created successfully";
+	public static final String MODULE_UPDATED_SUCCESS_MESSAGE = "Module updated successfully";
+	public static final String MODULE_DELETED_SUCCESS_MESSAGE = "Module deleted successfully";
+
+	public static final String ASSESSMENT_CREATED_SUCCESS_MESSAGE = "Assessment added successfully";
+	public static final String QUESTION_ADDED_SUCCESS_MESSAGE = "Question added successfully";
+
+	public static final String COURSE_DELETED_SUCCESS_MESSAGE = "Course deleted successfully";
+
+	public static final String COURSE_PUBLISHED_SUCCESS_MESSAGE = "Published course successfully";
+
+	// Assessment Constants
+	public static final String ASSESSMENT_NAME = "Automation Testing Assessment";
+	public static final String ASSESSMENT_DURATION = "00:30";
+	public static final String ASSESSMENT_MODULE = MODULE_NAME;
+	public static final String ASSESSMENT_REMARKS = "Scoring";
+	public static final String ASSESSMENT_TOTAL_POINTS = "10";
+	public static final String ASSESSMENT_MINIMUM_POINTS = "5";
+	public static final String METHOD_OF_ASSESSMENT = "Points";
+
+	// Questionnaire Constants
+	public static final String QUESTIONNAIRE_TYPE = "Input Text Field";
+	public static final String QUESTION_SCORE = "10";
+	public static final String ENTER_QUESTION_1 = "What is the goal of employee training?";
+	public static final String ENTER_PREDEFINED_ANSWER_1 = "To improve job skills and performance";
+	public static final String ENTER_QUESTION_2 = "What is e-learning?";
+	public static final String ENTER_PREDEFINED_ANSWER_2 = "Training delivered through digital platforms";
+
+	// Course Assign
+	public static final String SELECTED_COURSE_PURPOSE = "Training";
+	public static final String ASSIGN_COURSE_SUCCESS_MESSAGE = "Course assigned successfully";
+
+	public static final String YOUR_ASSESSMENT_IS_STARTED = "Your assessment is started.";
+
+	public static final String YOUR_ASSESSMENT_IS_SUBMITTED = "Your assessment has been submitted successfully.";
+
+	public static final String COURSE_STATUS_ATTEMPTED = "Attempted";
+
+	// Assessment Results
+
+	public static final String ASSESSMENT_RESULTS_HEADING = "Assessment Results";
+
+	public static final String ASSESSMENT_SEARCH_BY_STATUS = "Attempted";
+
+	public static final String PREDICTED_ANSWERS = "Right";
+
+	public static final String ASSESSMENT_EVALUATED_SUCCESS_MESSAGE = "Assessment evaluated successfully";
+
+	public static final String CANDIDATE_SUCCESSFULLY_COMPLETED_COURSE = "The candidate has successfully completed the course.";
+	public static final String CERTIFICATE_GENERATED_SUCCESS_MESSAGE = "The certificate has been successfully issued to the candidate.";
 
 }
