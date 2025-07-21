@@ -11,6 +11,7 @@ import com.dits.citywide.driverfactory.DriverFactory;
 import com.dits.citywide.pages.admin.ActivityTemplatePage;
 import com.dits.citywide.pages.admin.AddEmployeePage;
 import com.dits.citywide.pages.admin.ApplyLeavePage;
+import com.dits.citywide.pages.admin.AssessmentsResultsPage;
 import com.dits.citywide.pages.admin.BeatsPage;
 import com.dits.citywide.pages.admin.BreaksPage;
 import com.dits.citywide.pages.admin.CallsPage;
@@ -32,6 +33,7 @@ import com.dits.citywide.pages.admin.ViewEmployeePage;
 import com.dits.citywide.pages.admin.ViolationsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentLeaveRequestsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
 
@@ -67,6 +69,8 @@ public class BaseTest {
 	protected CourseCategoriesPage courseCategoriesPage;
 	protected CertificatesPage certificatesPage;
 	protected TotalCoursesPage totalCoursesPage;
+	protected FieldAgentMyCoursesPage fieldAgentMyCoursesPage;
+	protected AssessmentsResultsPage assessmentsResultsPage;
 
 	// @BeforeTest
 	@BeforeClass

@@ -164,9 +164,20 @@ public class ElementUtils {
 	}
 
 	// -------------------- Actions Class -------------------------
+//	public void doActionsSendKeys(By by, String value) {
+//		Actions action = new Actions(driver);
+//		action.sendKeys(getElement(by), value).perform();
+//	}
+
 	public void doActionsSendKeys(By by, String value) {
+		if (value == null) {
+			throw new IllegalArgumentException("Cannot send null value using sendKeys.");
+		}
+
+		WebElement element = getElement(by);
+
 		Actions action = new Actions(driver);
-		action.sendKeys(getElement(by), value).perform();
+		action.moveToElement(element).click().sendKeys(value).perform();
 	}
 
 	public void doActionsClick(By by) {
@@ -201,6 +212,31 @@ public class ElementUtils {
 		Actions action = new Actions(driver);
 		action.scrollToElement(getElement(by)).perform();
 
+	}
+
+	// WIndow Handling
+
+	public void switchToNewTab(int timeOut) {
+		String originalWindow = driver.getWindowHandle();
+
+		// Wait until a new window/tab is opened
+		new WebDriverWait(driver, Duration.ofSeconds(timeOut)).until(driver -> driver.getWindowHandles().size() > 1);
+
+		// Switch to new window/tab
+		for (String windowHandle : driver.getWindowHandles()) {
+			if (!windowHandle.equals(originalWindow)) {
+				driver.switchTo().window(windowHandle);
+				break;
+			}
+		}
+	}
+
+	public void switchToWindow(String windowHandle) {
+		driver.switchTo().window(windowHandle);
+	}
+
+	public String getCurrentWindowHandle() {
+		return driver.getWindowHandle();
 	}
 
 	// --------------- Element To Be Clickable ---------------
@@ -534,15 +570,6 @@ public class ElementUtils {
 			actions.sendKeys(Keys.DELETE).perform();
 		} catch (Exception e) {
 			System.out.println("Error while pressing Delete key: " + e.getMessage());
-		}
-	}
-
-	public void pressEscKey() {
-		try {
-			Actions actions = new Actions(driver);
-			actions.sendKeys(Keys.ESCAPE).perform();
-		} catch (Exception e) {
-			System.out.println("Error while pressing Escape key: " + e.getMessage());
 		}
 	}
 
