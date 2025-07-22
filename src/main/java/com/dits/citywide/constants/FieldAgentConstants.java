@@ -43,5 +43,16 @@ public class FieldAgentConstants {
 	public static final String LEAVE_CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
 
 	public static final String LEAVE_STATUS = "Canceled";
+	
+	// Attendance Data
+	public static final String SHIFT_START = "01:30";
+	public static final String CHECK_IN = "02:02";
+	public static final String SHIFT_END = "13:30";
+	public static final String CHECK_OUT = "13:30";
+	public static final String SHIFT_HOURS = "12:00:00";
+	public static final String BREAK_DURATION = "00:30";
+	public static final String ACTUAL_BREAK = "00:30";
+	public static final String TOTAL_HOURS = "11:28:00";
+	public static final String STATUS = "Completed";
 
 }

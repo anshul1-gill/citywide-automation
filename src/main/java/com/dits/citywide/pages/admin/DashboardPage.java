@@ -12,14 +12,14 @@ public class DashboardPage {
 	private ElementUtils elementUtils;
 
 	private By txtDashboard = By.xpath("//li[text()='Dashboard']");
-	private By dropdownHRManagement = By
-			.xpath("//div[@class='p-2 px-3 text-sm sidebar-container scrollbar-none']//div[1]");
+	private By dropdownHRManagement = By.xpath("//span[normalize-space()='HR Management']");
 	private By lnkEmployees = By.xpath("//span[text()='Employees']");
 	private By lnkLeaveRequests = By.xpath("//span[contains(text(),'Leave Requests')]");
 	private By lnkProfileMenu = By.xpath("//i[@class='ml-1 text-xs fa-solid fa-chevron-down']");
 	private By lnkScheduling = By.xpath("//span[contains(text(),'Scheduling')]");
 	private By lnkCompanySettings = By.xpath("//span[normalize-space()='Company Settings']");
 	private By lnkTraining = By.xpath("//span[contains(text(),'Training')]");
+	private By lnkAttendance = By.xpath("//span[normalize-space()='Attendance']");
 
 	// Logout
 	private By btnLogout = By.id("user-menu-item-2");
@@ -132,6 +132,11 @@ public class DashboardPage {
 	public TrainingPage clickOnTrainingTab() {
 		elementUtils.waitForElementToBeClickable(lnkTraining, Constants.DEFAULT_WAIT).click();
 		return new TrainingPage(driver);
+	}
+
+	public AttendancePage doClickAttendance() {
+		elementUtils.waitForElementToBeClickable(lnkAttendance, Constants.DEFAULT_WAIT).click();
+		return new AttendancePage(driver);
 	}
 
 }

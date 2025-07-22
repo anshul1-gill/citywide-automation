@@ -40,6 +40,8 @@ public class FieldAgentStartShiftPage {
 
 	private By tabMyCourses = By.xpath("//span[normalize-space()='My Courses']");
 
+	private By tabMyAttendance = By.xpath("//span[normalize-space()='My Attendance']");
+
 	public FieldAgentStartShiftPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
@@ -159,6 +161,11 @@ public class FieldAgentStartShiftPage {
 	public FieldAgentMyCoursesPage clickOnMyCoursesTab() {
 		elementUtils.waitForElementToBeClickable(tabMyCourses, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentMyCoursesPage(driver);
+	}
+
+	public FieldAgentMyAttendancePage clickOnMyAttendanceTab() {
+		elementUtils.waitForElementToBeClickable(tabMyAttendance, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentMyAttendancePage(driver);
 	}
 
 }

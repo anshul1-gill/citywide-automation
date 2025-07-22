@@ -172,4 +172,19 @@ public class HRManagementConstants {
 
 	// Calls Tab
 
+	// Attendance
+	public static final String ATTENDANCE_DATE = "07/10/2025"; // MM/DD/YYYY
+	public static final String STATUS_FILTER = "On Break";
+	public static final String EMPLOYEE_ID = "855";
+	public static final String SHIFT_START = "01:30";
+	public static final String CHECK_IN = "02:02";
+	public static final String SHIFT_END = "13:30";
+	public static final String CHECK_OUT = "13:30";
+	public static final String SHIFT_HOURS = "12:00:00";
+	public static final String BREAK_DURATION = "00:30";
+	public static final String TOTAL_HOURS = "11:28:00";
+	public static final String STATUS = "Completed";
+
+	public static final String CHECK_IN_OUT_SUCCESS_MESSAGE = "Check In/out time updated successfully";
+
 }
