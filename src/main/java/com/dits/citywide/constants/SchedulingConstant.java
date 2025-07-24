@@ -8,7 +8,7 @@ public class SchedulingConstant {
 	public static final String SUCCESS_MESSAGE_ADD_SHIFT = "Shift added successfully";
 
 	// Shift Date
-	public static final String ADD_SHIFT_DATE = "6";
+	public static final String ADD_SHIFT_DATE = "23";
 
 	// Confirmation Message
 	public static final String ARE_YOU_SURE = "Are you sure?";

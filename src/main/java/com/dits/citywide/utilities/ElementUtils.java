@@ -139,6 +139,15 @@ public class ElementUtils {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
+	public boolean isElementVisible(By locator, int timeoutInSeconds) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+			return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)) != null;
+		} catch (TimeoutException | NoSuchElementException e) {
+			return false;
+		}
+	}
+
 	// ---------------- Visibility Of All Element ---------------------------
 
 	public List<WebElement> waitsForElementsVisible(By locator, int timeOut) {

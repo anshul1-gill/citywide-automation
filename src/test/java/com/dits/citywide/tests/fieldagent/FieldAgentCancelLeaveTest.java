@@ -16,7 +16,7 @@ public class FieldAgentCancelLeaveTest extends BaseTest {
 
 	@Test
 	public void deleteLeaveTest() throws InterruptedException {
-		fieldAgentStartShiftPage.btnMarkAsRead();
+		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		fieldAgentStartShiftPage.clickOnHRManagementMenu();
 		fieldAgentLeaveRequestsPage = fieldAgentStartShiftPage.clickOnLeaveRequestsTab();
 		fieldAgentLeaveRequestsPage.doClickCancelButton(prop.getProperty("employeeID"),

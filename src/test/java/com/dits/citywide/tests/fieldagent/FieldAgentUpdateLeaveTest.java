@@ -16,7 +16,7 @@ public class FieldAgentUpdateLeaveTest extends BaseTest {
 
 	@Test
 	public void editLeaveTest() throws InterruptedException {
-		fieldAgentStartShiftPage.btnMarkAsRead();
+		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		fieldAgentStartShiftPage.clickOnHRManagementMenu();
 		fieldAgentLeaveRequestsPage = fieldAgentStartShiftPage.clickOnLeaveRequestsTab();
 		fieldAgentLeaveRequestsPage.doClickEditButton(prop.getProperty("employeeID"), FieldAgentConstants.LEAVE_TYPE);

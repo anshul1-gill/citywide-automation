@@ -18,7 +18,7 @@ public class FieldAgentAllReportsTest extends BaseTest {
 	@Test
 	public void endShiftTest() throws InterruptedException {
 		Thread.sleep(1000);
-		fieldAgentStartShiftPage.btnMarkAsRead();
+		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		fieldAgentReportsPage = fieldAgentStartShiftPage.clickOnReportsTab();
 		fieldAgentReportsPage.clickAllReports();
 		fieldAgentReportsPage.enterTextInSearchBox(prop.getProperty("employeeID"));
