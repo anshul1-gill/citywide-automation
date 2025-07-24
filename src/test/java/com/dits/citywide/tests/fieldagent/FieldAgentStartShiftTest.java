@@ -18,11 +18,12 @@ public class FieldAgentStartShiftTest extends BaseTest {
 
 	@Test
 	public void startShiftTest() throws InterruptedException {
-		Thread.sleep(500);
+		//Thread.sleep(500);
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
-		fieldAgentStartShiftPage.doClickTabStartShift();
+		//fieldAgentStartShiftPage.doClickTabStartShift();
 		fieldAgentStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);
 
+		softAssert.assertTrue(fieldAgentStartShiftPage.isClickableViewSite(), "View Site button should be clickable");
 		softAssert.assertTrue(fieldAgentStartShiftPage.isStartShiftButtonVisible(),
 				"Start Shift button should be visible");
 
@@ -32,11 +33,8 @@ public class FieldAgentStartShiftTest extends BaseTest {
 		softAssert.assertTrue(fieldAgentStartShiftPage.isRejectShiftButtonVisible(),
 				"Reject Shift button should be visible after clicking Start Shift");
 
-		softAssert.assertTrue(fieldAgentStartShiftPage.isClickableViewSite(), "View Site button should be clickable");
-
-		fieldAgentStartShiftPage.logoutFromPreviousShift();
 		fieldAgentStartShiftPage.doClickStartShift();
-
+		fieldAgentStartShiftPage.logoutFromPreviousShift();
 		softAssert.assertEquals(fieldAgentStartShiftPage.getFieldAgentNameWithWelcome().trim(),
 				"Welcome, " + HRManagementConstants.FIRST_NAME + " " + HRManagementConstants.LAST_NAME + "!");
 		softAssert.assertEquals(fieldAgentStartShiftPage.getWelcomeDescriptionText().trim(),
