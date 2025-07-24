@@ -203,6 +203,7 @@ public class FieldAgentStartShiftPage {
 	}
 
 	public FieldAgentReportsPage doClickStartShiftBegin() {
+		elementUtils.waitForInvisibilityOfElementLocated(txtHeadingPreviousShiftLogout, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnStartShiftBegin, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentReportsPage(driver);
 	}

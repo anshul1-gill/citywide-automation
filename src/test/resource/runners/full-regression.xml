@@ -15,7 +15,7 @@
 			<class
 				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
 			<class
-				name="com.dits.citywide.pages.fieldagent.FieldAgentStartShiftTest" />
+				name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
 		</classes>
 	</test>
 
