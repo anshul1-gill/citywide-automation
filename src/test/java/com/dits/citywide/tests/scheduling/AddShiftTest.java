@@ -1,4 +1,4 @@
-package com.dits.citywide.tests.operationhub;
+package com.dits.citywide.tests.scheduling;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

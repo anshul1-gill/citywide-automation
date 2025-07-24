@@ -17,7 +17,7 @@ public class FieldAgentViewShiftTest extends BaseTest {
 	@Test
 	public void viewShiftDetailsTest() throws InterruptedException {
 		//Thread.sleep(5000);
-		fieldAgentStartShiftPage.btnMarkAsRead();
+		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		fieldAgentStartShiftPage.doClickTabStartShift();
 		fieldAgentStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);
 

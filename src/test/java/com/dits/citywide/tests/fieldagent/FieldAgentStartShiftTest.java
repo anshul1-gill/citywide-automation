@@ -19,18 +19,31 @@ public class FieldAgentStartShiftTest extends BaseTest {
 	@Test
 	public void startShiftTest() throws InterruptedException {
 		Thread.sleep(500);
-		fieldAgentStartShiftPage.btnMarkAsRead();
+		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		fieldAgentStartShiftPage.doClickTabStartShift();
 		fieldAgentStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);
 
 		softAssert.assertTrue(fieldAgentStartShiftPage.isStartShiftButtonVisible(),
 				"Start Shift button should be visible");
+
+		softAssert.assertTrue(fieldAgentStartShiftPage.isConfirmShiftButtonVisible(),
+				"Confirm Shift button should be visible after clicking Start Shift");
+
+		softAssert.assertTrue(fieldAgentStartShiftPage.isRejectShiftButtonVisible(),
+				"Reject Shift button should be visible after clicking Start Shift");
+
+		softAssert.assertTrue(fieldAgentStartShiftPage.isClickableViewSite(), "View Site button should be clickable");
+
+		fieldAgentStartShiftPage.logoutFromPreviousShift();
 		fieldAgentStartShiftPage.doClickStartShift();
+
 		softAssert.assertEquals(fieldAgentStartShiftPage.getFieldAgentNameWithWelcome().trim(),
 				"Welcome, " + HRManagementConstants.FIRST_NAME + " " + HRManagementConstants.LAST_NAME + "!");
 		softAssert.assertEquals(fieldAgentStartShiftPage.getWelcomeDescriptionText().trim(),
 				FieldAgentConstants.WELCOME_TEXT);
 		fieldAgentReportsPage = fieldAgentStartShiftPage.doClickStartShiftBegin();
+		fieldAgentStartShiftPage.handlePassdownOfTheDay();
+
 		softAssert.assertTrue(fieldAgentReportsPage.isPreFlightReportsButtonVisible());
 
 		softAssert.assertAll();

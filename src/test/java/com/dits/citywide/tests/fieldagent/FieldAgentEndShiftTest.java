@@ -18,7 +18,7 @@ public class FieldAgentEndShiftTest extends BaseTest {
 	@Test
 	public void endShiftTest() throws InterruptedException {
 		Thread.sleep(1000);
-		fieldAgentStartShiftPage.btnMarkAsRead();
+		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		fieldAgentStartShiftPage.doClickTabStartShift();
 		Thread.sleep(3000);
 		fieldAgentStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);

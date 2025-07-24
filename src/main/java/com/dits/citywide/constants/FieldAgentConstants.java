@@ -43,7 +43,7 @@ public class FieldAgentConstants {
 	public static final String LEAVE_CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
 
 	public static final String LEAVE_STATUS = "Canceled";
-	
+
 	// Attendance Data
 	public static final String SHIFT_START = "01:30";
 	public static final String CHECK_IN = "02:02";
@@ -54,5 +54,12 @@ public class FieldAgentConstants {
 	public static final String ACTUAL_BREAK = "00:30";
 	public static final String TOTAL_HOURS = "11:28:00";
 	public static final String STATUS = "Completed";
+
+	// Start Shift Data
+	public static final String REJECTION_REASON = "I am not available for this shift.";
+	public static final String SUCCESS_MESSAGE_REJECTED_SHIFT = "Shift rejected successfully!";
+	public static final String SUCCESS_MESSAGE_CONFIRM_SHIFT = "Shift confirmed successfully!";
+
+	public static final String SUCCESS_MESSAGE_PREVIOUS_SHIFT_LOGOUT = "Previous Shift Logged out successfully";
 
 }
