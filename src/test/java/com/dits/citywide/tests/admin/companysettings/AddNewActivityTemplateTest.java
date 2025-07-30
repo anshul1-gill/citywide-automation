@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.CompanySettingsConstant;
 
-public class UpdateTemplateTest extends BaseTest {
+public class AddNewActivityTemplateTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -14,13 +14,16 @@ public class UpdateTemplateTest extends BaseTest {
 	}
 
 	@Test
-	public void updateTemplateTest() throws InterruptedException {
+	public void addNewTemplateTest() throws  InterruptedException {
+
 		companySettingsPage = dashboardPage.doClickCompanySettingsTab();
 		activityTemplatePage = companySettingsPage.clickActivityTemplatesLink();
-		activityTemplatePage.clickEditViolationButton(CompanySettingsConstant.ACTIVITY_TEMPLATE_NAME_TEST);
-
-		activityTemplatePage.updateActivityTemplate(CompanySettingsConstant.QUESTION_TYPE_UPDATED,
-				CompanySettingsConstant.QUESTION_TEXT_UPDATED);
+		activityTemplatePage.clickAddActivityTemplateButton();
+		activityTemplatePage.fillAddActivityTemplateForm(CompanySettingsConstant.ACTIVITY_TEMPLATE_NAME_TEST,
+				CompanySettingsConstant.ACTIVITY_CODE_TEST);
+		activityTemplatePage.fillSurveyQuestionnaire(CompanySettingsConstant.QUESTION_TYPE_TEST,
+				CompanySettingsConstant.QUESTION_TEXT_TEST);
+		activityTemplatePage.clickSaveQuestionButton();
 
 	}
 

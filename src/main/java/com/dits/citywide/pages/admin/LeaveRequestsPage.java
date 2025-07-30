@@ -39,6 +39,9 @@ public class LeaveRequestsPage {
 
 	private By msgConfirmationMessage = By.xpath(
 			"//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']/following-sibling::div");
+	
+	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
+
 
 	// Declined
 	private By txtCancelValidationMessage = By.xpath("//span[@class='baseTitle']");
@@ -56,7 +59,8 @@ public class LeaveRequestsPage {
 	}
 
 	public boolean isAddLeaveRequestButtonDisplayed() {
-		return elementUtils.waitForElementVisible(btnApplyLeave, Constants.SHORT_TIME_OUT_WAIT).isDisplayed();
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		return elementUtils.waitForElementVisible(btnApplyLeave, Constants.DEFAULT_WAIT).isDisplayed();
 	}
 
 	public String[] getFromDateText() {

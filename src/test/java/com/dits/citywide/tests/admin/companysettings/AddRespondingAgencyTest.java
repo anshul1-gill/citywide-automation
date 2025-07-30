@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.CompanySettingsConstant;
 
-public class AddAgencyTest extends BaseTest {
+public class AddRespondingAgencyTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -14,7 +14,7 @@ public class AddAgencyTest extends BaseTest {
 	}
 
 	@Test
-	public void addAgencyTest() throws InterruptedException {
+	public void addRespondingAgencyTest() throws InterruptedException {
 		companySettingsPage = dashboardPage.doClickCompanySettingsTab();
 		respondingAgenciesPage = companySettingsPage.clickRespondingAgenciesLink();
 		softAssert.assertTrue(respondingAgenciesPage.isRespondingAgenciesPageVisible(),

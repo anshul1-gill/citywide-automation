@@ -15,7 +15,7 @@ public class ViewEmployeeTest extends BaseTest {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}
 
-	@Test(dependsOnGroups = "employee-add")
+	@Test
 	public void viewEmployeeTest() throws InterruptedException {
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);

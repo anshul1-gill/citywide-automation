@@ -9,12 +9,12 @@ import com.dits.citywide.constants.HRManagementConstants;
 
 public class ApproveLeaveRequestsTest extends BaseTest {
 
-	@BeforeMethod(alwaysRun = true)
+	@BeforeMethod
 	public void performLogin() throws InterruptedException {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}
 
-	@Test(dependsOnGroups = "leave-apply")
+	@Test
 	public void approveLeaveRequestsTest() throws InterruptedException {
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);

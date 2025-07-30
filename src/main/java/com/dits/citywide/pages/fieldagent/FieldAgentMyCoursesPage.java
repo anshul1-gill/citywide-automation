@@ -28,8 +28,8 @@ public class FieldAgentMyCoursesPage {
 	private By txtInstructionForOnlineAssessment = By
 			.xpath("//h4[normalize-space()='Instruction for Online Assessment']");
 	private By btnStartAssessment = By.xpath("//span[normalize-space()='Start Assessment']");
-	private By txtboxQuestion = By.xpath("//textarea[@class='ant-input css-iirhfw ant-input-outlined w-full']");
-	private By btnSubmit = By.xpath("//button[@type='submit']");
+	private By txtboxQuestion = By.xpath("//textarea[contains(@id,'question-TEXT')]");
+	private By btnSubmit = By.xpath("//span[normalize-space()='Submit']");
 	private By txtAssessmentSubmittedSuccessMessage = By
 			.xpath("//h3[normalize-space()='Your assessment has been submitted successfully.']");
 	private By btnViewYourSubmittedAssessment = By.xpath("//span[normalize-space()='View your Submitted Assessment']");
@@ -51,7 +51,7 @@ public class FieldAgentMyCoursesPage {
 
 	public void clickViewCourseByName(String courseName) {
 		String xpath = "//td[normalize-space()='" + courseName
-				+ "']/following-sibling::td[@data-label='Actions']//a[@class='actionicons editPencil']";
+				+ "']/following-sibling::td[@data-label='Actions']//a[contains(@class,'actionicons editPencil')]";
 		By viewCourseBtn = By.xpath(xpath);
 		elementUtils.waitForElementToBeClickable(viewCourseBtn, Constants.DEFAULT_WAIT).click();
 	}

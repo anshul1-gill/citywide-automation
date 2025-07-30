@@ -38,7 +38,7 @@ public class AddNewCourseTest extends BaseTest {
 		totalCoursesPage.clickOnSaveModule();
 		softAssert.assertEquals(totalCoursesPage.getSuccessMessage(), TrainingConstants.MODULE_ADDED_SUCCESS_MESSAGE,
 				"Module added success message is not displayed");
-		
+
 		// Assessment
 		totalCoursesPage.clickOnTabAssessments();
 		totalCoursesPage.clickOnAddNewAssessment();
@@ -56,6 +56,7 @@ public class AddNewCourseTest extends BaseTest {
 		totalCoursesPage.clickOnAddQuestion();
 		softAssert.assertTrue(totalCoursesPage.isQuestionnaireTypeHeadingDisplayed(),
 				"Questionnaire Type heading is not displayed after clicking on Add Question");
+		Thread.sleep(1000);
 		totalCoursesPage.fillQuestionDetails(TrainingConstants.QUESTIONNAIRE_TYPE, TrainingConstants.QUESTION_SCORE,
 				TrainingConstants.ENTER_QUESTION_1, TrainingConstants.ENTER_PREDEFINED_ANSWER_1);
 		totalCoursesPage.clickOnNext();

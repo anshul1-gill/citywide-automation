@@ -59,8 +59,9 @@ public class BeatsPage {
 		elementUtils.doClickWithActionsAndWait(dropdwonNumberOfSites, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(searchNumberOfSites, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsSendKeys(searchNumberOfSites, numberOfSites);
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		elementUtils.pressEnterKey();
+		Thread.sleep(2000);
 	}
 
 	public void clickSubmitAddBeatButton() {

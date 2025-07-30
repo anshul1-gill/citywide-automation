@@ -154,6 +154,7 @@ public class RespondingAgenciesPage {
 	}
 
 	public String getAgencyName() {
+		elementUtils.waitForInvisibilityOfElementLocated(txtAddAgencyTypeSuccessMessage, Constants.DEFAULT_WAIT);
 		return elementUtils.waitForElementVisible(dataAgencyName, Constants.DEFAULT_WAIT).getText();
 	}
 

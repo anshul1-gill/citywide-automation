@@ -17,6 +17,7 @@ public class FieldAgentReportsPage {
 
 	private By btnReportsTab = By.xpath("//span[normalize-space()='Reports']");
 	private By btnPreFlightReports = By.xpath("//a[normalize-space()='Pre-Flight Reports']");
+	private By btnAddNewReport = By.xpath("(//span[contains(text(),'Add New Report')])[2]");
 	private By btnSubmitReports = By.xpath("//button[normalize-space()='Submit Reports']");
 	private By txtNoItemsFound = By
 			.xpath("//span[@class='px-2 py-8 text-base font-medium text-center text-gray-400 dark:text-white']");
@@ -84,6 +85,10 @@ public class FieldAgentReportsPage {
 
 	public boolean isPreFlightReportsButtonVisible() {
 		return elementUtils.doIsDisplayed(btnPreFlightReports, Constants.DEFAULT_WAIT);
+	}
+	
+	public boolean isStartShiftButtonVisible() {
+		return elementUtils.doIsDisplayed(btnAddNewReport, Constants.DEFAULT_WAIT);
 	}
 
 	public void clickPreFlightReports() {

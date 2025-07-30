@@ -29,8 +29,10 @@ public class FieldAgentCallsPage {
 	private By txtboxNotes = By.xpath("//textarea[@id='info_message']");
 	private By btnSaveNote = By.xpath("//button[@type='submit']");
 	private By btnCloseCallAction = By.xpath("//span[@aria-label='close']");
-	
+
 	private By successMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
+
+	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
 	// New Officer Report Entry
 	private By calenderArriveDate = By.xpath("//input[@id='arrive_date']");
@@ -114,7 +116,10 @@ public class FieldAgentCallsPage {
 	}
 
 	public void closeCallActionPopup() {
-		elementUtils.waitForElementToBeClickable(btnCloseCallAction, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForElementToBeClickable(btnCloseCallAction,
+		// Constants.DEFAULT_WAIT).click();
+		elementUtils.doClickWithActionsAndWait(btnCloseCallAction, Constants.DEFAULT_WAIT);
 	}
 
 	// New Officer Report Entry

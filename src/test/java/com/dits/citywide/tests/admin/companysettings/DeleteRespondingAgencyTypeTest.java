@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.CompanySettingsConstant;
 
-public class DeleteAgencyTest extends BaseTest {
+public class DeleteRespondingAgencyTypeTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -14,16 +14,16 @@ public class DeleteAgencyTest extends BaseTest {
 	}
 
 	@Test
-	public void deleteAgencyTest() throws InterruptedException {
+	public void deleteRespondingAgencyTypeTest() throws InterruptedException {
 		companySettingsPage = dashboardPage.doClickCompanySettingsTab();
 		respondingAgenciesPage = companySettingsPage.clickRespondingAgenciesLink();
 		softAssert.assertTrue(respondingAgenciesPage.isRespondingAgenciesPageVisible(),
 				"Responding Agencies page is not visible");
-		respondingAgenciesPage.clickAgenciesTab();
-		respondingAgenciesPage.clickDeleteAgencyButton(CompanySettingsConstant.AGENCY_TYPE_UPDATED);
+		respondingAgenciesPage.clickDeleteAgencyTypeButton(CompanySettingsConstant.AGENCY_TYPE_NAME_UPDATED);
 		respondingAgenciesPage.clickOkDeleteButton();
 		softAssert.assertEquals(respondingAgenciesPage.getSuccessMessage(),
-				CompanySettingsConstant.DELETE_AGENCY_SUCCESS_MESSAGE, "Agency was not deleted successfully");
+				CompanySettingsConstant.DELETE_AGENCY_TYPE_SUCCESS_MESSAGE,
+				"Delete Agency Type success message is not as expected");
 
 		softAssert.assertAll();
 	}

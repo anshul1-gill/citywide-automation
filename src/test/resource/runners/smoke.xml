@@ -7,7 +7,7 @@
 	<listeners>
 		<listener class-name=""></listener>
 	</listeners>	
-	-->
+				-->
 
 	<test name="Add Employee Test">
 
@@ -18,6 +18,7 @@
 				name="com.dits.citywide.tests.admin.hrmanagement.ViewEmployeeTest" />
 		</classes>
 	</test>
+
 
 	<test name="Decline Leave Flow">
 		<classes>
@@ -34,6 +35,107 @@
 				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
 			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsTest" />
+		</classes>
+	</test>
+
+	<test name="Employee Shift Management Tests">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
+			<class
+				name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
+		</classes>
+	</test>
+
+
+	<test name="My Courses Tests">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.admin.training.AddCategoryTest" />
+			<class
+				name="com.dits.citywide.tests.admin.training.AddCertificateTest" />
+			<class
+				name="com.dits.citywide.tests.admin.training.AddNewCourseTest" />
+			<class
+				name="com.dits.citywide.tests.admin.training.AssignCourseTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest" />
+		</classes>
+	</test>
+
+	<test name="Passwdown Logs Tests Field Agent">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.fieldagent.NewPassdownLogTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.ViewPassdownLogTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.ScanImagesPassdownLogTest" />
+		</classes>
+	</test>
+
+
+	<test name="Company Settings Tests">
+		<classes>
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddBreakPageTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateBreakTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteBreakTest" />
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddLeaveTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateLeaveTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteLeaveTest" />
+
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddFederalHolidayTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateFederalHolidayTest"
+			/>
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteFederalHolidayTest"
+			/>
+
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddCustomHolidayTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateCustomHolidayTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest" />
+
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddBeatTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateBeatTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteBeatTest" />
+
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTypeTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTypeTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTypeTest" />
+
 		</classes>
 	</test>
 

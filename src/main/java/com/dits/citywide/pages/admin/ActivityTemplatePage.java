@@ -20,8 +20,12 @@ public class ActivityTemplatePage {
 	private By searchActivityType = By.xpath("//input[@id='code']");
 
 	private By dropdownQuestionType = By.xpath("(//div[@class='ant-select-selector'])[3]");
-	private By dropdownvalueQuestionValue = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[1]/div/div");
-	private By txtboxQuestion = By.xpath("//textarea[@id='question']");
+//	private By dropdownvalueQuestionValue = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[1]/div/div");
+//	private By txtboxQuestion = By.xpath("//textarea[@id='question']");
+	public By getSurveyQuestionLocator(String questionText) {
+	    String dynamicXPath = String.format("//div[contains(text(), '%s')]", questionText);
+	    return By.xpath(dynamicXPath);
+	}
 
 	private By txtboxAddNewTemplate = By.xpath("//div[@class='questionEditor rdw-editor-main']");
 
@@ -57,9 +61,10 @@ public class ActivityTemplatePage {
 
 	public void fillSurveyQuestionnaire(String questionType, String question) {
 		elementUtils.waitForElementToBeClickable(dropdownQuestionType, Constants.DEFAULT_WAIT).click();
-		elementUtils.selectElementThroughLocatorWithExactMatch(dropdownvalueQuestionValue, questionType,
-				Constants.DEFAULT_WAIT);
-		elementUtils.waitForElementToBeClickable(txtboxQuestion, Constants.DEFAULT_WAIT).sendKeys(question);
+//		elementUtils.selectElementThroughLocatorWithExactMatch(dropdownvalueQuestionValue, questionType,
+//				Constants.DEFAULT_WAIT);
+//		elementUtils.waitForElementToBeClickable(txtboxQuestion, Constants.DEFAULT_WAIT).sendKeys(question);
+		elementUtils.waitForElementToBeClickable(getSurveyQuestionLocator(question), Constants.DEFAULT_WAIT).click();
 	}
 
 	public void clickSaveQuestionButton() {
@@ -86,12 +91,12 @@ public class ActivityTemplatePage {
 	public void updateSurveyQuestionnaire(String questionType, String question) {
 
 		elementUtils.waitForElementToBeClickable(dropdownQuestionType, Constants.DEFAULT_WAIT).click();
-		elementUtils.selectElementThroughLocatorWithExactMatch(dropdownvalueQuestionValue, questionType,
-				Constants.DEFAULT_WAIT);
-
-		elementUtils.waitForElementVisible(txtboxQuestion, Constants.DEFAULT_WAIT);
-		elementUtils.clearTextBoxWithActions(txtboxQuestion);
-		elementUtils.doActionsSendKeys(txtboxQuestion, question);
+//		elementUtils.selectElementThroughLocatorWithExactMatch(dropdownvalueQuestionValue, questionType,
+//				Constants.DEFAULT_WAIT);
+//
+//		elementUtils.waitForElementVisible(txtboxQuestion, Constants.DEFAULT_WAIT);
+//		elementUtils.clearTextBoxWithActions(txtboxQuestion);
+//		elementUtils.doActionsSendKeys(txtboxQuestion, question);
 	}
 	
 	
