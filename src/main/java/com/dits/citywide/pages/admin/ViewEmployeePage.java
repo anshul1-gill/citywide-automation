@@ -312,8 +312,9 @@ public class ViewEmployeePage {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 	}
 
-	public String getPermitNumberText() {
+	public String getPermitNumberText() throws InterruptedException {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		Thread.sleep(1000); 
 		return elementUtils.waitForElementVisible(dataPermitNumber, Constants.DEFAULT_WAIT).getText();
 	}
 
@@ -334,8 +335,9 @@ public class ViewEmployeePage {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 	}
 
-	public String getFirearmsQualificationPermitNumberText() {
+	public String getFirearmsQualificationPermitNumberText() throws InterruptedException {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		Thread.sleep(1000); 
 		return elementUtils.waitForElementVisible(dataFirearmsQualificationPermitNumber, Constants.DEFAULT_WAIT)
 				.getText();
 	}

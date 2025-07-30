@@ -14,7 +14,7 @@ public class DeclineLeaveRequestsTest extends BaseTest {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}
 
-	@Test(dependsOnGroups = "leave-apply")
+	@Test
 	public void declineLeaveRequestsTest() throws InterruptedException {
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);

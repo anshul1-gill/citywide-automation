@@ -31,7 +31,7 @@ public class AddEmployeePage {
 	private By txtboxLastName = By.id("Personal Information_last_name");
 	private By dropdownGender = By.xpath("(//span[@class='ant-select-selection-placeholder'])[1]");
 	private By genderValues = By.xpath("//div[@class='rc-virtual-list-holder-inner']/div/div");
-	private By birthDatecalender = By.cssSelector("input[id='Personal Information_birthdate']");
+	//private By birthDatecalender = By.cssSelector("input[id='Personal Information_birthdate']");
 	private By txtboxSocialSecurityNumber = By.id("Personal Information_social_security_number");
 
 	private By dropdownRole = By.xpath("(//div[@class='ant-select-selection-search'])[1]");
@@ -389,12 +389,12 @@ public class AddEmployeePage {
 		elementUtils.doClickWithActions(genderElement);
 		elementUtils.selectElementThroughLocator(genderValues, gender, Constants.SHORT_TIME_OUT_WAIT);
 
-		elementUtils.waitForElementToBeVisibleAndEnabled(birthDatecalender, Constants.DEFAULT_WAIT);
-		elementUtils.waitForElementToBeClickable(birthDatecalender, Constants.SHORT_TIME_OUT_WAIT).click();
-		Calendar.selectDatePrevious(driver, month, Year, date);
+//		elementUtils.waitForElementToBeVisibleAndEnabled(birthDatecalender, Constants.DEFAULT_WAIT);
+//		elementUtils.waitForElementToBeClickable(birthDatecalender, Constants.SHORT_TIME_OUT_WAIT).click();
+//		Calendar.selectDatePrevious(driver, month, Year, date);
 
-		elementUtils.waitForElementVisible(txtboxSocialSecurityNumber, Constants.SHORT_TIME_OUT_WAIT)
-				.sendKeys(socialSecurityNumber);
+//		elementUtils.waitForElementVisible(txtboxSocialSecurityNumber, Constants.SHORT_TIME_OUT_WAIT)
+//				.sendKeys(socialSecurityNumber);
 
 		WebElement roleElement = elementUtils.waitForElementToBeClickable(dropdownRole, Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(roleElement);

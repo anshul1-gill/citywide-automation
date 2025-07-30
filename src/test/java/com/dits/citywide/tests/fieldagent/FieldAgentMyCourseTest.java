@@ -22,7 +22,7 @@ public class FieldAgentMyCourseTest extends BaseTest {
 		softAssert.assertEquals(fieldAgentMyCoursesPage.getHeadingMyCourses(), "My Courses",
 				"Heading of My Courses page is not as expected");
 		fieldAgentMyCoursesPage.clickViewCourseByName(TrainingConstants.COURSE_NAME);
-		fieldAgentMyCoursesPage.doClickModule1();
+		//fieldAgentMyCoursesPage.doClickModule1();
 		fieldAgentMyCoursesPage.clickStartReading();
 		fieldAgentMyCoursesPage.clickMarkAsComplete();
 		fieldAgentMyCoursesPage.clickOk();

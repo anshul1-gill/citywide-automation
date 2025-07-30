@@ -73,8 +73,9 @@ public class TotalCoursesPage {
 	private By txtModuleName = By.xpath("//input[@placeholder='Module Name']");
 	private By txtModuleDuration = By.xpath("//input[@id='chapter_duration']");
 	private By txtboxModuleContent = By.xpath("//div[@aria-label='rdw-editor']");
-	private By btnUploadFiles = By.xpath(
-			"//span[@class='ant-input-affix-wrapper ant-input-affix-wrapper-readonly css-iirhfw ant-input-outlined file-types-text']");
+	private By btnUploadFiles = By
+			.xpath("//span[contains(@class,'ant-input-affix-wrapper ant-input-affix-wrapper-readonly')]");
+	private By txtUploadFiles = By.xpath("//span[@class='baseTitle']");
 	private By uploadFile = By.xpath("//input[@type='file']");
 	private By uploadefileSucessMessage = By.xpath("//div[contains(text(),'File uploaded successfully')]");
 	private By txtboxFiles = By.xpath("//input[@id='file_url']");
@@ -114,7 +115,7 @@ public class TotalCoursesPage {
 	private By txtboxQuestionScore = By.xpath("//input[@placeholder='Type Score']");
 	private By txtboxQuestion = By.xpath("//textarea[@placeholder='Input Your Question Here...']");
 	private By btnEnterPredictedQuestiuon = By.xpath("//textarea[@placeholder='Enter Predicted Answer']");
-	private By btnNext = By.xpath("//span[contains(text(),'Next')]");
+	private By btnNext = By.xpath("(//span[contains(text(),'Next')])[2]");
 	private By btnSubmitQuestion = By.xpath("//span[normalize-space()='Submit Question']");
 	private By btnAllAssessments = By.xpath("//span[normalize-space()='All Assessments']");
 
@@ -294,12 +295,18 @@ public class TotalCoursesPage {
 		return elementUtils.doIsDisplayed(uploadefileSucessMessage, Constants.DEFAULT_WAIT);
 	}
 
+	public boolean isUploadHeadingTextDisplayed() {
+		return elementUtils.doIsDisplayed(txtUploadFiles, Constants.DEFAULT_WAIT);
+	}
+
 	public void fillModuleDetails(String moduleName, String moduleDuration, String moduleContent, String filePath,
-			String fileURL) {
+			String fileURL) throws InterruptedException {
 		elementUtils.waitForElementVisible(txtModuleName, Constants.DEFAULT_WAIT).sendKeys(moduleName);
 		elementUtils.waitForElementVisible(txtModuleDuration, Constants.DEFAULT_WAIT).sendKeys(moduleDuration);
 		elementUtils.waitForElementVisible(txtboxModuleContent, Constants.DEFAULT_WAIT).sendKeys(moduleContent);
+		Thread.sleep(1000);
 		elementUtils.waitForElementToBeClickable(btnUploadFiles, Constants.DEFAULT_WAIT).click();
+		isUploadHeadingTextDisplayed();
 		elementUtils.uploadFile(uploadFile, filePath);
 		uploadFileSuccessMessageIsDisplayed();
 		elementUtils.waitForInvisibilityOfElementLocated(uploadefileSucessMessage, Constants.DEFAULT_WAIT);
@@ -361,10 +368,11 @@ public class TotalCoursesPage {
 	}
 
 	public void fillQuestionDetails(String questionnaireType, String questionScore, String question,
-			String predictedAnswer) {
+			String predictedAnswer) throws InterruptedException {
 		elementUtils.waitForInvisibilityOfElementLocated(txtSuccessMessage, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(dropdownQuestionnaireType, Constants.DEFAULT_WAIT).click();
 		elementUtils.selectElementThroughLocator(valuesQuestionnaireType, questionnaireType, Constants.DEFAULT_WAIT);
+		Thread.sleep(1000);
 		elementUtils.waitForElementVisible(txtboxQuestionScore, Constants.DEFAULT_WAIT).sendKeys(questionScore);
 		elementUtils.waitForElementVisible(txtboxQuestion, Constants.DEFAULT_WAIT).sendKeys(question);
 		elementUtils.waitForElementVisible(btnEnterPredictedQuestiuon, Constants.DEFAULT_WAIT)

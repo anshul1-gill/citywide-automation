@@ -11,11 +11,11 @@ public class FieldAgentConstants {
 
 	public static final String LEAVE_FROM_MONTH = "Jul";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "22";
+	public static final String LEAVE_FROM_DATE = "31";
 
 	public static final String LEAVE_TO_MONTH = "Jul";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "23";
+	public static final String LEAVE_TO_DATE = "31";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";
@@ -61,5 +61,12 @@ public class FieldAgentConstants {
 	public static final String SUCCESS_MESSAGE_CONFIRM_SHIFT = "Shift confirmed successfully!";
 
 	public static final String SUCCESS_MESSAGE_PREVIOUS_SHIFT_LOGOUT = "Previous Shift Logged out successfully";
+
+	// Passdown Logs Data
+	public static final String IMAGE_UPLOAD_SUCCESS_MESSAGE = "Image uploaded successfully!";
+	public static final String PASSDOWN_MESSAGE = "Please ensure all equipment is returned by the end of your shift. Report any issues immediately.";
+	public static final String PASSDOWN_IMAGE_PATH = "./src/test/resource/testdata/image.jpeg";
+	public static final String PASSDOWN_IMAGE_NAME = "Equipment Return Confirmation";
+	public static final String IMAGE_DESCRIPTION = "Image of the equipment returned at the end of the shift.";
 
 }

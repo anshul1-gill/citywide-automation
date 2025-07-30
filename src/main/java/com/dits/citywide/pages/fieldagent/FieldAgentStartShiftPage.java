@@ -72,6 +72,8 @@ public class FieldAgentStartShiftPage {
 		String xpath = "(//button[normalize-space()='Create Report'])[" + pasdownbuttonCount + "]";
 		return By.xpath(xpath);
 	}
+	
+	private By tabPassdownLogs = By.xpath("//span[normalize-space()='Passdown Logs']");
 
 	// Common
 	private By sucessMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
@@ -269,6 +271,11 @@ public class FieldAgentStartShiftPage {
 
 	public void doClickSaveRejectReasonMultipleShifts() {
 		elementUtils.waitForElementToBeClickable(btnSaveRejectReasonMultipleShifts, Constants.DEFAULT_WAIT).click();
+	}
+	
+	public PassdownLogsPage clickOnPassdownLogsTab() {
+		elementUtils.waitForElementToBeClickable(tabPassdownLogs, Constants.DEFAULT_WAIT).click();
+		return new PassdownLogsPage(driver);
 	}
 
 	// Previous Shift Logout
