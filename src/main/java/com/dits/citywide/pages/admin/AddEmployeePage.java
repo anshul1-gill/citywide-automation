@@ -31,10 +31,15 @@ public class AddEmployeePage {
 	private By txtboxLastName = By.id("Personal Information_last_name");
 	private By dropdownGender = By.xpath("(//span[@class='ant-select-selection-placeholder'])[1]");
 	private By genderValues = By.xpath("//div[@class='rc-virtual-list-holder-inner']/div/div");
-	//private By birthDatecalender = By.cssSelector("input[id='Personal Information_birthdate']");
+	private By birthDatecalender = By.cssSelector("input[id='Personal Information_birthdate']");
 	private By txtboxSocialSecurityNumber = By.id("Personal Information_social_security_number");
 
 	private By dropdownRole = By.xpath("(//div[@class='ant-select-selection-search'])[1]");
+	private By roleValues = By.xpath("//div[@class='rc-virtual-list-holder-inner']/div/div");
+
+	public By getRoleLocator(String roleName) {
+		return By.xpath("//div[contains(text(),'" + roleName + "')]");
+	}
 
 	private By dropdownRank = By.xpath("(//span[@class='ant-select-selection-search'])[3]");
 
@@ -60,9 +65,12 @@ public class AddEmployeePage {
 	private By txtboxPassword = By.id("Personal Information_password");
 	private By txtboxConfirmPassword = By.id("Personal Information_confirm_password");
 
-	private By dropdownBranches = By.xpath("(//div[@class='ant-select-selection-search'])[2]");
+	private By dropdownBranches = By.xpath("(//div[@class='ant-select-selection-search'])[3]");
+	private By txtboxSiteSearch = By.xpath("//input[@id='Personal Information_client_site']");
 
-	private By dropdownBlacklistedSite = By.xpath("(//div[@class='ant-select-selection-search'])[3]");
+	private By txtboxBeatSearch = By.xpath("//input[@id='Personal Information_beat_id']");
+
+	private By dropdownBlacklistedSite = By.xpath("(//div[@class='ant-select-selection-search'])[4]");
 
 	// Residence Address
 	private By txtboxStreetName = By.id("Personal Information_residence_street_address_2");
@@ -128,8 +136,8 @@ public class AddEmployeePage {
 
 	// License Details
 	private By btnAddLicenseDetails = By.xpath("//span[contains(text(), 'Add License Details')]");
-	private By txtDriverLicense = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtDriverLicense = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 	private By dropdownLicenseState = By.xpath("(//span[@class='ant-select-selection-search'])[2]");
 	private By txtboxDriverLicenseNumber = By.id("permit_number");
 	private By calenderDateOfIssue = By.xpath("(//div[@class='ant-picker-input'])[1]");
@@ -148,8 +156,8 @@ public class AddEmployeePage {
 
 	// Guard Card
 	private By btnAddGuardCard = By.xpath("//span[contains(text(), 'Add Guard Card')]");
-	private By txtGuardCard = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtGuardCard = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 	private By txtboxGuardCardPermitNumber = By.id("permit_number");
 
 	private By calenderDateOfIssueGuardCard = By.xpath("//label[@title='Date of Issue']");
@@ -167,8 +175,8 @@ public class AddEmployeePage {
 
 	// Firearms Qualification
 	private By btnAddFirearmsQualification = By.xpath("//span[contains(text(), 'Add Firearms Qualification')]");
-	private By txtFirearmsQualification = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtFirearmsQualification = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 
 	private By txtboxFirearmsPermitNumber = By.id("permit_number");
 	private By calenderDateOfIssueFirearms = By.xpath("//label[@title='Date of Issue']");
@@ -192,8 +200,8 @@ public class AddEmployeePage {
 
 	// Baton
 	private By btnAddBaton = By.xpath("//span[contains(text(), 'Add Baton')]");
-	private By txtBaton = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtBaton = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 	private By txtboxBatonPermitNumber = By.id("permit_number");
 	private By calenderDateOfIssueBaton = By.xpath("//label[@title='Date of Issue']");
 	private By calenderDateOfIssueSearchBaton = By.id("date_of_issue");
@@ -211,8 +219,8 @@ public class AddEmployeePage {
 
 	// ECD
 	private By btnAddECD = By.xpath("//span[contains(text(), 'Add ECD')]");
-	private By txtECD = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtECD = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 	private By txtboxPermitNumberECD = By.id("permit_number");
 	private By calenderDateOfIssueECD = By.xpath("//label[@title='Date of Issue']");
 	private By calenderDateOfIssueSearchECD = By.id("date_of_issue");
@@ -229,8 +237,8 @@ public class AddEmployeePage {
 
 	// OC Spray
 	private By btnAddOCSpray = By.xpath("//span[contains(text(), 'Add OC Spray')]");
-	private By txtOCSpray = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtOCSpray = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 	private By txtboxPermitNumberOCSpray = By.id("permit_number");
 	private By calenderDateOfIssueOCSpray = By.xpath("//label[@title='Date of Issue']");
 	private By calenderDateOfIssueSearchOCSpray = By.id("date_of_issue");
@@ -247,8 +255,8 @@ public class AddEmployeePage {
 
 	// Other Permit
 	private By btnAddOtherPermit = By.xpath("//span[contains(text(), 'Add Other Permit')]");
-	private By txtOtherPermit = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtOtherPermit = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 	private By txtboxPermitNumberOtherPermit = By.id("permit_number");
 	private By calenderDateOfIssueOtherPermit = By.xpath("//label[@title='Date of Issue']");
 	private By calenderDateOfIssueSearchOtherPermit = By.id("date_of_issue");
@@ -290,8 +298,8 @@ public class AddEmployeePage {
 	private By tabAdditionalDocuments = By.xpath("//div[text()='Additional Documents' and @class='menuItem']");
 	// Upload Document
 	private By btnAddAdditionalDocument = By.xpath("//span[normalize-space()='Add Additional Document']");
-	private By txtAdditionalDocument = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtAdditionalDocument = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 	private By txtboxName = By.id("Name0");
 	private By txtboxDescription = By.id("Description0");
 	private By btnSaveAdditionalDocument = By
@@ -324,8 +332,8 @@ public class AddEmployeePage {
 // 8. References
 	private By tabReferences = By.xpath("//div[text()='References' and @class='menuItem']");
 	private By btnAddUserReference = By.xpath("//span[contains(text(),'Add User Reference')]");
-	private By txtUserReferences = By.xpath(
-			"//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
+	private By txtUserReferences = By
+			.xpath("//div[contains(@class,'ant-card ant-card-bordered overview')]//span[@class='baseTitle']");
 
 	private By userReferencesName = By.id("reference_name");
 	private By userReferencesRelationship = By.id("reference_relationship");
@@ -350,7 +358,6 @@ public class AddEmployeePage {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
 	}
-
 
 	// Upload User Profile
 	public boolean isUploadUserProfilePictureTextDisplayed() {
@@ -377,8 +384,8 @@ public class AddEmployeePage {
 			String month, String Year, String date, String socialSecurityNumber, String role, String rank,
 			String ethnicCode, String primaryEmail, String alternateEmail, String countryCode,
 			String primanyPhoneNumber, String alternatePhoneNumber, String emergencyName, String emergencyPhoneNumber,
-			String emergencyRelationship, String password, String confirmPassword, String branchName,
-			String blacklistedSiteName) throws InterruptedException {
+			String emergencyRelationship, String password, String confirmPassword, String branchName)
+			throws InterruptedException {
 
 		elementUtils.waitForElementVisible(txtboxFirstName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(firstName);
 		elementUtils.waitForElementVisible(txtboxMiddleName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(middleName);
@@ -389,18 +396,22 @@ public class AddEmployeePage {
 		elementUtils.doClickWithActions(genderElement);
 		elementUtils.selectElementThroughLocator(genderValues, gender, Constants.SHORT_TIME_OUT_WAIT);
 
-//		elementUtils.waitForElementToBeVisibleAndEnabled(birthDatecalender, Constants.DEFAULT_WAIT);
-//		elementUtils.waitForElementToBeClickable(birthDatecalender, Constants.SHORT_TIME_OUT_WAIT).click();
-//		Calendar.selectDatePrevious(driver, month, Year, date);
+		elementUtils.waitForElementToBeVisibleAndEnabled(birthDatecalender, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(birthDatecalender, Constants.SHORT_TIME_OUT_WAIT).click();
+		Calendar.selectDatePrevious(driver, month, Year, date);
 
-//		elementUtils.waitForElementVisible(txtboxSocialSecurityNumber, Constants.SHORT_TIME_OUT_WAIT)
-//				.sendKeys(socialSecurityNumber);
+		elementUtils.waitForElementVisible(txtboxSocialSecurityNumber, Constants.SHORT_TIME_OUT_WAIT)
+				.sendKeys(socialSecurityNumber);
 
-		WebElement roleElement = elementUtils.waitForElementToBeClickable(dropdownRole, Constants.SHORT_TIME_OUT_WAIT);
-		elementUtils.doClickWithActions(roleElement);
-		String roleText = StringUtils.convertToCamelCase(role);
-		By rolexpath = elementUtils.getOptionByText(roleText);
-		elementUtils.clickElementWithScroll(rolexpath, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementVisible(dropdownRole, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsClick(dropdownRole);
+		
+		//elementUtils.selectElementThroughLocatorWithRetry(roleValues, role, Constants.SHORT_TIME_OUT_WAIT);
+		// String roleText = StringUtils.convertToCamelCase(role);
+		// By rolexpath = elementUtils.getOptionByText(roleText);
+		// elementUtils.clickElementWithScroll(rolexpath, Constants.DEFAULT_WAIT);
+		//elementUtils.doScrollAndClickWithWait(getRoleLocator(role));
+		elementUtils.waitForElementVisible(getRoleLocator(role), Constants.DEFAULT_WAIT).click();
 
 		WebElement rankElement = elementUtils.waitForElementToBeClickable(dropdownRank, Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(rankElement);
@@ -454,12 +465,33 @@ public class AddEmployeePage {
 //		By branchxpath = elementUtils.getOptionByText(branchesText);
 //		elementUtils.clickElementWithScroll(branchxpath, Constants.DEFAULT_WAIT);
 
-		WebElement blacklistedSiteElement = elementUtils.waitForElementToBeClickable(dropdownBlacklistedSite,
+//		WebElement blacklistedSiteElement = elementUtils.waitForElementToBeClickable(dropdownBlacklistedSite,
+//				Constants.SHORT_TIME_OUT_WAIT);
+//		elementUtils.doClickWithActions(blacklistedSiteElement);
+//		By blacklistedSiteNamexpath = elementUtils.getOptionByText(blacklistedSiteName);
+//		elementUtils.clickElementWithScroll(blacklistedSiteNamexpath, Constants.DEFAULT_WAIT);
+//		elementUtils.pressEscapeKey();
+
+	}
+
+	public void fillSiteName(String siteName) throws InterruptedException {
+		WebElement branchesElement = elementUtils.waitForElementToBeClickable(dropdownBranches,
 				Constants.SHORT_TIME_OUT_WAIT);
-		elementUtils.doClickWithActions(blacklistedSiteElement);
-		By blacklistedSiteNamexpath = elementUtils.getOptionByText(blacklistedSiteName);
+		elementUtils.doClickWithActions(branchesElement);
+		By blacklistedSiteNamexpath = elementUtils.getOptionByText(siteName);
 		elementUtils.clickElementWithScroll(blacklistedSiteNamexpath, Constants.DEFAULT_WAIT);
 		elementUtils.pressEscapeKey();
+	}
+
+	public void fillBeatName(String beatName) throws InterruptedException {
+		WebElement branchesElement = elementUtils.waitForElementToBeClickable(dropdownBranches,
+				Constants.SHORT_TIME_OUT_WAIT);
+		elementUtils.doClickWithActions(branchesElement);
+		Thread.sleep(2000);
+		elementUtils.doActionsSendKeys(txtboxBeatSearch, beatName);
+		Thread.sleep(2000);
+		elementUtils.pressEnterKey();
+		// elementUtils.pressEscapeKey();
 	}
 
 	public void fillResidenceAddress(String streetName, String streetId, String streetNumber, String City, String state,
@@ -468,21 +500,21 @@ public class AddEmployeePage {
 		elementUtils.waitForElementVisible(txtboxStreetName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetName);
 		elementUtils.waitForElementVisible(txtboxStreetId, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetId);
 		elementUtils.waitForElementVisible(txtboxStreetNumber, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetNumber);
-		elementUtils.waitForElementVisible(txtboxCity, Constants.SHORT_TIME_OUT_WAIT).sendKeys(City);
-
-		WebElement stateElement = elementUtils.waitForElementToBeClickable(dropdownState,
-				Constants.SHORT_TIME_OUT_WAIT);
-		elementUtils.doClickWithActions(stateElement);
-		By statexpath = elementUtils.getOptionByText(state);
-		elementUtils.clickElementWithScroll(statexpath, Constants.DEFAULT_WAIT);
+//		elementUtils.waitForElementVisible(txtboxCity, Constants.SHORT_TIME_OUT_WAIT).sendKeys(City);
+//
+//		WebElement stateElement = elementUtils.waitForElementToBeClickable(dropdownState,
+//				Constants.SHORT_TIME_OUT_WAIT);
+//		elementUtils.doClickWithActions(stateElement);
+//		By statexpath = elementUtils.getOptionByText(state);
+//		elementUtils.clickElementWithScroll(statexpath, Constants.DEFAULT_WAIT);
 
 		elementUtils.waitForElementVisible(txtboxZipCode, Constants.SHORT_TIME_OUT_WAIT).sendKeys(zipcode);
 
-		WebElement genderElement = elementUtils.waitForElementToBeClickable(dropdownCountry,
-				Constants.SHORT_TIME_OUT_WAIT);
-		elementUtils.doClickWithActions(genderElement);
-		elementUtils.waitForElementVisible(countrySearch, Constants.SHORT_TIME_OUT_WAIT).sendKeys(country);
-		elementUtils.pressEnterKey();
+//		WebElement genderElement = elementUtils.waitForElementToBeClickable(dropdownCountry,
+//				Constants.SHORT_TIME_OUT_WAIT);
+//		elementUtils.doClickWithActions(genderElement);
+//		elementUtils.waitForElementVisible(countrySearch, Constants.SHORT_TIME_OUT_WAIT).sendKeys(country);
+//		elementUtils.pressEnterKey();
 //		elementUtils.waitForElementVisible(dropdownCountryValues, Constants.DEFAULT_WAIT);
 //		elementUtils.selectElementThroughLocatorWithRetry(dropdownCountryValues, country, Constants.SHORT_TIME_OUT_WAIT);
 	}

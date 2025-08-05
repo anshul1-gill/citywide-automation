@@ -8,15 +8,15 @@ import com.dits.citywide.constants.HRManagementConstants;
 import com.dits.citywide.utilities.NormalizePhoneNumber;
 import com.dits.citywide.utilities.RandomEmailGenerator;
 
-public class AddEmployeeTest extends BaseTest {
+public class AddPatrolEmployeeTest extends BaseTest {
 
-	@BeforeMethod(alwaysRun = true)
+	@BeforeMethod
 	public void performLogin() throws InterruptedException {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}
 
-	@Test(groups = "employee-add")
-	public void addNewEmployeeTest() throws InterruptedException {
+	@Test
+	public void addNewPatrolEmployeeTest() throws InterruptedException {
 
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);
@@ -38,15 +38,18 @@ public class AddEmployeeTest extends BaseTest {
 		driverFactory.updatePropertyValue("employeeSecondaryEmail", secondaryEmail);
 
 		// Personal Information
-		addEmployeePage.fillPersonalInformation(HRManagementConstants.FIRST_NAME, HRManagementConstants.MIDDLE_NAME,
-				HRManagementConstants.LAST_NAME, HRManagementConstants.GENDER, HRManagementConstants.BIRTH_MONTH,
-				HRManagementConstants.BIRTH_YEAR, HRManagementConstants.BIRTH_DATE,
-				HRManagementConstants.SOCIAL_SECURITY_NUMBER, HRManagementConstants.ROLE, HRManagementConstants.RANK,
-				HRManagementConstants.ETHNIC_CODE, primaryEmail, secondaryEmail, HRManagementConstants.COUNTRY_CODE,
-				HRManagementConstants.PRIMARY_PHONE_NUMBER, HRManagementConstants.ALTERNATE_PHONE_NUMBER,
-				HRManagementConstants.EMERGENCY_NAME, HRManagementConstants.EMERGENCY_PHONE_NUMBER,
-				HRManagementConstants.EMERGENCY_RELATIONSHIP, HRManagementConstants.PASSWORD,
-				HRManagementConstants.CONFIRM_PASSWORD, HRManagementConstants.BRANCHES, HRManagementConstants.SITE);
+		addEmployeePage.fillPersonalInformation(HRManagementConstants.FIRST_NAME_PATROL,
+				HRManagementConstants.MIDDLE_NAME_PATROL, HRManagementConstants.LAST_NAME_PATROL,
+				HRManagementConstants.GENDER_PATROL, HRManagementConstants.BIRTH_MONTH_PATROL,
+				HRManagementConstants.BIRTH_YEAR_PATROL, HRManagementConstants.BIRTH_DATE_PATROL,
+				HRManagementConstants.SOCIAL_SECURITY_NUMBER_PATROL, HRManagementConstants.ROLE_PATROL,
+				HRManagementConstants.RANK_PATROL, HRManagementConstants.ETHNIC_CODE, primaryEmail, secondaryEmail,
+				HRManagementConstants.COUNTRY_CODE, HRManagementConstants.PRIMARY_PHONE_NUMBER,
+				HRManagementConstants.ALTERNATE_PHONE_NUMBER, HRManagementConstants.EMERGENCY_NAME,
+				HRManagementConstants.EMERGENCY_PHONE_NUMBER, HRManagementConstants.EMERGENCY_RELATIONSHIP,
+				HRManagementConstants.PASSWORD, HRManagementConstants.CONFIRM_PASSWORD, HRManagementConstants.BRANCHES);
+
+		addEmployeePage.fillBeatName(HRManagementConstants.BEAT + " ");
 
 		addEmployeePage.fillResidenceAddress(HRManagementConstants.RESIDENCE_ADDRESS_STREET_NAME,
 				HRManagementConstants.RESIDENCE_ADDRESS_STREET, HRManagementConstants.RESIDENCE_ADDRESS_STE_NUMBER,
@@ -63,9 +66,9 @@ public class AddEmployeeTest extends BaseTest {
 		// Employment Information
 		addEmployeePage.doClickEmploymentInformationTab();
 
-		String employeeId = addEmployeePage.getEmployeeID();
-		System.out.println(employeeId); // Print ID
-		driverFactory.updatePropertyValue("employeeID", employeeId);
+		String patrolId = addEmployeePage.getEmployeeID();
+		System.out.println(patrolId); // Print ID
+		driverFactory.updatePropertyValue("patrolID", patrolId);
 
 		addEmployeePage.fillEmploymentInformation(HRManagementConstants.EMPLOYMENT_STATUS,
 				HRManagementConstants.EMPLOYMENT_HIRE_MONTH, HRManagementConstants.EMPLOYMENT_HIRE_YEAR,
@@ -161,7 +164,6 @@ public class AddEmployeeTest extends BaseTest {
 		softAssert.assertEquals(addEmployeePage.getOCSprayDateOfExpirationData(),
 				HRManagementConstants.OC_SPRAY_EXPIRATION_DATE);
 
-		
 		addEmployeePage.doClickAddOtherPermit();
 		softAssert.assertTrue(addEmployeePage.isOtherPermitTextDisplayed());
 		addEmployeePage.fillOtherPermitForm(HRManagementConstants.OTHER_PERMIT_NUMBER,

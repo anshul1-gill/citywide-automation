@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
+import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
 import com.dits.citywide.utilities.ElementUtils;
 
 public class LoginPage {
@@ -135,5 +136,13 @@ public class LoginPage {
 		elementUtils.waitForElementToBeClickable(btnSignIn, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentStartShiftPage(driver);
 	}
+	
+	public PatrolStartShiftPage doLoginPatrol(String email, String password) {
+		elementUtils.waitForElementVisible(txtboxEmail, Constants.DEFAULT_WAIT).sendKeys(email);
+		elementUtils.waitForElementVisible(txtboxPassword, Constants.DEFAULT_WAIT).sendKeys(password);
+		elementUtils.waitForElementToBeClickable(btnSignIn, Constants.DEFAULT_WAIT).click();
+		return new PatrolStartShiftPage(driver);
+	}
+
 
 }

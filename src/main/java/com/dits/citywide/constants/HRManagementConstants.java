@@ -2,7 +2,8 @@ package com.dits.citywide.constants;
 
 public class HRManagementConstants {
 
-// Personal Information
+// Field Agent
+	// Personal Information
 	public static final String FIRST_NAME = "Amit";
 	public static final String MIDDLE_NAME = "Kumar";
 	public static final String LAST_NAME = "Singh";
@@ -12,7 +13,7 @@ public class HRManagementConstants {
 	public static final String BIRTH_DATE = "10";
 	public static final String SOCIAL_SECURITY_NUMBER = "234343243";
 
-	public static final String ROLE = "Field Agent";
+	public static final String ROLE_FIELD = "Field Agent";
 	// Use the top 9 values because only 9 are shown in the listbox.
 	public static final String RANK = "Captain";
 	// While adding ethnicity codes, do not include "or". For example, from "Two or
@@ -35,7 +36,7 @@ public class HRManagementConstants {
 
 	public static final String SITE = "Richmond";
 
-// Residence Address
+	// Residence Address
 	public static final String RESIDENCE_ADDRESS_STREET_NAME = "13th Street";
 	public static final String RESIDENCE_ADDRESS_STREET = "47 W";
 	public static final String RESIDENCE_ADDRESS_STE_NUMBER = "45";
@@ -49,6 +50,22 @@ public class HRManagementConstants {
 			+ "Ensure all information is current and correct.";
 
 	public static final String PERSONAL_INFO_ADDED_SUCCESS_MESSAGE = "Personal Information added successfully!";
+	
+	//Patrol Officer Data
+	public static final String FIRST_NAME_PATROL = "Suraj";
+	public static final String MIDDLE_NAME_PATROL = "Kumar";
+	public static final String LAST_NAME_PATROL = "Singh";
+	public static final String GENDER_PATROL = "Male";
+	public static final String BIRTH_MONTH_PATROL = "Feb";
+	public static final String BIRTH_YEAR_PATROL = "2002";
+	public static final String BIRTH_DATE_PATROL = "15";
+	public static final String SOCIAL_SECURITY_NUMBER_PATROL = "234002043";
+
+	public static final String ROLE_PATROL = "Patrol";
+	// Use the top 9 values because only 9 are shown in the listbox.
+	public static final String RANK_PATROL = "Commander";
+	
+	public static final String BEAT = "DITS Beat";
 
 // Employment Information
 	public static final String EMPLOYMENT_STATUS = "Active";
