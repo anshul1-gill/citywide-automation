@@ -17,6 +17,7 @@ public class FieldAgentApplyLeaveTest extends BaseTest {
 	@Test
 	public void applyLeaveTest() throws InterruptedException {
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
+		Thread.sleep(2000);
 		fieldAgentStartShiftPage.clickOnHRManagementMenu();
 		fieldAgentLeaveRequestsPage = fieldAgentStartShiftPage.clickOnLeaveRequestsTab();
 		fieldAgentLeaveRequestsPage.clickAddLeaveRequest();

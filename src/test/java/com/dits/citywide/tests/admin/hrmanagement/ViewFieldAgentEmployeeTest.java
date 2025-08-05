@@ -8,15 +8,15 @@ import com.dits.citywide.constants.HRManagementConstants;
 import com.dits.citywide.utilities.DateFormatterUtils;
 import com.dits.citywide.utilities.NormalizePhoneNumber;
 
-public class ViewEmployeeTest extends BaseTest {
+public class ViewFieldAgentEmployeeTest extends BaseTest {
 
-	@BeforeMethod(alwaysRun = true)
+	@BeforeMethod
 	public void performLogin() throws InterruptedException {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}
 
 	@Test
-	public void viewEmployeeTest() throws InterruptedException {
+	public void viewEmployeeFieldAgentTest() throws InterruptedException {
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);
 		employeesPage = dashboardPage.doClickEmployees();
@@ -32,7 +32,7 @@ public class ViewEmployeeTest extends BaseTest {
 		softAssert.assertEquals(NormalizePhoneNumber.normalizePhoneNumber(employeesPage.getPrimaryPhoneNumberData()),
 				HRManagementConstants.COUNTRY_CODE + HRManagementConstants.PRIMARY_PHONE_NUMBER);
 
-		softAssert.assertEquals(employeesPage.getRolesData().trim(), HRManagementConstants.ROLE);
+		softAssert.assertEquals(employeesPage.getRolesData().trim(), HRManagementConstants.ROLE_FIELD);
 
 		viewEmployeePage = employeesPage.doClickViewEmployee();
 
@@ -41,7 +41,7 @@ public class ViewEmployeeTest extends BaseTest {
 		softAssert.assertEquals(viewEmployeePage.getProfileName(), HRManagementConstants.FIRST_NAME + " "
 				+ HRManagementConstants.MIDDLE_NAME + " " + HRManagementConstants.LAST_NAME);
 		softAssert.assertEquals(viewEmployeePage.getProfileStatus(), HRManagementConstants.EMPLOYMENT_STATUS);
-		softAssert.assertEquals(viewEmployeePage.getProfileRole().trim(), (HRManagementConstants.ROLE).toUpperCase());
+		softAssert.assertEquals(viewEmployeePage.getProfileRole().trim(), (HRManagementConstants.ROLE_FIELD).toUpperCase());
 		softAssert.assertEquals(viewEmployeePage.getProfileRank().trim(), HRManagementConstants.RANK);
 
 //		softAssert.assertEquals(viewEmployeePage.getProfileLocation().trim(),

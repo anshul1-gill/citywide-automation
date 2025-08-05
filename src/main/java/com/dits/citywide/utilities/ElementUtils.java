@@ -271,7 +271,7 @@ public class ElementUtils {
 				List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 				for (WebElement e : elements) {
 					String eleText = e.getText();
-					System.out.println("Dropdown option: " + eleText);
+					// System.out.println("Dropdown option: " + eleText);
 					if (eleText.contains(fieldName)) {
 						e.click();
 						elementClicked = true;
@@ -339,7 +339,7 @@ public class ElementUtils {
 
 				for (WebElement e : elements) {
 					String eleText = e.getText().trim();
-
+					System.out.println("Dropdown option: " + eleText);
 					if (eleText.equalsIgnoreCase(fieldName.trim())) {
 						try {
 							e.click(); // Try normal click first

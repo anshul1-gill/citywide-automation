@@ -3,6 +3,8 @@ package com.dits.citywide.pages.admin;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -49,17 +51,45 @@ public class SchedulingPage {
 	private By btnCancel = By.xpath("//button[contains(text(),'Cancel')]");
 	private By successMsgPublish = By.xpath("//div[contains(text(),'Shifts published successfully!')]");
 
+	// Beat Selection for petrol
+	private By dropdownSiteOrBeatSelection = By.xpath("(//span[@class='ant-select-selection-item'])[1]");
+	private By dropdownSelectBeatValue = By.xpath("//div[@class='rc-virtual-list-holder-inner']/div/div");
+	private By dropdownSelectBeat = By.cssSelector("#rc_select_5");
+	private By scheduledStartShiftTime = By.xpath("(//input[@placeholder='HH:MM'])[1]");
+	private By scheduledEndShiftTime = By.xpath("(//input[@placeholder='HH:MM'])[2]");
+	private By dropdownSelectAssignShiftValue = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[3]/div/div");
+	private By dropdownScheduledBreakValuesPatrol = By
+			.xpath("(//div[@class='rc-virtual-list-holder-inner'])[5]/div/div");
+
 	public SchedulingPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
 	}
 
+	// Site Selection for Field Staff
 	public void selectSiteAndApply(String siteName) throws InterruptedException {
 
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(dropdownSelectSite, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForInvisibilityOfElementLocated(txtNoData, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsSendKeys(dropdownSelectSite, siteName);
+		Thread.sleep(3000);
+		elementUtils.pressEnterKey();
+		elementUtils.waitForElementToBeClickable(btnApply, Constants.DEFAULT_WAIT).click();
+	}
+
+	// Beat Selection for petrol
+	public void selectBeatAndApply(String beatName) throws InterruptedException {
+
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(dropdownSiteOrBeatSelection, Constants.DEFAULT_WAIT).click();
+		elementUtils.selectElementThroughLocator(dropdownSelectBeatValue, "Beat", Constants.DEFAULT_WAIT);
+
+		elementUtils.waitForElementVisible(dropdownSelectBeat, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(dropdownSelectBeat, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForInvisibilityOfElementLocated(txtNoData, Constants.DEFAULT_WAIT);
+		Thread.sleep(2000);
+		elementUtils.doActionsSendKeys(dropdownSelectBeat, beatName);
 		Thread.sleep(3000);
 		elementUtils.pressEnterKey();
 		elementUtils.waitForElementToBeClickable(btnApply, Constants.DEFAULT_WAIT).click();
@@ -77,11 +107,23 @@ public class SchedulingPage {
 		elementUtils.waitForElementToBeClickable(By.xpath(datexpath), Constants.DEFAULT_WAIT).click();
 	}
 
+	// Shift Selection for petrol
+	public void selectAssignShiftForPetrol(String shift) throws InterruptedException {
+		elementUtils.waitForElementToBeClickable(dropdownShift, Constants.DEFAULT_WAIT).click();
+		elementUtils.selectElementThroughLocator(dropdownSelectAssignShiftValue, shift, Constants.DEFAULT_WAIT);
+	}
+
+	// Shift Selection for Field Staff
+	public void selectAssignShift(String shift) throws InterruptedException {
+		elementUtils.waitForElementToBeClickable(dropdownShift, Constants.DEFAULT_WAIT).click();
+		elementUtils.selectElementThroughLocator(dropdownShiftValue, shift, Constants.DEFAULT_WAIT);
+	}
+
 	public void fillShiftForm(String shift, String employeeID, String scheduledBreak, String notes)
 			throws InterruptedException {
 
-		elementUtils.waitForElementToBeClickable(dropdownShift, Constants.DEFAULT_WAIT).click();
-		elementUtils.selectElementThroughLocator(dropdownShiftValue, shift, Constants.DEFAULT_WAIT);
+//		elementUtils.waitForElementToBeClickable(dropdownShift, Constants.DEFAULT_WAIT).click();
+//		elementUtils.selectElementThroughLocator(dropdownShiftValue, shift, Constants.DEFAULT_WAIT);
 
 		elementUtils.waitForElementVisible(txtEmployee, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsClick(searchEmployee);
@@ -92,6 +134,36 @@ public class SchedulingPage {
 
 		elementUtils.waitForElementToBeClickable(dropdownScheduledBreak, Constants.DEFAULT_WAIT).click();
 		elementUtils.selectElementThroughLocator(dropdownScheduledBreakValues, scheduledBreak, Constants.DEFAULT_WAIT);
+		String xpathScheduledBreak = "//div[contains(text(),'" + scheduledBreak + "')]";
+		elementUtils.waitForElementVisible(By.xpath(xpathScheduledBreak), Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementVisible(txtboxAddNotes, Constants.SHORT_TIME_OUT_WAIT).sendKeys(notes);
+		elementUtils.waitForElementToBeClickable(btnCreateShift, Constants.DEFAULT_WAIT).click();
+	}
+
+	// Shift Selection for Patrol
+	public void fillShiftFormPatrol(String employeeID, String startTime, String endTime, String scheduledBreak,
+			String notes) throws InterruptedException {
+//		elementUtils.waitForElementToBeClickable(dropdownShift, Constants.DEFAULT_WAIT).click();
+//		elementUtils.selectElementThroughLocator(dropdownSelectAssignShiftValue, shift, Constants.DEFAULT_WAIT);
+
+		elementUtils.waitForElementVisible(txtEmployee, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsClick(searchEmployee);
+		elementUtils.doActionsSendKeys(searchEmployee, employeeID);
+		String empidxpath = "//div[contains(text(),'" + employeeID + "')]";
+		elementUtils.waitForElementVisible(By.xpath(empidxpath), Constants.DEFAULT_WAIT);
+		Thread.sleep(4000);
+		elementUtils.pressEnterKey();
+
+		// elementUtils.doActionsSendKeys(scheduledStartShiftTime, startTime);
+
+		elementUtils.waitForElementVisible(scheduledStartShiftTime, Constants.DEFAULT_WAIT).sendKeys(startTime);
+		// elementUtils.doActionsSendKeys(scheduledEndShiftTime, endTime);
+
+		elementUtils.waitForElementVisible(scheduledEndShiftTime, Constants.DEFAULT_WAIT).sendKeys(endTime);
+
+		elementUtils.waitForElementToBeClickable(dropdownScheduledBreak, Constants.DEFAULT_WAIT).click();
+		elementUtils.selectElementThroughLocator(dropdownScheduledBreakValuesPatrol, scheduledBreak,
+				Constants.DEFAULT_WAIT);
 		String xpathScheduledBreak = "//div[contains(text(),'" + scheduledBreak + "')]";
 		elementUtils.waitForElementVisible(By.xpath(xpathScheduledBreak), Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(txtboxAddNotes, Constants.SHORT_TIME_OUT_WAIT).sendKeys(notes);

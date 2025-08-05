@@ -39,6 +39,8 @@ import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
 import com.dits.citywide.pages.fieldagent.PassdownLogsPage;
+import com.dits.citywide.pages.patrol.PatrolBeatsPage;
+import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
 
 public class BaseTest {
 
@@ -77,6 +79,8 @@ public class BaseTest {
 	protected AttendancePage attendancePage;
 	protected FieldAgentMyAttendancePage fieldAgentMyAttendancePage;
 	protected PassdownLogsPage passdownLogsPage;
+	protected PatrolStartShiftPage patrolStartShiftPage;
+	protected PatrolBeatsPage patrolBeatsPage;
 
 	// @BeforeTest
 	@BeforeClass

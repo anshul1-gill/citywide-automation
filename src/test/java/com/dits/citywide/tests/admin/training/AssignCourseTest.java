@@ -23,7 +23,7 @@ public class AssignCourseTest extends BaseTest {
 		totalCoursesPage.doClickAssignCourses(TrainingConstants.COURSE_NAME);
 		softAssert.assertEquals(totalCoursesPage.getHeadingAssignCourses(), "Course Assign",
 				"Heading Assign Course is not visible");
-		totalCoursesPage.fillCouseAssignForm(HRManagementConstants.ROLE, prop.getProperty("employeeID")+" ",
+		totalCoursesPage.fillCouseAssignForm(HRManagementConstants.ROLE_FIELD, prop.getProperty("employeeID")+" ",
 				TrainingConstants.SELECTED_COURSE_PURPOSE);
 		totalCoursesPage.doClickSaveAssignCourse();
 		softAssert.assertEquals(totalCoursesPage.getSuccessMessage(), TrainingConstants.ASSIGN_COURSE_SUCCESS_MESSAGE,

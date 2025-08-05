@@ -18,7 +18,8 @@ public class PassdownLogsPage {
 	private By btnAddPassdownLog = By.xpath("//span[normalize-space()='Add New Passdown']");
 
 	// Add New Passdown Log
-	private By siteNameDropdownValue = By.xpath("//span[@class='ant-select-selection-item']");
+	private By siteNameDropdownValue = By.xpath("//span[@class='ant-select-selection-search']");
+	private By searchSiteName = By.xpath("//input[@id='patrol_site_id']");
 	private By txtboxMessage = By.xpath("//textarea[@id='passdown_message']");
 	private By uploadImage = By.xpath("//input[@type='file']");
 	private By txtHeadingEditImage = By.xpath("//span[@class='baseTitle']");
@@ -38,6 +39,7 @@ public class PassdownLogsPage {
 				+ "']/../following-sibling::td//a[@class='cursor-pointer']";
 		return By.xpath(xpath);
 	}
+
 	private By txtHeadingViewPassdownDetails = By.xpath("//h1[normalize-space()='Passdown Details']");
 	private By dataReferenceNumber = By.xpath("//th[normalize-space()='Refrence Number']/following-sibling::td");
 	private By dataSiteType = By.xpath("//th[normalize-space()='Site Type:']/following-sibling::td");
@@ -93,6 +95,13 @@ public class PassdownLogsPage {
 
 	public String getSiteNameDropdownValue() {
 		return elementUtils.getText(siteNameDropdownValue, Constants.DEFAULT_WAIT);
+	}
+
+	public void searchSiteName(String siteName) throws InterruptedException {
+		elementUtils.waitForElementToBeClickable(siteNameDropdownValue, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementVisible(searchSiteName, Constants.DEFAULT_WAIT).sendKeys(siteName);
+		Thread.sleep(2000);
+		elementUtils.pressEnterKey();
 	}
 
 	public void enterMessage(String message) {

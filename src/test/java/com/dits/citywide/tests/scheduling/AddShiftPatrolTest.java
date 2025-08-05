@@ -7,7 +7,7 @@ import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.HRManagementConstants;
 import com.dits.citywide.constants.SchedulingConstant;
 
-public class AddShiftTest extends BaseTest {
+public class AddShiftPatrolTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -16,15 +16,16 @@ public class AddShiftTest extends BaseTest {
 
 	@Test
 	public void addShiftTest() throws InterruptedException {
-		Thread.sleep(4000);
+		Thread.sleep(10000);
 		schedulingPage = dashboardPage.doClickScheduling();
 		Thread.sleep(2000);
 
-		schedulingPage.selectSiteAndApply(HRManagementConstants.SITE);
+		schedulingPage.selectBeatAndApply(HRManagementConstants.BEAT);
 		schedulingPage.addShift(SchedulingConstant.ADD_SHIFT_DATE);
-		schedulingPage.selectAssignShift(SchedulingConstant.ASSIGN_SHIFT);
-		schedulingPage.fillShiftForm(SchedulingConstant.ASSIGN_SHIFT, prop.getProperty("employeeID"),
-				SchedulingConstant.SCHEDULED_BREAK, SchedulingConstant.ADD_NOTES);
+		schedulingPage.selectAssignShiftForPetrol(SchedulingConstant.ASSIGN_SHIFT);
+		schedulingPage.fillShiftFormPatrol(prop.getProperty("patrolID"), SchedulingConstant.START_TIME_PATROL,
+				SchedulingConstant.END_TIME_PATROL, SchedulingConstant.SCHEDULED_BREAK,
+				SchedulingConstant.ADD_NOTES_PATROL);
 
 		softAssert.assertEquals(schedulingPage.getSuccessMessageShiftAdded(),
 				SchedulingConstant.SUCCESS_MESSAGE_ADD_SHIFT);

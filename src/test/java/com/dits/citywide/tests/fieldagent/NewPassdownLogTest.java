@@ -22,6 +22,7 @@ public class NewPassdownLogTest extends BaseTest {
 		passdownLogsPage.clickAddPassdownLog();
 		softAssert.assertTrue(passdownLogsPage.getSiteNameDropdownValue().contains(HRManagementConstants.SITE),
 				"Site name dropdown value is not as expected");
+		//passdownLogsPage.searchSiteName(HRManagementConstants.SITE);
 		passdownLogsPage.enterMessage(FieldAgentConstants.PASSDOWN_MESSAGE);
 		passdownLogsPage.uploadImage(FieldAgentConstants.PASSDOWN_IMAGE_PATH);
 		softAssert.assertEquals(passdownLogsPage.getHeadingEditImage(), "Edit Image",
