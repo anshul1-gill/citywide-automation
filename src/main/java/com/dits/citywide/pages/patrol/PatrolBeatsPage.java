@@ -27,10 +27,37 @@ public class PatrolBeatsPage {
 	private By totalCountOfSites = By.xpath("//div[@class='sites-value agent-name c-flex c-gap-3']");
 
 	// View Beat
+	private By btnViewBeat = By.cssSelector("#rc-tabs-0-tab-1");
+	private By btnTableView = By.xpath("#rc-tabs-0-tab-2");
+	private By btnSplitView = By.xpath("#rc-tabs-0-tab-3");
+
+	public By getNumberOfHitsLinkBySiteId(String siteId) {
+		String xpath = String
+				.format("//a[normalize-space()='%s']/../following-sibling::td[@data-label='Number of Hits']/a", siteId);
+		return By.xpath(xpath);
+	}
+
+	public By getSiteNameLinkBySiteId(String siteId) {
+		String xpath = String
+				.format("//a[normalize-space()='%s']/../following-sibling::td[@data-label='Number of Hits']/a", siteId);
+		return By.xpath(xpath);
+	}
 
 	public PatrolBeatsPage(WebDriver driver) {
 		this.driver = driver;
 		this.elementUtils = new ElementUtils(driver);
+	}
+
+	public boolean isViewSitesButtonDisplayed() {
+		return elementUtils.waitForElementVisible(btnViewSites, Constants.DEFAULT_WAIT).isDisplayed();
+	}
+
+	public boolean isViewButtonDisplayed() {
+		return elementUtils.waitForElementVisible(btnView, Constants.DEFAULT_WAIT).isDisplayed();
+	}
+
+	public boolean isCheckOutButtonDisplayed() {
+		return elementUtils.waitForElementVisible(btnCheckOut, Constants.DEFAULT_WAIT).isDisplayed();
 	}
 
 	public void clickOnViewSites() {
