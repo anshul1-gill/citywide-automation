@@ -20,6 +20,10 @@ public class PatrolBeatsTest extends BaseTest {
 		patrolStartShiftPage.handleMessageOfTheWeek();
 		patrolBeatsPage = patrolStartShiftPage.clickOnPatrolBeatsTab();
 
+		softAssert.assertTrue(patrolBeatsPage.isViewSitesButtonDisplayed(), "View Sites button should be displayed");
+		softAssert.assertTrue(patrolBeatsPage.isViewButtonDisplayed(), "View button should be displayed");
+		softAssert.assertTrue(patrolBeatsPage.isCheckOutButtonDisplayed(), "Check Out button should be displayed");
+
 		softAssert.assertTrue(patrolBeatsPage.getBeatName().contains(HRManagementConstants.BEAT),
 				"Beat name should contain " + HRManagementConstants.BEAT);
 		softAssert.assertEquals(patrolBeatsPage.getNumberOfSites(), "9");
