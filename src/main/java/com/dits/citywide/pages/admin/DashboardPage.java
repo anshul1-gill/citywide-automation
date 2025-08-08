@@ -20,6 +20,7 @@ public class DashboardPage {
 	private By lnkCompanySettings = By.xpath("//span[normalize-space()='Company Settings']");
 	private By lnkTraining = By.xpath("//span[contains(text(),'Training')]");
 	private By lnkAttendance = By.xpath("//span[normalize-space()='Attendance']");
+	private By lnkERM = By.xpath("//span[contains(text(),'ERM')]");
 
 	// Logout
 	private By btnLogout = By.id("user-menu-item-2");
@@ -137,6 +138,11 @@ public class DashboardPage {
 	public AttendancePage doClickAttendance() {
 		elementUtils.waitForElementToBeClickable(lnkAttendance, Constants.DEFAULT_WAIT).click();
 		return new AttendancePage(driver);
+	}
+
+	public ERMPage doClickERM() {
+		elementUtils.waitForElementToBeClickable(lnkERM, Constants.DEFAULT_WAIT).click();
+		return new ERMPage(driver);
 	}
 
 }

@@ -80,9 +80,11 @@ public class PatrolStartShiftPage {
 	}
 
 	private By tabPassdownLogs = By.xpath("//span[normalize-space()='Passdown Logs']");
-	
+
 	// Petrol Beats
 	private By tabPatrolBeats = By.xpath("//span[normalize-space()='Patrol Beats']");
+
+	private By tabVehicleInspection = By.xpath("//span[normalize-space()='Vehicle Inspection']");
 
 // Common
 	private By sucessMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
@@ -286,11 +288,17 @@ public class PatrolStartShiftPage {
 		elementUtils.waitForElementToBeClickable(tabPassdownLogs, Constants.DEFAULT_WAIT).click();
 		return new PassdownLogsPage(driver);
 	}
-	
+
 	// Patrol Beats
 	public PatrolBeatsPage clickOnPatrolBeatsTab() {
 		elementUtils.waitForElementToBeClickable(tabPatrolBeats, Constants.DEFAULT_WAIT).click();
 		return new PatrolBeatsPage(driver);
+	}
+
+	// Vehicle Inspection
+	public PatrolVehicleInspectionPage clickOnVehicleInspectionTab() {
+		elementUtils.waitForElementToBeClickable(tabVehicleInspection, Constants.DEFAULT_WAIT).click();
+		return new PatrolVehicleInspectionPage(driver);
 	}
 
 	// Previous Shift Logout
