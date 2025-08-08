@@ -20,6 +20,9 @@ import com.dits.citywide.pages.admin.CertificatesPage;
 import com.dits.citywide.pages.admin.CompanySettingsPage;
 import com.dits.citywide.pages.admin.CourseCategoriesPage;
 import com.dits.citywide.pages.admin.DashboardPage;
+import com.dits.citywide.pages.admin.ERMPage;
+import com.dits.citywide.pages.admin.ERMSettingsPage;
+import com.dits.citywide.pages.admin.UpdateEmployeePage;
 import com.dits.citywide.pages.admin.EmployeesPage;
 import com.dits.citywide.pages.admin.HRConfigurationsPage;
 import com.dits.citywide.pages.admin.HolidaysPage;
@@ -41,6 +44,7 @@ import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
 import com.dits.citywide.pages.fieldagent.PassdownLogsPage;
 import com.dits.citywide.pages.patrol.PatrolBeatsPage;
 import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
+import com.dits.citywide.pages.patrol.PatrolVehicleInspectionPage;
 
 public class BaseTest {
 
@@ -81,6 +85,10 @@ public class BaseTest {
 	protected PassdownLogsPage passdownLogsPage;
 	protected PatrolStartShiftPage patrolStartShiftPage;
 	protected PatrolBeatsPage patrolBeatsPage;
+	protected PatrolVehicleInspectionPage patrolVehicleInspectionPage;
+	protected UpdateEmployeePage updateEmployeePage;
+	protected ERMPage ermPage;
+	protected ERMSettingsPage ermSettingsPage;
 
 	// @BeforeTest
 	@BeforeClass

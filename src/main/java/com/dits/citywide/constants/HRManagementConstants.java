@@ -50,8 +50,8 @@ public class HRManagementConstants {
 			+ "Ensure all information is current and correct.";
 
 	public static final String PERSONAL_INFO_ADDED_SUCCESS_MESSAGE = "Personal Information added successfully!";
-	
-	//Patrol Officer Data
+
+	// Patrol Officer Data
 	public static final String FIRST_NAME_PATROL = "Suraj";
 	public static final String MIDDLE_NAME_PATROL = "Kumar";
 	public static final String LAST_NAME_PATROL = "Singh";
@@ -64,7 +64,7 @@ public class HRManagementConstants {
 	public static final String ROLE_PATROL = "Patrol";
 	// Use the top 9 values because only 9 are shown in the listbox.
 	public static final String RANK_PATROL = "Commander";
-	
+
 	public static final String BEAT = "DITS Beat";
 
 // Employment Information
@@ -160,6 +160,40 @@ public class HRManagementConstants {
 	public static final String USER_REFERENCES_PHONE = "9876543210";
 	public static final String USER_REFERENCES_EMAIL = "david@yopmail.com";
 
+	// Updated Personal Information
+	public static final String UPDATED_FIRST_NAME = "Priyanka";
+	public static final String UPDATED_MIDDLE_NAME = "Singh";
+	public static final String UPDATED_LAST_NAME = "Chopra";
+	public static final String UPDATED_GENDER = "Female";
+
+	public static final String UPDATED_BIRTH_MONTH = "Mar";
+	public static final String UPDATED_BIRTH_YEAR = "2010";
+	public static final String UPDATED_BIRTH_DATE = "20";
+	public static final String UPDATED_SOCIAL_SECURITY_NUMBER = "123456789";
+	public static final String UPDATED_ROLE = "Field Agent";
+	public static final String UPDATED_RANK = "Sergeant";
+	public static final String UPDATED_ETHNIC_CODE = "Asian";
+	public static final String UPDATED_COUNTRY_CODE = "+1";
+	public static final String UPDATED_PRIMARY_PHONE_NUMBER = "1234567890";
+	public static final String UPDATED_ALTERNATE_PHONE_NUMBER = "0987654321";
+	public static final String UPDATED_EMERGENCY_NAME = "Alice";
+	public static final String UPDATED_EMERGENCY_PHONE_NUMBER = "1122334455";
+	public static final String UPDATED_EMERGENCY_RELATIONSHIP = "Sister";
+	public static final String UPDATED_PASSWORD = "Amit@123";
+	public static final String UPDATED_CONFIRM_PASSWORD = "Amit@123";
+	public static final String UPDATED_BRANCHES = "Riverside";
+	public static final String UPDATED_SITE = "Central";
+	public static final String UPDATED_RESIDENCE_ADDRESS_STREET_NAME = "Main Street";
+	public static final String UPDATED_RESIDENCE_ADDRESS_STREET = "123";
+	public static final String UPDATED_RESIDENCE_ADDRESS_STE_NUMBER = "456";
+	public static final String UPDATED_RESIDENCE_ADDRESS_ZIPCODE = "12345";
+	public static final String UPDATED_RESIDENCE_ADDRESS_CITY = "Los Angeles";
+	public static final String UPDATED_RESIDENCE_ADDRESS_STATE = "CA";
+	public static final String UPDATED_RESIDENCE_ADDRESS_COUNTRY = "United States";
+	public static final String UPDATED_PERSONAL_INFO_NOTES = "Updated personal details including full name, DOB, contact, email, and address. "
+			+ "Ensure all information is current and correct.";
+	public static final String UPDATED_PERSONAL_INFO_ADDED_SUCCESS_MESSAGE = "Personal Information updated successfully!";
+
 // Leave Requests
 	public static final String LEAVE_TYPE = "Study";
 
@@ -203,5 +237,29 @@ public class HRManagementConstants {
 	public static final String STATUS = "Completed";
 
 	public static final String CHECK_IN_OUT_SUCCESS_MESSAGE = "Check In/out time updated successfully";
+
+// ERM
+	
+	// Remarks
+	public static final String REMARKS_CATEGORY = "Performance";
+	public static final String REMARKS_TYPE = "Positive";
+	public static final String REMARKS_ADDED_SUCCESS_MESSAGE = "Remark added successfully";
+	
+	public static final String UPDATED_REMARKS_CATEGORY = "Updated Performance";
+	public static final String UPDATED_REMARKS_TYPE = "Negative";
+	public static final String REMARKS_UPDATED_SUCCESS_MESSAGE = "Remark updated successfully";
+
+	public static final String REMARKS_DELETE_CONFIRMATION_MESSAGE = "Remark deleted successfully";
+	
+	// Reasons
+	public static final String REASON_CATEGORY = "Attendance";
+	public static final String REASON_TYPE = "Promotion";
+	public static final String REASON_ADDED_SUCCESS_MESSAGE = "Reason added successfully";
+	
+	public static final String UPDATED_REASON_CATEGORY = "Updated Attendance";
+	public static final String UPDATED_REASON_TYPE = "Pay Raise";
+	public static final String REASON_UPDATED_SUCCESS_MESSAGE = "Reason updated successfully";
+	
+	public static final String REASON_DELETE_CONFIRMATION_MESSAGE = "Reason deleted successfully";
 
 }

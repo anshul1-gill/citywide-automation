@@ -28,7 +28,7 @@ public class EmployeesPage {
 	private By dataRoles = By.xpath("//tbody[@class='ant-table-tbody']//td[@data-label='Role(s)']");
 
 	private By btnViewEmployee = By.cssSelector(".actionicons.viewIcon");
-	private By btnEditEmployee = By.cssSelector("div[aria-describedby=':r30:']");
+	private By btnEditEmployee = By.xpath("//a[@class='cursor-pointer']/div[@class='actionicons editPencil']");
 
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
@@ -102,10 +102,10 @@ public class EmployeesPage {
 		return new ViewEmployeePage(driver);
 	}
 
-	public EditEmployeePage doClickEditEmployee() {
+	public UpdateEmployeePage doClickEditEmployee() {
 		elementUtils.waitForElementVisible(btnEditEmployee, Constants.DEFAULT_WAIT);
 		elementUtils.clickElementWithScroll(btnEditEmployee, Constants.SHORT_TIME_OUT_WAIT);
-		return new EditEmployeePage(driver);
+		return new UpdateEmployeePage(driver);
 	}
 
 }
