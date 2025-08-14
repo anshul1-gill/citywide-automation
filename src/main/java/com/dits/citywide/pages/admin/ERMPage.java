@@ -25,4 +25,9 @@ public class ERMPage {
 		return new ERMSettingsPage(driver);
 	}
 
+	public ERMRemarksHistoryPage clickRemarksHistory() {
+		elementUtils.waitForElementToBeClickable(btnRemarksHistory, Constants.DEFAULT_WAIT).click();
+		return new ERMRemarksHistoryPage(driver);
+	}
+
 }

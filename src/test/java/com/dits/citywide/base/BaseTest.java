@@ -21,6 +21,7 @@ import com.dits.citywide.pages.admin.CompanySettingsPage;
 import com.dits.citywide.pages.admin.CourseCategoriesPage;
 import com.dits.citywide.pages.admin.DashboardPage;
 import com.dits.citywide.pages.admin.ERMPage;
+import com.dits.citywide.pages.admin.ERMRemarksHistoryPage;
 import com.dits.citywide.pages.admin.ERMSettingsPage;
 import com.dits.citywide.pages.admin.UpdateEmployeePage;
 import com.dits.citywide.pages.admin.EmployeesPage;
@@ -39,6 +40,7 @@ import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentLeaveRequestsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyAttendancePage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
 import com.dits.citywide.pages.fieldagent.PassdownLogsPage;
@@ -89,6 +91,8 @@ public class BaseTest {
 	protected UpdateEmployeePage updateEmployeePage;
 	protected ERMPage ermPage;
 	protected ERMSettingsPage ermSettingsPage;
+	protected ERMRemarksHistoryPage ermRemarksHistoryPage;
+	protected FieldAgentProfileDetailsPage fieldAgentProfileDetailsPage;
 
 	// @BeforeTest
 	@BeforeClass

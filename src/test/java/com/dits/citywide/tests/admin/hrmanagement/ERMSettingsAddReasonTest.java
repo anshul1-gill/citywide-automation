@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.HRManagementConstants;
 
-public class AddReasonERMTest extends BaseTest {
+public class ERMSettingsAddReasonTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -14,7 +14,7 @@ public class AddReasonERMTest extends BaseTest {
 	}
 
 	@Test
-	public void addReasonERMTest() throws InterruptedException {
+	public void addReasonSettingsERMTest() throws InterruptedException {
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);
 		ermPage = dashboardPage.doClickERM();
@@ -24,12 +24,12 @@ public class AddReasonERMTest extends BaseTest {
 		ermSettingsPage.clickAddReason();
 		softAssert.assertEquals(ermSettingsPage.getHeadingTextAddReason(), "Add Reason",
 				"Add Reason heading text mismatch");
-		ermSettingsPage.fillAddReasonForm(HRManagementConstants.REASON_CATEGORY, HRManagementConstants.REASON_TYPE);
+		ermSettingsPage.fillAddReasonForm(HRManagementConstants.REASON_CATEGORY, HRManagementConstants.REMARKS_TYPE);
 		ermSettingsPage.clickSaveButton();
 		softAssert.assertEquals(ermSettingsPage.getSuccessMessage(), HRManagementConstants.REASON_ADDED_SUCCESS_MESSAGE,
 				"Success message mismatch");
 		ermSettingsPage.searchReasonCategory(HRManagementConstants.REASON_CATEGORY);
-		softAssert.assertEquals(ermSettingsPage.getReasonType(), HRManagementConstants.REASON_TYPE,
+		softAssert.assertEquals(ermSettingsPage.getReasonType(), HRManagementConstants.REMARKS_TYPE,
 				"Reason type mismatch");
 		softAssert.assertEquals(ermSettingsPage.getReasonCategory(), HRManagementConstants.REASON_CATEGORY,
 				"Reason category mismatch");

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.HRManagementConstants;
 
-public class DeleteReasonERMTest extends BaseTest {
+public class ERMSettingsDeleteRemarkTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -14,18 +14,17 @@ public class DeleteReasonERMTest extends BaseTest {
 	}
 
 	@Test
-	public void deleteReasonERMTest() throws InterruptedException {
+	public void deleteRemarkSettingsERMTest() throws InterruptedException {
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);
 		ermPage = dashboardPage.doClickERM();
 		ermSettingsPage = ermPage.clickSettings();
 		softAssert.assertEquals(ermSettingsPage.getHeadingText(), "Settings", "Settings heading text mismatch");
-		ermSettingsPage.clickTabReason();
-		ermSettingsPage.searchReasonCategory(HRManagementConstants.UPDATED_REASON_CATEGORY);
+		ermSettingsPage.searchRemarkCategory(HRManagementConstants.UPDATED_REMARKS_CATEGORY);
 		ermSettingsPage.clickDeleteButton();
 		ermSettingsPage.clickOkButton();
 		softAssert.assertEquals(ermSettingsPage.getSuccessMessage(),
-				HRManagementConstants.REASON_DELETE_CONFIRMATION_MESSAGE, "Success message mismatch after deletion");
+				HRManagementConstants.REMARKS_DELETE_CONFIRMATION_MESSAGE, "Success message mismatch");
 		softAssert.assertAll();
 	}
 

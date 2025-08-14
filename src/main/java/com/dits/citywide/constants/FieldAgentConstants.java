@@ -69,4 +69,12 @@ public class FieldAgentConstants {
 	public static final String PASSDOWN_IMAGE_NAME = "Equipment Return Confirmation";
 	public static final String IMAGE_DESCRIPTION = "Image of the equipment returned at the end of the shift.";
 
+	// Profile
+	// Comments
+	public static final String SELECT_RESPONSE = "Agree";
+	
+	public static final String REASON_TEXT = "I disagree with the comment. Please review it again.";
+	
+	public static final String SUCCESS_MESSAGE_COMMENT_AGREE = "Response submitted successfully";
+
 }
