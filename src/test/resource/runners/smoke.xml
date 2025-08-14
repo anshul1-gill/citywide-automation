@@ -8,7 +8,7 @@
 		<listener class-name="com.dits.citywide.listener.ExtentReportListener"></listener>
 	</listeners>
 
-
+	<!-- 
 	<test name="Add Employee Test">
 
 		<classes>
@@ -61,7 +61,8 @@
 			<class
 				name="com.dits.citywide.tests.admin.training.AssignCourseTest" />
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest" />
+	name="com.dits.citywide.tests.fieldagent.FieldAgentMyCoursesViewAndAssessmentTest"
+	/>
 		</classes>
 	</test>
 
@@ -110,8 +111,9 @@
 				name="com.dits.citywide.tests.admin.companysettings.UpdateCustomHolidayTest" />
 			<class
 				name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest" />
+				-->
 
-			<!--
+	<!--
 			<class
 				name="com.dits.citywide.tests.admin.companysettings.AddBeatTest" />
 			<class
@@ -119,21 +121,53 @@
 			<class
 				name="com.dits.citywide.tests.admin.companysettings.DeleteBeatTest" />
 			-->
+	<!--
+	<class
+	name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTypeTest"
+	/>
+	<class
+		name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTest" />
+	<class
+		name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTest"
+	/>
+	<class
+		name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTest"
+	/>
+	<class
+	name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTypeTest"
+	/>
+	<class
+	name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTypeTest"
+	/>
 
-			<class
-				name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTypeTest" />
-			<class
-				name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTest" />
-			<class
-				name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTest" />
-			<class
-				name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTest" />
-			<class
-				name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTypeTest" />
-			<class
-				name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTypeTest" />
+	</classes>
+	</test>
+-->
 
+	<test name="ERM And Field Agent Functional Tests">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.EmployeesAddRemarksTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.EmployeesViewRemarksTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsAddRemarkTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsAddReasonTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryAddRemarksTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryAssignCourseTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentProfileCommentsTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryViewTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryActionTakenTest" />
 		</classes>
 	</test>
+
 
 </suite> 

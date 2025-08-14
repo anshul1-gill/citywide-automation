@@ -193,6 +193,15 @@ public class HRManagementConstants {
 	public static final String UPDATED_PERSONAL_INFO_NOTES = "Updated personal details including full name, DOB, contact, email, and address. "
 			+ "Ensure all information is current and correct.";
 	public static final String UPDATED_PERSONAL_INFO_ADDED_SUCCESS_MESSAGE = "Personal Information updated successfully!";
+	
+	// Comments
+	public static final String EMPLOYEE_REMARKS_TYPE = "Complaint";
+	public static final String EMPLOYEE_REMARKS_CATEGORY = "Manager Complaint";
+	public static final String EMPLOYEE_INCIDENT_DATE = "08/20/2025";
+	public static final String EMPLOYEE_REMARKS_REASON = "Abusing in front of child";
+	public static final String EMPLOYEE_REMARKS_DESCRIPTION = " The manager was using abusive language in front of a child, which is unacceptable behavior in the workplace. "
+			+ "This incident needs to be addressed immediately to maintain a professional environment.";
+	public static final String EMPLOYEE_REMARKS_ADDED_SUCCESS_MESSAGE = "Comment added successfully";
 
 // Leave Requests
 	public static final String LEAVE_TYPE = "Study";
@@ -239,27 +248,40 @@ public class HRManagementConstants {
 	public static final String CHECK_IN_OUT_SUCCESS_MESSAGE = "Check In/out time updated successfully";
 
 // ERM
-	
+
 	// Remarks
-	public static final String REMARKS_CATEGORY = "Performance";
 	public static final String REMARKS_TYPE = "Positive";
+	public static final String REMARKS_CATEGORY = "Efficient";
+	public static final String INCIDENT_DATE = "08/12/2025";
+	public static final String REMARKS_REASON = "Attendance";
+	public static final String REMARKS_DESCRIPTION = "Test Description";
 	public static final String REMARKS_ADDED_SUCCESS_MESSAGE = "Remark added successfully";
-	
-	public static final String UPDATED_REMARKS_CATEGORY = "Updated Performance";
+
 	public static final String UPDATED_REMARKS_TYPE = "Negative";
-	public static final String REMARKS_UPDATED_SUCCESS_MESSAGE = "Remark updated successfully";
+	public static final String UPDATED_REMARKS_CATEGORY = "Attendance";
+	public static final String UPDATED_INCIDENT_DATE = "08/15/2025";
+	public static final String UPDATED_REMARKS_REASON = "Late";
+	public static final String UPDATED_REMARKS_DESCRIPTION = "Updated Test Description";
+	public static final String REMARKS_UPDATED_SUCCESS_MESSAGE = "Comment added successfully";
 
 	public static final String REMARKS_DELETE_CONFIRMATION_MESSAGE = "Remark deleted successfully";
-	
+
 	// Reasons
 	public static final String REASON_CATEGORY = "Attendance";
-	public static final String REASON_TYPE = "Promotion";
 	public static final String REASON_ADDED_SUCCESS_MESSAGE = "Reason added successfully";
-	
+
 	public static final String UPDATED_REASON_CATEGORY = "Updated Attendance";
-	public static final String UPDATED_REASON_TYPE = "Pay Raise";
 	public static final String REASON_UPDATED_SUCCESS_MESSAGE = "Reason updated successfully";
-	
+
 	public static final String REASON_DELETE_CONFIRMATION_MESSAGE = "Reason deleted successfully";
+
+	// Comment added successfully
+	public static final String COMMENT_ADDED_SUCCESS_MESSAGE = "Comment added successfully";
+
+	public static final String ASSIGNED_COURSE_CONFIRMATION_MESSAGE = "Do you want to assign this course";
+
+	public static final String ASSIGNED_COURSE_SUCCESS_MESSAGE = "Course assigned successfully";
+
+	public static final String COURSE_NAME = "Activity course";
 
 }

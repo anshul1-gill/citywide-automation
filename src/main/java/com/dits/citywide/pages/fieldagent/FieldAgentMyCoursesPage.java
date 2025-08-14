@@ -44,6 +44,10 @@ public class FieldAgentMyCoursesPage {
 	private By tabAssessment = By.xpath("//div[@id='rc-tabs-0-tab-2']");
 	private By txtAssessmentStatus = By.xpath("(//div[@class='status-badge status-completed'])[2]");
 
+	public By getCourseByName(String courseName) {
+		return By.xpath("//td[normalize-space()='" + courseName + "']");
+	}
+
 	public FieldAgentMyCoursesPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
@@ -161,6 +165,10 @@ public class FieldAgentMyCoursesPage {
 
 	public String getAssessmentTabText() {
 		return elementUtils.getText(tabAssessment, Constants.DEFAULT_WAIT).trim();
+	}
+
+	public String getCourseNameData(String courseName) {
+		return elementUtils.waitForElementVisible(getCourseByName(courseName), Constants.DEFAULT_WAIT).getText();
 	}
 
 }

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.HRManagementConstants;
 
-public class AddRemarksERMTest extends BaseTest {
+public class ERMSettingsAddRemarkTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -14,7 +14,7 @@ public class AddRemarksERMTest extends BaseTest {
 	}
 
 	@Test
-	public void addRemarksERMTest() throws InterruptedException {
+	public void addRemarkSettingsERMTest() throws InterruptedException {
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);
 		ermPage = dashboardPage.doClickERM();
