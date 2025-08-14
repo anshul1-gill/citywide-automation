@@ -9,7 +9,7 @@ import com.dits.citywide.constants.HRManagementConstants;
 
 public class DeclineLeaveRequestsTest extends BaseTest {
 
-	@BeforeMethod(alwaysRun = true)
+	@BeforeMethod
 	public void performLogin() throws InterruptedException {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}

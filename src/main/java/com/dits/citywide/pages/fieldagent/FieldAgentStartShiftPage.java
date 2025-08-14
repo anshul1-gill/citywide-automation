@@ -68,11 +68,15 @@ public class FieldAgentStartShiftPage {
 	private By txtPassdownOfADay = By.xpath("//h2[normalize-space()='Passdown of the day']");
 	private By btnCountViewPassdown = By.xpath("//td[@data-label='Action']/button");
 
+	// Profile
+	private By tabProfileMenu = By.xpath("//button[@class='flex items-center gap-2 text-sm']");
+	private By btnProfile = By.xpath("//a[normalize-space()='Profile']");
+
 	public By getCreateReportButtonByIndex(int pasdownbuttonCount) {
 		String xpath = "(//button[normalize-space()='Create Report'])[" + pasdownbuttonCount + "]";
 		return By.xpath(xpath);
 	}
-	
+
 	private By tabPassdownLogs = By.xpath("//span[normalize-space()='Passdown Logs']");
 
 	// Common
@@ -272,10 +276,16 @@ public class FieldAgentStartShiftPage {
 	public void doClickSaveRejectReasonMultipleShifts() {
 		elementUtils.waitForElementToBeClickable(btnSaveRejectReasonMultipleShifts, Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public PassdownLogsPage clickOnPassdownLogsTab() {
 		elementUtils.waitForElementToBeClickable(tabPassdownLogs, Constants.DEFAULT_WAIT).click();
 		return new PassdownLogsPage(driver);
+	}
+
+	public FieldAgentProfileDetailsPage clickOnProfile() {
+		elementUtils.waitForElementToBeClickable(tabProfileMenu, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnProfile, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentProfileDetailsPage(driver);
 	}
 
 	// Previous Shift Logout
