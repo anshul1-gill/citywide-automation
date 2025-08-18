@@ -45,6 +45,7 @@ import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
 import com.dits.citywide.pages.fieldagent.PassdownLogsPage;
 import com.dits.citywide.pages.patrol.PatrolBeatsPage;
+import com.dits.citywide.pages.patrol.PatrolLeaveRequestsPage;
 import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
 import com.dits.citywide.pages.patrol.PatrolVehicleInspectionPage;
 
@@ -93,6 +94,7 @@ public class BaseTest {
 	protected ERMSettingsPage ermSettingsPage;
 	protected ERMRemarksHistoryPage ermRemarksHistoryPage;
 	protected FieldAgentProfileDetailsPage fieldAgentProfileDetailsPage;
+	protected PatrolLeaveRequestsPage patrolLeaveRequestsPage;
 
 	// @BeforeTest
 	@BeforeClass
