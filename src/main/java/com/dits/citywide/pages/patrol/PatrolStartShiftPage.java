@@ -236,9 +236,9 @@ public class PatrolStartShiftPage {
 		elementUtils.waitForElementToBeClickable(menuHRManagement, Constants.DEFAULT_WAIT).click();
 	}
 
-	public FieldAgentLeaveRequestsPage clickOnLeaveRequestsTab() {
+	public PatrolLeaveRequestsPage clickOnLeaveRequestsTab() {
 		elementUtils.waitForElementToBeClickable(tabLeaverequests, Constants.DEFAULT_WAIT).click();
-		return new FieldAgentLeaveRequestsPage(driver);
+		return new PatrolLeaveRequestsPage(driver);
 	}
 
 	public FieldAgentMyCoursesPage clickOnMyCoursesTab() {
