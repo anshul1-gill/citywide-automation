@@ -24,6 +24,7 @@ public class LeaveRequestsPage {
 //	private By dataToDate = By.xpath("(//tbody[@class='ant-table-tbody']//td[@data-label='To'])[1]");
 //	private By dataTotalDays = By.xpath("(//tbody[@class='ant-table-tbody']//td[@data-label='Total Days'])[1]");
 
+	private By searchBox = By.xpath("//input[@name='Search']");
 	private By dataLeaveType = By.xpath("(//td[@data-label='Leave Type'])[1]");
 	private By dataFromDate = By.xpath("(//td[@data-label='From'])[1]");
 	private By dataStartTime = By.xpath("(//td[@data-label='Start Time'])[1]");
@@ -55,6 +56,7 @@ public class LeaveRequestsPage {
 	}
 
 	public String getLeaveTypeText() {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		return elementUtils.waitForElementVisible(dataLeaveType, Constants.DEFAULT_WAIT).getText();
 	}
 
@@ -116,6 +118,10 @@ public class LeaveRequestsPage {
 
 	public String getDeclinedSuccessMessage() {
 		return elementUtils.waitForElementVisible(declinedSucessMessage, Constants.DEFAULT_WAIT).getText();
+	}
+	
+	public void doSearchLeaveRequest(String employeeID) {
+		elementUtils.waitForElementToBeClickable(searchBox, Constants.DEFAULT_WAIT).sendKeys(employeeID);
 	}
 
 	// Approve Leave Requests
