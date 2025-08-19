@@ -21,6 +21,7 @@ public class ApproveLeaveRequestsPatrolTest extends BaseTest {
 		leaveRequestsPage = dashboardPage.doClickLeaveRequests();
 
 		softAssert.assertTrue(leaveRequestsPage.isAddLeaveRequestButtonDisplayed());
+		leaveRequestsPage.doSearchLeaveRequest(prop.getProperty("patrolID"));
 
 		softAssert.assertEquals(leaveRequestsPage.getLeaveTypeText(), PatrolConstants.LEAVE_TYPE);
 

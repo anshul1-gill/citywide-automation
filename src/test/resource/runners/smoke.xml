@@ -171,7 +171,6 @@
 	/>
 		</classes>
 	</test>
-	-->
 
 	<test name="Decline Leave Request Test Patrol Officer">
 		<classes>
@@ -181,6 +180,8 @@
 				name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsPatrolTest" />
 		</classes>
 	</test>
+		-->
+
 
 	<test name="Approve Leave Request Test Patrol Officer">
 		<classes>
