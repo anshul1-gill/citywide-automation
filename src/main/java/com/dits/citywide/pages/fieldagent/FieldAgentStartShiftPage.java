@@ -1,5 +1,8 @@
 package com.dits.citywide.pages.fieldagent;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,6 +11,7 @@ import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.utilities.ElementUtils;
+import com.dits.citywide.utilities.ServerTimeUtil;
 
 public class FieldAgentStartShiftPage {
 
@@ -143,7 +147,7 @@ public class FieldAgentStartShiftPage {
 		elementUtils.waitForElementToBeClickable(btnViewSite, Constants.DEFAULT_WAIT).click();
 	}
 
-	public boolean isClickableViewSite() {
+	public boolean isViewSiteVisible() {
 		return elementUtils.doIsDisplayed(btnViewSite, Constants.DEFAULT_WAIT);
 	}
 
@@ -151,6 +155,22 @@ public class FieldAgentStartShiftPage {
 	public void doClickStartShift() {
 		elementUtils.waitForInvisibilityOfElementLocated(txtSucessMessagePreviousShiftLogout, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnStartShift, Constants.DEFAULT_WAIT).click();
+		String currenttimeStartShift = ServerTimeUtil.getServerTimeInPST();
+		System.out.println("Start Shift Time: " + currenttimeStartShift);
+	}
+
+	public LocalDate getServerDate(String baseUrl) {
+		// Example serverTimeStr = "08/20/2025 14:45"
+		String serverTimeStr = ServerTimeUtil.getServerTimeInPST();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+		LocalDateTime serverDateTime = LocalDateTime.parse(serverTimeStr, formatter);
+		return serverDateTime.toLocalDate(); 
+	}
+
+	public LocalDate getScheduledDate(String shiftDate) {
+		// Example shiftDate = "08/20/2025"
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		return LocalDate.parse(shiftDate, formatter);
 	}
 
 	public boolean isStartShiftButtonVisible() {

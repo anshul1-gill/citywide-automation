@@ -47,7 +47,7 @@ public class AddNewCallTest extends BaseTest {
 		softAssert.assertTrue(callsPage.getAssignedTo().contains(prop.getProperty("employeeID")),
 				"Assigned officer does not match after adding a new call.");
 
-		String callId = callsPage.getCallId();
+		String callId = callsPage.getCallId(prop.getProperty("employeeID"));
 		System.out.println(callId);
 		driverFactory.updatePropertyValue("callid", callId);
 

@@ -19,7 +19,8 @@ public class AddShiftTest extends BaseTest {
 		Thread.sleep(4000);
 		schedulingPage = dashboardPage.doClickScheduling();
 		Thread.sleep(2000);
-
+		schedulingPage.clickOnFilters();
+		schedulingPage.clickOnServiceTypeCheckbox();
 		schedulingPage.selectSiteAndApply(HRManagementConstants.SITE);
 		schedulingPage.addShift(SchedulingConstant.ADD_SHIFT_DATE);
 		schedulingPage.selectAssignShift(SchedulingConstant.ASSIGN_SHIFT);
@@ -36,7 +37,6 @@ public class AddShiftTest extends BaseTest {
 		schedulingPage.clickOkButton();
 		softAssert.assertEquals(schedulingPage.getSuccessMessageAfterPublish(),
 				SchedulingConstant.SUCCESS_PUBLISH_MESSAGE);
-
 	}
 
 }

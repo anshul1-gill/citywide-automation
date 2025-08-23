@@ -1,0 +1,97 @@
+package com.dits.citywide.tests.operationhub;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import com.dits.citywide.base.BaseTest;
+import com.dits.citywide.constants.HRManagementConstants;
+import com.dits.citywide.constants.OperationsHubConstant;
+
+public class SitesPostOrdersAddAssignmentAndCheckpointTest extends BaseTest {
+
+	@BeforeMethod
+	public void performLogin() throws InterruptedException {
+		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
+	}
+
+	@Test
+	public void addAssignmentAndCheckpointToPostOrdersSiteTest() throws InterruptedException {
+		// Navigate to Site -> Post Orders
+		Thread.sleep(2000);
+		sitesPage = dashboardPage.doClickSitesTab();
+		sitesPage.searchSite(HRManagementConstants.SITE);
+
+		Thread.sleep(2000);
+		sitesPage.clickEditSite();
+		sitesPage.clickPostOrders();
+
+		// Fill and Add Assignment
+		sitesPage.fillAddAssignmentForm(OperationsHubConstant.ASSIGNMENT_NAME,
+				OperationsHubConstant.ASSIGNMENT_TEMPLATE, OperationsHubConstant.COVERAGE_TYPE,
+				OperationsHubConstant.ASSIGNMENT_DAYS_OF_WEEK, OperationsHubConstant.ASSIGNMENT_TIME,
+				OperationsHubConstant.SNITCH_TIME);
+
+		sitesPage.clickAddAssignment();
+
+		// Assertions for Assignment
+		softAssert.assertEquals(sitesPage.getSuccessMessage(),
+				"Assignment \"" + OperationsHubConstant.ASSIGNMENT_NAME + "\" added successfully.");
+
+		softAssert.assertEquals(sitesPage.getAssignmentName(OperationsHubConstant.ASSIGNMENT_NAME),
+				OperationsHubConstant.ASSIGNMENT_NAME);
+
+		softAssert.assertTrue(sitesPage.getTemplateName(OperationsHubConstant.ASSIGNMENT_NAME)
+				.equalsIgnoreCase(OperationsHubConstant.ASSIGNMENT_TEMPLATE), "Template name mismatch!");
+
+		String actualCoverage = sitesPage.getCoverageType(OperationsHubConstant.ASSIGNMENT_NAME).trim();
+		String expectedCoverage = OperationsHubConstant.COVERAGE_TYPE.trim();
+		softAssert.assertTrue(
+				actualCoverage.startsWith(expectedCoverage) || expectedCoverage.startsWith(actualCoverage),
+				"Coverage type mismatch! Expected something like [" + expectedCoverage + "] but found ["
+						+ actualCoverage + "]");
+
+		String actualDays = sitesPage.getDaysOfWeek(OperationsHubConstant.ASSIGNMENT_NAME);
+		List<String> actualDaysList = Arrays.stream(actualDays.split(",")).map(String::trim).toList();
+
+		softAssert.assertEquals(actualDaysList, OperationsHubConstant.ASSIGNMENT_DAYS_OF_WEEK,
+				"Days of week mismatch!");
+
+		softAssert.assertTrue(sitesPage.getAssignmentTimeSlot(OperationsHubConstant.ASSIGNMENT_NAME)
+				.startsWith(OperationsHubConstant.ASSIGNMENT_TIME), "Assignment time mismatch!");
+
+		softAssert.assertTrue(
+				sitesPage.getAddedBy(OperationsHubConstant.ASSIGNMENT_NAME).contains(prop.getProperty("email")),
+				"Added by mismatch!");
+
+		sitesPage.clickCheckPointThatOpensNewTab();
+		softAssert.assertEquals(sitesPage.getHeadingCheckPoint(), "Guard Tour Checkpoints");
+
+		sitesPage.clickAddNewCheckPoint();
+		sitesPage.fillCheckPointForm(OperationsHubConstant.CHECKPOINT_NAME,
+				OperationsHubConstant.CHECKPOINT_DESCRIPTION, OperationsHubConstant.CHECKPOINT_TYPE);
+
+		sitesPage.clickSave();
+		Thread.sleep(10000);
+
+		sitesPage.clickBack();
+		softAssert.assertEquals(sitesPage.getHeadingCheckPoint(), "Guard Tour Checkpoints");
+
+		// Assertions for Checkpoint
+		softAssert.assertEquals(sitesPage.getCheckpointName(OperationsHubConstant.CHECKPOINT_NAME),
+				OperationsHubConstant.CHECKPOINT_NAME);
+
+		softAssert.assertEquals(sitesPage.getCheckpointDescription(OperationsHubConstant.CHECKPOINT_NAME),
+				OperationsHubConstant.CHECKPOINT_DESCRIPTION);
+
+		softAssert.assertEquals(sitesPage.getCheckpointType(OperationsHubConstant.CHECKPOINT_NAME),
+				OperationsHubConstant.CHECKPOINT_TYPE);
+
+		softAssert.assertTrue(sitesPage.getCheckpointSiteName(OperationsHubConstant.CHECKPOINT_NAME)
+				.contains(HRManagementConstants.SITE), "Checkpoint site name mismatch!");
+
+		softAssert.assertAll();
+	}
+}

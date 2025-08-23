@@ -36,6 +36,7 @@
 				name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsTest" />
 		</classes>
 	</test>
+-->
 
 	<test name="Employee Shift Management Tests">
 		<classes>
@@ -49,7 +50,7 @@
 				name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
 		</classes>
 	</test>
-
+	<!-- 
 	<test name="My Courses Tests">
 		<classes>
 			<class
@@ -177,10 +178,11 @@
 			<class
 				name="com.dits.citywide.tests.patrol.PatrolApplyLeaveTest" />
 			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsPatrolTest" />
+	name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsPatrolTest"
+	/>
 		</classes>
 	</test>
-		-->
+		
 
 
 	<test name="Approve Leave Request Test Patrol Officer">
@@ -188,9 +190,10 @@
 			<class
 				name="com.dits.citywide.tests.patrol.PatrolApplyLeaveTest" />
 			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsPatrolTest" />
+	name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsPatrolTest"
+	/>
 		</classes>
 	</test>
-
+-->
 
 </suite> 

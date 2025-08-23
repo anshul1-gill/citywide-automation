@@ -32,6 +32,7 @@ import com.dits.citywide.pages.admin.LeavesPage;
 import com.dits.citywide.pages.admin.LoginPage;
 import com.dits.citywide.pages.admin.RespondingAgenciesPage;
 import com.dits.citywide.pages.admin.SchedulingPage;
+import com.dits.citywide.pages.admin.SitesPage;
 import com.dits.citywide.pages.admin.TotalCoursesPage;
 import com.dits.citywide.pages.admin.TrainingPage;
 import com.dits.citywide.pages.admin.ViewEmployeePage;
@@ -95,6 +96,7 @@ public class BaseTest {
 	protected ERMRemarksHistoryPage ermRemarksHistoryPage;
 	protected FieldAgentProfileDetailsPage fieldAgentProfileDetailsPage;
 	protected PatrolLeaveRequestsPage patrolLeaveRequestsPage;
+	protected SitesPage sitesPage;
 
 	// @BeforeTest
 	@BeforeClass

@@ -1,11 +1,7 @@
 package com.dits.citywide.pages.fieldagent;
 
-import java.io.File;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.utilities.ElementUtils;
 import com.dits.citywide.utilities.ServerTimeUtil;
@@ -16,7 +12,9 @@ public class FieldAgentReportsPage {
 	private ElementUtils elementUtils;
 
 	private By btnReportsTab = By.xpath("//span[normalize-space()='Reports']");
-	private By btnPreFlightReports = By.xpath("//a[normalize-space()='Pre-Flight Reports']");
+	private By btnPreFlightReports = By.xpath("(//span[contains(text(),'Pre-Flight Reports')])[2]");
+	private By txtPreflightConfirmationMessage = By.cssSelector("#swal2-html-container");
+
 	private By btnAddNewReport = By.xpath("(//span[contains(text(),'Add New Report')])[2]");
 	private By btnSubmitReports = By.xpath("//button[normalize-space()='Submit Reports']");
 	private By txtNoItemsFound = By
@@ -25,27 +23,32 @@ public class FieldAgentReportsPage {
 	private By endShiftConfirmationMessage = By.xpath("//div[@id='swal2-html-container']");
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 
+	private By txtNoDataFound = By.xpath("//td[normalize-space()='No Data Found']");
+
 	private By txtCloseOutFieldAgentLog = By.xpath("//h2[normalize-space()='Close Out Field Agent Log']");
-	private By checkboxShiftIsEnd = By.xpath("//label[normalize-space()='Shift is end']");
+	private By checkboxShiftIsEnd = By.cssSelector("label[for='equip_ok-3']");
 	private By btnEndShiftFinal = By.xpath("(//button[text()='End Shift'])[1]");
 
 	// My Reports
 	private By txtUpdateOfficerReportEntry = By.xpath("//h1[normalize-space()='Update Officer Report Entry']");
-	private By btnEditReport2 = By.xpath("(//button[@title='Edit Entry'])[2]");
-	private By btnEditReport3 = By.xpath("(//button[@title='Edit Entry'])[3]");
-	private By btnEditReport4 = By.xpath("(//button[@title='Edit Entry'])[4]");
-	private By btnEditReport5 = By.xpath("(//button[@title='Edit Entry'])[5]");
-	private By btnEditReport6 = By.xpath("(//button[@title='Edit Entry'])[6]");
-	private By btnEditReport7 = By.xpath("(//button[@title='Edit Entry'])[7]");
-	private By btnEditReport8 = By.xpath("(//button[@title='Edit Entry'])[8]");
-	private By btnEditReport9 = By.xpath("(//button[@title='Edit Entry'])[9]");
+	private By btnEditReport2 = By.xpath("(//div[@class='actionicons editPencil'])[1]");
+	private By btnEditReport3 = By.xpath("(//div[@class='actionicons editPencil'])[3]");
+	private By btnEditReport4 = By.xpath("(//div[@class='actionicons editPencil'])[5]");
+	private By btnEditReport5 = By.xpath("(//div[@class='actionicons editPencil'])[7]");
+	private By btnEditReport6 = By.xpath("(//div[@class='actionicons editPencil'])[9]");
+	private By btnEditReport7 = By.xpath("(//div[@class='actionicons editPencil'])[11]");
+	private By btnEditReport8 = By.xpath("(//div[@class='actionicons editPencil'])[13]");
+	private By btnEditReport9 = By.xpath("(//div[@class='actionicons editPencil'])[15]");
 
-	private By btnNow = By
-			.xpath("(//div[contains(@class,'p-2 text-gray-600 border rounded-lg cursor-pointer now-icon')])[1]");
-	private By dropdownActivityCode = By.xpath("//label[@for='search_code']");
-	private By searchboxActivityCode = By.xpath("//input[@placeholder='Search...']");
-	private By valueActivityCode = By.xpath("//div[@class='list-none m-0 p-0']/div/span");
-	private By dropdownCall = By.xpath("//select[@id='callid_incident_number']");
+	private By btnNow = By.xpath("(//div[@class='ant-form-item clock-icon c-m-0 css-p9nxzu'])[1]");
+	private By dropdownPatrolSite = By.xpath("(//div[@class='ant-select-selector'])[1]");
+	private By patrolSite = By.cssSelector("#patrol_site_id");
+	private By dropdownActivityCode = By.xpath("(//div[@class='ant-select-selector'])[2]");
+	private By searchboxActivityCode = By.cssSelector("#activity_code");
+	private By dropdowncallId = By.xpath("(//div[@class='ant-select-selector'])[3]");
+	private By callId = By.cssSelector("#call_id");
+	// private By valueActivityCode = By.xpath("//div[@class='list-none m-0
+	// p-0']/div/span");
 
 	private By txtboxStreetNumber = By.xpath("//input[@id='street_num']");
 	private By txtboxStreetName = By.xpath("//input[@id='street_name']");
@@ -55,10 +58,18 @@ public class FieldAgentReportsPage {
 	private By txtboxzipcode = By.xpath("//input[@id='zipcode']");
 	private By txtboxDescription = By.xpath("//textarea[@id='activity_text']");
 
-	private By uploadFile = By.xpath("//input[@type='file']");
-	private By btnUpdateLogEntry = By.xpath("(//button[@id='submitButton'])[2]");
-	private By txtboxImageName = By.xpath("//input[@id='image_name_0']");
-	private By txtboxImageDescription = By.xpath("//textarea[@id='image_description_0']");
+	private By uploadFile = By.xpath("(//input[@type='file'])[3]");
+	private By btnUpdateLogEntry = By.cssSelector("button[type='submit'] span");
+	private By txtboxImageName = By.cssSelector("#Name0");
+	private By txtboxImageDescription = By.cssSelector("#Description0");
+
+	// Start shift data
+	private By dataArriveDateTime = By
+			.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Arrive']/p");
+	private By dataSiteName = By
+			.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Site']/a");
+	private By dataDepartDateTime = By
+			.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Depart']/p");
 
 	// All reports
 	private By btnAllReports = By.xpath("//a[@class='tabs-button'][contains(text(),'All')]");
@@ -76,7 +87,69 @@ public class FieldAgentReportsPage {
 	private By getDepartDataEndOfShift = By.xpath("(//td[@data-label='Depart'])[1]");
 	private By getActivityCodeDataEndOfShift = By.xpath("(//td[@data-label='Activity Code'])[1]");
 
+	// My Assignments
+	private By btnMyAssignments = By.cssSelector("#rc-tabs-0-tab-my-assignment");
+	private By search = By.cssSelector("input[placeholder='Search']");
+
+	private By siteNameByAssignment(String assignmentName) {
+		String xpath = "//td[normalize-space()='" + assignmentName + "']/following-sibling::td[1]";
+		return By.xpath(xpath);
+	}
+
+	private By timeSlotByAssignment(String assignmentName) {
+		String xpath = "//td[normalize-space()='" + assignmentName + "']/following-sibling::td[2]";
+		return By.xpath(xpath);
+	}
+
+	private By snitchTimeByAssignment(String assignmentName) {
+		String xpath = "//td[normalize-space()='" + assignmentName + "']/following-sibling::td[3]";
+		return By.xpath(xpath);
+	}
+
+	private By addedByByAssignment(String assignmentName) {
+		String xpath = "//td[normalize-space()='" + assignmentName + "']/following-sibling::td[4]";
+		return By.xpath(xpath);
+	}
+
+	private By statusByAssignment(String assignmentName) {
+		String xpath = "//td[normalize-space()='" + assignmentName + "']/following-sibling::td[5]/span/span";
+		return By.xpath(xpath);
+	}
+
+	private By actionByAssignment(String assignmentName) {
+		String xpath = "//td[normalize-space()='" + assignmentName + "']/following-sibling::td[6]//div[@class='cursor-pointer']";
+		return By.xpath(xpath);
+	}
+
+	private By tabCheckPoints = By.cssSelector("#rc-tabs-1-tab-checkpoints");
+
+	// Checkpoint name cell
+	private By checkpointByName(String checkpointName) {
+		return By.xpath("//td[normalize-space()='" + checkpointName + "']");
+	}
+
+	// Site name
+	private By siteNameByCheckpoint(String checkpointName) {
+		return By.xpath("//td[normalize-space()='" + checkpointName + "']/following-sibling::td[1]");
+	}
+
+	// Checkpoint type
+	private By checkpointTypeByName(String checkpointName) {
+		return By.xpath("//td[normalize-space()='" + checkpointName + "']/following-sibling::td[2]");
+	}
+
+	// Scan time
+	private By scanTimeByCheckpoint(String checkpointName) {
+		return By.xpath("//td[normalize-space()='" + checkpointName + "']/following-sibling::td[3]");
+	}
+
+	// View checkpoint (action)
+	private By viewCheckpointByName(String checkpointName) {
+		return By.xpath("//td[normalize-space()='" + checkpointName + "']/following-sibling::td[4]");
+	}
+
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
+	private By sucessMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
 
 	public FieldAgentReportsPage(WebDriver driver) {
 		this.driver = driver;
@@ -86,14 +159,17 @@ public class FieldAgentReportsPage {
 	public boolean isPreFlightReportsButtonVisible() {
 		return elementUtils.doIsDisplayed(btnPreFlightReports, Constants.DEFAULT_WAIT);
 	}
-	
+
 	public boolean isStartShiftButtonVisible() {
 		return elementUtils.doIsDisplayed(btnAddNewReport, Constants.DEFAULT_WAIT);
 	}
 
 	public void clickPreFlightReports() {
 		elementUtils.waitForElementToBeClickable(btnPreFlightReports, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementToBeClickable(btnOk, Constants.SHORT_TIME_OUT_WAIT).click();
+	}
+
+	public String getPreflightConfirmationMessage() {
+		return elementUtils.waitForElementVisible(txtPreflightConfirmationMessage, Constants.DEFAULT_WAIT).getText();
 	}
 
 	public void clickSubmitReports() {
@@ -119,6 +195,10 @@ public class FieldAgentReportsPage {
 		elementUtils.waitForElementToBeClickable(btnOk, Constants.DEFAULT_WAIT).click();
 	}
 
+	public String getNoDataFoundText() {
+		return elementUtils.waitForElementVisible(txtNoDataFound, Constants.DEFAULT_WAIT).getText();
+	}
+
 	public String getEndShiftConfirmationMessage() {
 		return elementUtils.waitForElementVisible(endShiftConfirmationMessage, Constants.DEFAULT_WAIT).getText();
 	}
@@ -128,12 +208,25 @@ public class FieldAgentReportsPage {
 	}
 
 	// My Reports
+	public String getArriveDateTime() {
+		return elementUtils.waitForElementVisible(dataArriveDateTime, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getSiteName() {
+		return elementUtils.waitForElementVisible(dataSiteName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getDepartDateTime() {
+		return elementUtils.waitForElementVisible(dataDepartDateTime, Constants.DEFAULT_WAIT).getText();
+	}
+
 	public boolean isUpdateOfficerReportEntryVisible() {
 		return elementUtils.doIsDisplayed(txtUpdateOfficerReportEntry, Constants.DEFAULT_WAIT);
 	}
 
 	public void clickEditReport2() {
 		elementUtils.waitForInvisibilityOfElementLocated(btnPreFlightReports, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForElementVisible(sucessMessage, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnEditReport2, Constants.SHORT_TIME_OUT_WAIT).click();
 	}
 
@@ -165,19 +258,35 @@ public class FieldAgentReportsPage {
 		elementUtils.doClick(btnEditReport9);
 	}
 
-	public void addOfficerReportEntry(String url, String activityCode, String streetNumber, String streetName,
-			String apartmentNumber, String city, String state, String zipcode, String description, String imagePath,
-			String fileName, String fileDescription) {
+	public void addOfficerReportEntry(String url, String siteName, String activityCode, String callID,
+			String streetNumber, String streetName, String apartmentNumber, String city, String state, String zipcode,
+			String description, String imagePath, String fileName, String fileDescription) throws InterruptedException {
 
-		isUpdateOfficerReportEntryVisible();
-
-		elementUtils.waitForElementToBeClickable(btnNow, Constants.DEFAULT_WAIT).click();
-		String currenttime = ServerTimeUtil.getServerTimeInPST(url);
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		//isUpdateOfficerReportEntryVisible();
+		Thread.sleep(2000);
+		elementUtils.waitForElementVisible(btnNow, Constants.DEFAULT_WAIT);
+		elementUtils.doClickWithActionsAndWait(btnNow, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForElementToBeClickable(btnNow,
+		// Constants.DEFAULT_WAIT).click();
+		String currenttime = ServerTimeUtil.getServerTimeInPST();
 		System.out.println(currenttime);
+		elementUtils.waitForElementVisible(dropdownPatrolSite, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(dropdownPatrolSite, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementVisible(patrolSite, Constants.SHORT_TIME_OUT_WAIT).sendKeys(siteName);
+		Thread.sleep(2000);
+		elementUtils.pressEnterKey();
+
 		elementUtils.waitForElementToBeClickable(dropdownActivityCode, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(searchboxActivityCode, Constants.SHORT_TIME_OUT_WAIT).sendKeys(activityCode);
-		elementUtils.waitForElementVisible(valueActivityCode, Constants.SHORT_TIME_OUT_WAIT);
-		elementUtils.selectElementThroughLocator(valueActivityCode, activityCode, Constants.SHORT_TIME_OUT_WAIT);
+		Thread.sleep(2000);
+		elementUtils.pressEnterKey();
+//		elementUtils.waitForElementVisible(valueActivityCode, Constants.SHORT_TIME_OUT_WAIT);
+//		elementUtils.selectElementThroughLocator(valueActivityCode, activityCode, Constants.SHORT_TIME_OUT_WAIT);
+		elementUtils.waitForElementToBeClickable(dropdowncallId, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementVisible(callId, Constants.SHORT_TIME_OUT_WAIT).sendKeys(callID);
+		Thread.sleep(2000);
+		elementUtils.pressEnterKey();
 
 		elementUtils.waitForElementVisible(txtboxStreetNumber, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetNumber);
 		elementUtils.waitForElementVisible(txtboxStreetName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetName);
@@ -188,9 +297,11 @@ public class FieldAgentReportsPage {
 		elementUtils.waitForElementVisible(txtboxzipcode, Constants.SHORT_TIME_OUT_WAIT).sendKeys(zipcode);
 		elementUtils.waitForElementVisible(txtboxDescription, Constants.SHORT_TIME_OUT_WAIT).sendKeys(description);
 
-		WebElement fileInput = elementUtils.getElement(uploadFile);
-		String absolutePath = new File(imagePath).getAbsolutePath();
-		fileInput.sendKeys(absolutePath);
+//		WebElement fileInput = elementUtils.getElement(uploadFile);
+//		String absolutePath = new File(imagePath).getAbsolutePath();
+//		fileInput.sendKeys(absolutePath);
+		elementUtils.waitForElementVisible(uploadFile, Constants.DEFAULT_WAIT);
+		elementUtils.uploadFile(uploadFile, imagePath);
 
 		elementUtils.waitForElementVisible(txtboxImageName, Constants.DEFAULT_WAIT).sendKeys(fileName);
 		elementUtils.waitForElementVisible(txtboxImageDescription, Constants.DEFAULT_WAIT).sendKeys(fileDescription);
@@ -256,6 +367,83 @@ public class FieldAgentReportsPage {
 
 	public String getActivityCodeDataEndOfShift() {
 		return elementUtils.waitForElementVisible(getActivityCodeDataEndOfShift, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getSuccessMessage() {
+		return elementUtils.waitForElementVisible(sucessMessage, Constants.DEFAULT_WAIT).getText();
+	}
+
+	// My Assignments
+
+	public void clickMyAssignments() {
+		elementUtils.waitForElementToBeClickable(btnMyAssignments, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void enterTextInSearchBoxMyAssignments(String searchText) {
+		elementUtils.waitForElementVisible(search, Constants.DEFAULT_WAIT).sendKeys(searchText);
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+	}
+
+	public String getSiteNameByAssignment(String assignmentName) {
+		return elementUtils.waitForElementVisible(siteNameByAssignment(assignmentName), Constants.DEFAULT_WAIT)
+				.getText();
+	}
+
+	public String getTimeSlotByAssignment(String assignmentName) {
+		return elementUtils.waitForElementVisible(timeSlotByAssignment(assignmentName), Constants.DEFAULT_WAIT)
+				.getText();
+	}
+
+	public String getSnitchTimeByAssignment(String assignmentName) {
+		return elementUtils.waitForElementVisible(snitchTimeByAssignment(assignmentName), Constants.DEFAULT_WAIT)
+				.getText();
+	}
+
+	public String getAddedByByAssignment(String assignmentName) {
+		return elementUtils.waitForElementVisible(addedByByAssignment(assignmentName), Constants.DEFAULT_WAIT)
+				.getText();
+	}
+
+	public String getStatusByAssignment(String assignmentName) {
+		return elementUtils.waitForElementVisible(statusByAssignment(assignmentName), Constants.DEFAULT_WAIT).getText();
+	}
+
+	public boolean isActionByAssignmentVisible(String assignmentName) {
+		return elementUtils.doIsDisplayed(actionByAssignment(assignmentName), Constants.DEFAULT_WAIT);
+	}
+	
+	public void clickActionByAssignment(String assignmentName) {
+		elementUtils.waitForElementToBeClickable(actionByAssignment(assignmentName), Constants.DEFAULT_WAIT).click();
+	}
+	
+	
+	
+	// Check Points Tab
+	public void clickCheckPointsTab() {
+		elementUtils.waitForElementToBeClickable(tabCheckPoints, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getCheckpointByName(String checkpointName) {
+		return elementUtils.waitForElementVisible(checkpointByName(checkpointName), Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getSiteNameByCheckpoint(String checkpointName) {
+		return elementUtils.waitForElementVisible(siteNameByCheckpoint(checkpointName), Constants.DEFAULT_WAIT)
+				.getText();
+	}
+
+	public String getCheckpointTypeByName(String checkpointName) {
+		return elementUtils.waitForElementVisible(checkpointTypeByName(checkpointName), Constants.DEFAULT_WAIT)
+				.getText();
+	}
+
+	public String getScanTimeByCheckpoint(String checkpointName) {
+		return elementUtils.waitForElementVisible(scanTimeByCheckpoint(checkpointName), Constants.DEFAULT_WAIT)
+				.getText();
+	}
+
+	public boolean isViewCheckpointByNameVisible(String checkpointName) {
+		return elementUtils.doIsDisplayed(viewCheckpointByName(checkpointName), Constants.DEFAULT_WAIT);
 	}
 
 }

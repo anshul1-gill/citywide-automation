@@ -34,6 +34,7 @@ public class DashboardPage {
 			.xpath("//h3[contains(text(),'You may not have the correct permissions to view the page.')]");
 
 	private By tabCalls = By.xpath("//span[contains(text(),'Calls')]");
+	private By tabSites = By.xpath("//span[contains(text(),'Sites')]");
 
 	public DashboardPage(WebDriver driver) {
 		this.driver = driver;
@@ -123,6 +124,11 @@ public class DashboardPage {
 	public CallsPage doClickCallsTab() {
 		elementUtils.waitForElementToBeClickable(tabCalls, Constants.DEFAULT_WAIT).click();
 		return new CallsPage(driver);
+	}
+
+	public SitesPage doClickSitesTab() {
+		elementUtils.waitForElementToBeClickable(tabSites, Constants.DEFAULT_WAIT).click();
+		return new SitesPage(driver);
 	}
 
 	public CompanySettingsPage doClickCompanySettingsTab() {

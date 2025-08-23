@@ -15,7 +15,7 @@ public class SchedulingConstant {
 	public static final String ADD_NOTES_PATROL = "Assigned shift for patrol. Ensure to follow the route and report any incidents.";
 
 	// Shift Date
-	public static final String ADD_SHIFT_DATE = "4";
+	public static final String ADD_SHIFT_DATE = "22";
 
 	// Confirmation Message
 	public static final String ARE_YOU_SURE = "Are you sure?";

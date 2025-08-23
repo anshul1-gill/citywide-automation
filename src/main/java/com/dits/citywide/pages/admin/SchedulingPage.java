@@ -17,6 +17,8 @@ public class SchedulingPage {
 	private ElementUtils elementUtils;
 
 	private By dropdownSelectSite = By.cssSelector("#rc_select_2");
+	private By filters = By.xpath("//button[contains(@class,'ant-btn-primary') and contains(@class,'basicButton')]");
+	private By checkboxServiceType = By.xpath("//span[@class='ant-checkbox-label']");
 	private By btnApply = By.xpath("//span[contains(text(),'Apply')]");
 //	private By btnAddShift = By.xpath(
 //			"(//th[normalize-space()='Service Type']/ancestor::thead/following-sibling::tbody//div[@class='add-shift'])[4]");
@@ -66,9 +68,21 @@ public class SchedulingPage {
 		elementUtils = new ElementUtils(driver);
 	}
 
-	// Site Selection for Field Staff
-	public void selectSiteAndApply(String siteName) throws InterruptedException {
+	public void clickOnFilters() {
+		try {
+			elementUtils.waitForElementToBeClickable(filters, Constants.DEFAULT_WAIT).click();
+		} catch (NoSuchElementException | TimeoutException e) {
+			System.out.println("Filters button not found or not clickable: " + e.getMessage());
+		}
+	}
+	
+	public void clickOnServiceTypeCheckbox() {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(checkboxServiceType, Constants.DEFAULT_WAIT).click();
+	
+	}
 
+	public void selectSiteAndApply(String siteName) throws InterruptedException {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(dropdownSelectSite, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForInvisibilityOfElementLocated(txtNoData, Constants.DEFAULT_WAIT);
@@ -103,7 +117,7 @@ public class SchedulingPage {
 		System.out.println(i);
 		String datexpath = "(//th[normalize-space()='Service Type']/ancestor::thead/following-sibling::tbody//div[@class='add-shift'])["
 				+ i + "]";
-
+		elementUtils.waitForElementVisible(By.xpath(datexpath), Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(By.xpath(datexpath), Constants.DEFAULT_WAIT).click();
 	}
 
