@@ -38,9 +38,16 @@ public class CallsPage {
 	private By successMessage = By.xpath("//h2[@id='swal2-title']/span[@class='text-white']");
 
 	private By dataAssignedTo = By.xpath("(//div[@class='call-status'])[1]/p");
-	private By dataCallId = By.xpath("(//td[@data-label='Call #'])[1]/a");
+	//private By dataCallId = By.xpath("(//td[@data-label='Call #'])[1]/a");
+	private By getCallIdByEmployeeId(String employeeId) {
+	    String xpath = "//p[contains(normalize-space(),'" + employeeId + "')]" +
+	                   "/ancestor::td/following-sibling::td[@data-label='Call #']/a";
+	    return By.xpath(xpath);
+	}
+
+
 	private By dataActivityCode = By.xpath("(//td[@data-label='Activity Code'])[1]");
-	private By dataSite = By.xpath("(//td[@data-label='Site'])[1]/a");
+	private By dataSite = By.xpath("(//td[@data-label='Site'])[1]/div");
 
 	// Suspect Description
 	private By btnCollapseSuspectDescription = By.xpath("//span[normalize-space()='Suspect Description']");
@@ -188,8 +195,8 @@ public class CallsPage {
 		return elementUtils.waitForElementVisible(dataAssignedTo, Constants.DEFAULT_WAIT).getText();
 	}
 
-	public String getCallId() {
-		return elementUtils.waitForElementVisible(dataCallId, Constants.DEFAULT_WAIT).getText();
+	public String getCallId(String employeeId) {
+		return elementUtils.waitForElementVisible(getCallIdByEmployeeId(employeeId), Constants.DEFAULT_WAIT).getText();
 	}
 
 	public String getActivityCode() {

@@ -8,7 +8,9 @@ import java.util.TimeZone;
 
 public class ServerTimeUtil {
 
-	public static String getServerTimeInPST(String baseUrl) {
+	public static String getServerTimeInPST() {
+		
+		String baseUrl ="https://stage.commandhubsolutions.com/login";
 		try {
 			URL url = new URL(baseUrl);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();

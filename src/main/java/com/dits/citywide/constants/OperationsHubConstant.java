@@ -1,5 +1,7 @@
 package com.dits.citywide.constants;
 
+import java.util.List;
+
 public class OperationsHubConstant {
 
 	public static final String OFFICER_RECEIVED_VIA = "Call-In";
@@ -24,7 +26,7 @@ public class OperationsHubConstant {
 	public static final String SUSPECT_AGE = "30";
 	public static final String SUSPECT_CLOTHING_WORN = "Black Jacket";
 	public static final String SUSPECT_LAST_KNOWN_DIRECTION = "North";
-	
+
 	// Calls Description
 	public static final String CALL_DESCRIPTION = "This is a test call description for the suspect.";
 
@@ -60,5 +62,27 @@ public class OperationsHubConstant {
 	// All Report
 	public static final String START_SHIFT_ACTIVITY_CODE = "SS";
 	public static final String END_SHIFT_ACTIVITY_CODE = "EOS";
+
+	// Sites
+	// Post Orders
+	public static final String ASSIGNMENT_NAME = "Auto test assignment";
+	public static final String ASSIGNMENT_TEMPLATE = "Automation template";
+	public static final String COVERAGE_TYPE = "Fire - Stationary/Single Site";
+	public static final List<String> ASSIGNMENT_DAYS_OF_WEEK = List.of("Monday", "Tuesday", "Wednesday", "Thursday",
+			"Friday", "Saturday", "Sunday");
+	public static final String ASSIGNMENT_TIME = "04:00";
+	public static final String SNITCH_TIME = "15";
+
+	public static final String CHECKPOINT_NAME = "Auto test checkpoint";
+	public static final String CHECKPOINT_DESCRIPTION = "Auto test checkpoint description";
+	public static final String CHECKPOINT_TYPE = "QR Code";
+
+	public static final String SUCCESS_MESSAGE_CHECKPOINT_ADDED = "Checkpoint added successfully";
+
+	public static final String DELETE_ASSIGNMENT_SUCCESS_MESSAGE = "Task deleted.";
+
+	public static final String DELETE_CHECKPOINT_SUCCESS_MESSAGE = "Checkpoint deleted successfully";
+
+	public static final String CHECKPOINT_SCAN_TIME = "03:00";
 
 }

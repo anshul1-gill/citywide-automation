@@ -77,9 +77,17 @@ public class ElementUtils {
 	}
 
 	// --------------------------- Element Displayed -----------------------------
+//	public boolean doIsDisplayed(By locator, int timeOut) {
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+//		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+//	}
 	public boolean doIsDisplayed(By locator, int timeOut) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+			return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+		} catch (TimeoutException | NoSuchElementException e) {
+			return false; 
+		}
 	}
 
 	// ---------------------------Element Selected----------------------
@@ -581,6 +589,15 @@ public class ElementUtils {
 			System.out.println("Error while pressing Delete key: " + e.getMessage());
 		}
 	}
+	
+	public void pressBrowserBack() {
+	    try {
+	        driver.navigate().back();
+	    } catch (Exception e) {
+	        System.out.println("Error while navigating back: " + e.getMessage());
+	    }
+	}
+
 
 	public void clearTextBoxWithKeys(By locator) {
 		try {

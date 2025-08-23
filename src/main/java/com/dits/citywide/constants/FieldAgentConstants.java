@@ -72,9 +72,16 @@ public class FieldAgentConstants {
 	// Profile
 	// Comments
 	public static final String SELECT_RESPONSE = "Agree";
-	
+
 	public static final String REASON_TEXT = "I disagree with the comment. Please review it again.";
-	
+
 	public static final String SUCCESS_MESSAGE_COMMENT_AGREE = "Response submitted successfully";
+
+	// Reports
+	public static final String PREFLIGHT_CONFIRMATION_MESSAGE = "This will create 8 reports for your current site.";
+
+	public static final String PREFLIGHT_SUCCESS_MESSAGE = "Pre-flight created successfully";
+
+	public static final String NO_DATA_FOUND_TEXT = "No Data Found";
 
 }
