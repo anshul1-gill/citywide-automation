@@ -84,8 +84,10 @@ public class SitesPage {
 	private By btnSave = By.xpath("//button[@type='submit']");
 	private By btnBack = By.xpath("//span[normalize-space()='Back']");
 
-	private By sucessMessage = By.xpath("//div[@class='swal2-icon swal2-success swal2-icon-show']/following-sibling::h2/span");
-	private By deleteCheckpointSucessMessage = By.xpath("//div[@class='Toastify__toast-body']/div/following-sibling::div");
+	private By sucessMessage = By
+			.xpath("//div[@class='swal2-icon swal2-success swal2-icon-show']/following-sibling::h2/span");
+	private By deleteCheckpointSucessMessage = By
+			.xpath("//div[@class='Toastify__toast-body']/div/following-sibling::div");
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
 	private By getDayOption(String day) {
@@ -123,6 +125,30 @@ public class SitesPage {
 				+ "/following-sibling::td[@data-label='Actions']" + "//div[@class='actionicons deleteIcon']";
 		return By.xpath(xpath);
 	}
+
+	// Scan Rules
+	private By tabScanRules = By.cssSelector("#rc-tabs-1-tab-2");
+	private By btnAddScanRule = By.xpath("//span[normalize-space()='Add Scan Rule']");
+	private By txtADDScanTime = By.xpath("//input[@id='scan_deadline_time']");
+	private By txtAddsnitchTime = By.xpath("//input[@id='grace_period']");
+	private By dropdownActiveDays = By.xpath("(//div[@class='ant-select-selector'])[2]");
+	private By btnSaveScan = By.xpath("//button[@type='submit']/span[text()='Add Scan Rule']");
+
+	// Actions Rules
+	private By tabActionsRules = By.cssSelector("#rc-tabs-1-tab-3");
+	private By btnAddactionRule = By.xpath("//button[@type='button']/span[text()='Add Action Rule']");
+	private By txtboxAddpriority = By.xpath("//input[@id='priority']");
+	private By dropdownInputtype = By.xpath("(//div[@class='ant-select-selector'])[2]");
+
+	public By getInputType(String text) {
+		return By.xpath("//div[contains(text(),'" + text + "')]");
+	}
+
+	private By txtboxDirective = By.xpath("//input[@Id='directive']");
+	private By btnSaveAction = By.xpath("//button[@type='submit']/span[text()='Add Action Rule']");
+
+	// QR Code
+	private By tabViewQRcode = By.cssSelector("#rc-tabs-1-tab-4");
 
 	public SitesPage(WebDriver driver) {
 		this.driver = driver;
@@ -241,6 +267,53 @@ public class SitesPage {
 		elementUtils.waitForElementVisible(btnSave, Constants.DEFAULT_WAIT).click();
 	}
 
+	public void clickTabScanRules() {
+		elementUtils.waitForInvisibilityOfElementLocated(deleteCheckpointSucessMessage, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementVisible(tabScanRules, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void clickAddScanRule() {
+		elementUtils.waitForElementVisible(btnAddScanRule, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void fillAddScanRuleForm(String scanTime, String snitchTime, List<String> activeDays) {
+		elementUtils.waitForElementVisible(txtADDScanTime, Constants.DEFAULT_WAIT).sendKeys(scanTime);
+		elementUtils.pressEnterKey();
+		elementUtils.waitForElementVisible(txtAddsnitchTime, Constants.DEFAULT_WAIT).sendKeys(snitchTime);
+		elementUtils.waitForElementToBeClickable(dropdownActiveDays, Constants.DEFAULT_WAIT).click();
+		for (String day : activeDays) {
+			By dayOption = By.xpath("//div[@title='" + day + "' and contains(@class,'ant-select-item-option')]");
+			elementUtils.waitForElementVisible(dayOption, Constants.DEFAULT_WAIT).click();
+		}
+	}
+
+	public void clickSaveScanRule() {
+		elementUtils.waitForElementVisible(btnSaveScan, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void clickTabActionsRules() {
+		elementUtils.waitForElementVisible(tabActionsRules, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void clickAddActionRule() {
+		elementUtils.waitForElementVisible(btnAddactionRule, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void fillAddActionRuleForm(String priority, String inputType, String directive) {
+		elementUtils.waitForElementVisible(txtboxAddpriority, Constants.DEFAULT_WAIT).sendKeys(priority);
+		elementUtils.doClickWithActionsAndWait(dropdownInputtype, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementVisible(getInputType(inputType), Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementVisible(txtboxDirective, Constants.DEFAULT_WAIT).sendKeys(directive);
+	}
+
+	public void clickSaveActionRule() {
+		elementUtils.waitForElementVisible(btnSaveAction, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void clickTabViewQRcode() {
+		elementUtils.waitForElementVisible(tabViewQRcode, Constants.DEFAULT_WAIT).click();
+	}
+
 	public void clickBack() throws InterruptedException {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		elementUtils.doClickWithActionsAndWait(btnBack, Constants.DEFAULT_WAIT);
@@ -249,7 +322,7 @@ public class SitesPage {
 	public String getSuccessMessage() {
 		return elementUtils.waitForElementVisible(sucessMessage, Constants.MEDIUM_TIME_OUT_WAIT).getText();
 	}
-	
+
 	public String getDeleteCheckpointSuccessMessage() {
 		return elementUtils.waitForElementVisible(deleteCheckpointSucessMessage, Constants.MEDIUM_TIME_OUT_WAIT)
 				.getText();
@@ -275,7 +348,7 @@ public class SitesPage {
 		return elementUtils.waitForElementVisible(getCheckpointSiteNameByName(checkpointName), Constants.DEFAULT_WAIT)
 				.getText();
 	}
-	
+
 	public boolean isDeleteAssignmentPresent(String assignmentName) {
 		return elementUtils.doIsDisplayed(deleteButtonByAssignmentName(assignmentName), Constants.DEFAULT_WAIT);
 	}
@@ -288,7 +361,7 @@ public class SitesPage {
 	public void clickOkButton() {
 		elementUtils.waitForElementVisible(btnOkButton, Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public boolean isDeleteCheckpointPresent(String checkpointName) {
 		return elementUtils.doIsDisplayed(deleteButtonByCheckpointName(checkpointName), Constants.DEFAULT_WAIT);
 	}
@@ -296,6 +369,16 @@ public class SitesPage {
 	public void clickDeleteCheckpointByName(String checkpointName) {
 		elementUtils.waitForElementVisible(deleteButtonByCheckpointName(checkpointName), Constants.DEFAULT_WAIT)
 				.click();
+	}
+
+	public String getScanRuleSuccessMessage() {
+		return elementUtils.waitForElementVisible(deleteCheckpointSucessMessage, Constants.MEDIUM_TIME_OUT_WAIT)
+				.getText();
+	}
+
+	public String getActionRuleSuccessMessage() {
+		return elementUtils.waitForElementVisible(deleteCheckpointSucessMessage, Constants.MEDIUM_TIME_OUT_WAIT)
+				.getText();
 	}
 
 }

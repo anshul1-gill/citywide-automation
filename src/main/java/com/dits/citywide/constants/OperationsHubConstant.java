@@ -85,4 +85,14 @@ public class OperationsHubConstant {
 
 	public static final String CHECKPOINT_SCAN_TIME = "03:00";
 
+	public static final String SCAN_TYPE_SCAN_TIME = "03:00";
+	public static final String SCAN_TYPE_SNITCH_TIME = "00:15";
+
+	public static final String ACTION_RULE_PRIORITY = "4";
+	public static final String ACTION_RULE_INPUT_TYPE = "Video";
+	public static final String ACTION_RULE_DIRECTIVE = "Call-In";
+
+	public static final String SCAN_RULE_CREATED_SUCCESS_MESSAGE = "Scan rule created successfully";
+	public static final String ACTION_RULE_CREATED_SUCCESS_MESSAGE = "Action rule created successfully";
+
 }

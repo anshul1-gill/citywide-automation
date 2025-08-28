@@ -23,7 +23,6 @@ import com.dits.citywide.pages.admin.DashboardPage;
 import com.dits.citywide.pages.admin.ERMPage;
 import com.dits.citywide.pages.admin.ERMRemarksHistoryPage;
 import com.dits.citywide.pages.admin.ERMSettingsPage;
-import com.dits.citywide.pages.admin.UpdateEmployeePage;
 import com.dits.citywide.pages.admin.EmployeesPage;
 import com.dits.citywide.pages.admin.HRConfigurationsPage;
 import com.dits.citywide.pages.admin.HolidaysPage;
@@ -33,8 +32,10 @@ import com.dits.citywide.pages.admin.LoginPage;
 import com.dits.citywide.pages.admin.RespondingAgenciesPage;
 import com.dits.citywide.pages.admin.SchedulingPage;
 import com.dits.citywide.pages.admin.SitesPage;
+import com.dits.citywide.pages.admin.TeamSupportTemplatePage;
 import com.dits.citywide.pages.admin.TotalCoursesPage;
 import com.dits.citywide.pages.admin.TrainingPage;
+import com.dits.citywide.pages.admin.UpdateEmployeePage;
 import com.dits.citywide.pages.admin.ViewEmployeePage;
 import com.dits.citywide.pages.admin.ViolationsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
@@ -44,6 +45,7 @@ import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentTeamSupportPage;
 import com.dits.citywide.pages.fieldagent.PassdownLogsPage;
 import com.dits.citywide.pages.patrol.PatrolBeatsPage;
 import com.dits.citywide.pages.patrol.PatrolLeaveRequestsPage;
@@ -97,6 +99,8 @@ public class BaseTest {
 	protected FieldAgentProfileDetailsPage fieldAgentProfileDetailsPage;
 	protected PatrolLeaveRequestsPage patrolLeaveRequestsPage;
 	protected SitesPage sitesPage;
+	protected FieldAgentTeamSupportPage fieldAgentTeamSupportPage;
+	protected TeamSupportTemplatePage teamSupportTemplatePage;
 
 	// @BeforeTest
 	@BeforeClass

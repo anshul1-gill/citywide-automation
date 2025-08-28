@@ -40,14 +40,29 @@
 
 	<test name="Employee Shift Management Tests">
 		<classes>
+
 			<class
 				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
 			<class
+				name="com.dits.citywide.tests.operationhub.SitesPostOrdersDeleteAssignmentAndCheckpointTest" />
+			<class
+				name="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointTest" />
+			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
+
 			<class
 				name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
+
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest" />
 		</classes>
 	</test>
 	<!-- 
