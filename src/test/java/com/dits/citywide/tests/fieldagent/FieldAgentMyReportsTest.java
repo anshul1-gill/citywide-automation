@@ -48,6 +48,9 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//				OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickEditReport3();
@@ -58,6 +61,9 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//				OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickEditReport4();
@@ -68,6 +74,9 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//				OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickEditReport5();
@@ -78,6 +87,9 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//				OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickEditReport6();
@@ -88,6 +100,9 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//				OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickEditReport7();
@@ -98,6 +113,9 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//				OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickEditReport8();
@@ -108,6 +126,9 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//				OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickEditReport9();
@@ -118,6 +139,9 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//				OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickSubmitReports();

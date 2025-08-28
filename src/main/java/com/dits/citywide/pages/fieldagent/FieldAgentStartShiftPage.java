@@ -82,6 +82,7 @@ public class FieldAgentStartShiftPage {
 	}
 
 	private By tabPassdownLogs = By.xpath("//span[normalize-space()='Passdown Logs']");
+	private By tabTeamSupport = By.xpath("//span[normalize-space()='Team Support']");
 
 	// Common
 	private By sucessMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
@@ -164,7 +165,7 @@ public class FieldAgentStartShiftPage {
 		String serverTimeStr = ServerTimeUtil.getServerTimeInPST();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
 		LocalDateTime serverDateTime = LocalDateTime.parse(serverTimeStr, formatter);
-		return serverDateTime.toLocalDate(); 
+		return serverDateTime.toLocalDate();
 	}
 
 	public LocalDate getScheduledDate(String shiftDate) {
@@ -306,6 +307,11 @@ public class FieldAgentStartShiftPage {
 		elementUtils.waitForElementToBeClickable(tabProfileMenu, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementToBeClickable(btnProfile, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentProfileDetailsPage(driver);
+	}
+	
+	public FieldAgentTeamSupportPage clickOnTeamSupportTab() {
+		elementUtils.waitForElementToBeClickable(tabTeamSupport, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentTeamSupportPage(driver);
 	}
 
 	// Previous Shift Logout

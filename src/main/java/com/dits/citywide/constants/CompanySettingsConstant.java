@@ -1,5 +1,7 @@
 package com.dits.citywide.constants;
 
+import java.util.List;
+
 public class CompanySettingsConstant {
 
 	// Add Break Data
@@ -198,5 +200,50 @@ public class CompanySettingsConstant {
 	public static final String EMPLOYMENT_TYPE_UPDATE_SUCCESS_MESSAGE = "Employment type updated successfully";
 
 	public static final String EMPLOYMENT_TYPE_DELETE_SUCCESS_MESSAGE = "Employment type deleted successfully";
+
+	// Team Support Template Data
+	// Template Info
+	public static final String TEMPLATE_NAME = "Patrol Support - Incident Reporting";
+	public static final String DEPARTMENT = "Dispatch";
+	public static final String ASSIGNED_TO = "843";
+	public static final String DECISION_MAKER = "898";
+	public static final String STATUS = "Active";
+	public static final String DESCRIPTION = "Form for reporting incidents during patrol shifts with required details";
+
+	// Text Input
+	public static final String TEXT_INPUT_TO_DISPLAY = "Describe about the incident";
+	public static final String TEXT_LABEL_TO_DISPLAY = "Describe the incident or issue faced during patrol?";
+
+	// Number
+	public static final String NUMBER_TEXT_TO_DISPLAY = "Enter the Count";
+	public static final String NUMBER_LABEL_TO_DISPLAY = "Number of Officers Involved?";
+
+	// Text Area
+	public static final String TEXTAREA_TEXT_TO_DISPLAY = "Additional Notes";
+	public static final String TEXTAREA_LABEL_TO_DISPLAY = "Additional Notes or Instructions";
+
+	// Dropdown
+	public static final String DROPDOWN_TEXT_TO_DISPLAY = "Select support";
+	public static final String DROPDOWN_LABEL_TO_DISPLAY = "Type of Support Required";
+	public static final List<String> DROPDOWN_OPTIONS = List.of("Medical Emergency", "Backup Request",
+			"Vehicle Assistance");
+
+	// Date Field
+	public static final String DATE_TEXT_TO_DISPLAY = "Select the date of incident";
+	public static final String DATE_LABEL_TO_DISPLAY = "Select the date of incident?";
+
+	// Radio Button
+	public static final String RADIO_TEXT_TO_DISPLAY = "Patrol Vehicle Condition";
+	public static final String RADIO_LABEL_TO_DISPLAY = "What is the condition of your patrol vehicle before starting the shift?";
+	public static final List<String> RADIO_OPTIONS = List.of("Good", "Needs Maintenance", "Not Assigned");
+
+	// Email
+	public static final String EMAIL_TEXT_TO_DISPLAY = "Enter your email";
+	public static final String EMAIL_LABEL_TO_DISPLAY = "Email Address";
+
+	// File Upload
+	public static final String FILEUPLOAD_TEXT_TO_DISPLAY = "Upload Patrol Shift Assistance Document";
+	public static final String FILEUPLOAD_LABEL_TO_DISPLAY = "Attach supporting file for Patrol Shift Assistance (PDF only)";
+	public static final String TEMPLATE_SUCCESS_MESSAGE = "Template created successfully";
 
 }

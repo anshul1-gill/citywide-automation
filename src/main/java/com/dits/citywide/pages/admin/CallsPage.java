@@ -21,7 +21,7 @@ public class CallsPage {
 	private By dropdownOfficerReceivedVia = By.xpath("//span[@class='ant-select-selection-item']");
 	private By valuesOfficerReceivedVia = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[1]/div/div");
 
-	private By dropdownPatrolSite = By.xpath("(//span[@class='ant-select-selection-search'])[2]");
+	private By dropdownPatrolSite = By.xpath("(//div[@class='ant-select-selector'])[2]");
 	private By searchboxPatrolSite = By.xpath("//input[@id='site_id']");
 	private By txtViewSiteNotes = By.xpath("//span[normalize-space()='View site notes']");
 
@@ -102,7 +102,7 @@ public class CallsPage {
 		elementUtils.waitForElementToBeClickable(dropdownOfficerReceivedVia, Constants.DEFAULT_WAIT).click();
 		elementUtils.selectElementThroughLocator(valuesOfficerReceivedVia, officerReceivedVia,
 				Constants.SHORT_TIME_OUT_WAIT);
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		elementUtils.waitForElementToBeClickable(dropdownPatrolSite, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(searchboxPatrolSite, Constants.DEFAULT_WAIT).sendKeys(patrolSite);
 		elementUtils.pressEnterKey();

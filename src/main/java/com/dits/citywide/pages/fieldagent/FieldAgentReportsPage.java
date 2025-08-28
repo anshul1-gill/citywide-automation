@@ -58,7 +58,9 @@ public class FieldAgentReportsPage {
 	private By txtboxzipcode = By.xpath("//input[@id='zipcode']");
 	private By txtboxDescription = By.xpath("//textarea[@id='activity_text']");
 
-	private By uploadFile = By.xpath("(//input[@type='file'])[3]");
+	private By txtHeadingReportPhotoVideoUpload = By.xpath("//h4[normalize-space()='Report Photo/Video Upload']");
+	private By uploadFile = By.xpath("//input[@type='file']");
+	private By uploadFileMyAssignment = By.xpath("(//input[@type='file'])[2]");
 	private By btnUpdateLogEntry = By.cssSelector("button[type='submit'] span");
 	private By txtboxImageName = By.cssSelector("#Name0");
 	private By txtboxImageDescription = By.cssSelector("#Description0");
@@ -67,13 +69,15 @@ public class FieldAgentReportsPage {
 	private By dataArriveDateTime = By
 			.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Arrive']/p");
 	private By dataSiteName = By
-			.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Site']/a");
+			.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Site']//div");
 	private By dataDepartDateTime = By
 			.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Depart']/p");
 
 	// All reports
-	private By btnAllReports = By.xpath("//a[@class='tabs-button'][contains(text(),'All')]");
+	private By btnAllReports = By.cssSelector("#rc-tabs-0-tab-all-reports");
 	private By txtboxSearch = By.xpath("//input[@placeholder='Search']");
+	private By dropdownColumn = By.xpath("//div[@class='ant-dropdown-trigger']");
+	private By selectActivityCode = By.xpath("//span[contains(text(),'Activity Code')]");
 
 	private By getOfficerNameDataStartOfShift = By.xpath("(//td[@data-label='Officer'])[10]");
 	private By getSiteDataStartOfShift = By.xpath("(//td[@data-label='Site'])[10]/a");
@@ -117,7 +121,8 @@ public class FieldAgentReportsPage {
 	}
 
 	private By actionByAssignment(String assignmentName) {
-		String xpath = "//td[normalize-space()='" + assignmentName + "']/following-sibling::td[6]//div[@class='cursor-pointer']";
+		String xpath = "//td[normalize-space()='" + assignmentName
+				+ "']/following-sibling::td[6]//div[@class='cursor-pointer']";
 		return By.xpath(xpath);
 	}
 
@@ -173,7 +178,8 @@ public class FieldAgentReportsPage {
 	}
 
 	public void clickSubmitReports() {
-		elementUtils.waitForInvisibilityOfElementLocated(btnPreFlightReports, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForInvisibilityOfElementLocated(btnPreFlightReports,
+		// Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnSubmitReports, Constants.DEFAULT_WAIT).click();
 	}
 
@@ -225,37 +231,38 @@ public class FieldAgentReportsPage {
 	}
 
 	public void clickEditReport2() {
-		elementUtils.waitForInvisibilityOfElementLocated(btnPreFlightReports, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForInvisibilityOfElementLocated(btnPreFlightReports,
+		// Constants.DEFAULT_WAIT);
 		// elementUtils.waitForElementVisible(sucessMessage, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnEditReport2, Constants.SHORT_TIME_OUT_WAIT).click();
 	}
 
 	public void clickEditReport3() {
-		elementUtils.doClick(btnEditReport3);
+		elementUtils.waitForElementToBeClickable(btnEditReport3, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void clickEditReport4() {
-		elementUtils.doClick(btnEditReport4);
+		elementUtils.waitForElementToBeClickable(btnEditReport4, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void clickEditReport5() {
-		elementUtils.doClick(btnEditReport5);
+		elementUtils.waitForElementToBeClickable(btnEditReport5, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void clickEditReport6() {
-		elementUtils.doClick(btnEditReport6);
+		elementUtils.waitForElementToBeClickable(btnEditReport6, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void clickEditReport7() {
-		elementUtils.doClick(btnEditReport7);
+		elementUtils.waitForElementToBeClickable(btnEditReport7, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void clickEditReport8() {
-		elementUtils.doClick(btnEditReport8);
+		elementUtils.waitForElementToBeClickable(btnEditReport8, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void clickEditReport9() {
-		elementUtils.doClick(btnEditReport9);
+		elementUtils.waitForElementToBeClickable(btnEditReport9, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void addOfficerReportEntry(String url, String siteName, String activityCode, String callID,
@@ -263,7 +270,7 @@ public class FieldAgentReportsPage {
 			String description, String imagePath, String fileName, String fileDescription) throws InterruptedException {
 
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
-		//isUpdateOfficerReportEntryVisible();
+		// isUpdateOfficerReportEntryVisible();
 		Thread.sleep(2000);
 		elementUtils.waitForElementVisible(btnNow, Constants.DEFAULT_WAIT);
 		elementUtils.doClickWithActionsAndWait(btnNow, Constants.DEFAULT_WAIT);
@@ -300,12 +307,34 @@ public class FieldAgentReportsPage {
 //		WebElement fileInput = elementUtils.getElement(uploadFile);
 //		String absolutePath = new File(imagePath).getAbsolutePath();
 //		fileInput.sendKeys(absolutePath);
+//		elementUtils.waitForElementVisible(uploadFile, Constants.DEFAULT_WAIT);
+//		elementUtils.uploadFile(uploadFile, imagePath);
+
+//		elementUtils.waitForElementVisible(txtboxImageName, Constants.DEFAULT_WAIT).sendKeys(fileName);
+//		elementUtils.waitForElementVisible(txtboxImageDescription, Constants.DEFAULT_WAIT).sendKeys(fileDescription);
+
+//		elementUtils.waitForElementToBeClickable(btnUpdateLogEntry, Constants.DEFAULT_WAIT).click();
+	}
+
+	public boolean isReportPhotoVideoUploadHeadingVisible() {
+		return elementUtils.doIsDisplayed(txtHeadingReportPhotoVideoUpload, Constants.DEFAULT_WAIT);
+	}
+
+	public void uploadFile(String imagePath, String fileName, String fileDescription) {
 		elementUtils.waitForElementVisible(uploadFile, Constants.DEFAULT_WAIT);
 		elementUtils.uploadFile(uploadFile, imagePath);
-
 		elementUtils.waitForElementVisible(txtboxImageName, Constants.DEFAULT_WAIT).sendKeys(fileName);
 		elementUtils.waitForElementVisible(txtboxImageDescription, Constants.DEFAULT_WAIT).sendKeys(fileDescription);
+	}
 
+	public void uploadFileMyAssignment(String imagePath, String fileName, String fileDescription) {
+		elementUtils.waitForElementVisible(uploadFileMyAssignment, Constants.DEFAULT_WAIT);
+		elementUtils.uploadFile(uploadFileMyAssignment, imagePath);
+		elementUtils.waitForElementVisible(txtboxImageName, Constants.DEFAULT_WAIT).sendKeys(fileName);
+		elementUtils.waitForElementVisible(txtboxImageDescription, Constants.DEFAULT_WAIT).sendKeys(fileDescription);
+	}
+
+	public void clickUpdateLogEntry() {
 		elementUtils.waitForElementToBeClickable(btnUpdateLogEntry, Constants.DEFAULT_WAIT).click();
 	}
 
@@ -325,6 +354,14 @@ public class FieldAgentReportsPage {
 	public void enterTextInSearchBox(String searchText) {
 		elementUtils.waitForElementVisible(txtboxSearch, Constants.DEFAULT_WAIT).sendKeys(searchText);
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+	}
+	
+	public void clickDropdownColumn() {
+		elementUtils.waitForElementToBeClickable(dropdownColumn, Constants.DEFAULT_WAIT).click();
+	}
+	
+	public void selectActivityCode() {
+		elementUtils.waitForElementToBeClickable(selectActivityCode, Constants.DEFAULT_WAIT).click();
 	}
 
 	// Start of Shift
@@ -411,13 +448,11 @@ public class FieldAgentReportsPage {
 	public boolean isActionByAssignmentVisible(String assignmentName) {
 		return elementUtils.doIsDisplayed(actionByAssignment(assignmentName), Constants.DEFAULT_WAIT);
 	}
-	
+
 	public void clickActionByAssignment(String assignmentName) {
 		elementUtils.waitForElementToBeClickable(actionByAssignment(assignmentName), Constants.DEFAULT_WAIT).click();
 	}
-	
-	
-	
+
 	// Check Points Tab
 	public void clickCheckPointsTab() {
 		elementUtils.waitForElementToBeClickable(tabCheckPoints, Constants.DEFAULT_WAIT).click();

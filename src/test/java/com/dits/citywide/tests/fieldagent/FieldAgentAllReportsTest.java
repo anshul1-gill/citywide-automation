@@ -22,6 +22,8 @@ public class FieldAgentAllReportsTest extends BaseTest {
 		fieldAgentReportsPage = fieldAgentStartShiftPage.clickOnReportsTab();
 		fieldAgentReportsPage.clickAllReports();
 		fieldAgentReportsPage.enterTextInSearchBox(prop.getProperty("employeeID"));
+		fieldAgentReportsPage.clickDropdownColumn();
+		fieldAgentReportsPage.selectActivityCode();
 		softAssert.assertEquals(fieldAgentReportsPage.getOfficerNameDataStartOfShift(), prop.getProperty("employeeID")
 				+ " " + HRManagementConstants.FIRST_NAME + " " + HRManagementConstants.LAST_NAME);
 		softAssert.assertEquals(fieldAgentReportsPage.getArriveDataStartOfShift(),

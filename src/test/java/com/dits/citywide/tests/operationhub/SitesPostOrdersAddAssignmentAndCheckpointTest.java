@@ -33,7 +33,6 @@ public class SitesPostOrdersAddAssignmentAndCheckpointTest extends BaseTest {
 				OperationsHubConstant.ASSIGNMENT_TEMPLATE, OperationsHubConstant.COVERAGE_TYPE,
 				OperationsHubConstant.ASSIGNMENT_DAYS_OF_WEEK, OperationsHubConstant.ASSIGNMENT_TIME,
 				OperationsHubConstant.SNITCH_TIME);
-
 		sitesPage.clickAddAssignment();
 
 		// Assertions for Assignment
@@ -72,10 +71,27 @@ public class SitesPostOrdersAddAssignmentAndCheckpointTest extends BaseTest {
 		sitesPage.clickAddNewCheckPoint();
 		sitesPage.fillCheckPointForm(OperationsHubConstant.CHECKPOINT_NAME,
 				OperationsHubConstant.CHECKPOINT_DESCRIPTION, OperationsHubConstant.CHECKPOINT_TYPE);
-
 		sitesPage.clickSave();
-		Thread.sleep(10000);
 
+		Thread.sleep(2000);
+		sitesPage.clickTabScanRules();
+		sitesPage.clickAddScanRule();
+		sitesPage.fillAddScanRuleForm(OperationsHubConstant.SCAN_TYPE_SCAN_TIME,
+				OperationsHubConstant.SCAN_TYPE_SNITCH_TIME, OperationsHubConstant.ASSIGNMENT_DAYS_OF_WEEK);
+		sitesPage.clickSaveScanRule();
+		softAssert.assertEquals(sitesPage.getScanRuleSuccessMessage(),
+				OperationsHubConstant.SCAN_RULE_CREATED_SUCCESS_MESSAGE);
+
+		Thread.sleep(2000);
+		sitesPage.clickTabActionsRules();
+		sitesPage.clickAddActionRule();
+		sitesPage.fillAddActionRuleForm(OperationsHubConstant.ACTION_RULE_PRIORITY,
+				OperationsHubConstant.ACTION_RULE_INPUT_TYPE, OperationsHubConstant.ACTION_RULE_DIRECTIVE);
+		sitesPage.clickSaveActionRule();
+		softAssert.assertEquals(sitesPage.getActionRuleSuccessMessage(),
+				OperationsHubConstant.ACTION_RULE_CREATED_SUCCESS_MESSAGE);
+
+		Thread.sleep(10000);
 		sitesPage.clickBack();
 		softAssert.assertEquals(sitesPage.getHeadingCheckPoint(), "Guard Tour Checkpoints");
 

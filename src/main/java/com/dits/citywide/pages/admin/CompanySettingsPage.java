@@ -35,6 +35,8 @@ public class CompanySettingsPage {
 	private By lnkSystemConfigurations = By.xpath("//h4[normalize-space()='System Configurations']");
 	private By lnkRespondingAgencies = By.xpath("//h4[normalize-space()='Responding Agencies']");
 
+	private By lnkTeamSupportTemplate = By.xpath("//h4[normalize-space()='Team Support Templates']");
+
 	public CompanySettingsPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
@@ -149,20 +151,25 @@ public class CompanySettingsPage {
 		elementUtils.waitForElementToBeClickable(lnkViolations, Constants.DEFAULT_WAIT).click();
 		return new ViolationsPage(driver);
 	}
-	
+
 	public ActivityTemplatePage clickActivityTemplatesLink() {
 		elementUtils.waitForElementToBeClickable(lnkActivityTemplates, Constants.DEFAULT_WAIT).click();
 		return new ActivityTemplatePage(driver);
 	}
-	
+
 	public RespondingAgenciesPage clickRespondingAgenciesLink() {
 		elementUtils.waitForElementToBeClickable(lnkRespondingAgencies, Constants.DEFAULT_WAIT).click();
 		return new RespondingAgenciesPage(driver);
-	} 
-	
+	}
+
 	public HRConfigurationsPage clickHRConfigurationsLink() {
 		elementUtils.waitForElementToBeClickable(lnkHRConfigurations, Constants.DEFAULT_WAIT).click();
 		return new HRConfigurationsPage(driver);
+	}
+
+	public TeamSupportTemplatePage clickTeamSupportTemplateLink() {
+		elementUtils.waitForElementToBeClickable(lnkTeamSupportTemplate, Constants.DEFAULT_WAIT).click();
+		return new TeamSupportTemplatePage(driver);
 	}
 
 }

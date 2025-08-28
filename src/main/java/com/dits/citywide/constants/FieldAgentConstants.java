@@ -84,4 +84,24 @@ public class FieldAgentConstants {
 
 	public static final String NO_DATA_FOUND_TEXT = "No Data Found";
 
+	// Team Support
+	public static final String SUBJECT_NAME = "Patrol Support - Incident Reporting";
+	public static final String MESSAGE = "I would like to report an incident of abuse that I witnessed during my shift.";
+
+	public static final String EXPLAIN_INCIDENCE = "Witnessed verbal abuse towards a colleague by a customer.";
+
+	public static final String Name_OR_Badge = "John Doe / Badge 1234";
+
+	public static final String INCIDENCE_DATE = "08/22/2025";
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

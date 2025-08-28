@@ -38,13 +38,18 @@ public class FieldAgentMyAssignments extends BaseTest {
 		softAssert.assertTrue(fieldAgentReportsPage.isActionByAssignmentVisible(OperationsHubConstant.ASSIGNMENT_NAME),
 				"Action link is not visible!");
 		fieldAgentReportsPage.clickActionByAssignment(OperationsHubConstant.ASSIGNMENT_NAME);
-		//Thread.sleep(5000);
+		// Thread.sleep(5000);
 		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
 				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
 				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
 				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
 				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 				OperationsHubConstant.FILE_DESCRIPTION);
+		softAssert.assertTrue(fieldAgentReportsPage.isReportPhotoVideoUploadHeadingVisible());
+//		fieldAgentReportsPage.uploadFileMyAssignment(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK,
+//				OperationsHubConstant.FILE_NAME, OperationsHubConstant.FILE_DESCRIPTION);
+		fieldAgentReportsPage.clickUpdateLogEntry();
+		fieldAgentReportsPage.clickOkButton();
 		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 		fieldAgentReportsPage.clickMyAssignments();
 		softAssert.assertEquals(
