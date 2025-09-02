@@ -12,10 +12,13 @@ public class FieldAgentReportsPage {
 	private ElementUtils elementUtils;
 
 	private By btnReportsTab = By.xpath("//span[normalize-space()='Reports']");
-	private By btnPreFlightReports = By.xpath("(//span[contains(text(),'Pre-Flight Reports')])[2]");
+	// private By btnPreFlightReports =
+	// By.xpath("(//span[contains(text(),'Pre-Flight Reports')])[2]");
+	private By btnPreFlightReports = By.xpath("//a[contains(text(),'Pre-Flight Reports')]");
 	private By txtPreflightConfirmationMessage = By.cssSelector("#swal2-html-container");
-
-	private By btnAddNewReport = By.xpath("(//span[contains(text(),'Add New Report')])[2]");
+	// private By btnAddNewReport = By.xpath("(//span[contains(text(),'Add New
+	// Report')])[2]");
+	private By btnAddNewReport = By.xpath("//a[contains(text(),'Add New Report')]");
 	private By btnSubmitReports = By.xpath("//button[normalize-space()='Submit Reports']");
 	private By txtNoItemsFound = By
 			.xpath("//span[@class='px-2 py-8 text-base font-medium text-center text-gray-400 dark:text-white']");
@@ -23,6 +26,7 @@ public class FieldAgentReportsPage {
 	private By endShiftConfirmationMessage = By.xpath("//div[@id='swal2-html-container']");
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 
+	private By btnReOpenPatrolLog = By.xpath("//button[normalize-space()='Re-Open Patrol Log']");
 	private By txtNoDataFound = By.xpath("//td[normalize-space()='No Data Found']");
 
 	private By txtCloseOutFieldAgentLog = By.xpath("//h2[normalize-space()='Close Out Field Agent Log']");
@@ -40,7 +44,9 @@ public class FieldAgentReportsPage {
 	private By btnEditReport8 = By.xpath("(//div[@class='actionicons editPencil'])[13]");
 	private By btnEditReport9 = By.xpath("(//div[@class='actionicons editPencil'])[15]");
 
-	private By btnNow = By.xpath("(//div[@class='ant-form-item clock-icon c-m-0 css-p9nxzu'])[1]");
+	// private By btnNow = By.xpath("(//div[@class='ant-form-item clock-icon c-m-0
+	// css-p9nxzu'])[1]");
+	private By btnNow = By.cssSelector("div[title='Arrive Now']");
 	private By dropdownPatrolSite = By.xpath("(//div[@class='ant-select-selector'])[1]");
 	private By patrolSite = By.cssSelector("#patrol_site_id");
 	private By dropdownActivityCode = By.xpath("(//div[@class='ant-select-selector'])[2]");
@@ -92,7 +98,9 @@ public class FieldAgentReportsPage {
 	private By getActivityCodeDataEndOfShift = By.xpath("(//td[@data-label='Activity Code'])[1]");
 
 	// My Assignments
-	private By btnMyAssignments = By.cssSelector("#rc-tabs-0-tab-my-assignment");
+	// private By btnMyAssignments = By.cssSelector("#rc-tabs-0-tab-my-assignment");
+	private By btnMyAssignments = By.xpath("//a[@class='tabs-button'][normalize-space()='My Assignments']");
+
 	private By search = By.cssSelector("input[placeholder='Search']");
 
 	private By siteNameByAssignment(String assignmentName) {
@@ -203,6 +211,10 @@ public class FieldAgentReportsPage {
 
 	public String getNoDataFoundText() {
 		return elementUtils.waitForElementVisible(txtNoDataFound, Constants.DEFAULT_WAIT).getText();
+	}
+	
+	public boolean isReOpenPatrolLogVisible() {
+		return elementUtils.doIsDisplayed(btnReOpenPatrolLog, Constants.DEFAULT_WAIT);
 	}
 
 	public String getEndShiftConfirmationMessage() {
@@ -355,11 +367,11 @@ public class FieldAgentReportsPage {
 		elementUtils.waitForElementVisible(txtboxSearch, Constants.DEFAULT_WAIT).sendKeys(searchText);
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 	}
-	
+
 	public void clickDropdownColumn() {
 		elementUtils.waitForElementToBeClickable(dropdownColumn, Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public void selectActivityCode() {
 		elementUtils.waitForElementToBeClickable(selectActivityCode, Constants.DEFAULT_WAIT).click();
 	}

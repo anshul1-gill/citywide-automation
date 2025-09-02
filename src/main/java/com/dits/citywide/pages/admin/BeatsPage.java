@@ -20,6 +20,7 @@ public class BeatsPage {
 	private By selectShiftTypeValue = By.xpath("//div[@class='rc-virtual-list-holder-inner']/div/div");
 	private By dropdwonNumberOfSites = By.xpath("(//div[@class='ant-select-selector'])[2]");
 	private By searchNumberOfSites = By.xpath("//span[normalize-space()='Number of Sites']");
+	private By searchNumberOfSitesUpdate = By.xpath("//div[@class='ant-select-selection-search']");
 
 	private By btnSubmitAddBeat = By.xpath("//button[contains(@type,'submit')]");
 
@@ -115,11 +116,11 @@ public class BeatsPage {
 		elementUtils.selectElementThroughLocator(selectShiftTypeValue, shiftType, Constants.SHORT_TIME_OUT_WAIT);
 
 		elementUtils.doClickWithActionsAndWait(dropdwonNumberOfSites, Constants.DEFAULT_WAIT);
-		Thread.sleep(1000);
-		elementUtils.clearTextBoxWithActions(searchNumberOfSites);
+		Thread.sleep(2000);
+		elementUtils.clearTextBoxWithActions(searchNumberOfSitesUpdate);
 		elementUtils.pressDeleteKey();
-		elementUtils.waitForElementVisible(searchNumberOfSites, Constants.DEFAULT_WAIT);
-		elementUtils.doActionsSendKeys(searchNumberOfSites, numberOfSites);
+		elementUtils.waitForElementVisible(searchNumberOfSitesUpdate, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(searchNumberOfSitesUpdate, numberOfSites);
 		Thread.sleep(1000);
 		elementUtils.pressEnterKey();
 	}
@@ -135,6 +136,5 @@ public class BeatsPage {
 	public String getDeleteSuccessMessage() {
 		return elementUtils.waitForElementVisible(txtDeleteSuccessMessage, Constants.DEFAULT_WAIT).getText();
 	}
-	
 
 }

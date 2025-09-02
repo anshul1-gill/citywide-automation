@@ -29,7 +29,7 @@ public class HolidaysPage {
 	private By valuesRecurring = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[2]/div/div");
 	private By dropdownPaymentType = By.xpath("(//div[contains(@class,'ant-select-selector')])[3]");
 	private By valuesPaymentType = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[3]/div/div");
-	private By txtboxDescription = By.xpath("//textarea[@id='description']");
+	private By txtboxDescription = By.cssSelector("#description");
 	private By btnSubmitAddHoliday = By.xpath("//button[contains(@type,'submit')]");
 
 	private By dataHolidayName = By.xpath("(//td[@data-label='Holiday Name'])[1]");
@@ -62,7 +62,7 @@ public class HolidaysPage {
 	private By btnSubmitCustomHoliday = By.xpath("(//button[contains(@type,'submit')])[2]");
 
 	// For updating custom holiday
-	private By txtboxUpdateCustomHolidayName = By.xpath("//input[@id='holiday_name' and @placeholder='Holiday Name']");
+	private By txtboxUpdateCustomHolidayName = By.cssSelector("#holiday_name");
 	private By txtboxUpdateCustomHolidayDate = By.xpath("//input[@id='date']");
 	private By startTimeCustomUpdate = By.xpath("//input[@id='775']");
 	private By endTimeCustomUpdate = By.xpath("//input[@id='776']");
@@ -240,15 +240,12 @@ public class HolidaysPage {
 
 	public void updateCustomHoliday(String holidayName, String holidayDate, String startTime, String endTime,
 			String recurring, String paymentType, String description) throws InterruptedException {
-		// elementUtils.waitForElementVisible(txtboxCustomHolidayName,
-		// Constants.DEFAULT_WAIT).sendKeys(holidayName);
 
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(txtboxUpdateCustomHolidayName, Constants.DEFAULT_WAIT);
 		elementUtils.clearTextBoxWithActions(txtboxUpdateCustomHolidayName);
 		elementUtils.doActionsSendKeys(txtboxUpdateCustomHolidayName, holidayName);
 
-		// elementUtils.waitForElementVisible(txtboxCustomHolidayDate,
-		// Constants.DEFAULT_WAIT).sendKeys(holidayDate);
 		elementUtils.waitForElementVisible(txtboxUpdateCustomHolidayDate, Constants.DEFAULT_WAIT);
 		elementUtils.clearTextBoxWithActions(txtboxUpdateCustomHolidayDate);
 		elementUtils.doActionsSendKeys(txtboxUpdateCustomHolidayDate, holidayDate);

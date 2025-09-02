@@ -18,7 +18,7 @@ public class PassdownLogsPage {
 	private By btnAddPassdownLog = By.xpath("//span[normalize-space()='Add New Passdown']");
 
 	// Add New Passdown Log
-	private By siteNameDropdownValue = By.xpath("//span[@class='ant-select-selection-search']");
+	private By siteNameDropdownValue = By.xpath("//div[@class='ant-select-selector']");
 	private By searchSiteName = By.xpath("//input[@id='patrol_site_id']");
 	private By txtboxMessage = By.xpath("//textarea[@id='passdown_message']");
 	private By uploadImage = By.xpath("//input[@type='file']");
@@ -93,9 +93,9 @@ public class PassdownLogsPage {
 		elementUtils.waitForElementToBeClickable(btnAddPassdownLog, Constants.DEFAULT_WAIT).click();
 	}
 
-	public String getSiteNameDropdownValue() {
-		return elementUtils.getText(siteNameDropdownValue, Constants.DEFAULT_WAIT);
-	}
+//	public String getSiteNameDropdownValue() {
+//		return elementUtils.getText(siteNameDropdownValue, Constants.DEFAULT_WAIT);
+//	}
 
 	public void searchSiteName(String siteName) throws InterruptedException {
 		elementUtils.waitForElementToBeClickable(siteNameDropdownValue, Constants.DEFAULT_WAIT).click();

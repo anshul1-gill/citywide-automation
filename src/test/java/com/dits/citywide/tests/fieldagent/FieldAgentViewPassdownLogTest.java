@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.FieldAgentConstants;
 
-public class ViewPassdownLogTest extends BaseTest {
+public class FieldAgentViewPassdownLogTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {

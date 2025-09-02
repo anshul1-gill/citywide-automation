@@ -9,25 +9,37 @@
 	</listeners>
 		-->
 
-	<test name="Field Agent Apply Leave Test">
+	<test name="Passwdown Logs Tests - Field Agent">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
+				name="com.dits.citywide.tests.fieldagent.FieldAgnetNewPassdownLogTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentViewPassdownLogTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentScanImagesPassdownLogTest"
+			/>
 		</classes>
 	</test>
 
-	<test name="Field Agent Update Leave Test">
+	<test name="Decline Leave Request Test Patrol Officer">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateLeaveTest" />
+				name="com.dits.citywide.tests.patrol.PatrolApplyLeaveTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsPatrolTest"
+			/>
 		</classes>
 	</test>
 
-	<test name="Field Agent Cancel Leave Test">
+	<test name="Approve Leave Request Test Patrol Officer">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentCancelLeaveTest" />
+				name="com.dits.citywide.tests.patrol.PatrolApplyLeaveTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsPatrolTest"
+			/>
 		</classes>
 	</test>
+
 
 </suite> 
