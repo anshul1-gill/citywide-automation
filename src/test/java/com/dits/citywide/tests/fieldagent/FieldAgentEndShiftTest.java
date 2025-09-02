@@ -26,9 +26,11 @@ public class FieldAgentEndShiftTest extends BaseTest {
 		fieldAgentReportsPage = fieldAgentStartShiftPage.doClickEndShift();
 
 		fieldAgentReportsPage.clickEndShift();
-		fieldAgentReportsPage.clickOkButton();
-		softAssert.assertEquals(fieldAgentReportsPage.getNoDataFoundText(), FieldAgentConstants.NO_DATA_FOUND_TEXT,
-				"No Data Found text mismatch!");
+
+//		softAssert.assertEquals(fieldAgentReportsPage.getNoDataFoundText(), FieldAgentConstants.NO_DATA_FOUND_TEXT,
+//				"No Data Found text mismatch!");
+		softAssert.assertTrue(fieldAgentReportsPage.isReOpenPatrolLogVisible(),
+				"Re-Open Patrol Log button should be visible");
 		softAssert.assertAll();
 	}
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Citywide Regression Suite">
+
+	<!-- 
+	<listeners>
+		<listener class-name=""></listener>
+	</listeners>
+	-->
+
+	<test
+		name="Employee Shift Management Tests with features Start Shift , Add New Call , My Assignments , Reports , End Shift ">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
+			<class
+				name="com.dits.citywide.tests.operationhub.SitesPostOrdersDeleteAssignmentAndCheckpointTest"
+			/>
+			<class
+				name="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointTest"
+			/>
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
+			<class
+				name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
+			<!-- <class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments" /> -->
+			<!-- <class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest" /> -->
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest" />
+			<!--<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest" />  -->
+		</classes>
+	</test>
+
+</suite> 

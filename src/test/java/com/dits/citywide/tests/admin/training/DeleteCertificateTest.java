@@ -19,7 +19,7 @@ public class DeleteCertificateTest extends BaseTest {
 		certificatesPage = trainingPage.clickOnCertificates();
 		softAssert.assertEquals(certificatesPage.getHeadingCertificates(), "Certificates",
 				"Heading Certificates is not visible");
-		certificatesPage.clickDeleteCertificateButton(TrainingConstants.UPDATED_CERTIFICATE_NAME);
+		certificatesPage.clickDeleteCertificateButton(TrainingConstants.CERTIFICATE_NAME);
 		certificatesPage.clickOnDeleteButton();
 		softAssert.assertEquals(certificatesPage.getSuccessMessage(),
 				TrainingConstants.CERTIFICATE_DELETED_SUCCESS_MESSAGE);

@@ -28,6 +28,7 @@ public class FieldAgentLeaveRequestsPage {
 	private By btnApplyLeave = By.xpath("//button[contains(@type,'submit')]");
 	private By btnReset = By.xpath("//button[@type='reset']");
 
+	private By search = By.cssSelector("input[placeholder='Search']");
 	private By dataLeaveType = By.xpath("(//td[@data-label='Leave Type'])[1]");
 	private By dataFromDate = By.xpath("(//td[@data-label='From'])[1]");
 	private By dataStartTime = By.xpath("(//td[@data-label='Start Time'])[1]");
@@ -201,6 +202,10 @@ public class FieldAgentLeaveRequestsPage {
 				+ "')]]//div[normalize-space()='Canceled']";
 
 		return elementUtils.waitForElementVisible(By.xpath(expath), Constants.DEFAULT_WAIT).getText();
+	}
+
+	public void doSearch(String employeeID) {
+		elementUtils.waitForElementVisible(search, Constants.DEFAULT_WAIT).sendKeys(employeeID);
 	}
 
 }

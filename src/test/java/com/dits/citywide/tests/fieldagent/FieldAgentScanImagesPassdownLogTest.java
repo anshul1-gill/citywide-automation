@@ -7,7 +7,7 @@ import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.FieldAgentConstants;
 import com.dits.citywide.constants.HRManagementConstants;
 
-public class ScanImagesPassdownLogTest extends BaseTest {
+public class FieldAgentScanImagesPassdownLogTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {

@@ -2,6 +2,7 @@ package com.dits.citywide.pages.admin;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.utilities.ElementUtils;
@@ -50,7 +51,8 @@ public class LeavesPage {
 	}
 
 	public void fillLeaveForm(String leaveName, String numberOfDays, String description) {
-		elementUtils.waitForElementVisible(txtboxLeaveName, Constants.DEFAULT_WAIT).sendKeys(leaveName);
+		WebElement ele = elementUtils.waitForElementVisible(txtboxLeaveName, Constants.DEFAULT_WAIT);
+		ele.sendKeys(leaveName);
 		elementUtils.waitForElementVisible(txtboxNumberOdDays, Constants.DEFAULT_WAIT).sendKeys(numberOfDays);
 		elementUtils.waitForElementVisible(txtboxDescription, Constants.DEFAULT_WAIT).sendKeys(description);
 	}
@@ -111,15 +113,15 @@ public class LeavesPage {
 				+ "']/following-sibling::td//div[@class='cursor-pointer']";
 		elementUtils.waitForElementToBeClickable(By.xpath(editxpath), Constants.SHORT_TIME_OUT_WAIT).click();
 	}
-	
+
 	public boolean isDeleteConfirmationMessageVisible() {
 		return elementUtils.doIsDisplayed(deleteconfirmationMessage, Constants.DEFAULT_WAIT);
 	}
-	
+
 	public void confirmDeleteLeave() {
 		elementUtils.waitForElementToBeClickable(btnOkDeleteBreak, Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public boolean isDeleteSuccessMessageVisible() {
 		return elementUtils.doIsDisplayed(deletesuccessMessage, Constants.DEFAULT_WAIT);
 	}

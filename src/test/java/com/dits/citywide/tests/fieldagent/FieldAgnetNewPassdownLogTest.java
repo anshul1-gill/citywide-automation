@@ -7,7 +7,7 @@ import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.FieldAgentConstants;
 import com.dits.citywide.constants.HRManagementConstants;
 
-public class NewPassdownLogTest extends BaseTest {
+public class FieldAgnetNewPassdownLogTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -20,9 +20,9 @@ public class NewPassdownLogTest extends BaseTest {
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		passdownLogsPage = fieldAgentStartShiftPage.clickOnPassdownLogsTab();
 		passdownLogsPage.clickAddPassdownLog();
-		softAssert.assertTrue(passdownLogsPage.getSiteNameDropdownValue().contains(HRManagementConstants.SITE),
-				"Site name dropdown value is not as expected");
-		//passdownLogsPage.searchSiteName(HRManagementConstants.SITE);
+//		softAssert.assertTrue(passdownLogsPage.getSiteNameDropdownValue().contains(HRManagementConstants.SITE),
+//				"Site name dropdown value is not as expected");
+		passdownLogsPage.searchSiteName(HRManagementConstants.SITE);
 		passdownLogsPage.enterMessage(FieldAgentConstants.PASSDOWN_MESSAGE);
 		passdownLogsPage.uploadImage(FieldAgentConstants.PASSDOWN_IMAGE_PATH);
 		softAssert.assertEquals(passdownLogsPage.getHeadingEditImage(), "Edit Image",

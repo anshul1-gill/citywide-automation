@@ -16,7 +16,7 @@ public class FieldAgentAllReportsTest extends BaseTest {
 	}
 
 	@Test
-	public void endShiftTest() throws InterruptedException {
+	public void allReportsFieldAgentTest() throws InterruptedException {
 		Thread.sleep(1000);
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		fieldAgentReportsPage = fieldAgentStartShiftPage.clickOnReportsTab();

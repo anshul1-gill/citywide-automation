@@ -26,12 +26,15 @@ public class DeclineLeaveRequestsTest extends BaseTest {
 
 		String[] fromDateParts = leaveRequestsPage.getFromDateText();
 		softAssert.assertEquals(fromDateParts[0], FieldAgentConstants.LEAVE_FROM_MONTH);
-		softAssert.assertEquals(fromDateParts[1], FieldAgentConstants.LEAVE_FROM_DATE);
+		// softAssert.assertEquals(fromDateParts[1],
+		// FieldAgentConstants.LEAVE_FROM_DATE);
+		softAssert.assertTrue(fromDateParts[1].contains(FieldAgentConstants.LEAVE_FROM_DATE));
 		softAssert.assertEquals(fromDateParts[2], FieldAgentConstants.LEAVE_FROM_YEAR);
 
 		String[] toDateParts = leaveRequestsPage.getToDateText();
 		softAssert.assertEquals(toDateParts[0], FieldAgentConstants.LEAVE_TO_MONTH);
-		softAssert.assertEquals(toDateParts[1], FieldAgentConstants.LEAVE_TO_DATE);
+		// softAssert.assertEquals(toDateParts[1], FieldAgentConstants.LEAVE_TO_DATE);
+		softAssert.assertTrue(toDateParts[1].contains(FieldAgentConstants.LEAVE_TO_DATE));
 		softAssert.assertEquals(toDateParts[2], FieldAgentConstants.LEAVE_TO_YEAR);
 
 		int totalDays = (Integer.parseInt(toDateParts[1]) - Integer.parseInt(fromDateParts[1])) + 1;

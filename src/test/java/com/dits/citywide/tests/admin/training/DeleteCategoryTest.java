@@ -19,7 +19,7 @@ public class DeleteCategoryTest extends BaseTest {
 		courseCategoriesPage = trainingPage.clickOnCourseCategories();
 		softAssert.assertEquals(courseCategoriesPage.getHeadingCategories(), "Categories",
 				"Heading Categories is not visible");
-		courseCategoriesPage.clickDeleteCategoryButton(TrainingConstants.CATEGORY_NAME_UPDATED);
+		courseCategoriesPage.clickDeleteCategoryButton(TrainingConstants.CATEGORY_NAME);
 		courseCategoriesPage.clickOnOkDelete();
 
 		softAssert.assertEquals(courseCategoriesPage.getSuccessMessage(), TrainingConstants.CATEGORY_NAME_DELETED,

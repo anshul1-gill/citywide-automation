@@ -14,7 +14,7 @@ public class UpdateBreakTest extends BaseTest {
 	}
 
 	@Test
-	public void addBreakPageTest() throws InterruptedException {
+	public void updateBreakTest() throws InterruptedException {
 		companySettingsPage = dashboardPage.doClickCompanySettingsTab();
 		breaksPage = companySettingsPage.clickBreaksLink();
 		breaksPage.clickEditBreakButton(CompanySettingsConstant.BREAK_NAME);

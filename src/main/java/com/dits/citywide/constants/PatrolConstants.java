@@ -9,11 +9,11 @@ public class PatrolConstants {
 	// Leavve Request Data
 	public static final String LEAVE_TYPE = "Study";
 
-	public static final String LEAVE_FROM_MONTH = "Aug";
+	public static final String LEAVE_FROM_MONTH = "Oct";
 	public static final String LEAVE_FROM_YEAR = "2025";
 	public static final String LEAVE_FROM_DATE = "22";
 
-	public static final String LEAVE_TO_MONTH = "Aug";
+	public static final String LEAVE_TO_MONTH = "Oct";
 	public static final String LEAVE_TO_YEAR = "2025";
 	public static final String LEAVE_TO_DATE = "23";
 
@@ -25,11 +25,11 @@ public class PatrolConstants {
 	// Edit Leave Request Data
 	public static final String EDIT_LEAVE_TYPE = "Sick leave";
 
-	public static final String EDIT_LEAVE_FROM_MONTH = "Sep";
+	public static final String EDIT_LEAVE_FROM_MONTH = "Nov";
 	public static final String EDIT_LEAVE_FROM_YEAR = "2025";
 	public static final String EDIT_LEAVE_FROM_DATE = "21";
 
-	public static final String EDIT_LEAVE_TO_MONTH = "Sep";
+	public static final String EDIT_LEAVE_TO_MONTH = "Nov";
 	public static final String EDIT_LEAVE_TO_YEAR = "2025";
 	public static final String EDIT_LEAVE_TO_DATE = "22";
 
