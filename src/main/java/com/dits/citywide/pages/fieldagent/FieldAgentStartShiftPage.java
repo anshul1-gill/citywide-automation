@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.constants.Constants;
+import com.dits.citywide.utilities.CurrentDateTimeUtils;
 import com.dits.citywide.utilities.ElementUtils;
 import com.dits.citywide.utilities.ServerTimeUtil;
 
@@ -22,6 +23,13 @@ public class FieldAgentStartShiftPage {
 //			"//div[@class='flex items-center justify-between px-3 py-2 text-white rounded-t-lg bg-blue2 dark:bg-blue2']/h2");
 	private By btnMarkAsRead = By.xpath("//div[@class='flex items-center gap-3']/button");
 	private By tabStartShift = By.xpath("(//span[contains(text(),'Start Shift')])[1]");
+
+	private By getDateLocator(String day) {
+		return By.xpath(
+				"//td[contains(@class, 'ant-picker-cell-in-view')]//div[@class='ant-picker-calendar-date-value' and normalize-space(text())='"
+						+ day + "']/following-sibling::div");
+	}
+
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 	private By btnViewSite = By.xpath("//span[normalize-space()='View Site']");
 	private By btnStartShift = By.xpath("(//span[contains(text(),'Start Shift')])[2]");
@@ -64,6 +72,7 @@ public class FieldAgentStartShiftPage {
 
 	// Previous Shift Logout
 	private By txtHeadingPreviousShiftLogout = By.xpath("//h2[normalize-space()='Log out of previous shift']");
+	private By txtboxCheckOutDateTime = By.cssSelector("#depart_timedate");
 	private By txtboxReasonPreviousShiftLogout = By.xpath("//textarea[@id='activity_text']");
 	private By btnSubmitPreviousShiftLogout = By.xpath("//button[@id='submitButton']");
 	private By txtSucessMessagePreviousShiftLogout = By.xpath("//h2[@id='swal2-title']/span");
@@ -75,6 +84,11 @@ public class FieldAgentStartShiftPage {
 	// Profile
 	private By tabProfileMenu = By.xpath("//button[@class='flex items-center gap-2 text-sm']");
 	private By btnProfile = By.xpath("//a[normalize-space()='Profile']");
+
+	// Form
+	private By formsclick = By.xpath("//p[@title='Forms']");
+	private By parkingCitationFormLink = By.xpath("//span[normalize-space()='Parking Citation']");
+	private By trespassNoticesFormLink = By.xpath("//span[normalize-space()='Trespass Notice']");
 
 	public By getCreateReportButtonByIndex(int pasdownbuttonCount) {
 		String xpath = "(//button[normalize-space()='Create Report'])[" + pasdownbuttonCount + "]";
@@ -113,15 +127,12 @@ public class FieldAgentStartShiftPage {
 	}
 
 	public void viewShiftDetails(String day) throws InterruptedException {
-
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		Thread.sleep(1000);
 		if (day.length() == 1) {
 			day = "0" + day;
 		}
-		String dayxpath = "//td[contains(@class, 'ant-picker-cell-in-view')]//div[@class='ant-picker-calendar-date-value' and normalize-space(text())='"
-				+ day + "']/following-sibling::div";
-		elementUtils.waitForElementVisible(By.xpath(dayxpath), Constants.DEFAULT_WAIT);
-		elementUtils.doActionsClick(By.xpath(dayxpath));
-
+		elementUtils.doClickWithActionsAndWait(getDateLocator(day), Constants.DEFAULT_WAIT);
 	}
 
 	public String getSite() {
@@ -298,9 +309,9 @@ public class FieldAgentStartShiftPage {
 		elementUtils.waitForElementToBeClickable(btnSaveRejectReasonMultipleShifts, Constants.DEFAULT_WAIT).click();
 	}
 
-	public PassdownLogsPage clickOnPassdownLogsTab() {
+	public FieldAgentPassdownLogsPage clickOnPassdownLogsTab() {
 		elementUtils.waitForElementToBeClickable(tabPassdownLogs, Constants.DEFAULT_WAIT).click();
-		return new PassdownLogsPage(driver);
+		return new FieldAgentPassdownLogsPage(driver);
 	}
 
 	public FieldAgentProfileDetailsPage clickOnProfile() {
@@ -308,10 +319,22 @@ public class FieldAgentStartShiftPage {
 		elementUtils.waitForElementToBeClickable(btnProfile, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentProfileDetailsPage(driver);
 	}
-	
+
 	public FieldAgentTeamSupportPage clickOnTeamSupportTab() {
 		elementUtils.waitForElementToBeClickable(tabTeamSupport, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentTeamSupportPage(driver);
+	}
+
+	public FieldAgentParkingCitationPage clickOnParkingCitationFormLink() {
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(parkingCitationFormLink, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentParkingCitationPage(driver);
+	}
+	
+	public FieldAgentTrespassNoticesPage clickOnTrespassNoticesFormLink() {
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(trespassNoticesFormLink, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentTrespassNoticesPage(driver);
 	}
 
 	// Previous Shift Logout
@@ -321,6 +344,8 @@ public class FieldAgentStartShiftPage {
 			if (elementUtils.isElementVisible(txtHeadingPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT)) {
 
 				System.out.println("Previous shift logout popup is visible.");
+				elementUtils.waitForElementVisible(txtboxCheckOutDateTime, Constants.SHORT_TIME_OUT_WAIT).clear();
+				elementUtils.doActionsSendKeys(txtboxCheckOutDateTime, CurrentDateTimeUtils.getCurrentDateTime());
 
 				elementUtils.waitForElementVisible(txtboxReasonPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT)
 						.sendKeys("Auto logout due to previous unclosed shift");

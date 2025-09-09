@@ -12,7 +12,7 @@ import com.dits.citywide.pages.fieldagent.FieldAgentLeaveRequestsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyAttendancePage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
-import com.dits.citywide.pages.fieldagent.PassdownLogsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentPassdownLogsPage;
 import com.dits.citywide.utilities.ElementUtils;
 
 public class PatrolStartShiftPage {
@@ -284,9 +284,9 @@ public class PatrolStartShiftPage {
 		elementUtils.waitForElementToBeClickable(btnSaveRejectReasonMultipleShifts, Constants.DEFAULT_WAIT).click();
 	}
 
-	public PassdownLogsPage clickOnPassdownLogsTab() {
+	public FieldAgentPassdownLogsPage clickOnPassdownLogsTab() {
 		elementUtils.waitForElementToBeClickable(tabPassdownLogs, Constants.DEFAULT_WAIT).click();
-		return new PassdownLogsPage(driver);
+		return new FieldAgentPassdownLogsPage(driver);
 	}
 
 	// Patrol Beats

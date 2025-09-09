@@ -10,31 +10,70 @@
 	-->
 
 	<test
-		name="Employee Shift Management Tests with features Start Shift , Add New Call , My Assignments , Reports , End Shift ">
+		name="Company Settings Tests" preserve-order="true">
 		<classes>
+
 			<class
-				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
+				name="com.dits.citywide.tests.admin.companysettings.AddBreakPageTest" />
 			<class
-				name="com.dits.citywide.tests.operationhub.SitesPostOrdersDeleteAssignmentAndCheckpointTest"
+				name="com.dits.citywide.tests.admin.companysettings.UpdateBreakTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteBreakTest" />
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddLeaveTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateLeaveTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteLeaveTest" />
+
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddFederalHolidayTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateFederalHolidayTest"
 			/>
 			<class
-				name="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointTest"
+				name="com.dits.citywide.tests.admin.companysettings.DeleteFederalHolidayTest"
+			/>
+
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddCustomHolidayTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateCustomHolidayTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest" />
+
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddBeatTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.UpdateBeatTest" />
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteBeatTest" />
+
+
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTypeTest"
 			/>
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
+				name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTest" />
 			<class
-				name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
+				name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTest"
+			/>
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
-			<!-- <class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments" /> -->
-			<!-- <class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest" /> -->
+				name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTest"
+			/>
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest" />
-			<!--<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest" />  -->
+				name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTypeTest"
+			/>
+			<class
+				name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTypeTest"
+			/>
+
 		</classes>
 	</test>
+
 
 </suite> 

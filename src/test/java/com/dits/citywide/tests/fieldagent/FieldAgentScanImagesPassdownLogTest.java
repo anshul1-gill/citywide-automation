@@ -18,23 +18,23 @@ public class FieldAgentScanImagesPassdownLogTest extends BaseTest {
 	@Test
 	public void scanImagesPassdownLogTest() throws InterruptedException {
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
-		passdownLogsPage = fieldAgentStartShiftPage.clickOnPassdownLogsTab();
-		passdownLogsPage.clickScanImage(FieldAgentConstants.PASSDOWN_MESSAGE);
+		fieldAgentPassdownLogsPage = fieldAgentStartShiftPage.clickOnPassdownLogsTab();
+		fieldAgentPassdownLogsPage.clickScanImage(FieldAgentConstants.PASSDOWN_MESSAGE);
 
-		softAssert.assertTrue(passdownLogsPage.getDataSiteNameScan().contains(HRManagementConstants.SITE),
+		softAssert.assertTrue(fieldAgentPassdownLogsPage.getDataSiteNameScan().contains(HRManagementConstants.SITE),
 				"Site name in the scan images passdown log is not as expected");
-		softAssert.assertTrue(passdownLogsPage.getDataCreatedByScan().contains(prop.getProperty("employeeID")),
+		softAssert.assertTrue(fieldAgentPassdownLogsPage.getDataCreatedByScan().contains(prop.getProperty("employeeID")),
 				"Created by in the scan images passdown log is not as expected");
-		softAssert.assertEquals(passdownLogsPage.getDataPassdownTextScan().trim(), FieldAgentConstants.PASSDOWN_MESSAGE,
+		softAssert.assertEquals(fieldAgentPassdownLogsPage.getDataPassdownTextScan().trim(), FieldAgentConstants.PASSDOWN_MESSAGE,
 				"Message in the scan images passdown log is not as expected");
-		softAssert.assertTrue(passdownLogsPage.isDataImageScanDisplayed(),
+		softAssert.assertTrue(fieldAgentPassdownLogsPage.isDataImageScanDisplayed(),
 				"Image in the scan images passdown log is not displayed as expected");
-		softAssert.assertEquals(passdownLogsPage.getDataImageFileNameScan(), FieldAgentConstants.PASSDOWN_IMAGE_NAME,
+		softAssert.assertEquals(fieldAgentPassdownLogsPage.getDataImageFileNameScan(), FieldAgentConstants.PASSDOWN_IMAGE_NAME,
 				"Image file name in the scan images passdown log is not as expected");
-		softAssert.assertEquals(passdownLogsPage.getDataImageDescriptionScan().trim(),
+		softAssert.assertEquals(fieldAgentPassdownLogsPage.getDataImageDescriptionScan().trim(),
 				FieldAgentConstants.IMAGE_DESCRIPTION,
 				"Image description in the scan images passdown log is not as expected");
-		softAssert.assertTrue(passdownLogsPage.isDataQRCodeScanDisplayed(),
+		softAssert.assertTrue(fieldAgentPassdownLogsPage.isDataQRCodeScanDisplayed(),
 				"QR code in the scan images passdown log is not displayed as expected");
 
 		softAssert.assertAll();

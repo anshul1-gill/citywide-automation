@@ -11,11 +11,11 @@ public class PatrolConstants {
 
 	public static final String LEAVE_FROM_MONTH = "Oct";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "22";
+	public static final String LEAVE_FROM_DATE = "23";
 
 	public static final String LEAVE_TO_MONTH = "Oct";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "23";
+	public static final String LEAVE_TO_DATE = "24";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";
@@ -27,11 +27,11 @@ public class PatrolConstants {
 
 	public static final String EDIT_LEAVE_FROM_MONTH = "Nov";
 	public static final String EDIT_LEAVE_FROM_YEAR = "2025";
-	public static final String EDIT_LEAVE_FROM_DATE = "21";
+	public static final String EDIT_LEAVE_FROM_DATE = "22";
 
 	public static final String EDIT_LEAVE_TO_MONTH = "Nov";
 	public static final String EDIT_LEAVE_TO_YEAR = "2025";
-	public static final String EDIT_LEAVE_TO_DATE = "22";
+	public static final String EDIT_LEAVE_TO_DATE = "23";
 
 	public static final String EDIT_LEAVE_START_TIME = "06:30";
 	public static final String EDIT_LEAVE_END_TIME = "07:30";

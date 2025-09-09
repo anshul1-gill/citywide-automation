@@ -27,14 +27,18 @@ public class HRManagementConstants {
 	public static final String EMERGENCY_PHONE_NUMBER = "7891234568";
 
 	public static final String EMERGENCY_RELATIONSHIP = "Brother";
-	public static final String PASSWORD = "Amit@123";
-	public static final String CONFIRM_PASSWORD = "Amit@123";
+	public static final String PASSWORD = "Sumit@7813@";
+	public static final String CONFIRM_PASSWORD = "Sumit@7813@";
 
 	public static final String BRANCHES = "Riverside";
 	// Use the top 10 values because only 10 are shown in the listbox. Add the
 	// values exactly as listed in the dropdown (case-sensitive).
 
+	// Staging data
 	public static final String SITE = "Richmond";
+	
+	//Live Site Data
+//	public static final String SITE = "DITSTEK TESTING SITE";
 
 	// Residence Address
 	public static final String RESIDENCE_ADDRESS_STREET_NAME = "13th Street";
@@ -95,12 +99,12 @@ public class HRManagementConstants {
 
 	// Guard Card
 	public static final String PERMIT_NUMBER = "1234";
-	public static final String GUARD_CARD_ISSUE_DATE = "03/20/2022"; // MM/DD/YYYY
+	public static final String GUARD_CARD_ISSUE_DATE = "03/20/2024"; // MM/DD/YYYY
 	public static final String GAURD_CARD_EXPIRATION_DATE = "08/15/2027";
 
 	// Firearms Qualification
 	public static final String FIREARMS_PERMIT_NUMBER = "4321";
-	public static final String FIREARMS_ISSUE_DATE = "03/20/2021"; // MM/DD/YYYY
+	public static final String FIREARMS_ISSUE_DATE = "03/20/2024"; // MM/DD/YYYY
 	public static final String FIREARMS_EXPIRATION_DATE = "08/15/2028";
 	public static final String FIREARMS_CALIBER = "5678";
 	public static final String FIREARMS_SERIAL = "4455";
@@ -109,7 +113,7 @@ public class HRManagementConstants {
 
 	// Baton
 	public static final String BATON_PERMIT_NUMBER = "4321";
-	public static final String BATON_ISSUE_DATE = "05/20/2021"; // MM/DD/YYYY
+	public static final String BATON_ISSUE_DATE = "05/20/2024"; // MM/DD/YYYY
 	public static final String BATON_EXPIRATION_DATE = "10/15/2028";
 
 	// ECD

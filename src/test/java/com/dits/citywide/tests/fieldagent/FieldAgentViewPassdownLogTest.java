@@ -17,15 +17,15 @@ public class FieldAgentViewPassdownLogTest extends BaseTest {
 	@Test
 	public void viewPassdownLogTest() throws InterruptedException {
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
-		passdownLogsPage = fieldAgentStartShiftPage.clickOnPassdownLogsTab();
-		passdownLogsPage.clickViewPassdownLog(FieldAgentConstants.PASSDOWN_MESSAGE);
-		softAssert.assertEquals(passdownLogsPage.getHeadingViewPassdownDetails(), "Passdown Details",
+		fieldAgentPassdownLogsPage = fieldAgentStartShiftPage.clickOnPassdownLogsTab();
+		fieldAgentPassdownLogsPage.clickViewPassdownLog(FieldAgentConstants.PASSDOWN_MESSAGE);
+		softAssert.assertEquals(fieldAgentPassdownLogsPage.getHeadingViewPassdownDetails(), "Passdown Details",
 				"Heading of the passdown details page is not as expected");
-		softAssert.assertEquals(passdownLogsPage.getDataTitle(), FieldAgentConstants.PASSDOWN_IMAGE_NAME,
+		softAssert.assertEquals(fieldAgentPassdownLogsPage.getDataTitle(), FieldAgentConstants.PASSDOWN_IMAGE_NAME,
 				"Title of the passdown log is not as expected");
-		softAssert.assertEquals(passdownLogsPage.getDataDescription(), FieldAgentConstants.IMAGE_DESCRIPTION,
+		softAssert.assertEquals(fieldAgentPassdownLogsPage.getDataDescription(), FieldAgentConstants.IMAGE_DESCRIPTION,
 				"Description of the passdown log is not as expected");
-		softAssert.assertTrue(passdownLogsPage.isImageDisplayed(),
+		softAssert.assertTrue(fieldAgentPassdownLogsPage.isImageDisplayed(),
 				"Image in the passdown log details is not displayed as expected");
 
 		softAssert.assertAll();
