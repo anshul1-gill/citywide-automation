@@ -35,5 +35,4 @@ public class AssessmentsResultsTest extends BaseTest {
 
 		softAssert.assertAll();
 	}
-
 }

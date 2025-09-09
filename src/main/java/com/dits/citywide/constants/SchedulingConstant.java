@@ -15,11 +15,10 @@ public class SchedulingConstant {
 	public static final String ADD_NOTES_PATROL = "Assigned shift for patrol. Ensure to follow the route and report any incidents.";
 
 	// Shift Date
-	public static final String ADD_SHIFT_DATE = "2";
+	public static final String ADD_SHIFT_DATE = "4";
 
 	// Confirmation Message
 	public static final String ARE_YOU_SURE = "Are you sure?";
 	public static final String ACTION_WILL_PUBLISH_SHIFTS = "This action will publish shifts";
 	public static final String SUCCESS_PUBLISH_MESSAGE = "Shifts published successfully!";
-
 }

@@ -6,7 +6,7 @@ public class RandomEmailGenerator {
 
 	public static String generateRandomEmailForUser() {
 		String name = "userautomation";
-		String domain = "yopmail.com";
+		String domain = "ditstek.com";
 		StringBuilder email = new StringBuilder();
 		Random random = new Random();
 

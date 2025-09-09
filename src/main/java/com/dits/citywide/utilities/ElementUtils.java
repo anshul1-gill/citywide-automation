@@ -86,7 +86,7 @@ public class ElementUtils {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
 			return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
 		} catch (TimeoutException | NoSuchElementException e) {
-			return false; 
+			return false;
 		}
 	}
 
@@ -589,15 +589,14 @@ public class ElementUtils {
 			System.out.println("Error while pressing Delete key: " + e.getMessage());
 		}
 	}
-	
-	public void pressBrowserBack() {
-	    try {
-	        driver.navigate().back();
-	    } catch (Exception e) {
-	        System.out.println("Error while navigating back: " + e.getMessage());
-	    }
-	}
 
+	public void pressBrowserBack() {
+		try {
+			driver.navigate().back();
+		} catch (Exception e) {
+			System.out.println("Error while navigating back: " + e.getMessage());
+		}
+	}
 
 	public void clearTextBoxWithKeys(By locator) {
 		try {
@@ -618,8 +617,10 @@ public class ElementUtils {
 
 	public void clearTextBoxWithActions(By locator) {
 		try {
-			WebElement element = driver.findElement(locator);
-			element.click(); // Focus the field
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+			element.click(); // focus the field
 
 			// Detect OS and choose appropriate key
 			Keys selectAllKey = System.getProperty("os.name").toLowerCase().contains("mac") ? Keys.COMMAND
@@ -695,6 +696,38 @@ public class ElementUtils {
 		} catch (Exception e) {
 			System.out.println("Failed to move and click on element located by: " + locator);
 			e.printStackTrace();
+		}
+	}
+
+	public void sendKeysUsingJavaScript(By locator, String value, int timeout) {
+		WebElement element = waitForElementVisible(locator, timeout);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// Clear any existing value
+		js.executeScript("arguments[0].value = '';", element);
+
+		// Set new value
+		js.executeScript("arguments[0].value = arguments[1];", element, value);
+
+		// Trigger events so frameworks (React/Angular/Vue) detect the change
+		js.executeScript("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));"
+				+ "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", element);
+	}
+
+	public void clearTextBoxWithJS(By locator, int timeout) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+			// Clear value using JavaScript
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].value = '';", element);
+
+			// Wait until the value is actually empty
+			wait.until(driver -> element.getAttribute("value").isEmpty());
+
+		} catch (Exception e) {
+			System.out.println("Error while clearing text box using JavaScript: " + e.getMessage());
 		}
 	}
 

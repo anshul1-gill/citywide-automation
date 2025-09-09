@@ -7,15 +7,19 @@ public class FieldAgentConstants {
 
 // HR Management 
 	// Leavve Request Data
-	public static final String LEAVE_TYPE = "Study";
+	// Staging data
+	// public static final String LEAVE_TYPE = "Study";
+
+	// Live data
+	public static final String LEAVE_TYPE = "Vacation";
 
 	public static final String LEAVE_FROM_MONTH = "Oct";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "7";
+	public static final String LEAVE_FROM_DATE = "10";
 
 	public static final String LEAVE_TO_MONTH = "Oct";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "7";
+	public static final String LEAVE_TO_DATE = "11";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";
@@ -93,5 +97,94 @@ public class FieldAgentConstants {
 	public static final String Name_OR_Badge = "John Doe / Badge 1234";
 
 	public static final String INCIDENCE_DATE = "11/22/2025";
+
+	// Forms
+	// Parking Citation
+	public static final String SITE = "Richmond";
+	public static final String DATE_TIME = "09/08/2025 10:00";
+	public static final String ACTIVITY_CODE = "10-16";
+	public static final String VIN_NUMBER = "1HGBH41JXMN109186";
+	public static final String LICENSE_NO = "ABC123";
+	public static final String SELECT_STATE = "CA";
+	public static final String EXPIRE_DATE = "September 2025";
+	public static final String VEHICLE_COLOR = "Red";
+	public static final String YEAR = "2020";
+	public static final String VEHICLE_MAKE = "AUDI";
+	public static final String VEHICLE_MODEL = "A6";
+	public static final String VIOLATION = "Wrong Turn-wrong turn description";
+	public static final String ADDITIONAL_DETAILS = "Parked in a no-parking zone.";
+	public static final String FILE_PATH = "./src/test/resource/testdata/image.jpeg";
+
+	// Impounded Fields
+	public static final String IMPOUNDED_DATE_TIME = "09/08/2025";
+	public static final String TOWING_COMPANY = "ABC Towing Services";
+
+	// Update Parking Citation
+	public static final String UPDATED_SITE = "Richmond";
+	public static final String UPDATE_DATE_TIME = "09/09/2025 11:30";
+	public static final String UPDATE_ACTIVITY_CODE = "10-17";
+	public static final String UPDATE_VIN_NUMBER = "12345";
+	public static final String UPDATE_LICENSE_NO = "XYZ789";
+	public static final String UPDATE_STATE = "NY";
+	public static final String UPDATE_EXPIRE_DATE = "October 2025";
+	public static final String UPDATE_VEHICLE_COLOR = "Blue";
+	public static final String UPDATE_YEAR = "2021";
+	public static final String UPDATE_VEHICLE_MAKE = "BMW";
+	public static final String UPDATE_VEHICLE_MODEL = "330I";
+	public static final String UPDATE_VIOLATION = "Assault and battery-This is Crime Violation";
+	public static final String UPDATE_ADDITIONAL_DETAILS = "Parked in a loading zone.";
+	public static final String UPDATE_FILE_PATH = "./src/test/resource/testdata/image.jpeg";
+
+	public static final String UPDATED_IMPOUNDED_DATE_TIME = "10/08/2025";
+	public static final String UPDATED_TOWING_COMPANY = "XYZ Towing Services";
+
+	// Trespass Notices
+	// Fill Location Details
+	public static final String TRESPASS_SITE = "Richmond";
+	public static final String TRESPASS_DATE_TIME = "09/09/2025 10:00";
+	public static final String TRESPASS_INCIDENT_NUMBER = "54321";
+	public static final String TRESPASS_ACTIVITY_CODE = "10-16";
+	public static final String TRESPASS_STREET_NUMBER = "123";
+	public static final String TRESPASS_STREET_NAME = "Main St";
+	public static final String TRESPASS_UNIT_NUMBER = "A1";
+	public static final String TRESPASS_CITY = "Springfield";
+	public static final String TRESPASS_STATE = "CA";
+	public static final String TRESPASS_ZIP = "90001";
+
+	// Fill Trespasser Details
+	public static final String TRESSPASS_FIRST_NAME = "John";
+	public static final String TRESPASS_MIDDLE_NAME = "M";
+	public static final String TRESPASS_LAST_NAME = "Doe";
+
+	public static final String TRESSPASSER_DL_NUMBER = "D1234567";
+	public static final String TRESSPASSER_DL_STATE = "CA";
+	public static final String TRESSPASSER_DL_EXPIRE_DATE = "12/31/2025";
+
+	public static final String TRESSPASSER_STREET_NUMBER = "456";
+	public static final String TRESSPASSER_STREET_NAME = "Elm St";
+	public static final String TRESSPASSER_UNIT_NUMBER = "B2";
+	public static final String TRESSPASSER_CITY = "Springfield";
+	public static final String TRESSPASSER_STATE = "CA";
+	public static final String TRESSPASSER_ZIP = "90001";
+	public static final String TRESSPASSER_VEHICLE_YEAR = "2020";
+	public static final String TRESSPASSER_VEHICLE_MAKE = "BMW";
+	public static final String TRESSPASSER_VEHICLE_MODEL = "A6";
+	public static final String TRESSPASSER_VEHICLE_COLOR = "Blue";
+	public static final String TRESSPASSER_VEHICLE_PLATE = "XYZ789";
+	public static final String TRESSPASSER_VEHICLE_STATE = "CA";
+	public static final String TRESSPASSER_GENDER = "Male";
+	public static final String TRESSPASS_RACE = "White";
+	public static final String TRESSPASS_HAIR_TYPE = "Curly";
+	public static final String TRESSPASS_HAIR_COLOR = "Brown";
+	public static final String TRESSPASS_EYE_COLOR = "Blue";
+	public static final String TRESSPASS_HEIGHT = "5'10";
+	public static final String TRESSPASS_BUILD = "Athletic";
+	public static final String TRESSPASS_WEIGHT = "180";
+
+	// Trespass Narrative
+	public static final String TRESPASS_NARRATIVE = "Trespassing without permission";
+	public static final String TRESPASS_WAS_PD_CONTACTED = "Yes";
+	
+	public static final String TRESPASS_FILE_PATH = "./src/test/resource/testdata/image.jpeg";
 
 }

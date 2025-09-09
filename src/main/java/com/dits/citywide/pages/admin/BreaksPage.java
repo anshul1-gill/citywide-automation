@@ -16,14 +16,19 @@ public class BreaksPage {
 	private By txtHeadingBreaks = By.xpath("//h1[normalize-space()='Breaks']");
 	private By btnAddBreak = By.xpath("//span[normalize-space()='Add Break']");
 	private By txtboxBreakName = By.cssSelector("#break_name");
+	private By dropdownBreakDurationOption = By.xpath("(//div[@class='ant-select-selector'])[1]");
 
 	private By getBreakDurationOption(String breakduration) {
-		return By.xpath(String.format("//span[@title='%s']", breakduration));
+		return By.xpath(String.format("//div[@title='%s']", breakduration));
 	}
+
+	private By dropdownPaymentTypeOption = By.xpath("(//div[@class='ant-select-selector'])[2]");
 
 	private By getPaymentTypeOption(String paymentTypeValue) {
 		return By.xpath(String.format("//span[normalize-space(@title)='%s']", paymentTypeValue));
 	}
+
+	private By dropdownActivityCodeOption = By.xpath("(//div[@class='ant-select-selector'])[3]");
 
 	private By getActivityCodeOption(String activityCodeValue) {
 		return By.xpath(String.format("//span[normalize-space(@title)='%s']", activityCodeValue));
@@ -59,6 +64,8 @@ public class BreaksPage {
 	private By deleteconfirmationMessage = By.xpath("//div[@id='swal2-html-container']");
 	private By btnOkDeleteBreak = By.xpath("//button[normalize-space()='OK']");
 	private By deletesuccessMessage = By.xpath("//div[contains(text(),'Break deleted successfully')]");
+
+	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
 	public BreaksPage(WebDriver driver) {
 		this.driver = driver;
@@ -125,29 +132,26 @@ public class BreaksPage {
 	// Edit Break Form
 	public void updateBreakForm(String breakName, String breakDuration, String paymentType, String activityCode,
 			String description) throws InterruptedException {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		Thread.sleep(2000);
 		elementUtils.waitForElementVisible(txtboxBreakName, Constants.DEFAULT_WAIT);
 		elementUtils.clearTextBoxWithActions(txtboxBreakName);
 		elementUtils.doActionsSendKeys(txtboxBreakName, breakName);
 
-//		String breakduration = CompanySettingsConstant.BREAK_DURATION;
-//		String editxpath = "//span[@title='" + breakduration + "']";
-//		elementUtils.waitForElementToBeClickable(By.xpath(editxpath), Constants.SHORT_TIME_OUT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(dropdownBreakDurationOption, Constants.SHORT_TIME_OUT_WAIT).click();
 		elementUtils.waitForElementToBeClickable(getBreakDurationOption(breakDuration), Constants.SHORT_TIME_OUT_WAIT)
 				.click();
-		elementUtils.selectElementThroughLocator(editvaluesBreakDuration, breakDuration, Constants.SHORT_TIME_OUT_WAIT);
+		// elementUtils.selectElementThroughLocator(editvaluesBreakDuration,
+		// breakDuration, Constants.SHORT_TIME_OUT_WAIT);
 
-//		String paymentTypeValue = CompanySettingsConstant.PAYMENT_TYPE;
-//		String paymentTypeXpath = "//span[@title='" + paymentTypeValue + "']";
-//		elementUtils.waitForElementToBeClickable(By.xpath(paymentTypeXpath), Constants.SHORT_TIME_OUT_WAIT).click();
-		elementUtils.waitForElementToBeClickable(getPaymentTypeOption(paymentType), Constants.SHORT_TIME_OUT_WAIT)
-				.click();
+		elementUtils.waitForElementToBeClickable(dropdownPaymentTypeOption, Constants.SHORT_TIME_OUT_WAIT).click();
+//		elementUtils.waitForElementToBeClickable(getPaymentTypeOption(paymentType), Constants.SHORT_TIME_OUT_WAIT)
+//				.click();
 		elementUtils.selectElementThroughLocator(editvaluesPaidOrUnpaid, paymentType, Constants.SHORT_TIME_OUT_WAIT);
 
-//		String activityCodeValue = CompanySettingsConstant.ACTIVITY_CODE;
-//		String activityCodeXpath = "//span[@title='" + activityCodeValue + "']";
-//		elementUtils.waitForElementToBeClickable(By.xpath(activityCodeXpath), Constants.SHORT_TIME_OUT_WAIT).click();
-		elementUtils.waitForElementToBeClickable(getActivityCodeOption(activityCode), Constants.SHORT_TIME_OUT_WAIT)
-				.click();
+		elementUtils.waitForElementToBeClickable(dropdownActivityCodeOption, Constants.SHORT_TIME_OUT_WAIT).click();
+//		elementUtils.waitForElementToBeClickable(getActivityCodeOption(activityCode), Constants.SHORT_TIME_OUT_WAIT)
+//				.click();
 		elementUtils.selectElementThroughLocator(editvaluesActivityCode, activityCode, Constants.SHORT_TIME_OUT_WAIT);
 
 		elementUtils.waitForElementVisible(editTxtboxDescription, Constants.DEFAULT_WAIT);

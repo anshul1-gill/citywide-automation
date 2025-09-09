@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Citywide Regression Suite" verbose="1" parallel="tests"
-	thread-count="1">
+<suite name="Citywide Regression Suite" verbose="1">
 
 	<listeners>
 		<listener class-name="com.dits.citywide.listener.ExtentReportListener"></listener>
@@ -10,7 +9,7 @@
 
 
 	<test
-		name="Add Employee Test">
+		name="Add Employee Test" preserve-order="true">
 		<classes>
 			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.AddFieldAgentEmployeeTest" />
@@ -20,12 +19,18 @@
 	</test>
 
 	<test
-		name="Decline and Approve Leave Request Test">
+		name="Decline Leave Request Test" preserve-order="true">
 		<classes>
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
 			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsTest" />
+		</classes>
+	</test>
+
+	<test
+		name="Approve Leave Request Test" preserve-order="true">
+		<classes>
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
 			<class
@@ -34,7 +39,7 @@
 	</test>
 
 	<test
-		name="My Courses Tests">
+		name="My Courses Tests" preserve-order="true">
 		<classes>
 			<class
 				name="com.dits.citywide.tests.admin.training.AddCategoryTest" />
@@ -51,12 +56,12 @@
 				name="com.dits.citywide.tests.admin.training.DeleteCategoryTest" />
 			<class
 				name="com.dits.citywide.tests.admin.training.DeleteCertificateTest" />
-
 		</classes>
 	</test>
 
 	<test
-		name="Employee Shift Management Tests with features Start Shift , Add New Call , My Assignments , Reports , End Shift ">
+		name="Employee Shift Management Tests with features Start Shift , Add New Call , My Assignments , Reports , End Shift "
+		preserve-order="true">
 		<classes>
 			<class
 				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
@@ -84,7 +89,7 @@
 	</test>
 
 	<test
-		name="Company Settings Tests">
+		name="Company Settings Tests" preserve-order="true">
 		<classes>
 
 			<class
@@ -149,7 +154,7 @@
 		</classes>
 	</test>
 
-	<test name="ERM And Field Agent Functional Tests">
+	<test name="ERM And Field Agent Functional Tests" preserve-order="true">
 		<classes>
 			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.EmployeesAddRemarksTest" />

@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.utilities.ElementUtils;
 
-public class PassdownLogsPage {
+public class FieldAgentPassdownLogsPage {
 
 	private WebDriver driver;
 	private ElementUtils elementUtils;
@@ -75,7 +75,7 @@ public class PassdownLogsPage {
 	// Common
 	private By sucessMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
 
-	public PassdownLogsPage(WebDriver driver) {
+	public FieldAgentPassdownLogsPage(WebDriver driver) {
 		this.driver = driver;
 		this.elementUtils = new ElementUtils(driver);
 	}

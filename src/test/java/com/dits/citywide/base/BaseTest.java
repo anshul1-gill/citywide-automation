@@ -46,7 +46,9 @@ import com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentTeamSupportPage;
-import com.dits.citywide.pages.fieldagent.PassdownLogsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentTrespassNoticesPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentParkingCitationPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentPassdownLogsPage;
 import com.dits.citywide.pages.patrol.PatrolBeatsPage;
 import com.dits.citywide.pages.patrol.PatrolLeaveRequestsPage;
 import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
@@ -88,7 +90,7 @@ public class BaseTest {
 	protected AssessmentsResultsPage assessmentsResultsPage;
 	protected AttendancePage attendancePage;
 	protected FieldAgentMyAttendancePage fieldAgentMyAttendancePage;
-	protected PassdownLogsPage passdownLogsPage;
+	protected FieldAgentPassdownLogsPage fieldAgentPassdownLogsPage;
 	protected PatrolStartShiftPage patrolStartShiftPage;
 	protected PatrolBeatsPage patrolBeatsPage;
 	protected PatrolVehicleInspectionPage patrolVehicleInspectionPage;
@@ -101,6 +103,8 @@ public class BaseTest {
 	protected SitesPage sitesPage;
 	protected FieldAgentTeamSupportPage fieldAgentTeamSupportPage;
 	protected TeamSupportTemplatePage teamSupportTemplatePage;
+	protected FieldAgentParkingCitationPage fieldAgentParkingCitationPage;
+	protected FieldAgentTrespassNoticesPage fieldAgentTrespassNoticesPage;
 
 	// @BeforeTest
 	@BeforeClass
