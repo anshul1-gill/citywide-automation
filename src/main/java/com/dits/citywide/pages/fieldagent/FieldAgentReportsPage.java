@@ -1,5 +1,8 @@
 package com.dits.citywide.pages.fieldagent;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import com.dits.citywide.constants.Constants;
@@ -14,7 +17,13 @@ public class FieldAgentReportsPage {
 	private By btnReportsTab = By.xpath("//span[normalize-space()='Reports']");
 	// private By btnPreFlightReports =
 	// By.xpath("(//span[contains(text(),'Pre-Flight Reports')])[2]");
-	private By btnPreFlightReports = By.xpath("//a[contains(text(),'Pre-Flight Reports')]");
+	// private By btnPreFlightReports = By.xpath("//a[contains(text(),'Pre-Flight
+	// Reports')]");
+
+	private List<By> btnPreFlightReports = Arrays.asList(By.xpath("//a[contains(text(),'Pre-Flight Reports')]"),
+			By.xpath("(//span[contains(text(),'Pre-Flight Reports')])[2]"),
+			By.xpath("//div[contains(@class,'tab-bar-extra-content')]//span[contains(text(),'Pre-Flight Reports')]"));
+
 	private By txtPreflightConfirmationMessage = By.cssSelector("#swal2-html-container");
 	// private By btnAddNewReport = By.xpath("(//span[contains(text(),'Add New
 	// Report')])[2]");
@@ -26,7 +35,11 @@ public class FieldAgentReportsPage {
 	private By endShiftConfirmationMessage = By.xpath("//div[@id='swal2-html-container']");
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 
-	private By btnReOpenPatrolLog = By.xpath("//button[normalize-space()='Re-Open Patrol Log']");
+	// private By btnReOpenPatrolLog = By.xpath("//button[normalize-space()='Re-Open
+	// Patrol Log']");
+	private List<By> btnReOpenPatrolLog = Arrays.asList(By.xpath("//button[normalize-space()='Re-Open Patrol Log']"),
+			By.xpath("//button[normalize-space()='Re-open Patrol Log']"));
+
 	private By txtNoDataFound = By.xpath("//td[normalize-space()='No Data Found']");
 
 	private By txtCloseOutFieldAgentLog = By.xpath("//h2[normalize-space()='Close Out Field Agent Log']");
@@ -169,17 +182,35 @@ public class FieldAgentReportsPage {
 		elementUtils = new ElementUtils(driver);
 	}
 
-	public boolean isPreFlightReportsButtonVisible() {
-		return elementUtils.doIsDisplayed(btnPreFlightReports, Constants.DEFAULT_WAIT);
+	public void clickPreFlightReports() {
+		for (By locator : btnPreFlightReports) {
+			if (elementUtils.doIsDisplayed(locator, Constants.DEFAULT_WAIT)) {
+				elementUtils.waitForElementToBeClickable(locator, Constants.DEFAULT_WAIT).click();
+				break;
+			}
+		}
 	}
+
+	public boolean isPreFlightReportsButtonVisible() {
+		for (By locator : btnPreFlightReports) {
+			if (elementUtils.doIsDisplayed(locator, Constants.DEFAULT_WAIT)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+//	public boolean isPreFlightReportsButtonVisible() {
+//		return elementUtils.doIsDisplayed(btnPreFlightReports, Constants.DEFAULT_WAIT);
+//	}
 
 	public boolean isStartShiftButtonVisible() {
 		return elementUtils.doIsDisplayed(btnAddNewReport, Constants.DEFAULT_WAIT);
 	}
 
-	public void clickPreFlightReports() {
-		elementUtils.waitForElementToBeClickable(btnPreFlightReports, Constants.DEFAULT_WAIT).click();
-	}
+//	public void clickPreFlightReports() {
+//		elementUtils.waitForElementToBeClickable(btnPreFlightReports, Constants.DEFAULT_WAIT).click();
+//	}
 
 	public String getPreflightConfirmationMessage() {
 		return elementUtils.waitForElementVisible(txtPreflightConfirmationMessage, Constants.DEFAULT_WAIT).getText();
@@ -212,9 +243,17 @@ public class FieldAgentReportsPage {
 	public String getNoDataFoundText() {
 		return elementUtils.waitForElementVisible(txtNoDataFound, Constants.DEFAULT_WAIT).getText();
 	}
-	
+
+//	public boolean isReOpenPatrolLogVisible() {
+//		return elementUtils.doIsDisplayed(btnReOpenPatrolLog, Constants.DEFAULT_WAIT);
+//	}
 	public boolean isReOpenPatrolLogVisible() {
-		return elementUtils.doIsDisplayed(btnReOpenPatrolLog, Constants.DEFAULT_WAIT);
+		for (By locator : btnReOpenPatrolLog) {
+			if (elementUtils.doIsDisplayed(locator, Constants.SHORT_TIME_OUT_WAIT)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getEndShiftConfirmationMessage() {

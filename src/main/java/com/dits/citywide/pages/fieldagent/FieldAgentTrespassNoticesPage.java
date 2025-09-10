@@ -37,7 +37,7 @@ public class FieldAgentTrespassNoticesPage {
 	private By searchData = By.cssSelector("input[placeholder='Search']");
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 	private By saveTrespassNotice = By.id("TrespassAdvisal");
-	private By successMessage = By.xpath("//div[@role='alert']/h2");
+	private By successMessage = By.cssSelector("#swal2-title>span");
 
 	// Trespasser Details Locators
 	private By txtPersonLastName = By.id("person_last_name");
@@ -105,7 +105,34 @@ public class FieldAgentTrespassNoticesPage {
 		return By.xpath(String.format("(//label[normalize-space()='%s'])[3]", option));
 	}
 
+	// Delete
 	private By txtboxCharge = By.cssSelector("#person_charges");
+
+	private By getIncidentDeleteButtonLocator(String incidentNumber) {
+		String xpath = String.format(
+				"//a[normalize-space()='%s']/../following-sibling::td//button[@title='Delete Trespass']",
+				incidentNumber);
+		return By.xpath(xpath);
+	}
+
+	private By btnOk = By.xpath("//button[normalize-space()='OK']");
+	private By sucessMessage = By.xpath("//div[@role='alert']/h2");
+
+	// Update
+	private By getIncidentEditButtonLocator(String incidentNumber) {
+		String xpath = String.format(
+				"//a[normalize-space()='%s']/../following-sibling::td//button[@title='Edit Trespass']", incidentNumber);
+		return By.xpath(xpath);
+	}
+
+	// Data
+	private By dataIncidentNumber = By.xpath("(//td[@data-label='Incident']/a)[1]");
+	private By dataBranchName = By.xpath("(//td[@data-label='Branch'])[1]");
+	private By dataOfficerName = By.xpath("(//td[@data-label='Officer'])[1]");
+	private By dataSiteName = By.xpath("(//td[@data-label='Site'])[1]");
+	private By dataPerson = By.xpath("(//td[@data-label='Person'])[1]");
+
+	private By txtNoItemsFound = By.xpath("//span[contains(text(),'No items found.')]");
 
 	// Fill Location Details section
 	public void fillLocationDetails(String siteName, String dateTime, String activityCode, String streetNum,
@@ -114,7 +141,7 @@ public class FieldAgentTrespassNoticesPage {
 		elementUtils.waitForElementVisible(getSiteNameLocator(siteName), Constants.DEFAULT_WAIT).click();
 		Thread.sleep(1000);
 		elementUtils.waitForElementVisible(datetime, Constants.DEFAULT_WAIT).sendKeys(dateTime);
-		elementUtils.pressEscapeKey();
+		// elementUtils.pressEscapeKey();
 		Thread.sleep(1000);
 		elementUtils.doSelectByValue(dropdownActivityCode, activityCode);
 		elementUtils.waitForElementVisible(txtReportStreetNum, Constants.DEFAULT_WAIT).sendKeys(streetNum);
@@ -200,32 +227,51 @@ public class FieldAgentTrespassNoticesPage {
 	public void searchTrespassNotice(String employeeID) throws InterruptedException {
 		elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).clear();
 		elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).sendKeys(employeeID);
-
-		Thread.sleep(120000);
 	}
 
-//	public String getOfficerName() {
-//		return elementUtils.waitForElementVisible(By.xpath("//table/tbody/tr[1]/td[3]"), Constants.DEFAULT_WAIT)
-//				.getText();
-//	}
-//
-//	public String getSiteName() {
-//		return elementUtils.waitForElementVisible(By.xpath("//table/tbody/tr[1]/td[4]"), Constants.DEFAULT_WAIT)
-//				.getText();
-//	}
-//
-//	public String getIncidentNumber() {
-//		return elementUtils.waitForElementVisible(By.xpath("//table/tbody/tr[1]/td[2]"), Constants.DEFAULT_WAIT)
-//				.getText();
-//	}
-//
-//	public boolean isSearchBoxDisplayed() {
-//		return elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).isDisplayed();
-//	}
+	public void searchTrespassNoticeID(String trespassNoticeID) throws InterruptedException {
+		elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).clear();
+		elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).sendKeys(trespassNoticeID);
+		elementUtils.waitForInvisibilityOfElementLocated(successMessage, Constants.DEFAULT_WAIT);
+	}
 
-	public boolean isSuccessMessageDisplayed() {
-		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
-		return elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT).isDisplayed();
+	public String getIncidentNumber() {
+		return elementUtils.waitForElementVisible(dataIncidentNumber, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getBranchName() {
+		return elementUtils.waitForElementVisible(dataBranchName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getOfficerName() {
+		return elementUtils.waitForElementVisible(dataOfficerName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getSiteName() {
+		return elementUtils.waitForElementVisible(dataSiteName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getPersonName() {
+		return elementUtils.waitForElementVisible(dataPerson, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public boolean isSearchBoxDisplayed() {
+		return elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).isDisplayed();
+	}
+
+	public String isSuccessMessageDisplayed() {
+		return elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT).getText();
+	}
+
+	// Delete Trespass Notice
+	public void deleteParkingCitation(String incidentNumber) throws InterruptedException {
+		elementUtils.waitForElementVisible(getIncidentDeleteButtonLocator(incidentNumber), Constants.DEFAULT_WAIT)
+				.click();
+		elementUtils.waitForElementVisible(btnOk, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getNoRecordFoundMessage() {
+		return elementUtils.waitForElementVisible(txtNoItemsFound, Constants.DEFAULT_WAIT).getText();
 	}
 
 }

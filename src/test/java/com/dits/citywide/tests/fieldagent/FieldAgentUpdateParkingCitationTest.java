@@ -32,9 +32,7 @@ public class FieldAgentUpdateParkingCitationTest extends BaseTest {
 				FieldAgentConstants.UPDATE_VEHICLE_MAKE, FieldAgentConstants.UPDATE_VEHICLE_MODEL,
 				FieldAgentConstants.UPDATE_VIOLATION, FieldAgentConstants.UPDATE_ADDITIONAL_DETAILS,
 				FieldAgentConstants.FILE_PATH);
-
 		softAssert.assertAll();
-
 	}
 
 }

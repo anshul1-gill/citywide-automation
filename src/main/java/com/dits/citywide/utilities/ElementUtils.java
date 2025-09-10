@@ -731,4 +731,22 @@ public class ElementUtils {
 		}
 	}
 
+	public void clickFirstVisibleLocator(List<By> locators, int waitTime) {
+		for (By locator : locators) {
+			if (doIsDisplayed(locator, waitTime)) {
+				waitForElementToBeClickable(locator, waitTime).click();
+				break;
+			}
+		}
+	}
+
+	public boolean isAnyLocatorVisible(List<By> locators, int waitTime) {
+		for (By locator : locators) {
+			if (doIsDisplayed(locator, waitTime)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

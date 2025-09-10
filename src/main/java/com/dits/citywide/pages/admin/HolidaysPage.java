@@ -62,7 +62,7 @@ public class HolidaysPage {
 	private By btnSubmitCustomHoliday = By.xpath("(//button[contains(@type,'submit')])[2]");
 
 	// For updating custom holiday
-	private By txtboxUpdateCustomHolidayName = By.cssSelector("#holiday_name");
+	private By txtboxUpdateCustomHolidayName = By.id("holiday_name");
 	private By txtboxUpdateCustomHolidayDate = By.xpath("//input[@id='date']");
 	private By startTimeCustomUpdate = By.xpath("//input[@id='775']");
 	private By endTimeCustomUpdate = By.xpath("//input[@id='776']");
@@ -242,6 +242,7 @@ public class HolidaysPage {
 			String recurring, String paymentType, String description) throws InterruptedException {
 
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		Thread.sleep(3000);
 		elementUtils.waitForElementVisible(txtboxUpdateCustomHolidayName, Constants.DEFAULT_WAIT);
 		elementUtils.clearTextBoxWithActions(txtboxUpdateCustomHolidayName);
 		elementUtils.doActionsSendKeys(txtboxUpdateCustomHolidayName, holidayName);

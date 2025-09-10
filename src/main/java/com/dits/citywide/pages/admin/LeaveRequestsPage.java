@@ -24,7 +24,7 @@ public class LeaveRequestsPage {
 //	private By dataToDate = By.xpath("(//tbody[@class='ant-table-tbody']//td[@data-label='To'])[1]");
 //	private By dataTotalDays = By.xpath("(//tbody[@class='ant-table-tbody']//td[@data-label='Total Days'])[1]");
 
-	private By searchBox = By.xpath("//input[@name='Search']");
+	private By searchBox = By.cssSelector("input[placeholder='Search']");
 	private By dataLeaveType = By.xpath("(//td[@data-label='Leave Type'])[1]");
 	private By dataFromDate = By.xpath("(//td[@data-label='From'])[1]");
 	private By dataStartTime = By.xpath("(//td[@data-label='Start Time'])[1]");
@@ -40,9 +40,8 @@ public class LeaveRequestsPage {
 
 	private By msgConfirmationMessage = By.xpath(
 			"//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']/following-sibling::div");
-	
-	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
+	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
 	// Declined
 	private By txtCancelValidationMessage = By.xpath("//span[@class='baseTitle']");
@@ -119,8 +118,9 @@ public class LeaveRequestsPage {
 	public String getDeclinedSuccessMessage() {
 		return elementUtils.waitForElementVisible(declinedSucessMessage, Constants.DEFAULT_WAIT).getText();
 	}
-	
+
 	public void doSearchLeaveRequest(String employeeID) {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(searchBox, Constants.DEFAULT_WAIT).sendKeys(employeeID);
 	}
 
@@ -161,7 +161,7 @@ public class LeaveRequestsPage {
 	}
 
 	// Approive Leave Requests Confirmation
-	
+
 	public String getAreYouSureText() {
 		return elementUtils.waitForElementVisible(txtAreYouSure, Constants.DEFAULT_WAIT).getText();
 	}

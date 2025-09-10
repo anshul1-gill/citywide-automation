@@ -80,7 +80,7 @@ public class FieldAgentParkingCitationPage {
 		return By.xpath(xpath);
 	}
 
-	private By btnDelete = By.xpath("//div[@class='action-option']/button[@title='Delete Citation']");
+	//private By btnDelete = By.xpath("//div[@class='action-option']/button[@title='Delete Citation']");
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 	private By sucessMessage = By.xpath("//div[@role='alert']/h2");
 
