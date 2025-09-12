@@ -293,4 +293,114 @@ public class FieldAgentConstants {
 	// Field Interview Images
 	public static final String FIELD_INTERVIEW_INTERVIEW_IMAGE_PATH = "./src/test/resource/testdata/image.jpeg";
 
+// --- Add New Incident Report ---
+	// Basic Info
+	public static final String SITE_NUMBER = "Richmond";
+	public static final String INCIDENT_DATE_TIME = "09/12/2025 09:40";
+	public static final String REPORT_NUMBER = "2509120945009";
+	public static final String INCIDENT_ACTIVITY_CODE = "10-17";
+//	public static final String DISCOVERED_BY = "Yes";
+//	public static final String REPORTED_BY = "Yes";
+//	public static final String WATCH_COMMANDER_NOTIFIED = "Yes";
+	public static final String DISCOVER_DATE_TIME = "09/05/2025 10:30";
+	public static final String REPORTED_DATE_TIME = "09/06/2025 9:30";
+
+	// Police Section
+	public static final String POLICE_OFFICER_NAME = "Officer Mark Stevens";
+	public static final String POLICE_OFFICER_BADGE = "P4521";
+	public static final String POLICE_UNIT = "Unit 12";
+	public static final String POLICE_INCIDENT_NUMBER = "POL12345";
+	public static final String POLICE_ARRIVAL_TIME = "09:50";
+	public static final String POLICE_DEPARTURE_TIME = "10:30";
+
+	// Fire Section
+	public static final String FIRE_DEPARTMENT_NAME = "Riverside Fire Dept";
+	public static final String FIRE_ENGINE = "Engine 4";
+	public static final String FIRE_INCIDENT_NUMBER = "FIR67890";
+	public static final String FIRE_ARRIVAL_TIME = "09:55";
+	public static final String FIRE_DEPARTURE_TIME = "10:20";
+
+	// Medic Section
+	public static final String MEDIC_TEAM_NAME = "Riverside EMS";
+	public static final String MEDIC_UNIT = "Medic 7";
+	public static final String MEDIC_INCIDENT_NUMBER = "MED3344";
+	public static final String MEDIC_ARRIVAL_TIME = "09:50";
+	public static final String MEDIC_DEPARTURE_TIME = "10:30";
+
+	// Other Section
+	public static final String OTHER_AGENCY_NAME = "Utility Company";
+	public static final String OTHER_CONTACT_PHONE = "8005559001";
+	public static final String OTHER_VEHICLE = "Truck #21";
+	public static final String OTHER_INCIDENT_NUMBER = "OTH9988";
+	public static final String OTHER_ARRIVAL_TIME = "10:05";
+	public static final String OTHER_DEPARTURE_TIME = "10:45";
+
+	// Reporting Person
+	public static final String REPORTING_PERSON_NAME = "Michael Roberts";
+	public static final String REPORTING_PERSON_DOB = "09/02/2022";
+	public static final String REPORTING_PERSON_PHONE = "9095551122";
+	public static final String REPORTING_PERSON_WORK_PHONE = "9095551123";
+	public static final String REPORTING_PERSON_ADDRESS = "500 Elm St";
+	public static final String REPORTING_PERSON_UNIT = "Suite 201";
+	public static final String REPORTING_PERSON_CITY = "Riverside";
+	public static final String REPORTING_PERSON_STATE = "CA";
+	public static final String REPORTING_PERSON_ZIP = "92507";
+
+	// Victim - 1
+	public static final String VICTIM_NAME = "Laura Smith";
+	public static final String VICTIM_DOB = "09/02/1992";
+	public static final String VICTIM_PHONE = "9515552233";
+	public static final String VICTIM_WORK_PHONE = "9515552234";
+	public static final String VICTIM_GENDER = "Female";
+	public static final String VICTIM_RACE = "Caucasian";
+	public static final String VICTIM_EYES = "Hazel";
+	public static final String VICTIM_HAIR_TYPE = "Straight";
+	public static final String VICTIM_HAIR_COLOR = "Blonde";
+	public static final String VICTIM_HEIGHT = "7' 5";
+	public static final String VICTIM_BUILD = "Average";
+	public static final String VICTIM_WEIGHT = "140";
+
+	// Witness - 1
+	public static final String WITNESS_NAME = "John Lee";
+	public static final String WITNESS_DOB = "11/03/1987";
+	public static final String WITNESS_PHONE = "5625558899";
+	public static final String WITNESS_WORK_PHONE = "5625558800";
+	public static final String WITNESS_GENDER = "Male";
+	public static final String WITNESS_RACE = "Asian";
+	public static final String WITNESS_EYES = "Brown";
+	public static final String WITNESS_HAIR_TYPE = "Wavy";
+	public static final String WITNESS_HAIR_COLOR = "Black";
+	public static final String WITNESS_HEIGHT = "7' 10";
+	public static final String WITNESS_BUILD = "Slim";
+	public static final String WITNESS_WEIGHT = "160";
+
+	// Suspect - 1
+	public static final String SUSPECT_NAME = "Carlos Hernandez";
+	public static final String SUSPECT_DOB = "01/01/1980";
+	public static final String SUSPECT_PHONE = "0000000000";
+	public static final String SUSPECT_WORK_PHONE = "N/A";
+	public static final String SUSPECT_GENDER = "Male";
+	public static final String SUSPECT_RACE = "Hispanic";
+	public static final String SUSPECT_EYES = "Brown";
+	public static final String SUSPECT_HAIR_TYPE = "Curly";
+	public static final String SUSPECT_HAIR_COLOR = "Dark Brown";
+	public static final String SUSPECT_HEIGHT = "7' 5";
+	public static final String SUSPECT_BUILD = "Medium";
+	public static final String SUSPECT_WEIGHT = "175";
+
+	// Classification
+	public static final String CLASSIFICATION = "Property Damage";
+
+	// Client Notified
+	public static final String CLIENT_NOTIFIED_DATE = "09/11/2025 11:15";
+	public static final String CLIENT_NOTIFIED_NAME = "Anna Martinez";
+
+	// Incident Description
+	public static final String INCIDENT_DESCRIPTION = "An unknown male suspect attempted to start a fire in a dumpster. "
+			+ "Security observed smoke and immediately contacted the fire department. "
+			+ "Police and EMS also responded. The suspect fled the scene before authorities arrived.";
+
+	// Incident Report Images
+	public static final String INCIDENT_IMAGE_PATH = "./src/test/resource/testdata/image.jpeg";
+
 }
