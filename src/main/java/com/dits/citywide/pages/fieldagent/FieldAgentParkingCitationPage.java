@@ -80,7 +80,8 @@ public class FieldAgentParkingCitationPage {
 		return By.xpath(xpath);
 	}
 
-	//private By btnDelete = By.xpath("//div[@class='action-option']/button[@title='Delete Citation']");
+	// private By btnDelete =
+	// By.xpath("//div[@class='action-option']/button[@title='Delete Citation']");
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 	private By sucessMessage = By.xpath("//div[@role='alert']/h2");
 
@@ -255,7 +256,8 @@ public class FieldAgentParkingCitationPage {
 		elementUtils.doActionsSendKeys(txtboxLicenseNumber, licenseNo);
 		elementUtils.clearTextBoxWithActions(dropdownselectState);
 		elementUtils.doActionsSendKeys(dropdownselectState, selectState);
-		//elementUtils.waitForElementVisible(getStateLocator(selectState), Constants.DEFAULT_WAIT).click();
+		// elementUtils.waitForElementVisible(getStateLocator(selectState),
+		// Constants.DEFAULT_WAIT).click();
 		elementUtils.clearTextBoxWithActions(txtboxExpireDate);
 		elementUtils.doActionsSendKeys(txtboxExpireDate, expireDate);
 		elementUtils.doSelectBy(dropdownSelectColor, vehicleColor);
@@ -266,12 +268,25 @@ public class FieldAgentParkingCitationPage {
 		elementUtils.waitForElementVisible(getVehicleNameLocator(vehicleMake), Constants.DEFAULT_WAIT).click();
 		elementUtils.clearTextBoxWithActions(txtboxSelectmodel);
 		elementUtils.doActionsSendKeys(txtboxSelectmodel, vehicleModel);
-		//elementUtils.waitForElementVisible(getVehicleNameLocator(vehicleModel), Constants.DEFAULT_WAIT).click();
+		// elementUtils.waitForElementVisible(getVehicleNameLocator(vehicleModel),
+		// Constants.DEFAULT_WAIT).click();
 		elementUtils.doSelectBy(dropdownViolation, violation);
 		elementUtils.clearTextBoxWithActions(txtadditionalDetails);
 		elementUtils.doActionsSendKeys(txtadditionalDetails, additionalDetails);
+	}
 
-		Thread.sleep(120000);
+	public void updateImpoundedFields(String dateTime, String towingCompany) {
+		elementUtils.clearTextBoxWithJS(txtboxImpoundedDateandTime, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(txtboxImpoundedDateandTime, dateTime, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxTowingCompany);
+		elementUtils.doActionsSendKeys(txtboxTowingCompany, towingCompany);
+	}
+	
+	public void updateParkingCitationImagesUpload(String filePath) {
+		if (filePath != null && !filePath.isEmpty()) {
+			elementUtils.uploadFile(uploadFile, filePath);
+			elementUtils.waitForElementVisible(txtboxFileName, Constants.DEFAULT_WAIT).sendKeys("Updated Trespass Image");
+		}
 	}
 
 }

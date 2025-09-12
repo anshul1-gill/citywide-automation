@@ -39,6 +39,8 @@ import com.dits.citywide.pages.admin.UpdateEmployeePage;
 import com.dits.citywide.pages.admin.ViewEmployeePage;
 import com.dits.citywide.pages.admin.ViolationsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentFieldInterviewPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentIncidentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentLeaveRequestsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyAttendancePage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
@@ -105,6 +107,8 @@ public class BaseTest {
 	protected TeamSupportTemplatePage teamSupportTemplatePage;
 	protected FieldAgentParkingCitationPage fieldAgentParkingCitationPage;
 	protected FieldAgentTrespassNoticesPage fieldAgentTrespassNoticesPage;
+	protected FieldAgentFieldInterviewPage fieldAgentFieldInterviewPage;
+	protected FieldAgentIncidentReportsPage fieldAgentIncidentReportsPage;
 
 	// @BeforeTest
 	@BeforeClass
