@@ -89,6 +89,8 @@ public class FieldAgentStartShiftPage {
 	private By formsclick = By.xpath("//p[@title='Forms']");
 	private By parkingCitationFormLink = By.xpath("//span[normalize-space()='Parking Citation']");
 	private By trespassNoticesFormLink = By.xpath("//span[normalize-space()='Trespass Notice']");
+	private By fieldInterviewFormLink = By.xpath("//span[normalize-space()='Field Interview']");
+	private By incidentReportFormLink = By.xpath("//span[normalize-space()='Incident Report']");
 
 	public By getCreateReportButtonByIndex(int pasdownbuttonCount) {
 		String xpath = "(//button[normalize-space()='Create Report'])[" + pasdownbuttonCount + "]";
@@ -330,11 +332,23 @@ public class FieldAgentStartShiftPage {
 		elementUtils.waitForElementToBeClickable(parkingCitationFormLink, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentParkingCitationPage(driver);
 	}
-	
+
 	public FieldAgentTrespassNoticesPage clickOnTrespassNoticesFormLink() {
 		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementToBeClickable(trespassNoticesFormLink, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentTrespassNoticesPage(driver);
+	}
+
+	public FieldAgentFieldInterviewPage clickOnFieldInterviewFormLink() {
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(fieldInterviewFormLink, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentFieldInterviewPage(driver);
+	}
+
+	public FieldAgentIncidentReportsPage clickOnIncidentReportFormLink() {
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(incidentReportFormLink, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentIncidentReportsPage(driver);
 	}
 
 	// Previous Shift Logout

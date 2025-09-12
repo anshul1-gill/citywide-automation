@@ -1,5 +1,8 @@
 package com.dits.citywide.pages.admin;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -22,7 +25,9 @@ public class BeatsPage {
 	private By searchNumberOfSites = By.xpath("//span[normalize-space()='Number of Sites']");
 	private By searchNumberOfSitesUpdate = By.xpath("//div[@class='ant-select-selection-search']");
 
-	private By btnSubmitAddBeat = By.xpath("//button[contains(@type,'submit')]");
+	// private By btnSubmitAddBeat = By.xpath("//button[contains(@type,'submit')]");
+	private List<By> btnSubmitAddBeat = Arrays.asList(By.cssSelector("button[type='submit']"),
+			By.xpath("//button[@type='submit']"), By.xpath("//button[contains(@type,'submit')]"));
 
 	private By dataBitId = By.xpath("(//td[@data-label='Beat ID'])[1]");
 	private By dataShiftType = By.xpath("(//td[@data-label='Shift Type'])[1]");
@@ -65,8 +70,17 @@ public class BeatsPage {
 		Thread.sleep(2000);
 	}
 
+//	public void clickSubmitAddBeatButton() {
+//		elementUtils.waitForElementToBeClickable(btnSubmitAddBeat, Constants.DEFAULT_WAIT).click();
+//	}
+
 	public void clickSubmitAddBeatButton() {
-		elementUtils.waitForElementToBeClickable(btnSubmitAddBeat, Constants.DEFAULT_WAIT).click();
+		for (By locator : btnSubmitAddBeat) {
+			if (elementUtils.doIsDisplayed(locator, Constants.SHORT_TIME_OUT_WAIT)) {
+				elementUtils.waitForElementToBeClickable(locator, Constants.DEFAULT_WAIT).click();
+				break;
+			}
+		}
 	}
 
 	public String getDataBeatId() {

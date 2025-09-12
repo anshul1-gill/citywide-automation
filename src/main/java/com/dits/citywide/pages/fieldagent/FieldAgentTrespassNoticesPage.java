@@ -37,7 +37,7 @@ public class FieldAgentTrespassNoticesPage {
 	private By searchData = By.cssSelector("input[placeholder='Search']");
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 	private By saveTrespassNotice = By.id("TrespassAdvisal");
-	private By successMessage = By.xpath("//div[@role='alert']/h2");
+	private By successMessage = By.cssSelector("#swal2-title>span");
 
 	// Trespasser Details Locators
 	private By txtPersonLastName = By.id("person_last_name");
@@ -105,7 +105,34 @@ public class FieldAgentTrespassNoticesPage {
 		return By.xpath(String.format("(//label[normalize-space()='%s'])[3]", option));
 	}
 
+	// Delete
 	private By txtboxCharge = By.cssSelector("#person_charges");
+
+	private By getIncidentDeleteButtonLocator(String incidentNumber) {
+		String xpath = String.format(
+				"//a[normalize-space()='%s']/../following-sibling::td//button[@title='Delete Trespass']",
+				incidentNumber);
+		return By.xpath(xpath);
+	}
+
+	private By btnOk = By.xpath("//button[normalize-space()='OK']");
+	private By sucessMessage = By.xpath("//div[@role='alert']/h2");
+
+	// Update
+	private By getIncidentEditButtonLocator(String incidentNumber) {
+		String xpath = String.format(
+				"//a[normalize-space()='%s']/../following-sibling::td//button[@title='Edit Trespass']", incidentNumber);
+		return By.xpath(xpath);
+	}
+
+	// Data
+	private By dataIncidentNumber = By.xpath("(//td[@data-label='Incident']/a)[1]");
+	private By dataBranchName = By.xpath("(//td[@data-label='Branch'])[1]");
+	private By dataOfficerName = By.xpath("(//td[@data-label='Officer'])[1]");
+	private By dataSiteName = By.xpath("(//td[@data-label='Site'])[1]");
+	private By dataPerson = By.xpath("(//td[@data-label='Person'])[1]");
+
+	private By txtNoItemsFound = By.xpath("//span[contains(text(),'No items found.')]");
 
 	// Fill Location Details section
 	public void fillLocationDetails(String siteName, String dateTime, String activityCode, String streetNum,
@@ -114,7 +141,7 @@ public class FieldAgentTrespassNoticesPage {
 		elementUtils.waitForElementVisible(getSiteNameLocator(siteName), Constants.DEFAULT_WAIT).click();
 		Thread.sleep(1000);
 		elementUtils.waitForElementVisible(datetime, Constants.DEFAULT_WAIT).sendKeys(dateTime);
-		elementUtils.pressEscapeKey();
+		// elementUtils.pressEscapeKey();
 		Thread.sleep(1000);
 		elementUtils.doSelectByValue(dropdownActivityCode, activityCode);
 		elementUtils.waitForElementVisible(txtReportStreetNum, Constants.DEFAULT_WAIT).sendKeys(streetNum);
@@ -200,32 +227,238 @@ public class FieldAgentTrespassNoticesPage {
 	public void searchTrespassNotice(String employeeID) throws InterruptedException {
 		elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).clear();
 		elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).sendKeys(employeeID);
+	}
+
+	public void searchTrespassNoticeID(String trespassNoticeID) throws InterruptedException {
+		elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).clear();
+		elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).sendKeys(trespassNoticeID);
+		elementUtils.waitForInvisibilityOfElementLocated(successMessage, Constants.DEFAULT_WAIT);
+	}
+
+	public String getIncidentNumber() {
+		return elementUtils.waitForElementVisible(dataIncidentNumber, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getBranchName() {
+		return elementUtils.waitForElementVisible(dataBranchName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getOfficerName() {
+		return elementUtils.waitForElementVisible(dataOfficerName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getSiteName() {
+		return elementUtils.waitForElementVisible(dataSiteName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getPersonName() {
+		return elementUtils.waitForElementVisible(dataPerson, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public boolean isSearchBoxDisplayed() {
+		return elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).isDisplayed();
+	}
+
+	public String isSuccessMessageDisplayed() {
+		return elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT).getText();
+	}
+
+	// Delete Trespass Notice
+	public void deleteParkingCitation(String incidentNumber) throws InterruptedException {
+		elementUtils.waitForElementVisible(getIncidentDeleteButtonLocator(incidentNumber), Constants.DEFAULT_WAIT)
+				.click();
+		elementUtils.waitForElementVisible(btnOk, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getNoRecordFoundMessage() {
+		return elementUtils.waitForElementVisible(txtNoItemsFound, Constants.DEFAULT_WAIT).getText();
+	}
+
+	// Update Trespass Notice
+	public void clickOnEditButton(String incidentNumber) {
+		elementUtils.waitForElementVisible(getIncidentEditButtonLocator(incidentNumber), Constants.DEFAULT_WAIT)
+				.click();
+		elementUtils.pressEnterKey();
+	}
+
+	public void updateLocationDetails(String siteName, String dateTime, String activityCode, String streetNum,
+			String streetName, String unitNumber, String city, String state, String zip) throws InterruptedException {
+
+		// Update Site
+		elementUtils.clearTextBoxWithActions(txtboxSiteSearch);
+		elementUtils.doActionsSendKeys(txtboxSiteSearch, siteName);
+		elementUtils.waitForElementVisible(getSiteNameLocator(siteName), Constants.DEFAULT_WAIT).click();
+
+		// Update Date/Time
+//		elementUtils.clearTextBoxWithJS(datetime, Constants.DEFAULT_WAIT);
+//		elementUtils.sendKeysUsingJavaScript(datetime, dateTime, Constants.DEFAULT_WAIT);
+//		//elementUtils.pressEscapeKey();
+//		Thread.sleep(1000);
+
+		// Update Activity Code
+		elementUtils.doSelectByValue(dropdownActivityCode, activityCode);
+
+		// Update Street Number
+		elementUtils.clearTextBoxWithActions(txtReportStreetNum);
+		elementUtils.doActionsSendKeys(txtReportStreetNum, streetNum);
+
+		// Update Street Name
+		elementUtils.clearTextBoxWithActions(txtReportStreet);
+		elementUtils.doActionsSendKeys(txtReportStreet, streetName);
+
+		// Update Unit Number
+		elementUtils.clearTextBoxWithActions(txtReportUnitNumber);
+		elementUtils.doActionsSendKeys(txtReportUnitNumber, unitNumber);
+
+		// Update City
+		elementUtils.clearTextBoxWithActions(txtReportCity);
+		elementUtils.doActionsSendKeys(txtReportCity, city);
+
+		// Update State
+		elementUtils.doSelectBy(dropdownReportState, state);
+
+		// Update Zip
+		elementUtils.clearTextBoxWithActions(txtReportZip);
+		elementUtils.doActionsSendKeys(txtReportZip, zip);
 
 		Thread.sleep(120000);
 	}
 
-//	public String getOfficerName() {
-//		return elementUtils.waitForElementVisible(By.xpath("//table/tbody/tr[1]/td[3]"), Constants.DEFAULT_WAIT)
-//				.getText();
-//	}
-//
-//	public String getSiteName() {
-//		return elementUtils.waitForElementVisible(By.xpath("//table/tbody/tr[1]/td[4]"), Constants.DEFAULT_WAIT)
-//				.getText();
-//	}
-//
-//	public String getIncidentNumber() {
-//		return elementUtils.waitForElementVisible(By.xpath("//table/tbody/tr[1]/td[2]"), Constants.DEFAULT_WAIT)
-//				.getText();
-//	}
-//
-//	public boolean isSearchBoxDisplayed() {
-//		return elementUtils.waitForElementVisible(searchData, Constants.DEFAULT_WAIT).isDisplayed();
-//	}
+	public void updateTrespasserDetails(String firstName, String middleInitial, String lastName, String licenseID,
+			String licenseState, String licenseExp, String addressStreetNum, String addressStreet,
+			String addressUnitNumber, String addressCity, String addressState, String addressZip, String vehicleYear,
+			String vehicleMake, String vehicleModel, String vehicleColor, String vehiclePlate, String vehicleState,
+			String gender, String race, String hairType, String hair, String eyes, String height, String buildType,
+			String weight) throws InterruptedException {
 
-	public boolean isSuccessMessageDisplayed() {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
-		return elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT).isDisplayed();
+
+		// Person Info
+		elementUtils.clearTextBoxWithActions(txtPersonFirstName);
+		elementUtils.doActionsSendKeys(txtPersonFirstName, firstName);
+
+		elementUtils.clearTextBoxWithActions(txtPersonMiddleInitial);
+		elementUtils.doActionsSendKeys(txtPersonMiddleInitial, middleInitial);
+
+		elementUtils.clearTextBoxWithActions(txtPersonLastName);
+		elementUtils.doActionsSendKeys(txtPersonLastName, lastName);
+
+		elementUtils.clearTextBoxWithActions(txtPersonLicenseID);
+		elementUtils.doActionsSendKeys(txtPersonLicenseID, licenseID);
+
+		elementUtils.clearTextBoxWithActions(dropdownPersonLicenseState);
+		elementUtils.doActionsSendKeys(dropdownPersonLicenseState, licenseState);
+
+		elementUtils.clearTextBoxWithActions(txtPersonLicenseExp);
+		elementUtils.doActionsSendKeys(txtPersonLicenseExp, licenseExp);
+
+		// Address
+		elementUtils.clearTextBoxWithActions(txtPersonAddressStreetNum);
+		elementUtils.doActionsSendKeys(txtPersonAddressStreetNum, addressStreetNum);
+
+		elementUtils.clearTextBoxWithActions(txtPersonAddressStreet);
+		elementUtils.doActionsSendKeys(txtPersonAddressStreet, addressStreet);
+
+		elementUtils.clearTextBoxWithActions(txtPersonAddressUnitNumber);
+		elementUtils.doActionsSendKeys(txtPersonAddressUnitNumber, addressUnitNumber);
+
+		elementUtils.clearTextBoxWithActions(txtPersonAddressCity);
+		elementUtils.doActionsSendKeys(txtPersonAddressCity, addressCity);
+
+		elementUtils.doSelectBy(dropdownPersonAddressState, addressState);
+
+		elementUtils.clearTextBoxWithActions(txtPersonAddressZip);
+		elementUtils.doActionsSendKeys(txtPersonAddressZip, addressZip);
+
+		// Vehicle Info
+		elementUtils.clearTextBoxWithActions(txtboxVehicleYear);
+		elementUtils.doActionsSendKeys(txtboxVehicleYear, vehicleYear);
+
+		elementUtils.clearTextBoxWithActions(txtboxVehicleMake);
+		elementUtils.doActionsSendKeys(txtboxVehicleMake, vehicleMake);
+
+		elementUtils.clearTextBoxWithActions(txtboxVehicleModel);
+		elementUtils.doActionsSendKeys(txtboxVehicleModel, vehicleModel);
+
+		elementUtils.clearTextBoxWithActions(txtboxVehicleColor);
+		elementUtils.doActionsSendKeys(txtboxVehicleColor, vehicleColor);
+
+		elementUtils.clearTextBoxWithActions(txtboxVehiclePlate);
+		elementUtils.doActionsSendKeys(txtboxVehiclePlate, vehiclePlate);
+
+		elementUtils.doSelectBy(dropdownVehicleState, vehicleState);
+
+		// Person Characteristics
+		elementUtils.clearTextBoxWithActions(dropdownPersonGender);
+		elementUtils.doActionsSendKeys(dropdownPersonGender, gender);
+
+		elementUtils.clearTextBoxWithActions(dropdownPersonRace);
+		elementUtils.doActionsSendKeys(dropdownPersonRace, race);
+
+		elementUtils.clearTextBoxWithActions(dropdownHairType);
+		elementUtils.doActionsSendKeys(dropdownHairType, hairType);
+
+		elementUtils.clearTextBoxWithActions(dropdownPersonHair);
+		elementUtils.doActionsSendKeys(dropdownPersonHair, hair);
+
+		elementUtils.clearTextBoxWithActions(dropdownPersonEyes);
+		elementUtils.doActionsSendKeys(dropdownPersonEyes, eyes);
+
+		elementUtils.clearTextBoxWithActions(dropdownPersonHeight);
+		elementUtils.doActionsSendKeys(dropdownPersonHeight, height);
+
+		elementUtils.clearTextBoxWithActions(dropdownBuildType);
+		elementUtils.doActionsSendKeys(dropdownBuildType, buildType);
+
+		elementUtils.clearTextBoxWithActions(txtPersonWeight);
+		elementUtils.doActionsSendKeys(txtPersonWeight, weight);
+	}
+
+	public void updateTrespassNarrative(String violationReason, String additionalDetails) throws InterruptedException {
+
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+
+		// Violation Reason
+		elementUtils.clearTextBoxWithActions(txtboxTresspassNarrative);
+		elementUtils.doActionsSendKeys(txtboxTresspassNarrative, violationReason);
+
+//	    // Additional Details (if dropdown or text-based)
+//	    elementUtils.waitForElementVisible(getOptionLocator(additionalDetails), Constants.DEFAULT_WAIT).click();
+//
+//	    // Responding Agency
+//	    elementUtils.clearTextBoxWithActions(txtboxRespondingAgency);
+//	    elementUtils.doActionsSendKeys(txtboxRespondingAgency, "Police Department");
+//
+//	    // Time of Contact
+//	    elementUtils.clearTextBoxWithJS(txtboxTimeOfContact, Constants.DEFAULT_WAIT);
+//	    elementUtils.sendKeysUsingJavaScript(txtboxTimeOfContact, "09/09/2025 10:30", Constants.DEFAULT_WAIT);
+//	    elementUtils.pressEscapeKey();
+//
+//	    // Did They Show Up
+//	    elementUtils.waitForElementVisible(getDidTheyShowUpLocator("Yes"), Constants.DEFAULT_WAIT).click();
+//
+//	    // Officer Name
+//	    elementUtils.clearTextBoxWithActions(txtboxPDOfficerName);
+//	    elementUtils.doActionsSendKeys(txtboxPDOfficerName, "Officer John");
+//
+//	    // Case Number
+//	    elementUtils.clearTextBoxWithActions(txtboxPDCaseNumber);
+//	    elementUtils.doActionsSendKeys(txtboxPDCaseNumber, "PD12345");
+//
+//	    // Officer Badge Number
+//	    elementUtils.clearTextBoxWithActions(txtboxOfficerBadgeNumber);
+//	    elementUtils.doActionsSendKeys(txtboxOfficerBadgeNumber, "B123");
+//
+//	    // Incident Number
+//	    elementUtils.clearTextBoxWithActions(txtboxIncidentNumber);
+//	    elementUtils.doActionsSendKeys(txtboxIncidentNumber, "IN12345");
+//
+//	    // Was Person Arrested
+//	    elementUtils.waitForElementVisible(getWasPersonArrestedLocator("Yes"), Constants.DEFAULT_WAIT).click();
+//
+//	    // Charge
+//	    elementUtils.clearTextBoxWithActions(txtboxCharge);
+//	    elementUtils.doActionsSendKeys(txtboxCharge, "Trespassing");
 	}
 
 }

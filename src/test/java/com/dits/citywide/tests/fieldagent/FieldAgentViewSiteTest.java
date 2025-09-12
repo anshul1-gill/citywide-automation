@@ -1,7 +1,5 @@
 package com.dits.citywide.tests.fieldagent;
 
-import java.time.LocalDate;
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -32,7 +30,6 @@ public class FieldAgentViewSiteTest extends BaseTest {
 		softAssert.assertEquals(fieldAgentStartShiftPage.getNotes(), SchedulingConstant.ADD_NOTES);
 
 		fieldAgentStartShiftPage.doClickViewSite();
-		
 
 		softAssert.assertAll();
 

@@ -51,16 +51,16 @@ public class FieldAgentAddTrespassNoticesTest extends BaseTest {
 
 		fieldAgentTrespassNoticesPage.saveTrespassNotice();
 		Thread.sleep(10000);
-//		softAssert.assertTrue(fieldAgentTrespassNoticesPage.isSearchBoxDisplayed(), "Searchbox Not displayed");
+		softAssert.assertTrue(fieldAgentTrespassNoticesPage.isSearchBoxDisplayed(), "Searchbox Not displayed");
 
 		fieldAgentTrespassNoticesPage.searchTrespassNotice(prop.getProperty("employeeID"));
 
-//		softAssert.assertTrue(fieldAgentTrespassNoticesPage.getOfficerName().contains(prop.getProperty("employeeID")));
-//		softAssert.assertTrue(fieldAgentTrespassNoticesPage.getSiteName().contains(prop.getProperty("site")));
-//
-//		String incidentId = fieldAgentTrespassNoticesPage.getIncidentNumber();
-//		System.out.println(incidentId);
-//		driverFactory.updatePropertyValue("trespassNoticeID", incidentId);
+		softAssert.assertTrue(fieldAgentTrespassNoticesPage.getOfficerName().contains(prop.getProperty("employeeID")));
+		softAssert.assertTrue(fieldAgentTrespassNoticesPage.getSiteName().contains(prop.getProperty("site")));
+
+		String incidentId = fieldAgentTrespassNoticesPage.getIncidentNumber();
+		System.out.println(incidentId);
+		driverFactory.updatePropertyValue("trespassNoticesID", incidentId);
 
 		softAssert.assertAll();
 

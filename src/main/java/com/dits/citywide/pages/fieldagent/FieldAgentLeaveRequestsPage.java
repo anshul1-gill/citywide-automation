@@ -44,6 +44,8 @@ public class FieldAgentLeaveRequestsPage {
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 	private By txtCancelConfirmation = By.xpath("//div[contains(text(),'Leave cancelled successfully')]");
 
+	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
+
 	public FieldAgentLeaveRequestsPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
@@ -206,6 +208,7 @@ public class FieldAgentLeaveRequestsPage {
 
 	public void doSearch(String employeeID) {
 		elementUtils.waitForElementVisible(search, Constants.DEFAULT_WAIT).sendKeys(employeeID);
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 	}
 
 }

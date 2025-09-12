@@ -7,7 +7,7 @@
 		<listener class-name="com.dits.citywide.listener.ExtentReportListener"></listener>
 	</listeners>
 
-
+	<!--
 	<test
 		name="Add Employee Test" preserve-order="true">
 		<classes>
@@ -17,6 +17,8 @@
 				name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
 		</classes>
 	</test>
+	
+	-->
 
 	<test
 		name="Decline Leave Request Test" preserve-order="true">

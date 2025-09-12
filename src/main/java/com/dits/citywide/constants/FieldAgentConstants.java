@@ -8,16 +8,16 @@ public class FieldAgentConstants {
 // HR Management 
 	// Leavve Request Data
 	// Staging data
-	// public static final String LEAVE_TYPE = "Study";
+	public static final String LEAVE_TYPE = "Study";
 
 	// Live data
-	public static final String LEAVE_TYPE = "Vacation";
+	// public static final String LEAVE_TYPE = "Vacation";
 
-	public static final String LEAVE_FROM_MONTH = "Oct";
+	public static final String LEAVE_FROM_MONTH = "Nov";
 	public static final String LEAVE_FROM_YEAR = "2025";
 	public static final String LEAVE_FROM_DATE = "10";
 
-	public static final String LEAVE_TO_MONTH = "Oct";
+	public static final String LEAVE_TO_MONTH = "Nov";
 	public static final String LEAVE_TO_YEAR = "2025";
 	public static final String LEAVE_TO_DATE = "11";
 
@@ -29,11 +29,11 @@ public class FieldAgentConstants {
 	// Edit Leave Request Data
 	public static final String EDIT_LEAVE_TYPE = "Sick leave";
 
-	public static final String EDIT_LEAVE_FROM_MONTH = "Oct";
+	public static final String EDIT_LEAVE_FROM_MONTH = "Nov";
 	public static final String EDIT_LEAVE_FROM_YEAR = "2025";
 	public static final String EDIT_LEAVE_FROM_DATE = "21";
 
-	public static final String EDIT_LEAVE_TO_MONTH = "Oct";
+	public static final String EDIT_LEAVE_TO_MONTH = "Nov";
 	public static final String EDIT_LEAVE_TO_YEAR = "2025";
 	public static final String EDIT_LEAVE_TO_DATE = "22";
 
@@ -184,7 +184,113 @@ public class FieldAgentConstants {
 	// Trespass Narrative
 	public static final String TRESPASS_NARRATIVE = "Trespassing without permission";
 	public static final String TRESPASS_WAS_PD_CONTACTED = "Yes";
-	
+
 	public static final String TRESPASS_FILE_PATH = "./src/test/resource/testdata/image.jpeg";
+
+	// Update Trespass Notice
+	public static final String UPDATED_TRESPASS_SITE = "Richmond";
+	public static final String UPDATED_TRESPASS_DATE_TIME = "09/10/2025 11:30";
+	public static final String UPDATED_TRESPASS_ACTIVITY_CODE = "10-17";
+	public static final String UPDATED_TRESPASS_STREET_NUMBER = "456";
+	public static final String UPDATED_TRESPASS_STREET_NAME = "Oak St";
+	public static final String UPDATED_TRESPASS_UNIT_NUMBER = "B2";
+	public static final String UPDATED_TRESPASS_CITY = "Springfield";
+	public static final String UPDATED_TRESPASS_STATE = "CA";
+	public static final String UPDATED_TRESPASS_ZIP = "90002";
+
+	// Add Field Interview
+	// Person Description
+	public static final String FIELD_INTERVIEW_PERSON_RACE = "Hispanic";
+	public static final String FIELD_INTERVIEW_PERSON_GENDER = "Male";
+	public static final String FIELD_INTERVIEW_PERSON_HAIR_TYPE = "Curly";
+	public static final String FIELD_INTERVIEW_PERSON_HAIR = "Red";
+	public static final String FIELD_INTERVIEW_PERSON_EYES = "Brown";
+	public static final String FIELD_INTERVIEW_PERSON_HEIGHT = "5'11";
+	public static final String FIELD_INTERVIEW_PERSON_BUILD = "Average";
+
+	// Vehicle Details
+	public static final String FIELD_INTERVIEW_VEHICLE_LICENSE_STATE = "LA";
+	public static final String FIELD_INTERVIEW_VEHICLE_TYPE = "Sports Car";
+
+	// Crime Potentials
+	public static final String FIELD_INTERVIEW_CRIME_POTENTIAL_1 = "Robbery";
+	public static final String FIELD_INTERVIEW_CRIME_POTENTIAL_2 = "Crime murder test";
+
+	// --- Add New Field Interview ---
+
+	// Basic Info
+	public static final String FIELD_INTERVIEW_SITE_NUMBER = "Richmond";
+	public static final String FIELD_INTERVIEW_INTERVIEW_DATE_TIME = "09/09/2025 12:30"; // MM/DD/YYYY HH:MM
+	public static final String FIELD_INTERVIEW_NIP = "25091023154007";
+	public static final String FIELD_INTERVIEW_ACTIVITY_CODE = "10-17";
+	public static final String FIELD_INTERVIEW_LAST_NAME = "Johnson";
+	public static final String FIELD_INTERVIEW_MIDDLE_NAME = "Michael";
+	public static final String FIELD_INTERVIEW_FIRST_NAME = "David";
+	public static final String FIELD_INTERVIEW_NICKNAME = "DJ";
+	public static final String FIELD_INTERVIEW_PHONE_NUMBER = "9876543210";
+	public static final String FIELD_INTERVIEW_DL_ID_NUMBER = "D1234567";
+	public static final String FIELD_INTERVIEW_DL_ID_STATE = "CA";
+
+	// Address
+	public static final String FIELD_INTERVIEW_ADDRESS_STREET_NUM = "123";
+	public static final String FIELD_INTERVIEW_ADDRESS_STREET_NAME = "Main St";
+	public static final String FIELD_INTERVIEW_ADDRESS_UNIT = "12B";
+	public static final String FIELD_INTERVIEW_ADDRESS_CITY = "Los Angeles";
+	public static final String FIELD_INTERVIEW_ADDRESS_STATE = "CA";
+	public static final String FIELD_INTERVIEW_ADDRESS_ZIP = "90001";
+
+	// Residence Address
+	public static final String FIELD_INTERVIEW_RESIDENCE_STREET_NUM = "45";
+	public static final String FIELD_INTERVIEW_RESIDENCE_STREET_NAME = "Sunset Blvd";
+	public static final String FIELD_INTERVIEW_RESIDENCE_UNIT = "Apt 22";
+	public static final String FIELD_INTERVIEW_RESIDENCE_CITY = "Los Angeles";
+	public static final String FIELD_INTERVIEW_RESIDENCE_STATE = "AL";
+	public static final String FIELD_INTERVIEW_RESIDENCE_ZIP = "90002";
+
+	// Person Description
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_RACE = "Hispanic";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_GENDER = "Male";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_HAIR_TYPE = "Curly";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_HAIR = "Red";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_EYES = "Brown";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_HEIGHT = "7' 1";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_BUILD = "Average";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_WEIGHT = "175 lbs";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_DOB = "01/15/1990"; // MM/DD/YYYY
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_ODDITIES = "Scar on left arm";
+	public static final String FIELD_INTERVIEW_PRSON_DESCRIPTION_PERSON_CLOTHING = "Blue jeans and white shirt";
+
+	// Vehicle Details
+	public static final String FIELD_INTERVIEW_VEHICLE_DETAILS_VEHICLE_LICENSE_PLATE = "LA12345";
+	public static final String FIELD_INTERVIEW_VEHICLE_DETAILS_VEHICLE_LICENSE_STATE = "LA";
+	public static final String FIELD_INTERVIEW_VEHICLE_DETAILS_VEHICLE_MODEL = "Mustang GT";
+	public static final String FIELD_INTERVIEW_VEHICLE_DETAILS_VEHICLE_COLOR = "Red";
+	public static final String FIELD_INTERVIEW_VEHICLE_DETAILS_VEHICLE_YEAR = "2022";
+	public static final String FIELD_INTERVIEW_VEHICLE_DETAILS_VEHICLE_MAKE = "BMW";
+	public static final String FIELD_INTERVIEW_VEHICLE_DETAILS_VEHICLE_TYPE = "Sports Car";
+
+	// Companion - 1
+	public static final String FIELD_INTERVIEW_COMPANION_NAME = "Robert Lee";
+	public static final String FIELD_INTERVIEW_COMPANION_ADDRESS = "789 Hill Rd, Los Angeles, CA 90003";
+	public static final String FIELD_INTERVIEW_COMPANION_GENDER = "Male";
+	public static final String FIELD_INTERVIEW_COMPANION_RACE = "Black";
+	public static final String FIELD_INTERVIEW_COMPANION_EYES = "Blue";
+	public static final String FIELD_INTERVIEW_COMPANION_HEIGHT = "7' 5";
+	public static final String FIELD_INTERVIEW_COMPANION_HAIR_TYPE = "Straight";
+	public static final String FIELD_INTERVIEW_COMPANION_HAIR = "Black";
+	public static final String FIELD_INTERVIEW_COMPANION_BUILD = "Medium";
+	public static final String FIELD_INTERVIEW_COMPANION_WEIGHT = "165 lbs";
+	public static final String FIELD_INTERVIEW_COMPANION_PHONE = "9876501122";
+	public static final String FIELD_INTERVIEW_COMPANION_WORK_PHONE = "9876503344";
+
+	// Report
+	public static final String FIELD_INTERVIEW_REPORT_DESCRIPTION = "Suspect observed near parking lot, acting suspicious, possible robbery attempt.";
+
+	// Crime Potentials
+	public static final String FIELD_INTERVIEW_CRIME_POTENTIALS_CRIME_POTENTIAL_1 = "Robbery";
+	public static final String FIELD_INTERVIEW_CRIME_POTENTIALS_CRIME_POTENTIAL_2 = "Crime murder test";
+
+	// Field Interview Images
+	public static final String FIELD_INTERVIEW_INTERVIEW_IMAGE_PATH = "./src/test/resource/testdata/image.jpeg";
 
 }

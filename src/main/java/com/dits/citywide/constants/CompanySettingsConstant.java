@@ -38,7 +38,7 @@ public class CompanySettingsConstant {
 
 	// Add Holiday Data - Custome Holiday
 	public static final String CUSTOM_HOLIDAY_NAME = "Custom Holiday Test";
-	public static final String CUSTOM_HOLIDAY_START_DATE = "06/13/2025"; // Format: MM/dd/yyyy
+	public static final String CUSTOM_HOLIDAY_START_DATE = "06/15/2025"; // Format: MM/dd/yyyy
 	public static final String CUSTOM_HOLIDAY_START_TIME = "08:00";
 	public static final String CUSTOM_HOLIDAY_END_TIME = "17:00";
 	public static final String CUSTOM_HOLIDAY_RECURRING = "No";
