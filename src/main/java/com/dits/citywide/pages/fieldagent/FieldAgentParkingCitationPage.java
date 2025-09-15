@@ -281,11 +281,12 @@ public class FieldAgentParkingCitationPage {
 		elementUtils.clearTextBoxWithActions(txtboxTowingCompany);
 		elementUtils.doActionsSendKeys(txtboxTowingCompany, towingCompany);
 	}
-	
+
 	public void updateParkingCitationImagesUpload(String filePath) {
 		if (filePath != null && !filePath.isEmpty()) {
 			elementUtils.uploadFile(uploadFile, filePath);
-			elementUtils.waitForElementVisible(txtboxFileName, Constants.DEFAULT_WAIT).sendKeys("Updated Trespass Image");
+			elementUtils.waitForElementVisible(txtboxFileName, Constants.DEFAULT_WAIT)
+					.sendKeys("Updated Trespass Image");
 		}
 	}
 

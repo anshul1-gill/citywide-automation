@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.utilities.ElementUtils;
 import com.dits.citywide.constants.Constants; // added for consistent waits
@@ -105,7 +106,7 @@ public class FieldAgentIncidentReportsPage {
 
 	// Victim-1 Addresss Information
 	private By checkboxvictimAddress = By.xpath("//input[@id='victim_arr.0.victim_checkbox']");
-	private By txtstreetAdd = By.xpath("//input[@id='victim_arr.0.person_address_street_num']");
+	private By txtstreetAdd = By.cssSelector("#rp_street_num");
 	private By txtstreetName = By.cssSelector("input[id='victim_arr.0.person_address_street']");
 	private By txtUnitNumber = By.xpath("//input[@id='victim_arr.0.person_address_unit_number']");
 	private By txtvictimmCity = By.xpath("//input[@id='victim_arr.0.person_address_city']");
@@ -207,9 +208,33 @@ public class FieldAgentIncidentReportsPage {
 	private By txtIncidentDescription = By.xpath("//textarea[@id='incident_description']");
 
 	private By incidentReportImageUpload = By.xpath("//input[@type='file']");
+	private By txtboxFileName = By.cssSelector("#image_name_0");
+
+	private By deleteImageIcon = By.xpath("//div[normalize-space()='x']");
 
 	// Save Incident Report
 	private By btnSaveIncidentReport = By.id("incidentReport");
+
+	private By btnUpdateIncidentReport = By.id("updateIncident");
+
+	// Update
+
+	private By dropdownUpdateWitnessState = By.name("victim_arr.0.victim_address.state");
+	private By txtboxUpdateWitnessWeight = By.cssSelector("input[id='witness_arr.0.weight']");
+	private By txtboxUpdateWitnessStreetNum = By.cssSelector("input[id='witness_arr.0.street']");
+	private By txtboxUpdateWitnessStreetName = By.id("witness_arr.0.person_address_street");
+	private By txtboxUpdateWitnessUnitNum = By.id("witness_arr.0.person_address_unit_number");
+	private By txtboxUpdateWitnessCity = By.id("witness_arr.0.person_address_city");
+	private By dropdownUpdateWitnessStateDropdown = By
+			.id("//select[@id='person_address_state' and @name='witness_arr.0.witness_address.state']");
+	private By txtboxUpdateWitnessZipCode = By.id("witness_arr.0.person_address_zip");
+
+	private By txtboxUpdateWitnessVehicleYear = By.id("witness_arr.0.vehicle_year");
+	private By txtboxUpdateWitnessVehicleMake = By.id("witness_arr.0.vehicle_make");
+	private By txtboxUpdateWitnessVehicleModel = By.id("witness_arr.0.vehicle_model");
+	private By txtboxUpdateWitnessVehicleColor = By.id("witness_arr.0.vehicle_color");
+	private By txtboxUpdateWitnessVehiclePlate = By.id("witness_arr.0.vehicle_plate");
+	private By dropdownUpdateWitnessVehicleState = By.id("witness_arr.0.vehicle_state");
 
 	// Data
 	private By incidentIdData = By.xpath("(//td[@data-label='Incident']/a)[1]");
@@ -537,6 +562,7 @@ public class FieldAgentIncidentReportsPage {
 	public void uploadIncidentReportImage(String imagePath) {
 		try {
 			elementUtils.uploadFile(incidentReportImageUpload, imagePath);
+			elementUtils.waitForElementVisible(txtboxFileName, Constants.DEFAULT_WAIT).sendKeys("Test Image");
 			System.out.println("Image uploaded successfully: " + imagePath);
 		} catch (NoSuchElementException e) {
 			System.err.println("Upload element not found: " + e.getMessage());
@@ -627,7 +653,341 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(getIncidentEditButtonLocator(incidentNumber), Constants.DEFAULT_WAIT)
 				.click();
 	}
-	
-	
 
+	// Update methods for all fill forms
+	public void updateBasicIncidentDetails(String siteName, String dateTime, String activityCode,
+			String discoverDateTime, String reportDateTime) throws InterruptedException {
+		Thread.sleep(2000);
+//		elementUtils.clearTextBoxWithActions(txtboxSiteSearch);
+//		elementUtils.doActionsSendKeys(txtboxSiteSearch, siteName);
+//		elementUtils.waitForElementVisible(getSiteNameLocator(siteName), Constants.DEFAULT_WAIT).click();
+		elementUtils.clearTextBoxWithJS(datetimeField, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(datetimeField, dateTime, Constants.DEFAULT_WAIT);
+		Thread.sleep(2000);
+		elementUtils.doClickWithActionsAndWait(dropdownActivitycode, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(searchActivitycode, activityCode);
+		elementUtils.waitForElementVisible(getStateLocator(activityCode), Constants.DEFAULT_WAIT).click();
+		elementUtils.clearTextBoxWithActions(discoverdateTime);
+		elementUtils.sendKeysUsingJavaScript(discoverdateTime, discoverDateTime, Constants.DEFAULT_WAIT);
+		Thread.sleep(2000);
+		elementUtils.clearTextBoxWithActions(reportDatetime);
+		elementUtils.sendKeysUsingJavaScript(reportDatetime, reportDateTime, Constants.DEFAULT_WAIT);
+		Thread.sleep(2000);
+
+	}
+
+	public void updatePoliceDepartmentDetails(String policeDept, String officerName, String badgeNum, String timeArrive,
+			String timeDepart, String incidentNum) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtPoliceDepartment);
+		elementUtils.doActionsSendKeys(txtPoliceDepartment, policeDept);
+		elementUtils.clearTextBoxWithActions(txtofficerName);
+		elementUtils.doActionsSendKeys(txtofficerName, officerName);
+		elementUtils.clearTextBoxWithActions(txtofficerBadge);
+		elementUtils.doActionsSendKeys(txtofficerBadge, badgeNum);
+		elementUtils.clearTextBoxWithJS(dateTimeArrived, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(dateTimeArrived, timeArrive, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithJS(dateTimeDeparted, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(dateTimeDeparted, timeDepart, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtIncidentNumber);
+		elementUtils.doActionsSendKeys(txtIncidentNumber, incidentNum);
+	}
+
+	public void updateFireDepartmentDetails(String fireDept, String engineNum, String timeArrive, String timeDepart,
+			String incidentNum) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtFireDepartment);
+		elementUtils.doActionsSendKeys(txtFireDepartment, fireDept);
+		elementUtils.clearTextBoxWithActions(txtEngine);
+		elementUtils.doActionsSendKeys(txtEngine, engineNum);
+		elementUtils.clearTextBoxWithJS(dateTimeArrive, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(dateTimeArrive, timeArrive, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithJS(dateTimeDepart, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(dateTimeDepart, timeDepart, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtIncidentNumberfire);
+		elementUtils.doActionsSendKeys(txtIncidentNumberfire, incidentNum);
+	}
+
+	public void updateAmbulanceDepartmentDetails(String medicDept, String ambulanceNum, String timeArrive,
+			String timeDepart, String incidentNum) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtmedicDepartment);
+		elementUtils.doActionsSendKeys(txtmedicDepartment, medicDept);
+		elementUtils.clearTextBoxWithActions(txtmedicUnit);
+		elementUtils.doActionsSendKeys(txtmedicUnit, ambulanceNum);
+		elementUtils.clearTextBoxWithJS(dateTimeArriveAmbulance, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(dateTimeArriveAmbulance, timeArrive, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithJS(dateTimeDepartAmbulance, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(dateTimeDepartAmbulance, timeDepart, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtIncidentNumberAmbulance);
+		elementUtils.doActionsSendKeys(txtIncidentNumberAmbulance, incidentNum);
+	}
+
+	public void updateOtherDepartmentDetails(String otherDept, String contactPhone, String vehicleNum,
+			String timeArrive, String timeDepart, String incidentNum) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtOtherDepartment);
+		elementUtils.doActionsSendKeys(txtOtherDepartment, otherDept);
+		elementUtils.clearTextBoxWithActions(txtcontantPhone);
+		elementUtils.doActionsSendKeys(txtcontantPhone, contactPhone);
+		elementUtils.clearTextBoxWithActions(vehicleNumber);
+		elementUtils.doActionsSendKeys(vehicleNumber, vehicleNum);
+		elementUtils.clearTextBoxWithJS(dateTimeArriveOther, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(dateTimeArriveOther, timeArrive, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithJS(dateTimeDepartOther, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(dateTimeDepartOther, timeDepart, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtIncidentNumberOther);
+		elementUtils.doActionsSendKeys(txtIncidentNumberOther, incidentNum);
+	}
+
+	public void updateCommanderNotifyDetails(String dispatcherNum, String onSceneSupervisor)
+			throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(DispatcherNumber);
+		elementUtils.doActionsSendKeys(DispatcherNumber, dispatcherNum);
+		elementUtils.clearTextBoxWithActions(txtonsceneSupervisor);
+		elementUtils.doActionsSendKeys(txtonsceneSupervisor, onSceneSupervisor);
+	}
+
+	public void updateReportingPersonDetails(String name, String dob, String phone, String workPhone)
+			throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtReportingPerson);
+		elementUtils.doActionsSendKeys(txtReportingPerson, name);
+		elementUtils.clearTextBoxWithActions(dobReportingPerson);
+		elementUtils.doActionsSendKeys(dobReportingPerson, dob);
+		elementUtils.clearTextBoxWithActions(txtReportingPhone);
+		elementUtils.doActionsSendKeys(txtReportingPhone, phone);
+		elementUtils.clearTextBoxWithActions(workPhoneReportingPerson);
+		elementUtils.doActionsSendKeys(workPhoneReportingPerson, workPhone);
+	}
+
+	public void updateReportingPersonAddress(String streetNum, String streetName, String unitNum, String city,
+			String state, String zipCode) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtReportingStreetNum);
+		elementUtils.doActionsSendKeys(txtReportingStreetNum, streetNum);
+		elementUtils.clearTextBoxWithActions(txtReportingStreetName);
+		elementUtils.doActionsSendKeys(txtReportingStreetName, streetName);
+		elementUtils.clearTextBoxWithActions(txtUnitNum);
+		elementUtils.doActionsSendKeys(txtUnitNum, unitNum);
+		elementUtils.clearTextBoxWithActions(txtReportingCity);
+		elementUtils.doActionsSendKeys(txtReportingCity, city);
+		elementUtils.doSelectBy(dropdownReportingState, state);
+		elementUtils.clearTextBoxWithActions(txtReportingZipCode);
+		elementUtils.doActionsSendKeys(txtReportingZipCode, zipCode);
+	}
+
+	public void updateVictim1Details(String name, String dob, String phone, String workPhone, String gender,
+			String race, String hairType, String hairColor, String eyeColor, String height, String build, String weight)
+			throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtVictimName);
+		elementUtils.doActionsSendKeys(txtVictimName, name);
+		elementUtils.clearTextBoxWithActions(txtDOBvictim);
+		elementUtils.doActionsSendKeys(txtDOBvictim, dob);
+		elementUtils.clearTextBoxWithActions(txtVictimPhone);
+		elementUtils.doActionsSendKeys(txtVictimPhone, phone);
+		elementUtils.clearTextBoxWithActions(txtVictimWorkPhone);
+		elementUtils.doActionsSendKeys(txtVictimWorkPhone, workPhone);
+		elementUtils.doSelectBy(dropdownGenderVictim, gender);
+		elementUtils.doSelectBy(dropdownRaceVictim, race);
+		elementUtils.doSelectBy(dropdownVictimHairType, hairType);
+		elementUtils.doSelectBy(dropdownVictimHairColor, hairColor);
+		elementUtils.doSelectBy(dropdownVictimEyes, eyeColor);
+		elementUtils.doSelectBy(dropdownvictimHeight, height);
+		elementUtils.doSelectBy(dropdownBuild, build);
+		elementUtils.clearTextBoxWithActions(txtWeight);
+		elementUtils.doActionsSendKeys(txtWeight, weight);
+	}
+
+	public void updateVictim1Address(String streetNum, String steetName, String unitNum, String city, String state,
+			String zipCode) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtstreetAdd);
+		elementUtils.doActionsSendKeys(txtstreetAdd, streetNum);
+		elementUtils.clearTextBoxWithActions(txtstreetName);
+		elementUtils.doActionsSendKeys(txtstreetName, steetName);
+		elementUtils.clearTextBoxWithActions(txtUnitNumber);
+		elementUtils.doActionsSendKeys(txtUnitNumber, unitNum);
+		elementUtils.clearTextBoxWithActions(txtvictimmCity);
+		elementUtils.doActionsSendKeys(txtvictimmCity, city);
+		elementUtils.waitForElementVisible(dropdownUpdateWitnessState, Constants.DEFAULT_WAIT);
+		elementUtils.doSelectByValue(dropdownUpdateWitnessState, state);
+		elementUtils.clearTextBoxWithActions(txtvictimzipcode);
+		elementUtils.doActionsSendKeys(txtvictimzipcode, zipCode);
+	}
+
+	public void updateVictim1VehicleDetails(String vehicleYear, String make, String model, String color, String plate,
+			String state) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtvictimvehicle);
+		elementUtils.doActionsSendKeys(txtvictimvehicle, vehicleYear);
+		elementUtils.clearTextBoxWithActions(txtVictimvehiclemake);
+		elementUtils.doActionsSendKeys(txtVictimvehiclemake, make);
+		elementUtils.clearTextBoxWithActions(txtvictimvehiclemodel);
+		elementUtils.doActionsSendKeys(txtvictimvehiclemodel, model);
+		elementUtils.clearTextBoxWithActions(txtvehiclecolor);
+		elementUtils.doActionsSendKeys(txtvehiclecolor, color);
+		elementUtils.clearTextBoxWithActions(txtVictimvehicleplate);
+		elementUtils.doActionsSendKeys(txtVictimvehicleplate, plate);
+		elementUtils.doSelectBy(dropdownVictimState, state);
+	}
+
+	public void updateWitness1Details(String name, String dob, String phone, String workPhone, String gender,
+			String race, String hairType, String hairColor, String eyeColor, String height, String build, String weight)
+			throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtWitnessName);
+		elementUtils.doActionsSendKeys(txtWitnessName, name);
+		elementUtils.clearTextBoxWithActions(txtWitnessDOB);
+		elementUtils.doActionsSendKeys(txtWitnessDOB, dob);
+		elementUtils.clearTextBoxWithActions(txtWitnessPhone);
+		elementUtils.doActionsSendKeys(txtWitnessPhone, phone);
+		elementUtils.clearTextBoxWithActions(txtWitnessWorkPhone);
+		elementUtils.doActionsSendKeys(txtWitnessWorkPhone, workPhone);
+		elementUtils.doSelectBy(dropdownWitnessGender, gender);
+		elementUtils.doSelectBy(dropdownWitnessRace, race);
+		elementUtils.doSelectBy(dropdownWitnessHairType, hairType);
+		elementUtils.doSelectBy(dropdownWitnessHairColor, hairColor);
+		elementUtils.doSelectBy(dropdownWitnessEyes, eyeColor);
+		elementUtils.doSelectBy(dropdownWitnessHeight, height);
+		elementUtils.doSelectBy(dropdownWitnessBuild, build);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessWeight);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessWeight, weight);
+	}
+
+	public void updateWitness1Address(String streetNum, String streetName, String unitNum, String city, String state,
+			String zipCode) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessStreetNum);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessStreetNum, streetNum);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessStreetName);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessStreetName, streetName);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessUnitNum);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessUnitNum, unitNum);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessCity);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessCity, city);
+//		elementUtils.waitForElementToBeClickable(dropdownUpdateWitnessStateDropdown, Constants.DEFAULT_WAIT);
+//		elementUtils.doSelectBy(dropdownUpdateWitnessStateDropdown, state);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessZipCode);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessZipCode, zipCode);
+	}
+
+	public void updateWitness1VehicleDetails(String vehicleYear, String make, String model, String color, String plate,
+			String state) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessVehicleYear);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessVehicleYear, vehicleYear);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessVehicleMake);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessVehicleMake, make);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessVehicleModel);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessVehicleModel, model);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessVehicleColor);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessVehicleColor, color);
+		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessVehiclePlate);
+		elementUtils.doActionsSendKeys(txtboxUpdateWitnessVehiclePlate, plate);
+		elementUtils.waitForElementVisible(dropdownUpdateWitnessVehicleState, Constants.DEFAULT_WAIT);
+		elementUtils.doSelectBy(dropdownUpdateWitnessVehicleState, state);
+	}
+
+	public void updateSuspect1Details(String name, String dob, String phone, String workPhone, String gender,
+			String race, String hairType, String hairColor, String eyeColor, String height, String build, String weight)
+			throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtSuspectName);
+		elementUtils.doActionsSendKeys(txtSuspectName, name);
+		elementUtils.clearTextBoxWithJS(txtSuspectDOB, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(txtSuspectDOB, dob, Constants.DEFAULT_WAIT);
+		Thread.sleep(2000);
+		elementUtils.clearTextBoxWithActions(txtSuspectPhone);
+		elementUtils.doActionsSendKeys(txtSuspectPhone, phone);
+		elementUtils.clearTextBoxWithActions(txtSuspectWorkPhone);
+		elementUtils.doActionsSendKeys(txtSuspectWorkPhone, workPhone);
+		elementUtils.doSelectBy(dropdownSuspectGender, gender);
+		elementUtils.doSelectBy(dropdownSuspectRace, race);
+		elementUtils.doSelectBy(dropdownSuspectHairType, hairType);
+		elementUtils.doSelectBy(dropdownSuspectHairColor, hairColor);
+		elementUtils.doSelectBy(dropdownSuspectEyes, eyeColor);
+		elementUtils.doSelectBy(dropdownSuspectHeight, height);
+		elementUtils.doSelectBy(dropdownSuspectBuild, build);
+		elementUtils.clearTextBoxWithActions(txtSuspectWeight);
+		elementUtils.doActionsSendKeys(txtSuspectWeight, weight);
+	}
+
+	public void updateSuspect1Address(String streetNum, String streetName, String unitNum, String city, String state,
+			String zipCode) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtSuspectStreetNum);
+		elementUtils.doActionsSendKeys(txtSuspectStreetNum, streetNum);
+		elementUtils.clearTextBoxWithActions(txtSuspectStreetName);
+		elementUtils.doActionsSendKeys(txtSuspectStreetName, streetName);
+		elementUtils.clearTextBoxWithActions(txtSuspectUnitNum);
+		elementUtils.doActionsSendKeys(txtSuspectUnitNum, unitNum);
+		elementUtils.clearTextBoxWithActions(txtSuspectCity);
+		elementUtils.doActionsSendKeys(txtSuspectCity, city);
+		elementUtils.waitForElementVisible(dropdownSuspectState, Constants.DEFAULT_WAIT);
+		elementUtils.doSelectBy(dropdownSuspectState, state);
+		elementUtils.clearTextBoxWithActions(txtSuspectZipCode);
+		elementUtils.doActionsSendKeys(txtSuspectZipCode, zipCode);
+
+	}
+
+	public void updateSuspect1VehicleDetails(String vehicleYear, String make, String model, String color, String plate,
+			String state) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtboxSuspectVehicleYear);
+		elementUtils.doActionsSendKeys(txtboxSuspectVehicleYear, vehicleYear);
+		elementUtils.clearTextBoxWithActions(txtboxSuspectVehicleMake);
+		elementUtils.doActionsSendKeys(txtboxSuspectVehicleMake, make);
+		elementUtils.clearTextBoxWithActions(txtboxSuspectVehicleModel);
+		elementUtils.doActionsSendKeys(txtboxSuspectVehicleModel, model);
+		elementUtils.clearTextBoxWithActions(txtboxSuspectVehicleColor);
+		elementUtils.doActionsSendKeys(txtboxSuspectVehicleColor, color);
+		elementUtils.clearTextBoxWithActions(txtboxSuspectVehiclePlate);
+		elementUtils.doActionsSendKeys(txtboxSuspectVehiclePlate, plate);
+		elementUtils.waitForElementVisible(dropdownSuspectVehicleState, Constants.DEFAULT_WAIT);
+		elementUtils.doSelectBy(dropdownSuspectVehicleState, state);
+	}
+
+	public void updateClassificationAndDisposition(boolean equipmentFailure, boolean safetyHazard,
+			boolean propertyDamage, boolean personalInjury, boolean conduct, boolean criminalAct, boolean missingPerson,
+			boolean death, boolean maintenanceIssue, boolean alarm, boolean flood, boolean training)
+			throws InterruptedException {
+		// No clearing needed for checkboxes, just click as needed
+		clickIfTrue(equipmentFailure, checkboxEquipment);
+		clickIfTrue(safetyHazard, checkboxSafety);
+		clickIfTrue(propertyDamage, checkboxPropertyDamage);
+		clickIfTrue(personalInjury, checkboxPersonalinjury);
+		clickIfTrue(conduct, checkboxConduct);
+		clickIfTrue(criminalAct, checkboxCriminal);
+		clickIfTrue(missingPerson, checkboxMissing);
+		clickIfTrue(death, checkboxDeath);
+		clickIfTrue(maintenanceIssue, checkboxMaintenance);
+		clickIfTrue(alarm, checkboxAlarm);
+		clickIfTrue(flood, checkboxFlood);
+		clickIfTrue(training, checkboxTraining);
+	}
+
+	public void updateClientNotifiedDetails(String date, String representative) {
+		elementUtils.clearTextBoxWithJS(DateClientNotified, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(DateClientNotified, date, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtClientrepresentative);
+		elementUtils.doActionsSendKeys(txtClientrepresentative, representative);
+	}
+
+	public void updateIncidentDescription(String description) throws InterruptedException {
+		elementUtils.clearTextBoxWithActions(txtIncidentDescription);
+		elementUtils.doActionsSendKeys(txtIncidentDescription, description);
+	}
+
+	public void deleteImageIfExists() throws InterruptedException {
+		try {
+			WebElement deleteBtn = elementUtils.waitForElementVisible(deleteImageIcon, Constants.DEFAULT_WAIT);
+			if (deleteBtn.isDisplayed()) {
+				deleteBtn.click();
+				elementUtils.waitForElementVisible(btnOk, Constants.DEFAULT_WAIT).click();
+				Thread.sleep(2000);
+			}
+		} catch (TimeoutException e) {
+			System.out.println("No existing image to delete.");
+		}
+	}
+
+	public void updateIncidentReportImage(String imagePath) throws InterruptedException {
+		if (imagePath != null && !imagePath.isEmpty()) {
+			elementUtils.waitForInvisibilityOfElementLocated(deleteImageIcon, Constants.DEFAULT_WAIT);
+			elementUtils.uploadFile(incidentReportImageUpload, imagePath);
+			elementUtils.waitForElementVisible(txtboxFileName, Constants.DEFAULT_WAIT).sendKeys("Image 2");
+		}
+	}
+
+	public void clickOnUpdateIncidentReport() throws InterruptedException {
+		elementUtils.waitForElementVisible(btnUpdateIncidentReport, Constants.DEFAULT_WAIT).click();
+		Thread.sleep(5000);
+	}
 }
