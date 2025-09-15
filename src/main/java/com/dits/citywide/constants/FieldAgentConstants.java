@@ -299,9 +299,6 @@ public class FieldAgentConstants {
 	public static final String INCIDENT_DATE_TIME = "09/12/2025 09:40";
 	public static final String REPORT_NUMBER = "2509120945009";
 	public static final String INCIDENT_ACTIVITY_CODE = "10-17";
-//	public static final String DISCOVERED_BY = "Yes";
-//	public static final String REPORTED_BY = "Yes";
-//	public static final String WATCH_COMMANDER_NOTIFIED = "Yes";
 	public static final String DISCOVER_DATE_TIME = "09/05/2025 10:30";
 	public static final String REPORTED_DATE_TIME = "09/06/2025 9:30";
 
@@ -448,7 +445,7 @@ public class FieldAgentConstants {
 	public static final boolean FLOOD = true;
 	public static final boolean TRAINING = true;
 
-	//public static final String CLASSIFICATION = "Property Damage";
+	// public static final String CLASSIFICATION = "Property Damage";
 
 	// Client Notified
 	public static final String CLIENT_NOTIFIED_DATE = "09/11/2025 11:15";
@@ -461,5 +458,167 @@ public class FieldAgentConstants {
 
 	// Incident Report Images
 	public static final String INCIDENT_IMAGE_PATH = "./src/test/resource/testdata/image.jpeg";
+
+	// Update Incident Report
+	// --- Update Incident Report ---
+	// Basic Info
+	public static final String UPDATE_SITE_NUMBER = "Richmond";
+	public static final String UPDATE_INCIDENT_DATE_TIME = "09/15/2025 14:20";
+	public static final String UPDATE_INCIDENT_ACTIVITY_CODE = "10-16";
+	public static final String UPDATE_DISCOVER_DATE_TIME = "09/10/2025 13:00";
+	public static final String UPDATE_REPORTED_DATE_TIME = "09/11/2025 14:00";
+
+	// Police Section
+	public static final String UPDATE_POLICE_OFFICER_NAME = "Officer Jane Miller";
+	public static final String UPDATE_POLICE_OFFICER_BADGE = "P9876";
+	public static final String UPDATE_POLICE_UNIT = "Unit 22";
+	public static final String UPDATE_POLICE_INCIDENT_NUMBER = "POL54321";
+	public static final String UPDATE_POLICE_ARRIVAL_TIME = "14:30";
+	public static final String UPDATE_POLICE_DEPARTURE_TIME = "15:10";
+
+	// Fire Section
+	public static final String UPDATE_FIRE_DEPARTMENT_NAME = "San Jose Fire Dept";
+	public static final String UPDATE_FIRE_ENGINE = "Engine 8";
+	public static final String UPDATE_FIRE_INCIDENT_NUMBER = "FIR12345";
+	public static final String UPDATE_FIRE_ARRIVAL_TIME = "14:35";
+	public static final String UPDATE_FIRE_DEPARTURE_TIME = "15:00";
+
+	// Medic Section
+	public static final String UPDATE_MEDIC_TEAM_NAME = "San Jose EMS";
+	public static final String UPDATE_MEDIC_UNIT = "Medic 12";
+	public static final String UPDATE_MEDIC_INCIDENT_NUMBER = "MED5566";
+	public static final String UPDATE_MEDIC_ARRIVAL_TIME = "14:40";
+	public static final String UPDATE_MEDIC_DEPARTURE_TIME = "15:05";
+
+	// Other Section
+	public static final String UPDATE_OTHER_AGENCY_NAME = "Electric Company";
+	public static final String UPDATE_OTHER_CONTACT_PHONE = "8005551234";
+	public static final String UPDATE_OTHER_VEHICLE = "Van #32";
+	public static final String UPDATE_OTHER_INCIDENT_NUMBER = "OTH1122";
+	public static final String UPDATE_OTHER_ARRIVAL_TIME = "15:15";
+	public static final String UPDATE_OTHER_DEPARTURE_TIME = "15:45";
+
+	// Reporting Person
+	public static final String UPDATE_REPORTING_PERSON_NAME = "Sarah Johnson";
+	public static final String UPDATE_REPORTING_PERSON_DOB = "01/15/1990";
+	public static final String UPDATE_REPORTING_PERSON_PHONE = "4085553344";
+	public static final String UPDATE_REPORTING_PERSON_WORK_PHONE = "4085553345";
+	public static final String UPDATE_REPORTING_PERSON_STREET_NUM = "600";
+	public static final String UPDATE_REPORTING_PERSON_STREET_NAME = "Market St";
+	public static final String UPDATE_REPORTING_PERSON_UNIT = "Suite 301";
+	public static final String UPDATE_REPORTING_PERSON_CITY = "San Jose";
+	public static final String UPDATE_REPORTING_PERSON_STATE = "CA";
+	public static final String UPDATE_REPORTING_PERSON_ZIP = "95112";
+
+	// Victim - 1
+	public static final String UPDATE_VICTIM_NAME = "Emily Davis";
+	public static final String UPDATE_VICTIM_DOB = "02/20/1985";
+	public static final String UPDATE_VICTIM_PHONE = "4085554455";
+	public static final String UPDATE_VICTIM_WORK_PHONE = "4085554456";
+	public static final String UPDATE_VICTIM_GENDER = "Female";
+	public static final String UPDATE_VICTIM_RACE = "Asian Or Pacific Islander";
+	public static final String UPDATE_VICTIM_EYES = "Green";
+	public static final String UPDATE_VICTIM_HAIR_TYPE = "Long";
+	public static final String UPDATE_VICTIM_HAIR_COLOR = "Red";
+	public static final String UPDATE_VICTIM_HEIGHT = "5' 7";
+	public static final String UPDATE_VICTIM_BUILD = "Thin";
+	public static final String UPDATE_VICTIM_WEIGHT = "130";
+
+	// Victim - 1 Address
+	public static final String UPDATE_VICTIM_STREET_NUM = "150";
+	public static final String UPDATE_VICTIM_STREET_NAME = "King St";
+	public static final String UPDATE_VICTIM_UNIT = "U10";
+	public static final String UPDATE_VICTIM_CITY = "San Jose";
+	public static final String UPDATE_VICTIM_STATE = "IN";
+	public static final String UPDATE_VICTIM_ZIP = "95113";
+	// Victim - 1 Vehicle
+	public static final String UPDATE_VICTIM_VEHICLE_YEAR = "2022";
+	public static final String UPDATE_VICTIM_VEHICLE_MAKE = "Toyota";
+	public static final String UPDATE_VICTIM_VEHICLE_MODEL = "Corolla";
+	public static final String UPDATE_VICTIM_VEHICLE_COLOR = "Red";
+	public static final String UPDATE_VICTIM_VEHICLE_LICENSE = "8XYZ123";
+	public static final String UPDATE_VICTIM_VEHICLE_STATE = "CA";
+
+	// Witness - 1
+	public static final String UPDATE_WITNESS_NAME = "David Kim";
+	public static final String UPDATE_WITNESS_DOB = "03/10/1980";
+	public static final String UPDATE_WITNESS_PHONE = "4085555566";
+	public static final String UPDATE_WITNESS_WORK_PHONE = "4085555567";
+	public static final String UPDATE_WITNESS_GENDER = "Male";
+	public static final String UPDATE_WITNESS_RACE = "White";
+	public static final String UPDATE_WITNESS_EYES = "Blue";
+	public static final String UPDATE_WITNESS_HAIR_TYPE = "Short";
+	public static final String UPDATE_WITNESS_HAIR_COLOR = "Gray";
+	public static final String UPDATE_WITNESS_HEIGHT = "6' 0";
+	public static final String UPDATE_WITNESS_BUILD = "Athletic";
+	public static final String UPDATE_WITNESS_WEIGHT = "170";
+
+	// Witness - 1 Address
+	public static final String UPDATE_WITNESS_STREET_NUM = "250";
+	public static final String UPDATE_WITNESS_STREET_NAME = "Park Ave";
+	public static final String UPDATE_WITNESS_UNIT = "Unit 5";
+	public static final String UPDATE_WITNESS_CITY = "San Jose";
+	public static final String UPDATE_WITNESS_STATE = "CA";
+	public static final String UPDATE_WITNESS_ZIP = "95114";
+	// Witness - 1 Vehicle
+	public static final String UPDATE_WITNESS_VEHICLE_YEAR = "2023";
+	public static final String UPDATE_WITNESS_VEHICLE_MAKE = "Tesla";
+	public static final String UPDATE_WITNESS_VEHICLE_MODEL = "Model 3";
+	public static final String UPDATE_WITNESS_VEHICLE_COLOR = "White";
+	public static final String UPDATE_WITNESS_VEHICLE_LICENSE = "TES123";
+	public static final String UPDATE_WITNESS_VEHICLE_STATE = "CA";
+
+	// Suspect - 1
+	public static final String UPDATE_SUSPECT_NAME = "Alex Turner";
+	public static final String UPDATE_SUSPECT_DOB = "05/05/1995";
+	public static final String UPDATE_SUSPECT_PHONE = "4085556677";
+	public static final String UPDATE_SUSPECT_WORK_PHONE = "N/A";
+	public static final String UPDATE_SUSPECT_GENDER = "Male";
+	public static final String UPDATE_SUSPECT_RACE = "Black";
+	public static final String UPDATE_SUSPECT_EYES = "Brown";
+	public static final String UPDATE_SUSPECT_HAIR_TYPE = "Curly";
+	public static final String UPDATE_SUSPECT_HAIR_COLOR = "Black";
+	public static final String UPDATE_SUSPECT_HEIGHT = "5' 11";
+	public static final String UPDATE_SUSPECT_BUILD = "Heavy";
+	public static final String UPDATE_SUSPECT_WEIGHT = "200";
+
+	// Suspect - 1 Address
+	public static final String UPDATE_SUSPECT_STREET_NUM = "350";
+	public static final String UPDATE_SUSPECT_STREET_NAME = "Almaden Blvd";
+	public static final String UPDATE_SUSPECT_UNIT = "Apt 20";
+	public static final String UPDATE_SUSPECT_CITY = "San Jose";
+	public static final String UPDATE_SUSPECT_STATE = "CA";
+	public static final String UPDATE_SUSPECT_ZIP = "95115";
+	// Suspect - 1 Vehicle
+	public static final String UPDATE_SUSPECT_VEHICLE_YEAR = "2021";
+	public static final String UPDATE_SUSPECT_VEHICLE_MAKE = "Chevrolet";
+	public static final String UPDATE_SUSPECT_VEHICLE_MODEL = "Malibu";
+	public static final String UPDATE_SUSPECT_VEHICLE_COLOR = "Silver";
+	public static final String UPDATE_SUSPECT_VEHICLE_LICENSE = "CHEV456";
+	public static final String UPDATE_SUSPECT_VEHICLE_STATE = "AZ";
+
+	// Classification
+	public static final boolean UPDATE_EQUIPMENT_FAILURE = false;
+	public static final boolean UPDATE_SAFETY_HAZARD = true;
+	public static final boolean UPDATE_PROPERTY_DAMAGE = false;
+	public static final boolean UPDATE_PERSONAL_INJURY = true;
+	public static final boolean UPDATE_CONDUCT = false;
+	public static final boolean UPDATE_CRIMINAL_ACT = true;
+	public static final boolean UPDATE_MISSING_PERSON = false;
+	public static final boolean UPDATE_DEATH = false;
+	public static final boolean UPDATE_MAINTENANCE_ISSUE = true;
+	public static final boolean UPDATE_ALARM = false;
+	public static final boolean UPDATE_FLOOD = false;
+	public static final boolean UPDATE_TRAINING = true;
+
+	// Client Notified
+	public static final String UPDATE_CLIENT_NOTIFIED_DATE = "09/15/2025 15:30";
+	public static final String UPDATE_CLIENT_NOTIFIED_NAME = "Robert Smith";
+
+	// Incident Description
+	public static final String UPDATE_INCIDENT_DESCRIPTION = "A suspect was seen tampering with electrical equipment. Fire and EMS responded. The suspect was apprehended by police.";
+
+	// Incident Report Images
+	public static final String UPDATE_INCIDENT_IMAGE_PATH = "./src/test/resource/testdata/image.jpeg";
 
 }
