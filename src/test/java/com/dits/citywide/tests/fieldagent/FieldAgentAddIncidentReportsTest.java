@@ -58,9 +58,10 @@ public class FieldAgentAddIncidentReportsTest extends BaseTest {
 				FieldAgentConstants.REPORTING_PERSON_WORK_PHONE);
 
 		// Reporting Person Address (split provided address into components)
-		fieldAgentIncidentReportsPage.fillReportingPersonAddress("500", "Elm St",
-				FieldAgentConstants.REPORTING_PERSON_UNIT, FieldAgentConstants.REPORTING_PERSON_CITY,
-				FieldAgentConstants.REPORTING_PERSON_STATE, FieldAgentConstants.REPORTING_PERSON_ZIP);
+		fieldAgentIncidentReportsPage.fillReportingPersonAddress(FieldAgentConstants.REPORTING_PERSON_STREET_NUM,
+				FieldAgentConstants.REPORTING_PERSON_STREET_NAME, FieldAgentConstants.REPORTING_PERSON_UNIT,
+				FieldAgentConstants.REPORTING_PERSON_CITY, FieldAgentConstants.REPORTING_PERSON_STATE,
+				FieldAgentConstants.REPORTING_PERSON_ZIP);
 
 		// Victim - 1 (no address/vehicle constants provided -> using static fallback
 		// data)
@@ -70,8 +71,14 @@ public class FieldAgentAddIncidentReportsTest extends BaseTest {
 				FieldAgentConstants.VICTIM_HAIR_TYPE, FieldAgentConstants.VICTIM_HAIR_COLOR,
 				FieldAgentConstants.VICTIM_EYES, FieldAgentConstants.VICTIM_HEIGHT, FieldAgentConstants.VICTIM_BUILD,
 				FieldAgentConstants.VICTIM_WEIGHT);
-		fieldAgentIncidentReportsPage.fillVictim1Address("100", "U5", "Riverside", "CA", "92507");
-		fieldAgentIncidentReportsPage.fillVictim1VehicleDetails("2022", "Toyota", "Camry", "Blue", "ABC123", "CA");
+		fieldAgentIncidentReportsPage.fillVictim1Address(FieldAgentConstants.VICTIM_STREET_NUM,
+				FieldAgentConstants.VICTIM_STREET_NAME, FieldAgentConstants.VICTIM_UNIT,
+				FieldAgentConstants.VICTIM_CITY, FieldAgentConstants.VICTIM_STATE, FieldAgentConstants.VICTIM_ZIP);
+
+		fieldAgentIncidentReportsPage.fillVictim1VehicleDetails(FieldAgentConstants.VICTIM_VEHICLE_YEAR,
+				FieldAgentConstants.VICTIM_VEHICLE_MAKE, FieldAgentConstants.VICTIM_VEHICLE_MODEL,
+				FieldAgentConstants.VICTIM_VEHICLE_COLOR, FieldAgentConstants.VICTIM_VEHICLE_LICENSE,
+				FieldAgentConstants.VICTIM_VEHICLE_STATE);
 
 		// Witness - 1 (no address/vehicle constants provided -> using static fallback
 		// data)
@@ -82,8 +89,13 @@ public class FieldAgentAddIncidentReportsTest extends BaseTest {
 				FieldAgentConstants.WITNESS_HAIR_COLOR, FieldAgentConstants.WITNESS_EYES,
 				FieldAgentConstants.WITNESS_HEIGHT, FieldAgentConstants.WITNESS_BUILD,
 				FieldAgentConstants.WITNESS_WEIGHT);
-		fieldAgentIncidentReportsPage.fillWitness1Address("200", "Pine St", "Unit 3", "Riverside", "CA", "92507");
-		fieldAgentIncidentReportsPage.fillWitness1VehicleDetails("2021", "Honda", "Civic", "Gray", "XYZ789", "CA");
+		fieldAgentIncidentReportsPage.fillWitness1Address(FieldAgentConstants.WITNESS_STREET_NUM,
+				FieldAgentConstants.WITNESS_STREET_NAME, FieldAgentConstants.WITNESS_UNIT,
+				FieldAgentConstants.WITNESS_CITY, FieldAgentConstants.WITNESS_STATE, FieldAgentConstants.WITNESS_ZIP);
+		fieldAgentIncidentReportsPage.fillWitness1VehicleDetails(FieldAgentConstants.WITNESS_VEHICLE_YEAR,
+				FieldAgentConstants.WITNESS_VEHICLE_MAKE, FieldAgentConstants.WITNESS_VEHICLE_MODEL,
+				FieldAgentConstants.WITNESS_VEHICLE_COLOR, FieldAgentConstants.WITNESS_VEHICLE_LICENSE,
+				FieldAgentConstants.WITNESS_VEHICLE_STATE);
 
 		// Suspect - 1 (no oddities constant -> passing empty string, address/vehicle
 		// static fallback)
@@ -93,14 +105,23 @@ public class FieldAgentAddIncidentReportsTest extends BaseTest {
 				FieldAgentConstants.SUSPECT_RACE, FieldAgentConstants.SUSPECT_HAIR_TYPE,
 				FieldAgentConstants.SUSPECT_HAIR_COLOR, FieldAgentConstants.SUSPECT_EYES,
 				FieldAgentConstants.SUSPECT_HEIGHT, FieldAgentConstants.SUSPECT_BUILD,
-				FieldAgentConstants.SUSPECT_WEIGHT, "");
-		fieldAgentIncidentReportsPage.fillSuspect1Address("300", "Maple Ave", "Apt 10", "Riverside", "CA", "92507");
-		fieldAgentIncidentReportsPage.fillSuspect1VehicleDetails("2020", "Ford", "Focus", "Black", "LMN456", "CA");
+				FieldAgentConstants.SUSPECT_WEIGHT);
+
+		fieldAgentIncidentReportsPage.fillSuspect1Address(FieldAgentConstants.SUSPECT_STREET_NUM,
+				FieldAgentConstants.SUSPECT_STREET_NAME, FieldAgentConstants.SUSPECT_UNIT,
+				FieldAgentConstants.SUSPECT_CITY, FieldAgentConstants.SUSPECT_STATE, FieldAgentConstants.SUSPECT_ZIP);
+		fieldAgentIncidentReportsPage.fillSuspect1VehicleDetails(FieldAgentConstants.SUSPECT_VEHICLE_YEAR,
+				FieldAgentConstants.SUSPECT_VEHICLE_MAKE, FieldAgentConstants.SUSPECT_VEHICLE_MODEL,
+				FieldAgentConstants.SUSPECT_VEHICLE_COLOR, FieldAgentConstants.SUSPECT_VEHICLE_LICENSE,
+				FieldAgentConstants.SUSPECT_VEHICLE_STATE);
 
 		// Classification - only Property Damage (based on provided CLASSIFICATION
 		// constant)
-		fieldAgentIncidentReportsPage.fillClassificationAndDisposition(false, false, true, false, false, false, false,
-				false, false, false, false, false);
+		fieldAgentIncidentReportsPage.fillClassificationAndDisposition(FieldAgentConstants.EQUIPMENT_FAILURE,
+				FieldAgentConstants.SAFETY_HAZARD, FieldAgentConstants.PROPERTY_DAMAGE,
+				FieldAgentConstants.PERSONAL_INJURY, FieldAgentConstants.CONDUCT, FieldAgentConstants.CRIMINAL_ACT,
+				FieldAgentConstants.MISSING_PERSON, FieldAgentConstants.DEATH, FieldAgentConstants.MAINTENANCE_ISSUE,
+				FieldAgentConstants.ALARM, FieldAgentConstants.FLOOD, FieldAgentConstants.TRAINING);
 
 		// Client Notified
 		fieldAgentIncidentReportsPage.fillClientNotifiedDetails(FieldAgentConstants.CLIENT_NOTIFIED_DATE,
@@ -109,11 +130,18 @@ public class FieldAgentAddIncidentReportsTest extends BaseTest {
 		// Incident Description
 		fieldAgentIncidentReportsPage.fillIncidentDescription(FieldAgentConstants.INCIDENT_DESCRIPTION);
 
-		// Upload Image
 		fieldAgentIncidentReportsPage.uploadIncidentReportImage(FieldAgentConstants.INCIDENT_IMAGE_PATH);
 
-		// Save
 		fieldAgentIncidentReportsPage.clickOnSaveIncidentReport();
+
+		softAssert.assertTrue(fieldAgentIncidentReportsPage.isAddNewIncidentButtonDisplayed(),
+				"Add New Incident button is not displayed after saving the incident report.");
+		softAssert.assertTrue(fieldAgentIncidentReportsPage.getSiteData().contains(FieldAgentConstants.SITE_NUMBER),
+				"Saved incident report not found in the incident reports list.");
+
+		String incidentId = fieldAgentIncidentReportsPage.getIncidentID();
+		System.out.println(incidentId);
+		driverFactory.updatePropertyValue("incidentReportID", incidentId);
 
 		softAssert.assertAll();
 	}

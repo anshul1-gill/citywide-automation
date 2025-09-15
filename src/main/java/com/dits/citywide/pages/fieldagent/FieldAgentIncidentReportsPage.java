@@ -32,7 +32,7 @@ public class FieldAgentIncidentReportsPage {
 	}
 
 	private By Checkboxdiscover = By.xpath("//input[@id='agent_discovered']");
-	private By discoverdateTime = By.xpath("//input[@id='discovered_datetime']");
+	private By discoverdateTime = By.id("discovered_datetime");
 	private By reportCheckbox = By.xpath("//input[@id='inlineCheckbox1']");
 	private By reportDatetime = By.id("reported_datetime");
 
@@ -79,7 +79,7 @@ public class FieldAgentIncidentReportsPage {
 	private By txtReportingPerson = By.xpath("//input[@id='reporting_party_name']");
 	private By dobReportingPerson = By.xpath("(//input[@placeholder=\"MM/DD/YYYY\"])[1]");
 	private By txtReportingPhone = By.xpath("//input[@id='reporting_party_phone']");
-	private By workPhoneReportingPerson = By.xpath("//input[@id='reporting_party_work_phone']");
+	private By workPhoneReportingPerson = By.cssSelector("#reporting_party_phone_work");
 
 	// Reporting Person Address
 	private By txtReportingStreetNum = By.xpath("//input[@id='rp_street_num']");
@@ -87,7 +87,6 @@ public class FieldAgentIncidentReportsPage {
 	private By txtUnitNum = By.xpath("//input[@id='rp_apartment']");
 	private By txtReportingCity = By.xpath("//input[@id='rp_city']");
 	private By dropdownReportingState = By.xpath("//select[@id='rp_state']");
-	private By selectReportingStateOption = By.xpath("(//option[@value='WY'])[1]");
 	private By txtReportingZipCode = By.xpath("//input[@id='rp_zipcode']");
 
 	// Victim-1 Description
@@ -107,9 +106,10 @@ public class FieldAgentIncidentReportsPage {
 	// Victim-1 Addresss Information
 	private By checkboxvictimAddress = By.xpath("//input[@id='victim_arr.0.victim_checkbox']");
 	private By txtstreetAdd = By.xpath("//input[@id='victim_arr.0.person_address_street_num']");
+	private By txtstreetName = By.cssSelector("input[id='victim_arr.0.person_address_street']");
 	private By txtUnitNumber = By.xpath("//input[@id='victim_arr.0.person_address_unit_number']");
 	private By txtvictimmCity = By.xpath("//input[@id='victim_arr.0.person_address_city']");
-	private By dropdownState = By.xpath("//input[@id='person_address_state']");
+	private By dropdownState = By.cssSelector("#person_address_state");
 	private By txtvictimzipcode = By.xpath("//input[@id='victim_arr.0.person_address_zip']");
 
 	// Victim-1 Vehicle Information
@@ -127,12 +127,12 @@ public class FieldAgentIncidentReportsPage {
 	private By txtWitnessPhone = By.xpath("//input[@id='witness_0_phone']");
 	private By txtWitnessWorkPhone = By.xpath("//input[@id='witness_0_phone_work']");
 	private By dropdownWitnessGender = By.xpath("//select[@id='witness_0_gender']");
-	private By dropdownWitnessRace = By.xpath("//select[@id='witness_0_race']");
-	private By dropdownWitnessHairType = By.xpath("//select[@id='witness_0_hair_type']");
+	private By dropdownWitnessRace = By.cssSelector("#witness_0_race");
+	private By dropdownWitnessHairType = By.cssSelector("#witness_0_hair_type");
 	private By dropdownWitnessHairColor = By.xpath("//select[@id='witness_0_hair']");
 	private By dropdownWitnessEyes = By.xpath("//select[@id='witness_0_eyes']");
 	private By dropdownWitnessHeight = By.xpath("//select[@id='witness_0_height']");
-	private By dropdownWitnessBuild = By.xpath("//select[@id='witness_0_build']");
+	private By dropdownWitnessBuild = By.cssSelector("#witness_0_build");
 	private By txtWitnessWeight = By.xpath("//input[@id='witness_0_weight']");
 
 	// Witness-1 Address Information
@@ -155,18 +155,17 @@ public class FieldAgentIncidentReportsPage {
 
 	// suspect-1 description
 	private By txtSuspectName = By.xpath("//input[@id='suspect_0_name']");
-	private By txtSuspectDOB = By.xpath("(//input[@placeholder='MM/DD/YYYY'])[4]");
-	private By txtSuspectPhone = By.xpath("//input[@id='suspect_0_phone']");
-	private By txtSuspectWorkPhone = By.xpath("//input[@id='suspect_0_phone_work']");
-	private By dropdownSuspectGender = By.xpath("//select[@id='suspect_0_gender']");
+	private By txtSuspectDOB = By.cssSelector("label[for='suspect_arr.0.suspect_info.dob'] + input");
+	private By txtSuspectPhone = By.cssSelector("#suspect_0_phone");
+	private By txtSuspectWorkPhone = By.cssSelector("#suspect_0_phone_work");
+	private By dropdownSuspectGender = By.cssSelector("#suspect_0_gender");
 	private By dropdownSuspectRace = By.xpath("//select[@id='suspect_0_race']");
 	private By dropdownSuspectHairType = By.xpath("//select[@id='suspect_0_hair_type']");
-	private By dropdownSuspectHairColor = By.xpath("//select[@id='suspect_0_hair']");
+	private By dropdownSuspectHairColor = By.cssSelector("#suspect_0_hair");
 	private By dropdownSuspectEyes = By.xpath("//select[@id='suspect_0_eyes']");
 	private By dropdownSuspectHeight = By.xpath("//select[@id='suspect_0_height']");
 	private By dropdownSuspectBuild = By.xpath("//select[@id='suspect_0_build']");
 	private By txtSuspectWeight = By.xpath("//input[@id='suspect_0_weight']");
-	// private By txtSuspectOddities = By.xpath("//input[@id='suspect_0_weight']");
 
 	// Suspect-1 Address Information
 	private By checkboxSuspectAddress = By.xpath("//input[@id='suspect_arr.0.suspect_checkbox']");
@@ -210,7 +209,41 @@ public class FieldAgentIncidentReportsPage {
 	private By incidentReportImageUpload = By.xpath("//input[@type='file']");
 
 	// Save Incident Report
-	private By btnSaveIncidentReport = By.xpath("//button[@id='save_incident_report']");
+	private By btnSaveIncidentReport = By.id("incidentReport");
+
+	// Data
+	private By incidentIdData = By.xpath("(//td[@data-label='Incident']/a)[1]");
+	private By brnachData = By.xpath("(//td[@data-label='Branch'])[1]");
+	private By siteData = By.xpath("(//td[@data-label='Site'])[1]");
+	private By rpNameData = By.xpath("(//td[@data-label='RP name'])[1]");
+	private By victimsData = By.xpath("(//td[@data-label='Victims'])[1]");
+	private By witnessesData = By.xpath("(//td[@data-label='Witnesses'])[1]");
+	private By suspectsData = By.xpath("(//td[@data-label='Suspects'])[1]");
+	private By dateDepts = By.xpath("(//td[@data-label='Depts'])[1]");
+	private By dateClass = By.xpath("(//td[@data-label='Class'])[1]");
+
+	private By txtboxSearch = By.cssSelector("input[placeholder='Search']");
+	// Delete
+	private By txtboxCharge = By.cssSelector("#person_charges");
+
+	private By getIncidentDeleteButtonLocator(String incidentNumber) {
+		String xpath = String.format(
+				"//a[normalize-space()='%s']/../following-sibling::td//button[@title='Delete Incident']",
+				incidentNumber);
+		return By.xpath(xpath);
+	}
+
+	private By btnOk = By.xpath("//button[normalize-space()='OK']");
+	private By successMessage = By.cssSelector("#swal2-title>span");
+
+	private By txtNoItemsFound = By.xpath("//span[contains(text(),'No items found.')]");
+
+	// Update
+	private By getIncidentEditButtonLocator(String incidentNumber) {
+		String xpath = String.format(
+				"//a[normalize-space()='%s']/../following-sibling::td//button[@title='Edit Incident']", incidentNumber);
+		return By.xpath(xpath);
+	}
 
 	public FieldAgentIncidentReportsPage(WebDriver driver) {
 		this.driver = driver;
@@ -219,6 +252,14 @@ public class FieldAgentIncidentReportsPage {
 
 	public void clickOnAddNewIncident() throws InterruptedException {
 		elementUtils.waitForElementVisible(btnAddNewIncident, Constants.DEFAULT_WAIT).click();
+	}
+
+	public boolean isAddNewIncidentButtonDisplayed() {
+		try {
+			return elementUtils.doIsDisplayed(btnAddNewIncident, Constants.DEFAULT_WAIT);
+		} catch (NoSuchElementException | TimeoutException e) {
+			return false;
+		}
 	}
 
 	public boolean verifyAddNewIncidentPage() {
@@ -231,16 +272,22 @@ public class FieldAgentIncidentReportsPage {
 			String reportDateTime) throws InterruptedException {
 		elementUtils.waitForElementVisible(txtboxSiteSearch, Constants.DEFAULT_WAIT).sendKeys(siteName);
 		elementUtils.waitForElementVisible(getSiteNameLocator(siteName), Constants.DEFAULT_WAIT).click();
-		Thread.sleep(1000);
-		elementUtils.waitForElementVisible(datetimeField, Constants.DEFAULT_WAIT).sendKeys(dateTime);
+		// elementUtils.waitForElementVisible(datetimeField,
+		// Constants.DEFAULT_WAIT).sendKeys(dateTime);
+		elementUtils.sendKeysUsingJavaScript(datetimeField, dateTime, Constants.DEFAULT_WAIT);
 		Thread.sleep(2000);
 		elementUtils.waitForElementVisible(dropdownActivitycode, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(searchActivitycode, Constants.DEFAULT_WAIT).sendKeys(activityCode);
 		elementUtils.waitForElementVisible(getStateLocator(activityCode), Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(Checkboxdiscover, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(discoverdateTime, Constants.DEFAULT_WAIT).sendKeys(discoverDateTime);
+		// elementUtils.waitForElementVisible(discoverdateTime,
+		// Constants.DEFAULT_WAIT).sendKeys(discoverDateTime);
+		elementUtils.sendKeysUsingJavaScript(discoverdateTime, discoverDateTime, Constants.DEFAULT_WAIT);
+		Thread.sleep(2000);
 		elementUtils.waitForElementVisible(reportCheckbox, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(reportDatetime, Constants.DEFAULT_WAIT).sendKeys(reportDateTime);
+		// elementUtils.waitForElementVisible(reportDatetime,
+		// Constants.DEFAULT_WAIT).sendKeys(reportDateTime);
+		elementUtils.sendKeysUsingJavaScript(reportDatetime, reportDateTime, Constants.DEFAULT_WAIT);
 		Thread.sleep(2000);
 	}
 
@@ -257,7 +304,6 @@ public class FieldAgentIncidentReportsPage {
 		// Constants.DEFAULT_WAIT).sendKeys(timeDepart);
 		elementUtils.sendKeysUsingJavaScript(dateTimeDeparted, timeDepart, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(txtIncidentNumber, Constants.DEFAULT_WAIT).sendKeys(incidentNum);
-		Thread.sleep(60000);
 	}
 
 	public void fillFireDepartmentDetails(String fireDept, String engineNum, String timeArrive, String timeDepart,
@@ -265,10 +311,13 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(checkboxFire, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(txtFireDepartment, Constants.DEFAULT_WAIT).sendKeys(fireDept);
 		elementUtils.waitForElementVisible(txtEngine, Constants.DEFAULT_WAIT).sendKeys(engineNum);
-		elementUtils.waitForElementVisible(dateTimeArrive, Constants.DEFAULT_WAIT).sendKeys(timeArrive);
-		elementUtils.waitForElementVisible(dateTimeDepart, Constants.DEFAULT_WAIT).sendKeys(timeDepart);
+		// elementUtils.waitForElementVisible(dateTimeArrive,
+		// Constants.DEFAULT_WAIT).sendKeys(timeArrive);
+		elementUtils.sendKeysUsingJavaScript(dateTimeArrive, timeArrive, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForElementVisible(dateTimeDepart,
+		// Constants.DEFAULT_WAIT).sendKeys(timeDepart);
+		elementUtils.sendKeysUsingJavaScript(dateTimeDepart, timeDepart, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(txtIncidentNumberfire, Constants.DEFAULT_WAIT).sendKeys(incidentNum);
-		Thread.sleep(60000);
 	}
 
 	public void fillAmbulanceDepartmentDetails(String medicDept, String ambulanceNum, String timeArrive,
@@ -276,10 +325,13 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(checkboxAmbulance, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(txtmedicDepartment, Constants.DEFAULT_WAIT).sendKeys(medicDept);
 		elementUtils.waitForElementVisible(txtmedicUnit, Constants.DEFAULT_WAIT).sendKeys(ambulanceNum);
-		elementUtils.waitForElementVisible(dateTimeArriveAmbulance, Constants.DEFAULT_WAIT).sendKeys(timeArrive);
-		elementUtils.waitForElementVisible(dateTimeDepartAmbulance, Constants.DEFAULT_WAIT).sendKeys(timeDepart);
+		// elementUtils.waitForElementVisible(dateTimeArriveAmbulance,
+		// Constants.DEFAULT_WAIT).sendKeys(timeArrive);
+		elementUtils.sendKeysUsingJavaScript(dateTimeArriveAmbulance, timeArrive, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForElementVisible(dateTimeDepartAmbulance,
+		// Constants.DEFAULT_WAIT).sendKeys(timeDepart);
+		elementUtils.sendKeysUsingJavaScript(dateTimeDepartAmbulance, timeDepart, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(txtIncidentNumberAmbulance, Constants.DEFAULT_WAIT).sendKeys(incidentNum);
-		Thread.sleep(60000);
 	}
 
 	public void fillOtherDepartmentDetails(String otherDept, String contactPhone, String vehicleNum, String timeArrive,
@@ -288,17 +340,19 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(txtOtherDepartment, Constants.DEFAULT_WAIT).sendKeys(otherDept);
 		elementUtils.waitForElementVisible(txtcontantPhone, Constants.DEFAULT_WAIT).sendKeys(contactPhone);
 		elementUtils.waitForElementVisible(vehicleNumber, Constants.DEFAULT_WAIT).sendKeys(vehicleNum);
-		elementUtils.waitForElementVisible(dateTimeArriveOther, Constants.DEFAULT_WAIT).sendKeys(timeArrive);
-		elementUtils.waitForElementVisible(dateTimeDepartOther, Constants.DEFAULT_WAIT).sendKeys(timeDepart);
+		// elementUtils.waitForElementVisible(dateTimeArriveOther,
+		// Constants.DEFAULT_WAIT).sendKeys(timeArrive);
+		elementUtils.sendKeysUsingJavaScript(dateTimeArriveOther, timeArrive, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForElementVisible(dateTimeDepartOther,
+		// Constants.DEFAULT_WAIT).sendKeys(timeDepart);
+		elementUtils.sendKeysUsingJavaScript(dateTimeDepartOther, timeDepart, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(txtIncidentNumberOther, Constants.DEFAULT_WAIT).sendKeys(incidentNum);
-		Thread.sleep(60000);
 	}
 
 	public void fillCommanderNotifyDetails(String dispatcherNum, String onSceneSupervisor) throws InterruptedException {
 		elementUtils.waitForElementVisible(checkboxCommander, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(DispatcherNumber, Constants.DEFAULT_WAIT).sendKeys(dispatcherNum);
 		elementUtils.waitForElementVisible(txtonsceneSupervisor, Constants.DEFAULT_WAIT).sendKeys(onSceneSupervisor);
-		Thread.sleep(60000);
 	}
 
 	public void fillReportingPersonDetails(String name, String dob, String phone, String workPhone)
@@ -307,7 +361,6 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(dobReportingPerson, Constants.DEFAULT_WAIT).sendKeys(dob);
 		elementUtils.waitForElementVisible(txtReportingPhone, Constants.DEFAULT_WAIT).sendKeys(phone);
 		elementUtils.waitForElementVisible(workPhoneReportingPerson, Constants.DEFAULT_WAIT).sendKeys(workPhone);
-		Thread.sleep(60000);
 	}
 
 	public void fillReportingPersonAddress(String streetNum, String streetName, String unitNum, String city,
@@ -317,9 +370,10 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(txtUnitNum, Constants.DEFAULT_WAIT).sendKeys(unitNum);
 		elementUtils.waitForElementVisible(txtReportingCity, Constants.DEFAULT_WAIT).sendKeys(city);
 		elementUtils.waitForElementVisible(dropdownReportingState, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(getStateLocator(state), Constants.DEFAULT_WAIT).click();
+		// elementUtils.waitForElementVisible(getStateLocator(state),
+		// Constants.DEFAULT_WAIT).click();
+		elementUtils.doSelectBy(dropdownReportingState, state);
 		elementUtils.waitForElementVisible(txtReportingZipCode, Constants.DEFAULT_WAIT).sendKeys(zipCode);
-		Thread.sleep(60000);
 	}
 
 	public void fillVictim1Details(String name, String dob, String phone, String workPhone, String gender, String race,
@@ -337,20 +391,17 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.doSelectBy(dropdownvictimHeight, height);
 		elementUtils.doSelectBy(dropdownBuild, build);
 		elementUtils.waitForElementVisible(txtWeight, Constants.DEFAULT_WAIT).sendKeys(weight);
-		Thread.sleep(60000);
 	}
 
-	public void fillVictim1Address(String streetNum, String unitNum, String city, String state, String zipCode)
-			throws InterruptedException {
+	public void fillVictim1Address(String streetNum, String steetName, String unitNum, String city, String state,
+			String zipCode) throws InterruptedException {
 		elementUtils.waitForElementVisible(checkboxvictimAddress, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(txtstreetAdd, Constants.DEFAULT_WAIT).sendKeys(streetNum);
+		elementUtils.waitForElementVisible(txtstreetName, Constants.DEFAULT_WAIT).sendKeys(steetName);
 		elementUtils.waitForElementVisible(txtUnitNumber, Constants.DEFAULT_WAIT).sendKeys(unitNum);
 		elementUtils.waitForElementVisible(txtvictimmCity, Constants.DEFAULT_WAIT).sendKeys(city);
-		elementUtils.waitForElementVisible(dropdownState, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(getStateLocator(state), Constants.DEFAULT_WAIT).click();
-		Thread.sleep(2000);
+		elementUtils.doSelectBy(dropdownState, state);
 		elementUtils.waitForElementVisible(txtvictimzipcode, Constants.DEFAULT_WAIT).sendKeys(zipCode);
-		Thread.sleep(60000);
 	}
 
 	public void fillVictim1VehicleDetails(String vehicleYear, String make, String model, String color, String plate,
@@ -361,10 +412,7 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(txtvictimvehiclemodel, Constants.DEFAULT_WAIT).sendKeys(model);
 		elementUtils.waitForElementVisible(txtvehiclecolor, Constants.DEFAULT_WAIT).sendKeys(color);
 		elementUtils.waitForElementVisible(txtVictimvehicleplate, Constants.DEFAULT_WAIT).sendKeys(plate);
-		elementUtils.waitForElementVisible(dropdownVictimState, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(getStateLocator(state), Constants.DEFAULT_WAIT).click();
-		Thread.sleep(2000);
-		Thread.sleep(60000);
+		elementUtils.doSelectBy(dropdownVictimState, state);
 	}
 
 	public void fillWitness1Details(String name, String dob, String phone, String workPhone, String gender, String race,
@@ -382,7 +430,6 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.doSelectBy(dropdownWitnessHeight, height);
 		elementUtils.doSelectBy(dropdownWitnessBuild, build);
 		elementUtils.waitForElementVisible(txtWitnessWeight, Constants.DEFAULT_WAIT).sendKeys(weight);
-		Thread.sleep(60000);
 	}
 
 	public void fillWitness1Address(String streetNum, String streetName, String unitNum, String city, String state,
@@ -393,10 +440,9 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(txtWitnessUnitNum, Constants.DEFAULT_WAIT).sendKeys(unitNum);
 		elementUtils.waitForElementVisible(txtWitnessCity, Constants.DEFAULT_WAIT).sendKeys(city);
 		elementUtils.waitForElementVisible(dropdownWitnessState, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(getStateLocator(state), Constants.DEFAULT_WAIT).click();
-		Thread.sleep(2000);
+		elementUtils.doSelectBy(dropdownWitnessState, state);
 		elementUtils.waitForElementVisible(txtWitnessZipCode, Constants.DEFAULT_WAIT).sendKeys(zipCode);
-		Thread.sleep(60000);
+
 	}
 
 	public void fillWitness1VehicleDetails(String vehicleYear, String make, String model, String color, String plate,
@@ -408,16 +454,15 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(txtWitnessVehicleColor, Constants.DEFAULT_WAIT).sendKeys(color);
 		elementUtils.waitForElementVisible(txtWitnessVehiclePlate, Constants.DEFAULT_WAIT).sendKeys(plate);
 		elementUtils.waitForElementVisible(dropdownWitnessVehicleState, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(getStateLocator(state), Constants.DEFAULT_WAIT).click();
-		Thread.sleep(2000);
-		Thread.sleep(60000);
+		elementUtils.doSelectBy(dropdownWitnessVehicleState, state);
 	}
 
 	public void fillSuspect1Details(String name, String dob, String phone, String workPhone, String gender, String race,
-			String hairType, String hairColor, String eyeColor, String height, String build, String weight,
-			String oddities) throws InterruptedException {
+			String hairType, String hairColor, String eyeColor, String height, String build, String weight)
+			throws InterruptedException {
 		elementUtils.waitForElementVisible(txtSuspectName, Constants.DEFAULT_WAIT).sendKeys(name);
-		elementUtils.waitForElementVisible(txtSuspectDOB, Constants.DEFAULT_WAIT).sendKeys(dob);
+		elementUtils.sendKeysUsingJavaScript(txtSuspectDOB, dob, Constants.DEFAULT_WAIT);
+		Thread.sleep(2000);
 		elementUtils.waitForElementVisible(txtSuspectPhone, Constants.DEFAULT_WAIT).sendKeys(phone);
 		elementUtils.waitForElementVisible(txtSuspectWorkPhone, Constants.DEFAULT_WAIT).sendKeys(workPhone);
 		elementUtils.doSelectBy(dropdownSuspectGender, gender);
@@ -428,7 +473,6 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.doSelectBy(dropdownSuspectHeight, height);
 		elementUtils.doSelectBy(dropdownSuspectBuild, build);
 		elementUtils.waitForElementVisible(txtSuspectWeight, Constants.DEFAULT_WAIT).sendKeys(weight);
-		Thread.sleep(60000);
 	}
 
 	public void fillSuspect1Address(String streetNum, String streetName, String unitNum, String city, String state,
@@ -439,10 +483,10 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(txtSuspectUnitNum, Constants.DEFAULT_WAIT).sendKeys(unitNum);
 		elementUtils.waitForElementVisible(txtSuspectCity, Constants.DEFAULT_WAIT).sendKeys(city);
 		elementUtils.waitForElementVisible(dropdownSuspectState, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(getStateLocator(state), Constants.DEFAULT_WAIT).click();
-		Thread.sleep(2000);
+		// elementUtils.waitForElementVisible(getStateLocator(state),
+		// Constants.DEFAULT_WAIT).click();
+		elementUtils.doSelectBy(dropdownSuspectState, state);
 		elementUtils.waitForElementVisible(txtSuspectZipCode, Constants.DEFAULT_WAIT).sendKeys(zipCode);
-		Thread.sleep(60000);
 	}
 
 	public void fillSuspect1VehicleDetails(String vehicleYear, String make, String model, String color, String plate,
@@ -453,60 +497,40 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.waitForElementVisible(txtboxSuspectVehicleModel, Constants.DEFAULT_WAIT).sendKeys(model);
 		elementUtils.waitForElementVisible(txtboxSuspectVehicleColor, Constants.DEFAULT_WAIT).sendKeys(color);
 		elementUtils.waitForElementVisible(txtboxSuspectVehiclePlate, Constants.DEFAULT_WAIT).sendKeys(plate);
-		elementUtils.waitForElementVisible(dropdownSuspectVehicleState, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(getStateLocator(state), Constants.DEFAULT_WAIT).click();
-		Thread.sleep(2000);
-		Thread.sleep(60000);
+		elementUtils.doSelectBy(dropdownSuspectVehicleState, state);
 	}
 
 	public void fillClassificationAndDisposition(boolean equipmentFailure, boolean safetyHazard, boolean propertyDamage,
 			boolean personalInjury, boolean conduct, boolean criminalAct, boolean missingPerson, boolean death,
 			boolean maintenanceIssue, boolean alarm, boolean flood, boolean training) throws InterruptedException {
-		if (equipmentFailure) {
-			elementUtils.waitForElementVisible(checkboxEquipment, Constants.DEFAULT_WAIT).click();
+
+		clickIfTrue(equipmentFailure, checkboxEquipment);
+		clickIfTrue(safetyHazard, checkboxSafety);
+		clickIfTrue(propertyDamage, checkboxPropertyDamage);
+		clickIfTrue(personalInjury, checkboxPersonalinjury);
+		clickIfTrue(conduct, checkboxConduct);
+		clickIfTrue(criminalAct, checkboxCriminal);
+		clickIfTrue(missingPerson, checkboxMissing);
+		clickIfTrue(death, checkboxDeath);
+		clickIfTrue(maintenanceIssue, checkboxMaintenance);
+		clickIfTrue(alarm, checkboxAlarm);
+		clickIfTrue(flood, checkboxFlood);
+		clickIfTrue(training, checkboxTraining);
+
+	}
+
+	private void clickIfTrue(boolean condition, By locator) {
+		if (condition) {
+			elementUtils.waitForElementVisible(locator, Constants.DEFAULT_WAIT).click();
 		}
-		if (safetyHazard) {
-			elementUtils.waitForElementVisible(checkboxSafety, Constants.DEFAULT_WAIT).click();
-		}
-		if (propertyDamage) {
-			elementUtils.waitForElementVisible(checkboxPropertyDamage, Constants.DEFAULT_WAIT).click();
-		}
-		if (personalInjury) {
-			elementUtils.waitForElementVisible(checkboxPersonalinjury, Constants.DEFAULT_WAIT).click();
-		}
-		if (conduct) {
-			elementUtils.waitForElementVisible(checkboxConduct, Constants.DEFAULT_WAIT).click();
-		}
-		if (criminalAct) {
-			elementUtils.waitForElementVisible(checkboxCriminal, Constants.DEFAULT_WAIT).click();
-		}
-		if (missingPerson) {
-			elementUtils.waitForElementVisible(checkboxMissing, Constants.DEFAULT_WAIT).click();
-		}
-		if (death) {
-			elementUtils.waitForElementVisible(checkboxDeath, Constants.DEFAULT_WAIT).click();
-		}
-		if (maintenanceIssue) {
-			elementUtils.waitForElementVisible(checkboxMaintenance, Constants.DEFAULT_WAIT).click();
-		}
-		if (alarm) {
-			elementUtils.waitForElementVisible(checkboxAlarm, Constants.DEFAULT_WAIT).click();
-		}
-		if (flood) {
-			elementUtils.waitForElementVisible(checkboxFlood, Constants.DEFAULT_WAIT).click();
-		}
-		if (training) {
-			elementUtils.waitForElementVisible(checkboxTraining, Constants.DEFAULT_WAIT).click();
-		}
-		Thread.sleep(60000);
 	}
 
 	public void fillClientNotifiedDetails(String date, String representative) {
-		elementUtils.waitForElementVisible(DateClientNotified, Constants.DEFAULT_WAIT).sendKeys(date);
+		elementUtils.sendKeysUsingJavaScript(DateClientNotified, date, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(txtClientrepresentative, Constants.DEFAULT_WAIT).sendKeys(representative);
 	}
 
-	public void fillIncidentDescription(String description) {
+	public void fillIncidentDescription(String description) throws InterruptedException {
 		elementUtils.waitForElementVisible(txtIncidentDescription, Constants.DEFAULT_WAIT).sendKeys(description);
 	}
 
@@ -524,8 +548,86 @@ public class FieldAgentIncidentReportsPage {
 		}
 	}
 
-	public void clickOnSaveIncidentReport() {
+	public void clickOnSaveIncidentReport() throws InterruptedException {
 		elementUtils.waitForElementVisible(btnSaveIncidentReport, Constants.DEFAULT_WAIT).click();
+		Thread.sleep(5000);
 	}
+
+	// Get Incident ID
+	public String getIncidentID() {
+		elementUtils.waitForElementVisible(incidentIdData, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(incidentIdData, Constants.DEFAULT_WAIT);
+	}
+
+	public String getBranchData() {
+		elementUtils.waitForElementVisible(brnachData, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(brnachData, Constants.DEFAULT_WAIT);
+	}
+
+	public String getSiteData() {
+		elementUtils.waitForElementVisible(siteData, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(siteData, Constants.DEFAULT_WAIT);
+	}
+
+	public String getRpNameData() {
+		elementUtils.waitForElementVisible(rpNameData, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(rpNameData, Constants.DEFAULT_WAIT);
+	}
+
+	public String getVictimsData() {
+		elementUtils.waitForElementVisible(victimsData, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(victimsData, Constants.DEFAULT_WAIT);
+	}
+
+	public String getWitnessesData() {
+		elementUtils.waitForElementVisible(witnessesData, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(witnessesData, Constants.DEFAULT_WAIT);
+	}
+
+	public String getSuspectsData() {
+		elementUtils.waitForElementVisible(suspectsData, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(suspectsData, Constants.DEFAULT_WAIT);
+	}
+
+	public String getDateDepts() {
+		elementUtils.waitForElementVisible(dateDepts, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(dateDepts, Constants.DEFAULT_WAIT);
+	}
+
+	public String getDateClass() {
+		elementUtils.waitForElementVisible(dateClass, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(dateClass, Constants.DEFAULT_WAIT);
+	}
+
+	public void searchIncidentReport(String incidentNumber) throws InterruptedException {
+		elementUtils.waitForElementVisible(txtboxSearch, Constants.DEFAULT_WAIT).clear();
+		elementUtils.waitForElementVisible(txtboxSearch, Constants.DEFAULT_WAIT).sendKeys(incidentNumber);
+		Thread.sleep(2000);
+	}
+
+	// Delete
+	public void deleteIncidentReport(String incidentNumber) throws InterruptedException {
+		elementUtils.waitForElementVisible(getIncidentDeleteButtonLocator(incidentNumber), Constants.DEFAULT_WAIT)
+				.click();
+		elementUtils.waitForElementVisible(btnOk, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getNoRecordFoundMessage() {
+		return elementUtils.waitForElementVisible(txtNoItemsFound, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String isSuccessMessageDisplayed() {
+		elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT);
+		return elementUtils.getText(successMessage, Constants.DEFAULT_WAIT);
+	}
+
+	// Update
+
+	public void clickOnEditIncidentReport(String incidentNumber) throws InterruptedException {
+		elementUtils.waitForElementVisible(getIncidentEditButtonLocator(incidentNumber), Constants.DEFAULT_WAIT)
+				.click();
+	}
+	
+	
 
 }
