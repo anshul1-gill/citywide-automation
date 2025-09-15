@@ -340,7 +340,8 @@ public class FieldAgentConstants {
 	public static final String REPORTING_PERSON_DOB = "09/02/2022";
 	public static final String REPORTING_PERSON_PHONE = "9095551122";
 	public static final String REPORTING_PERSON_WORK_PHONE = "9095551123";
-	public static final String REPORTING_PERSON_ADDRESS = "500 Elm St";
+	public static final String REPORTING_PERSON_STREET_NUM = "500";
+	public static final String REPORTING_PERSON_STREET_NAME = "Oak St";
 	public static final String REPORTING_PERSON_UNIT = "Suite 201";
 	public static final String REPORTING_PERSON_CITY = "Riverside";
 	public static final String REPORTING_PERSON_STATE = "CA";
@@ -352,7 +353,7 @@ public class FieldAgentConstants {
 	public static final String VICTIM_PHONE = "9515552233";
 	public static final String VICTIM_WORK_PHONE = "9515552234";
 	public static final String VICTIM_GENDER = "Female";
-	public static final String VICTIM_RACE = "Caucasian";
+	public static final String VICTIM_RACE = "Hispanic";
 	public static final String VICTIM_EYES = "Hazel";
 	public static final String VICTIM_HAIR_TYPE = "Straight";
 	public static final String VICTIM_HAIR_COLOR = "Blonde";
@@ -360,36 +361,94 @@ public class FieldAgentConstants {
 	public static final String VICTIM_BUILD = "Average";
 	public static final String VICTIM_WEIGHT = "140";
 
+	// Victim - 1 Address
+	public static final String VICTIM_STREET_NUM = "100";
+	public static final String VICTIM_STREET_NAME = "Main St";
+	public static final String VICTIM_UNIT = "U5";
+	public static final String VICTIM_CITY = "Middletown";
+	public static final String VICTIM_STATE = "CA";
+	public static final String VICTIM_ZIP = "92507";
+	// Victim - 1 Vehicle
+	public static final String VICTIM_VEHICLE_YEAR = "2020";
+	public static final String VICTIM_VEHICLE_MAKE = "Honda";
+	public static final String VICTIM_VEHICLE_MODEL = "Civic";
+	public static final String VICTIM_VEHICLE_COLOR = "Blue";
+	public static final String VICTIM_VEHICLE_LICENSE = "7ABC123";
+	public static final String VICTIM_VEHICLE_STATE = "CA";
+
 	// Witness - 1
 	public static final String WITNESS_NAME = "John Lee";
 	public static final String WITNESS_DOB = "11/03/1987";
 	public static final String WITNESS_PHONE = "5625558899";
 	public static final String WITNESS_WORK_PHONE = "5625558800";
 	public static final String WITNESS_GENDER = "Male";
-	public static final String WITNESS_RACE = "Asian";
+	public static final String WITNESS_RACE = "Black";
 	public static final String WITNESS_EYES = "Brown";
-	public static final String WITNESS_HAIR_TYPE = "Wavy";
+	public static final String WITNESS_HAIR_TYPE = "Long";
 	public static final String WITNESS_HAIR_COLOR = "Black";
 	public static final String WITNESS_HEIGHT = "7' 10";
-	public static final String WITNESS_BUILD = "Slim";
+	public static final String WITNESS_BUILD = "Heavy";
 	public static final String WITNESS_WEIGHT = "160";
+
+	// Witness - 1 Address
+	public static final String WITNESS_STREET_NUM = "200";
+	public static final String WITNESS_STREET_NAME = "Pine St";
+	public static final String WITNESS_UNIT = "Unit 3";
+	public static final String WITNESS_CITY = "Riverside";
+	public static final String WITNESS_STATE = "CA";
+	public static final String WITNESS_ZIP = "92507";
+	// Witness - 1 Vehicle
+	public static final String WITNESS_VEHICLE_YEAR = "2021";
+	public static final String WITNESS_VEHICLE_MAKE = "Honda";
+	public static final String WITNESS_VEHICLE_MODEL = "Civic";
+	public static final String WITNESS_VEHICLE_COLOR = "Gray";
+	public static final String WITNESS_VEHICLE_LICENSE = "XYZ789";
+	public static final String WITNESS_VEHICLE_STATE = "CA";
 
 	// Suspect - 1
 	public static final String SUSPECT_NAME = "Carlos Hernandez";
-	public static final String SUSPECT_DOB = "01/01/1980";
-	public static final String SUSPECT_PHONE = "0000000000";
+	public static final String SUSPECT_DOB = "09/02/2022";
+	public static final String SUSPECT_PHONE = "9876543210";
 	public static final String SUSPECT_WORK_PHONE = "N/A";
 	public static final String SUSPECT_GENDER = "Male";
 	public static final String SUSPECT_RACE = "Hispanic";
 	public static final String SUSPECT_EYES = "Brown";
 	public static final String SUSPECT_HAIR_TYPE = "Curly";
-	public static final String SUSPECT_HAIR_COLOR = "Dark Brown";
+	public static final String SUSPECT_HAIR_COLOR = "Sandy";
 	public static final String SUSPECT_HEIGHT = "7' 5";
 	public static final String SUSPECT_BUILD = "Medium";
 	public static final String SUSPECT_WEIGHT = "175";
 
+	// Suspect - 1 Address
+	public static final String SUSPECT_STREET_NUM = "300";
+	public static final String SUSPECT_STREET_NAME = "Maple Ave";
+	public static final String SUSPECT_UNIT = "Apt 10";
+	public static final String SUSPECT_CITY = "Mickleton";
+	public static final String SUSPECT_STATE = "CA";
+	public static final String SUSPECT_ZIP = "92507";
+	// Suspect - 1 Vehicle
+	public static final String SUSPECT_VEHICLE_YEAR = "2020";
+	public static final String SUSPECT_VEHICLE_MAKE = "Ford";
+	public static final String SUSPECT_VEHICLE_MODEL = "Focus";
+	public static final String SUSPECT_VEHICLE_COLOR = "Black";
+	public static final String SUSPECT_VEHICLE_LICENSE = "LMN456";
+	public static final String SUSPECT_VEHICLE_STATE = "CA";
+
 	// Classification
-	public static final String CLASSIFICATION = "Property Damage";
+	public static final boolean EQUIPMENT_FAILURE = true;
+	public static final boolean SAFETY_HAZARD = true;
+	public static final boolean PROPERTY_DAMAGE = true;
+	public static final boolean PERSONAL_INJURY = true;
+	public static final boolean CONDUCT = true;
+	public static final boolean CRIMINAL_ACT = true;
+	public static final boolean MISSING_PERSON = true;
+	public static final boolean DEATH = true;
+	public static final boolean MAINTENANCE_ISSUE = true;
+	public static final boolean ALARM = true;
+	public static final boolean FLOOD = true;
+	public static final boolean TRAINING = true;
+
+	//public static final String CLASSIFICATION = "Property Damage";
 
 	// Client Notified
 	public static final String CLIENT_NOTIFIED_DATE = "09/11/2025 11:15";
