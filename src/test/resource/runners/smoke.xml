@@ -156,6 +156,32 @@
 		</classes>
 	</test>
 
+	<test
+		name="Forms" preserve-order="true">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentAddFieldInterviewTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteFieldInterviewTest" />
+
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentAddIncidentReportsTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteIncidentReportsTest" />
+
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentAddParkingCitationTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteParkingCitationTest" />
+
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentAddTrespassNoticesTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteTrespassNoticesTest" />
+		</classes>
+	</test>
+
+
 	<test name="ERM And Field Agent Functional Tests" preserve-order="true">
 		<classes>
 			<class

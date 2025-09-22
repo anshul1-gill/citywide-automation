@@ -13,6 +13,67 @@ public class SitesPage {
 	private WebDriver driver;
 	private ElementUtils elementUtils;
 
+	// 1st tab Site Details
+	// Site General Details
+	private By dropdownBranch = By.id("location_id");
+	private By selectOptionBranch = By.xpath("//option[normalize-space()='Default Branch']");
+	private By inputSiteID = By.xpath("//input[@name='site_id']");
+	private By inputSiteName = By.xpath("//input[@name='site_name']");
+	private By DropdownAgencybeat = By.xpath("(//span[@role='combobox'])[1]");
+	private By callresponse = By.xpath("//select[@id='call_response_only']");
+	private By selectStartingpoint = By.xpath("//input[@id='service_starting_time']");
+	private By selectendingpoint = By.xpath("//input[@id='service_end_time']");
+
+	// service types
+	private By checkboxStationary = By.xpath("//input[@id='site_type_108']");
+	private By checkboxMobile = By.xpath("//input[@id='site_type_112']");
+
+	private By checkboxPaypostrate = By.xpath("//input[@id='post_pay_rate']");
+	private By checkboxautoreport = By.xpath("//input[@id='is_auto_report']");
+
+	// pdfreport
+	private By checkboxPdfreport = By.xpath("//input[@id='horizontal-list-radio-license']");
+	private By reporttime = By.xpath("//input[@type='time']");
+	private By clientEmail = By.xpath("//input[@id='reply_to']");
+	private By dropdownpoliceAgencies = By.xpath("(//span[@class='select2-selection select2-selection--multiple'])[2]");
+	private By dropdownFireAgencies = By.xpath("(//span[@class='select2-selection select2-selection--multiple'])[3]");
+	private By dropdownmedicAgencies = By.xpath("(//span[@class='select2-selection select2-selection--multiple'])[4]");
+	private By dropdownotheragencies = By.xpath("(//span[@class='select2-selection select2-selection--multiple'])[5]");
+	private By dropdownSiteQualifications = By
+			.xpath("(//span[@class='select2-selection select2-selection--multiple'])[6]");
+	private By dropdownAccoountmanager = By
+			.xpath("(//span[@class='select2-selection select2-selection--multiple'])[7]");
+
+	// Site Addreess Details
+	private By inputStreetnumber = By.xpath("//input[@name='site_address_street_num']");
+	private By inputStreetname = By.xpath("//input[@name='site_address_street']");
+	private By inputStreeCity = By.xpath("//input[@name='site_address_city']");
+	private By inputStreeState = By.xpath("//select[@name='site_address_state']");
+	private By inputZipcode = By.xpath("//input[@name='site_address_zip']");
+
+	// Site Geofancing
+	private By DropdownGeofencing = By.xpath("//select[@id='radius_type']");
+	private By inputtyperadius = By.xpath("//input[@name='radius_value']");
+
+	// Main Conatct Information
+	private By inputContactname = By.xpath("//input[@id='contact_name_first']");
+	private By inputConatactlastname = By.xpath("//input[@id='contact_name_last']");
+	private By inputConatctPhone = By.xpath("//input[@id='contact_phone_main']");
+	private By inputmobile = By.xpath("//input[@name='contact_phone_mobile']");
+	private By inputContactfax = By.xpath("//input[@name='contact_fax']");
+	private By inputContactemail = By.xpath("//input[@name='contact_email']");
+
+	// Site Contacts
+	private By btnAddSiteContact = By.cssSelector("button[title='Add site contact']");
+
+	private By txtboxJobTitle = By.id("site_contact_job_title_0");
+	private By txtboxContactFirstName = By.id("site_contact_name_0");
+	private By txtboxContactLastName = By.id("site_contact_last_name_0");
+	private By txtboxNewContactPhone = By.id("site_contact_num_0");
+
+	private By btnSaveAndNext = By.cssSelector("#submitButton");
+
+	// ================================
 	private By searchSite = By.cssSelector("input[placeholder='Search']");
 	private By btnViewSite = By.cssSelector("button[title='View Site']");
 	private By btnEditSite = By.cssSelector("button[title='Edit Site']");
@@ -379,6 +440,110 @@ public class SitesPage {
 	public String getActionRuleSuccessMessage() {
 		return elementUtils.waitForElementVisible(deleteCheckpointSucessMessage, Constants.MEDIUM_TIME_OUT_WAIT)
 				.getText();
+	}
+
+	// // 1st tab Site Details
+	// Site General Details
+	public void selectBranch(String branchName) {
+		elementUtils.waitForElementVisible(dropdownBranch, Constants.DEFAULT_WAIT);
+		elementUtils.doSelectBy(selectOptionBranch, branchName);
+	}
+
+	public void fillGeneralDetails(String siteID, String siteName, String agencyBeat, String callResponse,
+			String startingPoint, String endingPoint, boolean isStationary, boolean isMobile, boolean isPayPostRate,
+			boolean isAutoReport, boolean isPdfReport, String reportTime, String clientEmailID, String policeAgencies,
+			String fireAgencies, String medicAgencies, String otherAgencies, String siteQualifications,
+			String accountManager) throws InterruptedException {
+		elementUtils.waitForElementVisible(inputSiteID, Constants.DEFAULT_WAIT).sendKeys(siteID);
+		elementUtils.waitForElementVisible(inputSiteName, Constants.DEFAULT_WAIT).sendKeys(siteName);
+		elementUtils.doClickWithActionsAndWait(DropdownAgencybeat, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(DropdownAgencybeat, agencyBeat);
+		elementUtils.pressEnterKey();
+		Thread.sleep(1000);
+		elementUtils.doSelectBy(callresponse, callResponse);
+		elementUtils.sendKeysUsingJavaScript(selectStartingpoint, startingPoint, Constants.DEFAULT_WAIT);
+		elementUtils.sendKeysUsingJavaScript(selectendingpoint, endingPoint, Constants.DEFAULT_WAIT);
+		if (isStationary) {
+			elementUtils.doClickWithActionsAndWait(checkboxStationary, Constants.DEFAULT_WAIT);
+		}
+		if (isMobile) {
+			elementUtils.doClickWithActionsAndWait(checkboxMobile, Constants.DEFAULT_WAIT);
+		}
+		if (isPayPostRate) {
+			elementUtils.doClickWithActionsAndWait(checkboxPaypostrate, Constants.DEFAULT_WAIT);
+		}
+		if (isAutoReport) {
+			elementUtils.doClickWithActionsAndWait(checkboxautoreport, Constants.DEFAULT_WAIT);
+		}
+		if (isPdfReport) {
+			elementUtils.doClickWithActionsAndWait(checkboxPdfreport, Constants.DEFAULT_WAIT);
+		}
+		elementUtils.sendKeysUsingJavaScript(reporttime, reportTime, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementVisible(clientEmail, Constants.DEFAULT_WAIT).sendKeys(clientEmailID);
+
+		elementUtils.doClickWithActionsAndWait(dropdownpoliceAgencies, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(dropdownpoliceAgencies, policeAgencies);
+		elementUtils.pressEnterKey();
+		Thread.sleep(1000);
+		elementUtils.doClickWithActionsAndWait(dropdownFireAgencies, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(dropdownFireAgencies, fireAgencies);
+		elementUtils.pressEnterKey();
+		Thread.sleep(1000);
+		elementUtils.doClickWithActionsAndWait(dropdownmedicAgencies, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(dropdownmedicAgencies, medicAgencies);
+		elementUtils.pressEnterKey();
+		Thread.sleep(1000);
+		elementUtils.doClickWithActionsAndWait(dropdownotheragencies, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(dropdownotheragencies, otherAgencies);
+		elementUtils.pressEnterKey();
+		Thread.sleep(1000);
+		elementUtils.doClickWithActionsAndWait(dropdownSiteQualifications, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(dropdownSiteQualifications, siteQualifications);
+		elementUtils.pressEnterKey();
+		Thread.sleep(1000);
+		elementUtils.doClickWithActionsAndWait(dropdownAccoountmanager, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(dropdownAccoountmanager, accountManager);
+		elementUtils.pressEnterKey();
+		Thread.sleep(1000);
+	}
+
+	public void fillAddressDetails(String streetNumber, String streetName, String city, String state, String zipCode) {
+		elementUtils.waitForElementVisible(inputStreetnumber, Constants.DEFAULT_WAIT).sendKeys(streetNumber);
+		elementUtils.waitForElementVisible(inputStreetname, Constants.DEFAULT_WAIT).sendKeys(streetName);
+		elementUtils.waitForElementVisible(inputStreeCity, Constants.DEFAULT_WAIT).sendKeys(city);
+		elementUtils.doSelectBy(inputStreeState, state);
+		elementUtils.waitForElementVisible(inputZipcode, Constants.DEFAULT_WAIT).sendKeys(zipCode);
+	}
+
+	public void fillGeofencingDetails(String radiusType, String radiusValue) {
+		elementUtils.doSelectBy(DropdownGeofencing, radiusType);
+		elementUtils.waitForElementVisible(inputtyperadius, Constants.DEFAULT_WAIT).sendKeys(radiusValue);
+	}
+
+	public void fillMainContactDetails(String contactName, String contactLastName, String contactPhone, String mobile,
+			String contactFax, String contactEmail) {
+		elementUtils.waitForElementVisible(inputContactname, Constants.DEFAULT_WAIT).sendKeys(contactName);
+		elementUtils.waitForElementVisible(inputConatactlastname, Constants.DEFAULT_WAIT).sendKeys(contactLastName);
+		elementUtils.waitForElementVisible(inputConatctPhone, Constants.DEFAULT_WAIT).sendKeys(contactPhone);
+		elementUtils.waitForElementVisible(inputmobile, Constants.DEFAULT_WAIT).sendKeys(mobile);
+		elementUtils.waitForElementVisible(inputContactfax, Constants.DEFAULT_WAIT).sendKeys(contactFax);
+		elementUtils.waitForElementVisible(inputContactemail, Constants.DEFAULT_WAIT).sendKeys(contactEmail);
+	}
+
+	public void clickAddSiteContact() {
+		elementUtils.waitForElementVisible(btnAddSiteContact, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void fillSiteContactDetails(String jobTitle, String contactFirstName, String contactLastName,
+			String contactPhone) {
+		elementUtils.waitForElementVisible(txtboxJobTitle, Constants.DEFAULT_WAIT).sendKeys(jobTitle);
+		elementUtils.waitForElementVisible(txtboxContactFirstName, Constants.DEFAULT_WAIT).sendKeys(contactFirstName);
+		elementUtils.waitForElementVisible(txtboxContactLastName, Constants.DEFAULT_WAIT).sendKeys(contactLastName);
+		elementUtils.waitForElementVisible(txtboxNewContactPhone, Constants.DEFAULT_WAIT).sendKeys(contactPhone);
+	}
+
+	public void clickSaveAndNext() {
+		elementUtils.waitForElementVisible(btnSaveAndNext, Constants.DEFAULT_WAIT).click();
 	}
 
 }
