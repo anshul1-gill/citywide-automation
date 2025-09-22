@@ -95,4 +95,45 @@ public class OperationsHubConstant {
 	public static final String SCAN_RULE_CREATED_SUCCESS_MESSAGE = "Scan rule created successfully";
 	public static final String ACTION_RULE_CREATED_SUCCESS_MESSAGE = "Action rule created successfully";
 
+	// Sites
+	// Site Details Tab
+	public static final String BRANCH_NAME = "Riverside";
+	public static final String SITE_NAME = "Automation site";
+	// public static final String AGENCY_BEAT = "1212";
+	public static final String AGENCY_BEAT = "1212, 333, 558, TESTB321";
+	public static final String CALL_RESPONSE = "24/7";
+	public static final String SERVICE_TIME = "12:00 - 06:00";
+	public static final String SITE_COVERAGE_TYPE = "24/7";
+	public static final String REPORT_TIME = "07:00 PM";
+	public static final String POLICE_AGENCIES = "TEST WEBDEV POLICE, POLICE ONE";
+	public static final String FIRE_AGENCIES = "Firewood agency, TESTWEB";
+	public static final String MEDICAL_AGENCIES = "Medical emergency, medic (55)";
+	public static final String OTHER_AGENCIES = "Other testing, PLUMBER AGENCY";
+	public static final String QUALIFICATIONS = "Baton, Driver License, ECD, Firearms, OC";
+	public static final String ACCOUNT_MANAGER = "Tom Admin";
+
+	// -------- Site Address --------
+	public static final String SITE_STREET_NUMBER = "123";
+	public static final String SITE_STREET_NAME = "Main Street";
+	public static final String SITE_CITY = "New York";
+	public static final String SITE_STATE = "NY";
+	public static final String SITE_ZIP_CODE = "10001";
+
+	// ------- Geofencing -------------
+	public static final String GEOFENCE_NAME = "Feet";
+	public static final String GEOFENCE_ADDRESS = "160";
+
+	// -------- Main Contact --------
+	public static final String CONTACT_FIRST_NAME = "Olivia";
+	public static final String CONTACT_LAST_NAME = "Brown";
+	public static final String MAIN_CONTACT_PHONE = "5454667364";
+	public static final String MOBILE = "9876543210";
+	public static final String FAX = "1234567890";
+	public static final String CONTACT_EMAIL = "olivia@brownenterprises.com";
+
+	// -------- Site Contacts --------
+	public static final String JOB_TITLE = "Manager";
+	public static final String NEW_CONTACT_NAME = "Smith";
+	public static final String NEW_CONTACT_PHONE = "1231231234";
+
 }
