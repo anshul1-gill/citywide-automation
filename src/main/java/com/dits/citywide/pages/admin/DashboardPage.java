@@ -22,6 +22,12 @@ public class DashboardPage {
 	private By lnkAttendance = By.xpath("//span[normalize-space()='Attendance']");
 	private By lnkERM = By.xpath("//span[contains(text(),'ERM')]");
 	private By lnkTeamSupport = By.xpath("//span[normalize-space()='Team Support']");
+	private By lnkApplicantTrackingSystem = By.xpath("//span[normalize-space()='Applicant Tracking System']");
+	private By lnkStatus = By.xpath("//span[normalize-space()='Status']");
+	private By lnkMessageOfTheWeek = By.xpath("//span[normalize-space()='Message Of The Week']");
+	private By lnkFleetManagement = By.xpath("//span[normalize-space()='Fleet Management']");
+	private By lnkPayroll = By.xpath("//span[normalize-space()='Payroll']");
+	private By lnkInvoice = By.xpath("//span[normalize-space()='Invoice']");
 
 	// Logout
 	private By btnLogout = By.id("user-menu-item-2");
@@ -151,10 +157,40 @@ public class DashboardPage {
 		elementUtils.waitForElementToBeClickable(lnkERM, Constants.DEFAULT_WAIT).click();
 		return new ERMPage(driver);
 	}
-	
+
 	public TeamSupportPage doClickTeamSupport() {
 		elementUtils.waitForElementToBeClickable(lnkTeamSupport, Constants.DEFAULT_WAIT).click();
 		return new TeamSupportPage(driver);
+	}
+
+	public ApplicantTrackingSystemPage doClickApplicantTrackingSystem() {
+		elementUtils.waitForElementToBeClickable(lnkApplicantTrackingSystem, Constants.DEFAULT_WAIT).click();
+		return new ApplicantTrackingSystemPage(driver);
+	}
+
+	public StatusPage doClickStatus() {
+		elementUtils.waitForElementToBeClickable(lnkStatus, Constants.DEFAULT_WAIT).click();
+		return new StatusPage(driver);
+	}
+
+	public MessageOfTheWeekPage doClickMessageOfTheWeek() {
+		elementUtils.waitForElementToBeClickable(lnkMessageOfTheWeek, Constants.DEFAULT_WAIT).click();
+		return new MessageOfTheWeekPage(driver);
+	}
+
+	public FleetManagementPage doClickFleetManagement() {
+		elementUtils.waitForElementToBeClickable(lnkFleetManagement, Constants.DEFAULT_WAIT).click();
+		return new FleetManagementPage(driver);
+	}
+
+	public PayrollPage doClickPayroll() {
+		elementUtils.waitForElementToBeClickable(lnkPayroll, Constants.DEFAULT_WAIT).click();
+		return new PayrollPage(driver);
+	}
+
+	public InvoicePage doClickInvoice() {
+		elementUtils.waitForElementToBeClickable(lnkInvoice, Constants.DEFAULT_WAIT).click();
+		return new InvoicePage(driver);
 	}
 
 }
