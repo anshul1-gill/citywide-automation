@@ -14,7 +14,6 @@ import org.testng.ITestListener;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 
-
 public class ExtentReportListener implements ITestListener {
 
 	private static final String OUTPUT_FOLDER = "./reports/";
@@ -75,10 +74,6 @@ public class ExtentReportListener implements ITestListener {
 				result.getMethod().getDescription());
 
 		extentTest.assignCategory(result.getTestContext().getSuite().getName());
-		/*
-		 * methodName = StringUtils.capitalize(StringUtils.join(StringUtils.
-		 * splitByCharacterTypeCamelCase(methodName), StringUtils.SPACE));
-		 */
 		extentTest.assignCategory(className);
 		test.set(extentTest);
 		test.get().getModel().setStartTime(getTime(result.getStartMillis()));
@@ -88,9 +83,6 @@ public class ExtentReportListener implements ITestListener {
 		String methodName = result.getMethod().getMethodName();
 		System.out.println((methodName + " passed!"));
 		test.get().pass("Test passed");
-		// test.get().pass(result.getThrowable(),
-		// MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName),
-		// methodName).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
@@ -98,12 +90,6 @@ public class ExtentReportListener implements ITestListener {
 		System.out.println((result.getMethod().getMethodName() + " failed!"));
 		String methodName = result.getMethod().getMethodName();
 		test.get().fail("Test failed");
-//		test.get().fail(result.getThrowable(), MediaEntityBuilder
-//				.createScreenCaptureFromPath(DriverFactoryApp.getScreenshot(methodName), methodName).build());
-		// test.get().fail(result.getThrowable(),
-		// MediaEntityBuilder.createScreenCaptureFromPath(DriverFactoryWeb.getScreenshot(methodName),
-		// methodName).build());
-
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
@@ -111,9 +97,6 @@ public class ExtentReportListener implements ITestListener {
 		System.out.println((result.getMethod().getMethodName() + " skipped!"));
 		String methodName = result.getMethod().getMethodName();
 		test.get().skip("Test skipped");
-		// test.get().skip(result.getThrowable(),
-		// MediaEntityBuilder.createScreenCaptureFromPath(DriverFactoryApp.getScreenshot(methodName),
-		// methodName).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
