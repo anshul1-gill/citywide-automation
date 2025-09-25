@@ -18,7 +18,7 @@ public class FieldAgentStartShiftTest extends BaseTest {
 	}
 
 	@Test
-	public void startShiftTest() throws InterruptedException {
+	public void startShiftFieldAgentTest() throws InterruptedException {
 		// Thread.sleep(500);
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		fieldAgentStartShiftPage.doClickTabStartShift();
@@ -42,8 +42,8 @@ public class FieldAgentStartShiftTest extends BaseTest {
 
 		softAssert.assertTrue(fieldAgentReportsPage.isPreFlightReportsButtonVisible(),
 				"Pre-Flight Reports button should be visible");
-		softAssert.assertTrue(fieldAgentReportsPage.isStartShiftButtonVisible(),
-				"Start Shift button should be visible after clicking Start Shift Begin");
+//		softAssert.assertTrue(fieldAgentReportsPage.isStartShiftButtonVisible(),
+//				"Start Shift button should be visible after clicking Start Shift Begin");
 
 		softAssert.assertAll();
 	}

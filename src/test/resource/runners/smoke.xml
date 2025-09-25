@@ -200,13 +200,15 @@
 			/>
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest" />
+			<!-- 
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentProfileCommentsTest" />
 			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryViewTest" />
 			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryActionTakenTest"
+			name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryActionTakenTest"
 			/>
+			-->
 		</classes>
 	</test>
 

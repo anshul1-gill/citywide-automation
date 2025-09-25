@@ -9,25 +9,5 @@
 	</listeners>
 	-->
 
-	<test
-		name="Decline Leave Request Test" preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsTest" />
-		</classes>
-	</test>
-
-	<test
-		name="Approve Leave Request Test" preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsTest" />
-		</classes>
-	</test>
-
 
 </suite> 

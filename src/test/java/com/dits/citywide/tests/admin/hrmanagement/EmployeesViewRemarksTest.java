@@ -24,6 +24,7 @@ public class EmployeesViewRemarksTest extends BaseTest {
 		softAssert.assertTrue(employeesPage.isViewRemarksButtonDisplayed(), "View Remarks button is not displayed");
 		softAssert.assertTrue(employeesPage.isViewRemarksButtonClickable(), "View Remarks button is not clickable");
 		employeesPage.clickViewRemarks();
+		Thread.sleep(1000);
 		employeesPage.selectRemarkTypeOnViewPage(HRManagementConstants.EMPLOYEE_REMARKS_TYPE);
 		softAssert.assertTrue(employeesPage.isExportButtonDisplayed(),
 				"Export button is not displayed on View Remarks page");

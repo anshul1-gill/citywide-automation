@@ -20,6 +20,7 @@ public class ERMRemarksHistoryAddRemarksTest extends BaseTest {
 	public void addRemarksERMTest() throws InterruptedException {
 		ermRemarksHistoryPage = ermPage.clickRemarksHistory();
 		ermRemarksHistoryPage.searchRemarks(prop.getProperty("employeeID"));
+		Thread.sleep(1000);
 		ermRemarksHistoryPage.clickAddRemarks();
 		ermRemarksHistoryPage.fillAddNewRemark(HRManagementConstants.REMARKS_TYPE,
 				HRManagementConstants.REMARKS_CATEGORY, HRManagementConstants.INCIDENT_DATE, HRManagementConstants.SITE,

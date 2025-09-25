@@ -36,6 +36,7 @@ public class AddNewCallTest extends BaseTest {
 		callsPage.fillCallDescription(OperationsHubConstant.CALL_DESCRIPTION);
 		callsPage.selectAvailableUnits(prop.getProperty("employeeID"));
 		callsPage.doClickSaveAddNewCall();
+		Thread.sleep(2000);
 		softAssert.assertTrue(callsPage.isOpenCallsTabDisplayed(),
 				"Open Calls tab is not displayed after adding a new call.");
 		softAssert.assertTrue(callsPage.isClosedCallsTabDisplayed(),
@@ -46,10 +47,10 @@ public class AddNewCallTest extends BaseTest {
 				"Patrol site does not match after adding a new call.");
 		softAssert.assertTrue(callsPage.getAssignedTo().contains(prop.getProperty("employeeID")),
 				"Assigned officer does not match after adding a new call.");
-
 		String callId = callsPage.getCallId(prop.getProperty("employeeID"));
 		System.out.println(callId);
 		driverFactory.updatePropertyValue("callid", callId);
+		Thread.sleep(500);
 
 		softAssert.assertAll();
 	}

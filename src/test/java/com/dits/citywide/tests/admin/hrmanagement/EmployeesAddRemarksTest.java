@@ -25,6 +25,7 @@ public class EmployeesAddRemarksTest extends BaseTest {
 		softAssert.assertTrue(employeesPage.isAddRemarksButtonDisplayed(), "Add Remarks button is not displayed");
 		softAssert.assertTrue(employeesPage.isAddRemarksButtonClickable(), "Add Remarks button is not clickable");
 		employeesPage.clickAddRemarks();
+		Thread.sleep(500);
 		softAssert.assertEquals(employeesPage.getHeadingAddRemarks(), "Add New Remark",
 				"Heading for Add Remarks is not displayed correctly");
 		employeesPage.fillAddNewRemark(HRManagementConstants.EMPLOYEE_REMARKS_TYPE,
@@ -32,6 +33,7 @@ public class EmployeesAddRemarksTest extends BaseTest {
 				HRManagementConstants.SITE, HRManagementConstants.EMPLOYEE_REMARKS_REASON,
 				HRManagementConstants.EMPLOYEE_REMARKS_DESCRIPTION);
 		employeesPage.submitAddNewRemark();
+		Thread.sleep(500);
 		softAssert.assertEquals(employeesPage.getSuccessMessage(),
 				HRManagementConstants.EMPLOYEE_REMARKS_ADDED_SUCCESS_MESSAGE,
 				"Success message is not displayed correctly");

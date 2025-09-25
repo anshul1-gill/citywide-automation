@@ -17,8 +17,7 @@ public class TrainingConstants {
 	public static final String CERTIFICATE_SERIAL_NUMBER = "1234567890";
 	// public static final String CERTIFICATE_FILE_PATH =
 	// "/Users/ditsdev/Downloads/automation_test_file.pdf";
-	public static final String CERTIFICATE_FILE_PATH = System.getProperty("user.home")
-			+ "/Downloads/automation_test_file.pdf";
+	public static final String CERTIFICATE_FILE_PATH = "./src/test/resource/testdata/sample.pdf";
 
 	public static final String CERTIFICATE_DESCRIPTION = "This is a test certificate description.";
 

@@ -77,7 +77,9 @@ public class ERMRemarksHistoryPage {
 	// Assign course
 	private By txtHeadingCourse = By.cssSelector(".baseTitle");
 	private By searchCourse = By.cssSelector("input[placeholder='Search']");
+	private By serachCourseResult = By.xpath("(//input[@name='Search'])[2]");
 	private By btnAssignCourses = By.xpath("(//div[contains(@class,'actionicons editPencil')])[1]");
+	private By btnAssignCourses2 = By.xpath("(//div[contains(@class,'actionicons editPencil')])[3]");
 	private By btnAssign = By.xpath("//span[normalize-space()='Assign']");
 	private By txtConfirmationMessage = By.cssSelector(".modal-text");
 
@@ -190,9 +192,18 @@ public class ERMRemarksHistoryPage {
 		elementUtils.waitForElementVisible(searchCourse, Constants.DEFAULT_WAIT).sendKeys(courseName);
 	}
 
+	public void searchCourseResult(String courseName) {
+		elementUtils.waitForElementToBeClickable(serachCourseResult, Constants.DEFAULT_WAIT).sendKeys(courseName);
+	}
+
 	public void clickAssignCourses() {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnAssignCourses, Constants.DEFAULT_WAIT).click();
+	}
+	
+	public void clickAssignCourses2() {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(btnAssignCourses2, Constants.DEFAULT_WAIT).click();
 	}
 
 	public String getConfirmationMessage() {

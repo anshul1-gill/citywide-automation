@@ -129,7 +129,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 		softAssert.assertEquals(addEmployeePage.getFirearmsDateOfExpirationData(),
 				HRManagementConstants.FIREARMS_EXPIRATION_DATE);
 
-		//
+		Thread.sleep(2000);
 		addEmployeePage.doClickAddBaton();
 		softAssert.assertTrue(addEmployeePage.isBatonTextDisplayed());
 		addEmployeePage.fillBatonForm(HRManagementConstants.BATON_PERMIT_NUMBER, HRManagementConstants.BATON_ISSUE_DATE,
@@ -139,7 +139,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 		softAssert.assertEquals(addEmployeePage.getBatonDateOfIssueData(), HRManagementConstants.BATON_ISSUE_DATE);
 		softAssert.assertEquals(addEmployeePage.getBatonDateOfExpirationData(),
 				HRManagementConstants.BATON_EXPIRATION_DATE);
-		//
+		Thread.sleep(2000);
 		addEmployeePage.doClickAddECD();
 		softAssert.assertTrue(addEmployeePage.isECDTextDisplayed());
 		addEmployeePage.fillECDForm(HRManagementConstants.ECD_PERMIT_NUMBER, HRManagementConstants.ECD_ISSUE_DATE,
@@ -162,6 +162,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 		softAssert.assertEquals(addEmployeePage.getOCSprayDateOfExpirationData(),
 				HRManagementConstants.OC_SPRAY_EXPIRATION_DATE);
 
+		Thread.sleep(2000);
 		addEmployeePage.doClickAddOtherPermit();
 		softAssert.assertTrue(addEmployeePage.isOtherPermitTextDisplayed());
 		addEmployeePage.fillOtherPermitForm(HRManagementConstants.OTHER_PERMIT_NUMBER,
@@ -176,6 +177,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 		softAssert.assertEquals(addEmployeePage.getOtherPermitSuccessMessageText(),
 				HRManagementConstants.PERMIT_ADDED_SUCCESS_MESSAGE);
 
+		Thread.sleep(2000);
 		// Pay Information
 		addEmployeePage.doClickPayInformationTab();
 		addEmployeePage.fillPayInformation(HRManagementConstants.EMPLOYEE_PAY_RATE, HRManagementConstants.PAY_CYCYLE,
