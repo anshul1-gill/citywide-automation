@@ -22,9 +22,11 @@ public class FieldAgentCallsPage {
 
 	private By txtCallActions = By.xpath("//h2[contains(text(),'Call Actions')]");
 	private By txtAssignedUnits = By.xpath("//h2[contains(text(),'Assigned Units')]");
+	private By btnExpandCollapseAssignedUnits = By.xpath("//span[normalize-space()='Assigned Units']");
 	private By btnEnroute = By.xpath("//div[@class='c-cursor-pointer']");
 	private By btnArrive = By.xpath("//div[@class='c-cursor-pointer']");
 	private By btnCleared = By.xpath("//div[@class='c-cursor-pointer']");
+	private By btnExpandCollapseCallNotes = By.xpath("//span[normalize-space()='Call Notes']");
 	private By txtCallNotes = By.xpath("//h2[contains(text(),'Call Notes')]");
 	private By txtboxNotes = By.xpath("//textarea[@id='info_message']");
 	private By btnSaveNote = By.xpath("//button[@type='submit']");
@@ -75,8 +77,8 @@ public class FieldAgentCallsPage {
 
 	public void doClickCallAction(String callId) {
 		String callid = callId;
-		String callidxpath = "(//a[contains(text(),'" + callid
-				+ "')]/ancestor::td/following-sibling::td[7]//div[@class='actionicons editPencil'])[2]";
+		String callidxpath = "(//div[contains(text(),'" + callid
+				+ "')]/ancestor::td/following-sibling::td[7]//div[@class='actionicons editPencil'])[3]";
 		elementUtils.waitForElementVisible(By.xpath(callidxpath), Constants.DEFAULT_WAIT).click();
 	}
 
@@ -86,6 +88,10 @@ public class FieldAgentCallsPage {
 
 	public boolean isAssignedUnitsVisible() {
 		return elementUtils.doIsDisplayed(txtAssignedUnits, Constants.DEFAULT_WAIT);
+	}
+
+	public void doClickExpandCollapseAssignedUnits() {
+		elementUtils.waitForElementToBeClickable(btnExpandCollapseAssignedUnits, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void doClickEnroute() {
@@ -104,6 +110,10 @@ public class FieldAgentCallsPage {
 
 	public String getSuccessMessageText() {
 		return elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public void doClickExpandCollapseCallNotes() {
+		elementUtils.waitForElementToBeClickable(btnExpandCollapseCallNotes, Constants.DEFAULT_WAIT).click();
 	}
 
 	public boolean isCallNotesVisible() {

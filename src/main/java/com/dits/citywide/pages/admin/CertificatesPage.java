@@ -22,7 +22,7 @@ public class CertificatesPage {
 	private By btnSubmitPDF = By.xpath("//span[normalize-space()='Submit Pdf']");
 	private By btnOK = By.xpath("//span[normalize-space()='Ok']");
 	private By txtboxCertificateDescription = By.xpath("//textarea[@id='notes']");
-	private By btnSaveCertificate = By.xpath("//button[@type='submit']");
+	private By btnSaveCertificate = By.cssSelector("button[type='submit']");
 
 	private By dataCertificateName = By.xpath("(//td[@data-label='Certificate Name'])[1]");
 	private By dataAdddedBy = By.xpath("(//td[@data-label='Added By'])[1]");
@@ -31,7 +31,6 @@ public class CertificatesPage {
 
 	private By sucessMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
 	private By btnOkDelete = By.xpath("//button[normalize-space()='OK']");
-
 
 	public CertificatesPage(WebDriver driver) {
 		this.driver = driver;
@@ -55,7 +54,7 @@ public class CertificatesPage {
 	}
 
 	public void fillCertificateName(String certificateName, String serialNumber, String filePath,
-			String certificateDescription) {
+			String certificateDescription) throws InterruptedException {
 		elementUtils.waitForElementVisible(txtboxCertificateName, Constants.DEFAULT_WAIT).sendKeys(certificateName);
 		elementUtils.waitForElementVisible(txtboxSerialNumber, Constants.DEFAULT_WAIT).sendKeys(serialNumber);
 		elementUtils.uploadFile(uploadCertificate, filePath);
@@ -65,6 +64,8 @@ public class CertificatesPage {
 				.sendKeys("This is a test certificate text.");
 		elementUtils.waitForElementToBeClickable(btnOK, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForInvisibilityOfElementLocated(confirmationMessageFileUpload, Constants.DEFAULT_WAIT);
+		//Thread.sleep(3000);
+		elementUtils.waitForElementVisible(btnSubmitPDF, Constants.MEDIUM_TIME_OUT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnSubmitPDF, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(txtboxCertificateDescription, Constants.DEFAULT_WAIT)
 				.sendKeys(certificateDescription);
@@ -110,7 +111,7 @@ public class CertificatesPage {
 		elementUtils.waitForElementVisible(txtboxSerialNumber, Constants.DEFAULT_WAIT);
 		elementUtils.clearTextBoxWithActions(txtboxSerialNumber);
 		elementUtils.doActionsSendKeys(txtboxSerialNumber, updatedSerialNumber);
-		
+
 		elementUtils.waitForElementVisible(txtboxCertificateDescription, Constants.DEFAULT_WAIT);
 		elementUtils.clearTextBoxWithActions(txtboxCertificateDescription);
 		elementUtils.doActionsSendKeys(txtboxCertificateDescription, updatedDescription);
@@ -128,7 +129,7 @@ public class CertificatesPage {
 				+ "']/following-sibling::td//div[@class='actionicons deleteIcon']";
 		elementUtils.waitForElementToBeClickable(By.xpath(editXpath), Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public void clickOnDeleteButton() {
 		elementUtils.waitForElementToBeClickable(btnOkDelete, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForInvisibilityOfElementLocated(btnOkDelete, Constants.DEFAULT_WAIT);

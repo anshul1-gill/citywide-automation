@@ -20,6 +20,7 @@ public class AddCertificateTest extends BaseTest {
 		softAssert.assertEquals(certificatesPage.getHeadingCertificates(), TrainingConstants.CERTIFICATE_HEADING,
 				"Heading Certificates is not visible");
 		certificatesPage.clickOnAddNewCertificate();
+		Thread.sleep(2000);
 		certificatesPage.fillCertificateName(TrainingConstants.CERTIFICATE_NAME,
 				TrainingConstants.CERTIFICATE_SERIAL_NUMBER, TrainingConstants.CERTIFICATE_FILE_PATH,
 				TrainingConstants.CERTIFICATE_DESCRIPTION);

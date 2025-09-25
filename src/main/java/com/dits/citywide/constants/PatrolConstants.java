@@ -7,15 +7,15 @@ public class PatrolConstants {
 
 // HR Management 
 	// Leavve Request Data
-	public static final String LEAVE_TYPE = "Study";
+	public static final String LEAVE_TYPE = "Marriage leave";
 
 	public static final String LEAVE_FROM_MONTH = "Oct";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "23";
+	public static final String LEAVE_FROM_DATE = "24";
 
 	public static final String LEAVE_TO_MONTH = "Oct";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "24";
+	public static final String LEAVE_TO_DATE = "25";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";

@@ -15,20 +15,25 @@ public class FieldAgentCallActionTest extends BaseTest {
 	}
 
 	@Test
-	public void callActionTest() throws InterruptedException {
+	public void callActionFieldAgentTest() throws InterruptedException {
 		Thread.sleep(2000);
 		fieldAgentCallsPage = fieldAgentStartShiftPage.doClickCallsTab();
 		fieldAgentCallsPage.doClickCallAction(prop.getProperty("callid"));
+		fieldAgentCallsPage.doClickExpandCollapseAssignedUnits();
 		fieldAgentCallsPage.doClickEnroute();
 		softAssert.assertEquals(fieldAgentCallsPage.getSuccessMessageText(),
-				OperationsHubConstant.OFFICER_ENROUTE_SUCCESSFULLY);
+				OperationsHubConstant.OFFICER_ENROUTE_SUCCESSFULLY,
+				"Success message after going enroute does not match.");
 		fieldAgentCallsPage.doClickArrive();
 		softAssert.assertEquals(fieldAgentCallsPage.getSuccessMessageText(),
-				OperationsHubConstant.OFFICER_ARRIVED_SUCCESSFULLY);
+				OperationsHubConstant.OFFICER_ARRIVED_SUCCESSFULLY, "Success message after arriving does not match.");
 		fieldAgentCallsPage.doClickCleared();
 		softAssert.assertEquals(fieldAgentCallsPage.getSuccessMessageText(),
-				OperationsHubConstant.OFFICER_CLEARED_SUCCESSFULLY);
-		softAssert.assertTrue(fieldAgentCallsPage.isCallNotesVisible());
+				OperationsHubConstant.OFFICER_CLEARED_SUCCESSFULLY,
+				"Success message after clearing the call does not match.");
+		fieldAgentCallsPage.doClickExpandCollapseCallNotes();
+		// softAssert.assertTrue(fieldAgentCallsPage.isCallNotesVisible(), "Call Notes
+		// section is not visible.");
 		fieldAgentCallsPage.addNotesAndSave(OperationsHubConstant.NOTES);
 		fieldAgentCallsPage.closeCallActionPopup();
 

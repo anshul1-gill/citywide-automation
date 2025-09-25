@@ -25,7 +25,8 @@ public class FieldAgentLeaveRequestsPage {
 	private By inputEndTime = By.id("end_time");
 
 	private By txtboxDescription = By.id("description");
-	private By btnApplyLeave = By.xpath("//button[contains(@type,'submit')]");
+	//private By btnApplyLeave = By.xpath("//button[contains(@type,'submit')]");
+	private By btnApplyLeave = By.xpath("//span[normalize-space()='Apply Leave']");
 	private By btnReset = By.xpath("//button[@type='reset']");
 
 	private By search = By.cssSelector("input[placeholder='Search']");

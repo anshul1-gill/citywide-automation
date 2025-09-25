@@ -66,7 +66,7 @@ public class AddEmployeePage {
 	private By txtboxConfirmPassword = By.id("Personal Information_confirm_password");
 
 	private By dropdownBranches = By.xpath("(//div[@class='ant-select-selection-search'])[3]");
-	private By txtboxSiteSearch = By.xpath("//input[@id='Personal Information_client_site']");
+	private By txtboxSiteSearch = By.cssSelector("input[id='Personal Information_client_site']");
 
 	private By txtboxBeatSearch = By.xpath("//input[@id='Personal Information_beat_id']");
 
@@ -405,12 +405,13 @@ public class AddEmployeePage {
 
 		elementUtils.waitForElementVisible(dropdownRole, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsClick(dropdownRole);
-		
-		//elementUtils.selectElementThroughLocatorWithRetry(roleValues, role, Constants.SHORT_TIME_OUT_WAIT);
+
+		// elementUtils.selectElementThroughLocatorWithRetry(roleValues, role,
+		// Constants.SHORT_TIME_OUT_WAIT);
 		// String roleText = StringUtils.convertToCamelCase(role);
 		// By rolexpath = elementUtils.getOptionByText(roleText);
 		// elementUtils.clickElementWithScroll(rolexpath, Constants.DEFAULT_WAIT);
-		//elementUtils.doScrollAndClickWithWait(getRoleLocator(role));
+		// elementUtils.doScrollAndClickWithWait(getRoleLocator(role));
 		elementUtils.waitForElementVisible(getRoleLocator(role), Constants.DEFAULT_WAIT).click();
 
 		WebElement rankElement = elementUtils.waitForElementToBeClickable(dropdownRank, Constants.SHORT_TIME_OUT_WAIT);
@@ -478,9 +479,12 @@ public class AddEmployeePage {
 		WebElement branchesElement = elementUtils.waitForElementToBeClickable(dropdownBranches,
 				Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(branchesElement);
-		By blacklistedSiteNamexpath = elementUtils.getOptionByText(siteName);
-		elementUtils.clickElementWithScroll(blacklistedSiteNamexpath, Constants.DEFAULT_WAIT);
+//		By blacklistedSiteNamexpath = elementUtils.getOptionByText(siteName);
+//		elementUtils.clickElementWithScroll(blacklistedSiteNamexpath, Constants.DEFAULT_WAIT);
+		elementUtils.doActionsSendKeys(txtboxSiteSearch, siteName);
+		Thread.sleep(2000);
 		elementUtils.pressEscapeKey();
+		Thread.sleep(500);
 	}
 
 	public void fillBeatName(String beatName) throws InterruptedException {

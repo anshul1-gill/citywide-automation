@@ -38,13 +38,13 @@ public class CallsPage {
 	private By successMessage = By.xpath("//h2[@id='swal2-title']/span[@class='text-white']");
 
 	private By dataAssignedTo = By.xpath("(//div[@class='call-status'])[1]/p");
-	//private By dataCallId = By.xpath("(//td[@data-label='Call #'])[1]/a");
-	private By getCallIdByEmployeeId(String employeeId) {
-	    String xpath = "//p[contains(normalize-space(),'" + employeeId + "')]" +
-	                   "/ancestor::td/following-sibling::td[@data-label='Call #']/a";
-	    return By.xpath(xpath);
-	}
 
+	// private By dataCallId = By.xpath("(//td[@data-label='Call #'])[1]/a");
+	private By getCallIdByEmployeeId(String employeeId) {
+		String xpath = "//p[contains(normalize-space(),'" + employeeId + "')]"
+				+ "/ancestor::td/following-sibling::td[@data-label='Call #']/div";
+		return By.xpath(xpath);
+	}
 
 	private By dataActivityCode = By.xpath("(//td[@data-label='Activity Code'])[1]");
 	private By dataSite = By.xpath("(//td[@data-label='Site'])[1]/div");
@@ -190,7 +190,7 @@ public class CallsPage {
 	public String getSuccessMessageText() {
 		return elementUtils.waitForElementVisible(successMessage, Constants.DEFAULT_WAIT).getText();
 	}
-	
+
 	public String getAssignedTo() {
 		return elementUtils.waitForElementVisible(dataAssignedTo, Constants.DEFAULT_WAIT).getText();
 	}

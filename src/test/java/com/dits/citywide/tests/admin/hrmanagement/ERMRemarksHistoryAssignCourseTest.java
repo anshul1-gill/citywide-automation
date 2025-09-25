@@ -20,10 +20,12 @@ public class ERMRemarksHistoryAssignCourseTest extends BaseTest {
 		ermPage = dashboardPage.doClickERM();
 		ermRemarksHistoryPage = ermPage.clickRemarksHistory();
 		ermRemarksHistoryPage.searchRemarks(prop.getProperty("employeeID"));
+		Thread.sleep(1000);
 		ermRemarksHistoryPage.clickAssignCourse();
 		softAssert.assertEquals(ermRemarksHistoryPage.getHeadingCourse(), "Courses");
-		ermRemarksHistoryPage.searchCourse(HRManagementConstants.COURSE_NAME);
-		ermRemarksHistoryPage.clickAssignCourses();
+		ermRemarksHistoryPage.searchCourseResult(HRManagementConstants.COURSE_NAME);
+		Thread.sleep(1000);
+		ermRemarksHistoryPage.clickAssignCourses2();
 		softAssert.assertEquals(ermRemarksHistoryPage.getConfirmationMessage(),
 				HRManagementConstants.ASSIGNED_COURSE_CONFIRMATION_MESSAGE);
 		ermRemarksHistoryPage.clickAssign();

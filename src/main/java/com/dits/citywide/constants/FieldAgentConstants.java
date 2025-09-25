@@ -8,18 +8,18 @@ public class FieldAgentConstants {
 // HR Management 
 	// Leavve Request Data
 	// Staging data
-	public static final String LEAVE_TYPE = "Study";
+	public static final String LEAVE_TYPE = "Marriage leave";
 
 	// Live data
 	// public static final String LEAVE_TYPE = "Vacation";
 
-	public static final String LEAVE_FROM_MONTH = "Nov";
+	public static final String LEAVE_FROM_MONTH = "Oct";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "11";
+	public static final String LEAVE_FROM_DATE = "27";
 
-	public static final String LEAVE_TO_MONTH = "Nov";
+	public static final String LEAVE_TO_MONTH = "Oct";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "12";
+	public static final String LEAVE_TO_DATE = "28";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";

@@ -41,7 +41,8 @@ public class ViewFieldAgentEmployeeTest extends BaseTest {
 		softAssert.assertEquals(viewEmployeePage.getProfileName(), HRManagementConstants.FIRST_NAME + " "
 				+ HRManagementConstants.MIDDLE_NAME + " " + HRManagementConstants.LAST_NAME);
 		softAssert.assertEquals(viewEmployeePage.getProfileStatus(), HRManagementConstants.EMPLOYMENT_STATUS);
-		softAssert.assertEquals(viewEmployeePage.getProfileRole().trim(), (HRManagementConstants.ROLE_FIELD).toUpperCase());
+		softAssert.assertEquals(viewEmployeePage.getProfileRole().trim(),
+				(HRManagementConstants.ROLE_FIELD).toUpperCase());
 		softAssert.assertEquals(viewEmployeePage.getProfileRank().trim(), HRManagementConstants.RANK);
 
 //		softAssert.assertEquals(viewEmployeePage.getProfileLocation().trim(),

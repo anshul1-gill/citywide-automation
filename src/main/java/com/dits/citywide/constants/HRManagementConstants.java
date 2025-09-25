@@ -205,7 +205,7 @@ public class HRManagementConstants {
 	public static final String EMPLOYEE_REMARKS_REASON = "Abusing in front of child";
 	public static final String EMPLOYEE_REMARKS_DESCRIPTION = " The manager was using abusive language in front of a child, which is unacceptable behavior in the workplace. "
 			+ "This incident needs to be addressed immediately to maintain a professional environment.";
-	public static final String EMPLOYEE_REMARKS_ADDED_SUCCESS_MESSAGE = "Comment added successfully";
+	public static final String EMPLOYEE_REMARKS_ADDED_SUCCESS_MESSAGE = "Note added successfully";
 
 // Leave Requests
 	public static final String LEAVE_TYPE = "Study";
@@ -280,7 +280,7 @@ public class HRManagementConstants {
 	public static final String REASON_DELETE_CONFIRMATION_MESSAGE = "Reason deleted successfully";
 
 	// Comment added successfully
-	public static final String COMMENT_ADDED_SUCCESS_MESSAGE = "Comment added successfully";
+	public static final String COMMENT_ADDED_SUCCESS_MESSAGE = "Note added successfully";
 
 	public static final String ASSIGNED_COURSE_CONFIRMATION_MESSAGE = "Do you want to assign this course";
 

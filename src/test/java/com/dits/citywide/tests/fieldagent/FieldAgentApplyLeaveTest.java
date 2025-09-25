@@ -28,11 +28,12 @@ public class FieldAgentApplyLeaveTest extends BaseTest {
 				FieldAgentConstants.LEAVE_TO_DATE, FieldAgentConstants.LEAVE_END_TIME,
 				FieldAgentConstants.LEAVE_DESCRIPTION);
 		fieldAgentLeaveRequestsPage.doApplyLeave();
-
+		Thread.sleep(2000);
 		softAssert.assertTrue(fieldAgentLeaveRequestsPage.isAddLeaveRequestButtonDisplayed(),
 				"Add Leave Request button is not displayed");
 
 		fieldAgentLeaveRequestsPage.doSearch("Pending");
+		Thread.sleep(4000);
 
 		softAssert.assertEquals(fieldAgentLeaveRequestsPage.getLeaveType(), FieldAgentConstants.LEAVE_TYPE);
 

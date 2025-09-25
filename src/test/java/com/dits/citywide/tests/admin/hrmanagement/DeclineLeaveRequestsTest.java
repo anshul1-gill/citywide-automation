@@ -21,7 +21,7 @@ public class DeclineLeaveRequestsTest extends BaseTest {
 		leaveRequestsPage = dashboardPage.doClickLeaveRequests();
 
 		leaveRequestsPage.doSearchLeaveRequest(prop.getProperty("employeeID"));
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		softAssert.assertTrue(leaveRequestsPage.isAddLeaveRequestButtonDisplayed(),
 				"Add Leave Request button is not displayed");
 
