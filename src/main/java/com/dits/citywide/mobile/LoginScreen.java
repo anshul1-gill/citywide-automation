@@ -95,13 +95,14 @@ public class LoginScreen {
 		switchToOrgPageLink.click();
 	}
 
-	public void login(String username, String password) {
+	public HomeScreen login(String username, String password) {
 		WebElement badgeNumberBox = wait.until(ExpectedConditions.visibilityOfElementLocated(txtboxBadgeNumber));
 		badgeNumberBox.sendKeys(username);
 		WebElement passwordBox = wait.until(ExpectedConditions.visibilityOfElementLocated(txtboxPassword));
 		passwordBox.sendKeys(password);
 		WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(btnLogin));
 		loginButton.click();
+		return new HomeScreen(driver);
 	}
 
 	public boolean isLoginSuccessful() {
