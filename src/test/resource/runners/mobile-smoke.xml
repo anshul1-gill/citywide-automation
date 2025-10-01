@@ -14,9 +14,11 @@
 		name="Add Employee Test" preserve-order="true">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.AddFieldAgentEmployeeTest" />
+				name="com.dits.citywide.tests.mobile.StartShiftFieldAgentAndroidTest" />
 			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
+				name="com.dits.citywide.tests.mobile.ReportsScreenTest" />
+			<class 
+                name="com.dits.citywide.tests.mobile.MyReportsTest" />
 		</classes>
 	</test>
 

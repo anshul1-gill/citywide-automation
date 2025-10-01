@@ -19,6 +19,7 @@ public class FieldAgentApplyLeaveTest extends BaseTest {
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
 		Thread.sleep(2000);
 		fieldAgentStartShiftPage.clickOnHRManagementMenu();
+		Thread.sleep(2000);
 		fieldAgentLeaveRequestsPage = fieldAgentStartShiftPage.clickOnLeaveRequestsTab();
 		fieldAgentLeaveRequestsPage.clickAddLeaveRequest();
 		fieldAgentLeaveRequestsPage.fillApplyLeaveForm(FieldAgentConstants.LEAVE_TYPE,

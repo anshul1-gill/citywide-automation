@@ -80,6 +80,9 @@ public class HRManagementConstants {
 
 	// Class code
 	public static final String CLASS_CODE = "Security code";
+	public static final String CLASS_CODE_MONTH = "Mar";
+	public static final String CLASS_CODE_YEAR = "2025";
+	public static final String CLASS_CODE_DATE = "15";
 
 	// Employment Type
 	public static final String EMPLOYMENT_TYPE = "Full time shift";
