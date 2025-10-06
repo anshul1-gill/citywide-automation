@@ -9,7 +9,7 @@ import com.dits.citywide.mobile.LoginScreen;
 public class LoginScreenTest extends BaseMobileTest {
 
 	@Test
-	public void loginTestAndroid() {
+	public void loginTestAndroid() throws InterruptedException {
 		LoginScreen loginScreen = new LoginScreen(driver);
 
 		loginScreen.searchAndProceed(MobileConstants.ORG_NAME);
