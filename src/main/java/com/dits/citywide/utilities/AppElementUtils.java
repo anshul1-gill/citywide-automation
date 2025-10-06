@@ -6,7 +6,9 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -243,18 +245,45 @@ public class AppElementUtils {
 		appiumDriver.perform(Collections.singletonList(tap));
 	}
 
+//	public void safeClick(By locator, int timeoutSeconds) {
+//		try {
+//			// First try standard click
+//			WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(timeoutSeconds));
+//			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+//			element.click();
+//		} catch (Exception e) {
+//			// Fallback to W3C Actions click
+//			WebElement element = appiumDriver.findElement(locator);
+//			clickElementWithW3C(element);
+//		}
+//
+//	}
+
 	public void safeClick(By locator, int timeoutSeconds) {
 		try {
-			// First try standard click
 			WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(timeoutSeconds));
 			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
 			element.click();
-		} catch (Exception e) {
-			// Fallback to W3C Actions click
-			WebElement element = appiumDriver.findElement(locator);
-			clickElementWithW3C(element);
+			return;
+		} catch (Exception ignored) {
 		}
 
+		try {
+			WebElement element = appiumDriver.findElement(locator);
+			Map<String, Object> params = new HashMap<>();
+			params.put("elementId", ((RemoteWebElement) element).getId());
+			appiumDriver.executeScript("mobile: clickGesture", params);
+			return;
+		} catch (Exception ignored) {
+		}
+
+		try {
+			WebElement element = appiumDriver.findElement(locator);
+			clickElementWithW3C(element);
+		} catch (Exception e) {
+			throw new RuntimeException(
+					"All click strategies failed for locator: " + locator + ". Last error: " + e.getMessage(), e);
+		}
 	}
 
 	// Enhanced swipe: fallback to coordinate-based swipe if element swipe fails
@@ -475,8 +504,9 @@ public class AppElementUtils {
 	}
 
 	/**
-	 * Performs a generic tap action on the center of the element found by the locator.
-	 * Uses W3C Actions API for reliability on native Android apps.
+	 * Performs a generic tap action on the center of the element found by the
+	 * locator. Uses W3C Actions API for reliability on native Android apps.
+	 * 
 	 * @param locator The By locator of the element to tap
 	 */
 	public void tap(By locator) {

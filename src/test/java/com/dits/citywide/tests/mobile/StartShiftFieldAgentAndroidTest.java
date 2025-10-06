@@ -15,7 +15,7 @@ public class StartShiftFieldAgentAndroidTest extends BaseMobileTest {
 	ReportsScreen reportsScreen;
 
 	@BeforeMethod
-	public void login() {
+	public void login() throws InterruptedException {
 		LoginScreen loginScreen = new LoginScreen(driver);
 		reportsScreen = new ReportsScreen(driver);
 		loginScreen.searchAndProceed(MobileConstants.ORG_NAME);

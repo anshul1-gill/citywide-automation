@@ -1,13 +1,9 @@
 package com.dits.citywide.mobile;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.dits.citywide.constants.Constants;
+import com.dits.citywide.utilities.AppElementUtils;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
@@ -15,7 +11,7 @@ import io.appium.java_client.AppiumDriver;
 public class LoginScreen {
 
 	AppiumDriver driver;
-	WebDriverWait wait;
+	AppElementUtils appElementUtils;
 
 	private By btnNext = AppiumBy.accessibilityId("Next");
 	private By txtboxSearch = AppiumBy.className("android.widget.EditText");
@@ -37,77 +33,57 @@ public class LoginScreen {
 
 	public LoginScreen(AppiumDriver driver) {
 		this.driver = driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.DEFAULT_WAIT));
+		appElementUtils = new AppElementUtils(driver);
 	}
 
-	public void searchAndProceed(String searchText) {
-		WebElement nextButton = wait.until(ExpectedConditions.elementToBeClickable(btnNext));
-		nextButton.click();
-		WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(txtboxSearch));
-		searchBox.sendKeys(searchText);
-		WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(txtResult));
-		result.click();
-		WebElement next2Button = wait.until(ExpectedConditions.elementToBeClickable(btnNext));
-		next2Button.click();
+	public void searchAndProceed(String searchText) throws InterruptedException {
+		Thread.sleep(2000);
+		appElementUtils.safeClick(btnNext, Constants.DEFAULT_WAIT);
+		appElementUtils.doSendKeysWithWait(txtboxSearch, searchText, Constants.DEFAULT_WAIT);
+		appElementUtils.safeClick(txtResult, Constants.DEFAULT_WAIT);
+		appElementUtils.safeClick(btnNext, Constants.DEFAULT_WAIT);
 	}
 
 	public boolean isLoginScreenDisplayed() {
-		WebElement loginHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(txtLoginHeader));
-		return loginHeader.isDisplayed();
+		return appElementUtils.doIsDisplayed(txtLoginHeader, Constants.DEFAULT_WAIT);
 	}
 
 	public boolean isInfoButtonDisplayed() {
-		WebElement infoButton = wait.until(ExpectedConditions.visibilityOfElementLocated(btnInfo));
-		return infoButton.isDisplayed();
+		return appElementUtils.doIsDisplayed(btnInfo, Constants.DEFAULT_WAIT);
 	}
 
 	public boolean isRememberMeCheckboxDisplayed() {
-		WebElement rememberMeCheckbox = wait.until(ExpectedConditions.visibilityOfElementLocated(checkboxRememberMe));
-		return rememberMeCheckbox.isDisplayed();
+		return appElementUtils.doIsDisplayed(checkboxRememberMe, Constants.DEFAULT_WAIT);
 	}
 
 	public boolean isRememberMeCheckboxSelected() {
-		WebElement rememberMeCheckbox = wait.until(ExpectedConditions.visibilityOfElementLocated(checkboxRememberMe));
-		return rememberMeCheckbox.isSelected();
+		return appElementUtils.doIsSelected(checkboxRememberMe, Constants.DEFAULT_WAIT);
 	}
 
 	public void clickRememberMeCheckbox() {
-		WebElement rememberMeCheckbox = wait.until(ExpectedConditions.elementToBeClickable(checkboxRememberMe));
-		rememberMeCheckbox.click();
-	}
+		appElementUtils.safeClick(checkboxRememberMe, Constants.DEFAULT_WAIT);
 
-	public void clearRememberMeCheckbox() {
-		WebElement rememberMeCheckbox = wait.until(ExpectedConditions.elementToBeClickable(checkboxRememberMe));
-		if (rememberMeCheckbox.isSelected()) {
-			rememberMeCheckbox.click();
-		}
 	}
 
 	public boolean isSwitchToOrganizationLinkDisplayed() {
-		WebElement switchToOrgPageLink = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(lnkSwichToOrganizationPage));
-		return switchToOrgPageLink.isDisplayed();
+		return appElementUtils.doIsDisplayed(lnkSwichToOrganizationPage, Constants.DEFAULT_WAIT);
+
 	}
 
 	public void clickSwitchToOrganizationPageLink() {
-		WebElement switchToOrgPageLink = wait
-				.until(ExpectedConditions.elementToBeClickable(lnkSwichToOrganizationPage));
-		switchToOrgPageLink.click();
+		appElementUtils.safeClick(lnkSwichToOrganizationPage, Constants.DEFAULT_WAIT);
+
 	}
 
 	public HomeScreen login(String username, String password) {
-		WebElement badgeNumberBox = wait.until(ExpectedConditions.visibilityOfElementLocated(txtboxBadgeNumber));
-		badgeNumberBox.sendKeys(username);
-		WebElement passwordBox = wait.until(ExpectedConditions.visibilityOfElementLocated(txtboxPassword));
-		passwordBox.sendKeys(password);
-		WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(btnLogin));
-		loginButton.click();
+		appElementUtils.doSendKeysWithWait(txtboxBadgeNumber, username, Constants.DEFAULT_WAIT);
+		appElementUtils.doSendKeysWithWait(txtboxPassword, password, Constants.DEFAULT_WAIT);
+		appElementUtils.safeClick(btnLogin, Constants.DEFAULT_WAIT);
 		return new HomeScreen(driver);
 	}
 
 	public boolean isLoginSuccessful() {
-		WebElement welcomeText = wait.until(ExpectedConditions.visibilityOfElementLocated(txtWelcome));
-		return welcomeText.isDisplayed();
+		return appElementUtils.doIsDisplayed(txtWelcome, Constants.DEFAULT_WAIT);
 	}
 
 }

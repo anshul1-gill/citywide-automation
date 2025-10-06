@@ -1,5 +1,6 @@
 package com.dits.citywide.driverfactory;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,11 +17,11 @@ public class DriverFactoryApp {
 
 	AppiumDriver driver;
 	Properties prop;
-	
+
 	String filePath = "./src/test/resource/config/config.properties";
-	String apkpath = "/Users/ditsdev/Desktop/app-staging-release.apk";
-	String serverurl = "http://127.0.0.1:4723";
-	String devicename = "Pixel 8";
+	//String apkpath = "/Users/ditsdev/Desktop/app-staging-release.apk";
+	//String serverurl = "http://127.0.0.1:4723";
+	// String devicename = "Pixel 8";
 
 	public AppiumDriver init_driver(Properties prop) {
 		String deviceType = "android";
@@ -39,26 +40,52 @@ public class DriverFactoryApp {
 
 	private AppiumDriver setupAndroidDriver(Properties prop) {
 		try {
-			UiAutomator2Options options = new UiAutomator2Options()
-					.setDeviceName(devicename)
-					.setApp(apkpath);
-			options.setCapability("autoGrantPermissions", true);
-			options.setNewCommandTimeout(Duration.ofSeconds(300));
-			options.setAppWaitDuration(Duration.ofSeconds(30));
+			String devicename = prop.getProperty("devicename");
+			String apkpath = prop.getProperty("apkpath");
+			String serverurl = prop.getProperty("serverurl");
+			String deviceType = prop.getProperty("deviceType", "emulator");
 
-			if (options.getDeviceName() == null || options.getDeviceName().isEmpty()) {
-				throw new IllegalArgumentException("'devicename' is missing or empty (check devicename field).");
+			if (devicename == null || devicename.isEmpty()) {
+				throw new IllegalArgumentException("'devicename' is missing or empty.");
 			}
-			if (options.getApp() == null || options.getApp().isEmpty()) {
-				throw new IllegalArgumentException("'apkpath' is missing or empty (check apkpath field).");
+			if (apkpath == null || apkpath.isEmpty()) {
+				throw new IllegalArgumentException("'apkpath' is missing or empty.");
+			}
+			File apkFile = new File(apkpath);
+			if (!apkFile.exists()) {
+				throw new IllegalArgumentException("APK file does not exist at: " + apkpath);
 			}
 
+			UiAutomator2Options options = new UiAutomator2Options().setDeviceName(devicename).setApp(apkpath)
+					.setAutoGrantPermissions(true).setNewCommandTimeout(Duration.ofSeconds(300))
+					.setAppWaitDuration(Duration.ofSeconds(30));
+
+			// Device-specific capabilities
+			if (deviceType.equalsIgnoreCase("real")) {
+				// Real device
+				options.setCapability("udid", devicename);
+				options.setCapability("ignoreHiddenApiPolicyError", true);
+				options.setCapability("noReset", true);
+				options.setCapability("fullReset", false);
+				options.setCapability("skipDeviceInitialization", true);
+				options.setCapability("skipServerInstallation", true);
+
+				System.out.println("Initializing driver for real device: " + devicename);
+			} else {
+				// Emulator
+				options.setCapability("avd", devicename);
+				System.out.println("Initializing driver for emulator: " + devicename);
+			}
 			driver = new AndroidDriver(new URL(serverurl), options);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 			System.out.println("AndroidDriver initialized successfully.");
 			return driver;
+
 		} catch (MalformedURLException e) {
-			throw new IllegalStateException("Invalid server URL.", e);
+			throw new IllegalStateException("Invalid server URL: " + prop.getProperty("serverurl"), e);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new IllegalStateException("Failed to initialize AndroidDriver.", e);
 		}
 	}
