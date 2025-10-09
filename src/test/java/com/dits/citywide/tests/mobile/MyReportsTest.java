@@ -41,6 +41,7 @@ public class MyReportsTest extends BaseMobileTest {
 				"Update Officer Report Entry heading is not displayed");
 		reportsScreen.fillReportForm(MobileConstants.SITE_NAME, MobileConstants.ACTIVITY_CODE, MobileConstants.CALL_ID,
 				MobileConstants.ADDRESS, MobileConstants.REPORT_DESCRIPTION);
+		reportsScreen.tapUpdateReportButton();
 		softAssert.assertAll();
 	}
 
@@ -53,6 +54,11 @@ public class MyReportsTest extends BaseMobileTest {
 		reportsScreen.tapAddNewReportButton();
 		reportsScreen.fillReportForm(MobileConstants.SITE_NAME, MobileConstants.ACTIVITY_CODE, MobileConstants.CALL_ID,
 				MobileConstants.ADDRESS, MobileConstants.REPORT_DESCRIPTION);
+		reportsScreen.tapSaveNewReportButton();
+		Thread.sleep(500);
+//		softAssert.assertEquals(reportsScreen.isSuccessToastDisplayed(), MobileConstants.ADD_REPORT_SUCCESS_MESSAGE,
+//				"Success toast message is not displayed");
+		softAssert.assertTrue(reportsScreen.isReportsHeadingDisplayed(), "Reports screen is not displayed");
 		softAssert.assertAll();
 	}
 

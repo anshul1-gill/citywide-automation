@@ -14,11 +14,13 @@
 		name="Add Employee Test" preserve-order="true">
 		<classes>
 			<class
+				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
+			<class
 				name="com.dits.citywide.tests.mobile.StartShiftFieldAgentAndroidTest" />
 			<class
 				name="com.dits.citywide.tests.mobile.ReportsScreenTest" />
-			<class 
-                name="com.dits.citywide.tests.mobile.MyReportsTest" />
+			<class
+				name="com.dits.citywide.tests.mobile.MyReportsTest" />
 		</classes>
 	</test>
 

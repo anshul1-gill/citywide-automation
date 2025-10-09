@@ -40,10 +40,18 @@ public class HomeScreen {
 	private By tabReports = AppiumBy
 			.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(2)");
 
-
 	// Message of the week
 	private By txtMessageOfTheWeek = AppiumBy.androidUIAutomator("new UiSelector().text(\"Message of the Week\")");
 	private By btnMarkAsRead = AppiumBy.androidUIAutomator("new UiSelector().description(\"Mark As Read\")");
+
+	// Logout from previous shift
+	private By txtHeadingLogoutPreviousShift = AppiumBy
+			.androidUIAutomator("new UiSelector().text(\"Logout of Previous Shift\")");
+	private By txtSite = AppiumBy.androidUIAutomator("new UiSelector().text(\"Site Details\")");
+	private By txtboxReason = AppiumBy
+			.androidUIAutomator("new UiSelector().resourceId(\"text-input-outlined\").instance(3)");
+	private By btnClear = AppiumBy.accessibilityId("Clear");
+	private By btnSubmit = AppiumBy.accessibilityId("Submit");
 
 	public HomeScreen(AppiumDriver driver) {
 		this.driver = driver;
@@ -140,6 +148,23 @@ public class HomeScreen {
 			}
 		} catch (Exception e) {
 			System.out.println("Exception while handling 'Mark As Read': " + e.getMessage());
+		}
+	}
+
+	public void handleLogoutOfPreviousShift() {
+		try {
+			if (appElementUtils.doIsDisplayed(txtHeadingLogoutPreviousShift, Constants.SHORT_TIME_OUT_WAIT)) {
+				System.out.println("'Logout of Previous Shift' popup is displayed.");
+				appElementUtils.doSendKeysWithWait(txtboxReason, "Ending My Previous Shift",
+						Constants.SHORT_TIME_OUT_WAIT);
+				appElementUtils.safeClick(btnSubmit, Constants.SHORT_TIME_OUT_WAIT);
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(txtHeadingLogoutPreviousShift));
+				System.out.println("Submitted reason and popup closed.");
+			} else {
+				System.out.println("'Logout of Previous Shift' popup not present. Skipping.");
+			}
+		} catch (Exception e) {
+			System.out.println("Exception while handling 'Logout of Previous Shift': " + e.getMessage());
 		}
 	}
 

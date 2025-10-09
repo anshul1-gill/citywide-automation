@@ -32,6 +32,7 @@ public class StartShiftFieldAgentAndroidTest extends BaseMobileTest {
 		softAssert.assertTrue(homeScreen.isConfirmAndRejectMultpleShiftButtonDisplayed(),
 				"Confirm/Reject Multiple Shifts button is not displayed");
 		homeScreen.tapStartShiftButton();
+		homeScreen.handleLogoutOfPreviousShift();
 		softAssert.assertTrue(homeScreen.isWelcomeTextDisplayed(), "Welcome text is not displayed");
 		softAssert.assertTrue(homeScreen.isDescriptionTextDisplayed(), "Description text is not displayed");
 		softAssert.assertTrue(homeScreen.getSiteName().contains(HRManagementConstants.SITE),

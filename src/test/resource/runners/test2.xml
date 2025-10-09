@@ -10,4 +10,15 @@
 	-->
 
 
+	<test
+		name="Add Employee Test" preserve-order="true">
+		<classes>
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.AddFieldAgentEmployeeTest" />
+			<class
+				name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
+		</classes>
+	</test>
+
+
 </suite> 

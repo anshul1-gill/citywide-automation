@@ -196,6 +196,25 @@ public class ElementUtils {
 		Actions action = new Actions(driver);
 		action.moveToElement(element).click().sendKeys(value).perform();
 	}
+	
+	public void doSendKeysAction(By by, String value) {
+	    if (value == null) {
+	        throw new IllegalArgumentException("Cannot send null value using sendKeys.");
+	    }
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	    
+	    // Wait until element is visible and enabled (interactable)
+	    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+	    wait.until(ExpectedConditions.elementToBeClickable(element));
+	    
+	    // Clear the existing text (optional)
+	    element.clear();
+	    
+	    // Send the provided text
+	    element.sendKeys(value);
+	}
+
 
 	public void doActionsClick(By by) {
 		Actions action = new Actions(driver);
