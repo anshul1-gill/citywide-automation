@@ -22,12 +22,17 @@ public class AssignmentsTest extends BaseMobileTest {
 		homeScreen = loginScreen.login(prop.getProperty("employeeID"), prop.getProperty("employeePassword"));
 	}
 
-	@Test(enabled = true)
+	@Test
 	public void myReportsTest() throws InterruptedException {
 		homeScreen.handleMessageOfTheWeek();
 		reportsScreen = homeScreen.clickOnReportsTab();
-		
-
+		reportsScreen.clickOnAssignmentsTab();
+		reportsScreen.enterTextInSearchBox("Pending");
+		Thread.sleep(2000);
+		reportsScreen.tapFirstAssignmentTile();
+		reportsScreen.fillAssignmentReportForm(MobileConstants.SITE_NAME, MobileConstants.ACTIVITY_CODE,
+				MobileConstants.CALL_ID, MobileConstants.ADDRESS, MobileConstants.REPORT_DESCRIPTION);
+		reportsScreen.tapCancelReportButton();
 	}
 
 }

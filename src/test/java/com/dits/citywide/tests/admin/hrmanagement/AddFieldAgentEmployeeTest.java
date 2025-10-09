@@ -47,7 +47,6 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 				HRManagementConstants.ALTERNATE_PHONE_NUMBER, HRManagementConstants.EMERGENCY_NAME,
 				HRManagementConstants.EMERGENCY_PHONE_NUMBER, HRManagementConstants.EMERGENCY_RELATIONSHIP,
 				HRManagementConstants.PASSWORD, HRManagementConstants.CONFIRM_PASSWORD, HRManagementConstants.BRANCHES);
-
 		addEmployeePage.fillSiteName(HRManagementConstants.SITE);
 
 		addEmployeePage.fillResidenceAddress(HRManagementConstants.RESIDENCE_ADDRESS_STREET_NAME,
@@ -66,7 +65,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 
 		String employeeId = addEmployeePage.getEmployeeID();
 		System.out.println(employeeId); // Print ID
-		driverFactory.updatePropertyValue("employeeID", employeeId);
+		//driverFactory.updatePropertyValue("employeeID", employeeId);
 
 		addEmployeePage.fillEmploymentInformation(HRManagementConstants.EMPLOYMENT_STATUS,
 				HRManagementConstants.EMPLOYMENT_HIRE_MONTH, HRManagementConstants.EMPLOYMENT_HIRE_YEAR,

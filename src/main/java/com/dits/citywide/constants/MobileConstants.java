@@ -11,5 +11,10 @@ public class MobileConstants {
 	// public static final String ADDRESS = "123 William Street, New York, NY, USA";
 	public static final String ADDRESS = "123 William Street";
 	public static final String REPORT_DESCRIPTION = "This is a test report.";
+	
+	
+	// Report 
+	
+	public static final String ADD_REPORT_SUCCESS_MESSAGE = "Report has been saved";
 
 }

@@ -476,15 +476,17 @@ public class AddEmployeePage {
 	}
 
 	public void fillSiteName(String siteName) throws InterruptedException {
-		WebElement branchesElement = elementUtils.waitForElementToBeClickable(dropdownBranches,
-				Constants.SHORT_TIME_OUT_WAIT);
-		elementUtils.doClickWithActions(branchesElement);
+//		WebElement branchesElement = elementUtils.waitForElementToBeClickable(dropdownBranches,
+//				Constants.SHORT_TIME_OUT_WAIT);
+		//elementUtils.doClickWithActions(branchesElement);
+		elementUtils.doClickWithActionsAndWait(dropdownBranches, Constants.DEFAULT_WAIT);
 //		By blacklistedSiteNamexpath = elementUtils.getOptionByText(siteName);
 //		elementUtils.clickElementWithScroll(blacklistedSiteNamexpath, Constants.DEFAULT_WAIT);
-		elementUtils.doActionsSendKeys(txtboxSiteSearch, siteName);
 		Thread.sleep(2000);
-		elementUtils.pressEscapeKey();
-		Thread.sleep(500);
+		elementUtils.doSendKeysAction(txtboxSiteSearch, siteName);
+		Thread.sleep(5000);
+		elementUtils.pressEnterKey();
+		Thread.sleep(2000);
 	}
 
 	public void fillBeatName(String beatName) throws InterruptedException {

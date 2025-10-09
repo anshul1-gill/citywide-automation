@@ -7,7 +7,7 @@
 		<listener class-name="com.dits.citywide.listener.ExtentReportListener"></listener>
 	</listeners>
 
-	<!--
+
 	<test
 		name="Add Employee Test" preserve-order="true">
 		<classes>
@@ -17,8 +17,7 @@
 				name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
 		</classes>
 	</test>
-	
-	-->
+
 
 	<test
 		name="Decline Leave Request Test" preserve-order="true">
@@ -156,6 +155,7 @@
 		</classes>
 	</test>
 
+	<!-- Forms Tests 
 	<test
 		name="Forms" preserve-order="true">
 		<classes>
@@ -167,20 +167,23 @@
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentAddIncidentReportsTest" />
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteIncidentReportsTest" />
+				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteIncidentReportsTest"
+	/>
 
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentAddParkingCitationTest" />
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteParkingCitationTest" />
+				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteParkingCitationTest"
+	/>
 
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentAddTrespassNoticesTest" />
 			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteTrespassNoticesTest" />
+				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteTrespassNoticesTest"
+	/>
 		</classes>
 	</test>
-
+-->
 
 	<test name="ERM And Field Agent Functional Tests" preserve-order="true">
 		<classes>

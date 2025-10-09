@@ -19,9 +19,9 @@ public class DriverFactoryApp {
 	Properties prop;
 
 	String filePath = "./src/test/resource/config/config.properties";
-	//String apkpath = "/Users/ditsdev/Desktop/app-staging-release.apk";
-	//String serverurl = "http://127.0.0.1:4723";
-	// String devicename = "Pixel 8";
+	String apkpath = "/Users/ditsdev/Desktop/app-staging-release.apk";
+	String serverurl = "http://127.0.0.1:4723";
+	String devicename = "Pixel 8";
 
 	public AppiumDriver init_driver(Properties prop) {
 		String deviceType = "android";
@@ -73,7 +73,8 @@ public class DriverFactoryApp {
 				System.out.println("Initializing driver for real device: " + devicename);
 			} else {
 				// Emulator
-				options.setCapability("avd", devicename);
+				 options.setCapability("avd", devicename);
+				
 				System.out.println("Initializing driver for emulator: " + devicename);
 			}
 			driver = new AndroidDriver(new URL(serverurl), options);
