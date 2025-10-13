@@ -1,0 +1,129 @@
+package com.dits.citywide.base;
+
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.asserts.SoftAssert;
+
+import com.dits.citywide.driverfactory.DriverFactory;
+import com.dits.citywide.pages.admin.ActivityTemplatePage;
+import com.dits.citywide.pages.admin.AddEmployeePage;
+import com.dits.citywide.pages.admin.ApplyLeavePage;
+import com.dits.citywide.pages.admin.AssessmentsResultsPage;
+import com.dits.citywide.pages.admin.AttendancePage;
+import com.dits.citywide.pages.admin.BeatsPage;
+import com.dits.citywide.pages.admin.BreaksPage;
+import com.dits.citywide.pages.admin.CallsPage;
+import com.dits.citywide.pages.admin.CertificatesPage;
+import com.dits.citywide.pages.admin.CompanySettingsPage;
+import com.dits.citywide.pages.admin.CourseCategoriesPage;
+import com.dits.citywide.pages.admin.DashboardPage;
+import com.dits.citywide.pages.admin.ERMPage;
+import com.dits.citywide.pages.admin.ERMRemarksHistoryPage;
+import com.dits.citywide.pages.admin.ERMSettingsPage;
+import com.dits.citywide.pages.admin.EmployeesPage;
+import com.dits.citywide.pages.admin.HRConfigurationsPage;
+import com.dits.citywide.pages.admin.HolidaysPage;
+import com.dits.citywide.pages.admin.LeaveRequestsPage;
+import com.dits.citywide.pages.admin.LeavesPage;
+import com.dits.citywide.pages.admin.LoginPage;
+import com.dits.citywide.pages.admin.RespondingAgenciesPage;
+import com.dits.citywide.pages.admin.SchedulingPage;
+import com.dits.citywide.pages.admin.SitesPage;
+import com.dits.citywide.pages.admin.TeamSupportTemplatePage;
+import com.dits.citywide.pages.admin.TotalCoursesPage;
+import com.dits.citywide.pages.admin.TrainingPage;
+import com.dits.citywide.pages.admin.UpdateEmployeePage;
+import com.dits.citywide.pages.admin.ViewEmployeePage;
+import com.dits.citywide.pages.admin.ViolationsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentFieldInterviewPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentIncidentReportsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentLeaveRequestsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentMyAttendancePage;
+import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentTeamSupportPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentTrespassNoticesPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentParkingCitationPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentPassdownLogsPage;
+import com.dits.citywide.pages.patrol.PatrolBeatsPage;
+import com.dits.citywide.pages.patrol.PatrolLeaveRequestsPage;
+import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
+import com.dits.citywide.pages.patrol.PatrolVehicleInspectionPage;
+
+public class BaseTest {
+
+	protected DriverFactory driverFactory;
+	protected Properties prop;
+	protected WebDriver driver;
+	protected SoftAssert softAssert;
+	protected LoginPage loginPage;
+	protected DashboardPage dashboardPage;
+	protected EmployeesPage employeesPage;
+	protected AddEmployeePage addEmployeePage;
+	protected LeaveRequestsPage leaveRequestsPage;
+	protected ApplyLeavePage applyLeavePage;
+	protected ViewEmployeePage viewEmployeePage;
+	protected SchedulingPage schedulingPage;
+	protected FieldAgentStartShiftPage fieldAgentStartShiftPage;
+	protected CallsPage callsPage;
+	protected FieldAgentCallsPage fieldAgentCallsPage;
+	protected FieldAgentReportsPage fieldAgentReportsPage;
+	protected CompanySettingsPage companySettingsPage;
+	protected BreaksPage breaksPage;
+	protected HolidaysPage holidaysPage;
+	protected LeavesPage leavesPage;
+	protected FieldAgentLeaveRequestsPage fieldAgentLeaveRequestsPage;
+	protected BeatsPage beatsPage;
+	protected ViolationsPage violationsPage;
+	protected ActivityTemplatePage activityTemplatePage;
+	protected RespondingAgenciesPage respondingAgenciesPage;
+	protected HRConfigurationsPage hrConfigurationsPage;
+	protected TrainingPage trainingPage;
+	protected CourseCategoriesPage courseCategoriesPage;
+	protected CertificatesPage certificatesPage;
+	protected TotalCoursesPage totalCoursesPage;
+	protected FieldAgentMyCoursesPage fieldAgentMyCoursesPage;
+	protected AssessmentsResultsPage assessmentsResultsPage;
+	protected AttendancePage attendancePage;
+	protected FieldAgentMyAttendancePage fieldAgentMyAttendancePage;
+	protected FieldAgentPassdownLogsPage fieldAgentPassdownLogsPage;
+	protected PatrolStartShiftPage patrolStartShiftPage;
+	protected PatrolBeatsPage patrolBeatsPage;
+	protected PatrolVehicleInspectionPage patrolVehicleInspectionPage;
+	protected UpdateEmployeePage updateEmployeePage;
+	protected ERMPage ermPage;
+	protected ERMSettingsPage ermSettingsPage;
+	protected ERMRemarksHistoryPage ermRemarksHistoryPage;
+	protected FieldAgentProfileDetailsPage fieldAgentProfileDetailsPage;
+	protected PatrolLeaveRequestsPage patrolLeaveRequestsPage;
+	protected SitesPage sitesPage;
+	protected FieldAgentTeamSupportPage fieldAgentTeamSupportPage;
+	protected TeamSupportTemplatePage teamSupportTemplatePage;
+	protected FieldAgentParkingCitationPage fieldAgentParkingCitationPage;
+	protected FieldAgentTrespassNoticesPage fieldAgentTrespassNoticesPage;
+	protected FieldAgentFieldInterviewPage fieldAgentFieldInterviewPage;
+	protected FieldAgentIncidentReportsPage fieldAgentIncidentReportsPage;
+
+	// @BeforeTest
+	@BeforeClass
+	public void browserSetUp() {
+		driverFactory = new DriverFactory();
+		prop = driverFactory.initProperties();
+		driver = driverFactory.initDriver(prop);
+		loginPage = new LoginPage(driver);
+		softAssert = new SoftAssert();
+	}
+
+	// @AfterTest
+	@AfterClass
+	public void tearDown() {
+		driver.quit();
+	}
+
+}
