@@ -651,6 +651,7 @@ public class AddEmployeePage {
 		String absolutePath = new File("./src/test/resource/testdata/image.jpeg").getAbsolutePath();
 		System.out.println("Uploading file from path: " + absolutePath);
 		fileInput.sendKeys(absolutePath);
+		Thread.sleep(2000);
 		elementUtils.waitForElementToBeClickable(btnAddLicense, Constants.DEFAULT_WAIT).click();
 	}
 

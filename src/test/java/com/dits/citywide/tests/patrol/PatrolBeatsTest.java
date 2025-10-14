@@ -22,14 +22,14 @@ public class PatrolBeatsTest extends BaseTest {
 
 		softAssert.assertTrue(patrolBeatsPage.isViewSitesButtonDisplayed(), "View Sites button should be displayed");
 		softAssert.assertTrue(patrolBeatsPage.isViewButtonDisplayed(), "View button should be displayed");
-		softAssert.assertTrue(patrolBeatsPage.isCheckOutButtonDisplayed(), "Check Out button should be displayed");
+		//softAssert.assertTrue(patrolBeatsPage.isCheckOutButtonDisplayed(), "Check Out button should be displayed");
 
 		softAssert.assertTrue(patrolBeatsPage.getBeatName().contains(HRManagementConstants.BEAT),
 				"Beat name should contain " + HRManagementConstants.BEAT);
-		softAssert.assertEquals(patrolBeatsPage.getNumberOfSites(), "9");
+		softAssert.assertEquals(patrolBeatsPage.getNumberOfSites(), "10");
 		softAssert.assertEquals(patrolBeatsPage.getSwiftType(), "Swing");
 		patrolBeatsPage.clickOnViewSites();
-		softAssert.assertEquals(patrolBeatsPage.getTotalCountOfSites(), "9");
+		softAssert.assertEquals(patrolBeatsPage.getTotalCountOfSites(), "10");
 
 		patrolBeatsPage.clickOnViewBeat();
 

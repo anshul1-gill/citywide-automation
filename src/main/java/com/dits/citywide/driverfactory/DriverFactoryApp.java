@@ -73,8 +73,8 @@ public class DriverFactoryApp {
 				System.out.println("Initializing driver for real device: " + devicename);
 			} else {
 				// Emulator
-				 options.setCapability("avd", devicename);
-				
+				// options.setCapability("avd", devicename);
+				options.setDeviceName(devicename);
 				System.out.println("Initializing driver for emulator: " + devicename);
 			}
 			driver = new AndroidDriver(new URL(serverurl), options);

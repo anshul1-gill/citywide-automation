@@ -48,8 +48,8 @@ public class FieldAgentReportsPage {
 
 	// My Reports
 	private By txtUpdateOfficerReportEntry = By.xpath("//h1[normalize-space()='Update Officer Report Entry']");
-	private By btnEditReport2 = By.xpath("(//div[@class='actionicons editPencil'])[1]");
-	private By btnEditReport3 = By.xpath("(//div[@class='actionicons editPencil'])[3]");
+	private By btnEditReport2 = By.xpath("(//div[@class='actionicons editPencil'])[3]");
+	private By btnEditReport3 = By.xpath("(//div[@class='actionicons editPencil'])[5]");
 	private By btnEditReport4 = By.xpath("(//div[@class='actionicons editPencil'])[5]");
 	private By btnEditReport5 = By.xpath("(//div[@class='actionicons editPencil'])[7]");
 	private By btnEditReport6 = By.xpath("(//div[@class='actionicons editPencil'])[9]");

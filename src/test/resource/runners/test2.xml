@@ -11,12 +11,25 @@
 
 
 	<test
-		name="Add Employee Test" preserve-order="true">
+		name="Employee Shift Management Tests with features Start Shift , Add New Call , My Assignments , Reports , End Shift "
+		preserve-order="true">
 		<classes>
 			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.AddFieldAgentEmployeeTest" />
+				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
 			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
+				name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
+			<class
+				name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
+			<!-- <class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments" /> -->
+			<!-- <class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest" /> -->
+			<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest" />
+			<!--<class
+				name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest" />  -->
 		</classes>
 	</test>
 

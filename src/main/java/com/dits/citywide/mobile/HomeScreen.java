@@ -39,6 +39,7 @@ public class HomeScreen {
 
 	private By tabReports = AppiumBy
 			.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(2)");
+	private By tabShifts = AppiumBy.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(5)");
 
 	// Message of the week
 	private By txtMessageOfTheWeek = AppiumBy.androidUIAutomator("new UiSelector().text(\"Message of the Week\")");
@@ -195,6 +196,11 @@ public class HomeScreen {
 	public ReportsScreen clickOnReportsTab() {
 		appElementUtils.doClickWithWait(tabReports, Constants.DEFAULT_WAIT);
 		return new ReportsScreen(driver);
+	}
+
+	public MenuScreen clickOnMoreTab() {
+		appElementUtils.doClickWithWait(tabShifts, Constants.DEFAULT_WAIT);
+		return new MenuScreen(driver);
 	}
 
 }

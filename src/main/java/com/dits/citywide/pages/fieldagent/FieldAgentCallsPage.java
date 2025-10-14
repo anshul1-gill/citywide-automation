@@ -78,7 +78,7 @@ public class FieldAgentCallsPage {
 	public void doClickCallAction(String callId) {
 		String callid = callId;
 		String callidxpath = "(//div[contains(text(),'" + callid
-				+ "')]/ancestor::td/following-sibling::td[7]//div[@class='actionicons editPencil'])[3]";
+				+ "')]/ancestor::td/following-sibling::td[7]//div[@class='actionicons editPencil'])[2]";
 		elementUtils.waitForElementVisible(By.xpath(callidxpath), Constants.DEFAULT_WAIT).click();
 	}
 
