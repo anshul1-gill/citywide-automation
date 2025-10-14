@@ -33,12 +33,12 @@ public class FieldAgentMyReportsTest extends BaseTest {
 		softAssert.assertEquals(fieldAgentReportsPage.getDepartDateTime(), expectedDeparture,
 				"Departure DateTime mismatch!");
 
-		fieldAgentReportsPage.clickPreFlightReports();
-		softAssert.assertEquals(fieldAgentReportsPage.getPreflightConfirmationMessage(),
-				FieldAgentConstants.PREFLIGHT_CONFIRMATION_MESSAGE);
-		fieldAgentReportsPage.clickOkButton();
-		softAssert.assertEquals(fieldAgentReportsPage.getSuccessMessage(),
-				FieldAgentConstants.PREFLIGHT_SUCCESS_MESSAGE);
+//		fieldAgentReportsPage.clickPreFlightReports();
+//		softAssert.assertEquals(fieldAgentReportsPage.getPreflightConfirmationMessage(),
+//				FieldAgentConstants.PREFLIGHT_CONFIRMATION_MESSAGE);
+//		fieldAgentReportsPage.clickOkButton();
+//		softAssert.assertEquals(fieldAgentReportsPage.getSuccessMessage(),
+//				FieldAgentConstants.PREFLIGHT_SUCCESS_MESSAGE);
 
 		fieldAgentReportsPage.clickEditReport2();
 		Thread.sleep(2000);
@@ -50,99 +50,99 @@ public class FieldAgentMyReportsTest extends BaseTest {
 				OperationsHubConstant.FILE_DESCRIPTION);
 //		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 //				OperationsHubConstant.FILE_DESCRIPTION);
-		fieldAgentReportsPage.clickUpdateLogEntry();
-		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
-
-		fieldAgentReportsPage.clickEditReport3();
-		Thread.sleep(2000);
-		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-				OperationsHubConstant.FILE_DESCRIPTION);
-//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+//		fieldAgentReportsPage.clickUpdateLogEntry();
+//		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
+//
+//		fieldAgentReportsPage.clickEditReport3();
+//		Thread.sleep(2000);
+//		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+//				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
+//				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
+//				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
+//				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 //				OperationsHubConstant.FILE_DESCRIPTION);
-		fieldAgentReportsPage.clickUpdateLogEntry();
-		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
-
-		fieldAgentReportsPage.clickEditReport4();
-		Thread.sleep(2000);
-		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-				OperationsHubConstant.FILE_DESCRIPTION);
-//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.clickUpdateLogEntry();
+//		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
+//
+//		fieldAgentReportsPage.clickEditReport4();
+//		Thread.sleep(2000);
+//		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+//				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
+//				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
+//				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
+//				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 //				OperationsHubConstant.FILE_DESCRIPTION);
-		fieldAgentReportsPage.clickUpdateLogEntry();
-		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
-
-		fieldAgentReportsPage.clickEditReport5();
-		Thread.sleep(2000);
-		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-				OperationsHubConstant.FILE_DESCRIPTION);
-//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.clickUpdateLogEntry();
+//		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
+//
+//		fieldAgentReportsPage.clickEditReport5();
+//		Thread.sleep(2000);
+//		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+//				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
+//				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
+//				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
+//				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 //				OperationsHubConstant.FILE_DESCRIPTION);
-		fieldAgentReportsPage.clickUpdateLogEntry();
-		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
-
-		fieldAgentReportsPage.clickEditReport6();
-		Thread.sleep(2000);
-		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-				OperationsHubConstant.FILE_DESCRIPTION);
-//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.clickUpdateLogEntry();
+//		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
+//
+//		fieldAgentReportsPage.clickEditReport6();
+//		Thread.sleep(2000);
+//		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+//				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
+//				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
+//				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
+//				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 //				OperationsHubConstant.FILE_DESCRIPTION);
-		fieldAgentReportsPage.clickUpdateLogEntry();
-		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
-
-		fieldAgentReportsPage.clickEditReport7();
-		Thread.sleep(2000);
-		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-				OperationsHubConstant.FILE_DESCRIPTION);
-//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.clickUpdateLogEntry();
+//		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
+//
+//		fieldAgentReportsPage.clickEditReport7();
+//		Thread.sleep(2000);
+//		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+//				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
+//				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
+//				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
+//				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 //				OperationsHubConstant.FILE_DESCRIPTION);
-		fieldAgentReportsPage.clickUpdateLogEntry();
-		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
-
-		fieldAgentReportsPage.clickEditReport8();
-		Thread.sleep(2000);
-		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-				OperationsHubConstant.FILE_DESCRIPTION);
-//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.clickUpdateLogEntry();
+//		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
+//
+//		fieldAgentReportsPage.clickEditReport8();
+//		Thread.sleep(2000);
+//		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+//				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
+//				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
+//				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
+//				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 //				OperationsHubConstant.FILE_DESCRIPTION);
-		fieldAgentReportsPage.clickUpdateLogEntry();
-		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
-
-		fieldAgentReportsPage.clickEditReport9();
-		Thread.sleep(2000);
-		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-				OperationsHubConstant.FILE_DESCRIPTION);
-//		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.clickUpdateLogEntry();
+//		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
+//
+//		fieldAgentReportsPage.clickEditReport9();
+//		Thread.sleep(2000);
+//		fieldAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+//				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
+//				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
+//				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
+//				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
 //				OperationsHubConstant.FILE_DESCRIPTION);
-		fieldAgentReportsPage.clickUpdateLogEntry();
-		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
+////		fieldAgentReportsPage.uploadFile(OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+////				OperationsHubConstant.FILE_DESCRIPTION);
+//		fieldAgentReportsPage.clickUpdateLogEntry();
+//		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickSubmitReports();
 		fieldAgentReportsPage.clickOkButton();

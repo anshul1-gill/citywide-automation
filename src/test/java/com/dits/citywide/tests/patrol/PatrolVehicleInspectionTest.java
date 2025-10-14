@@ -20,8 +20,8 @@ public class PatrolVehicleInspectionTest extends BaseTest {
 	public void patrolVehicleInspectionTest() throws InterruptedException {
 		patrolStartShiftPage.handleMessageOfTheWeek();
 		patrolVehicleInspectionPage = patrolStartShiftPage.clickOnVehicleInspectionTab();
-		patrolVehicleInspectionPage.doClickVehicleNumber("6548");
-		softAssert.assertEquals(patrolVehicleInspectionPage.getSelectedVehicleId(), "6548");
+		patrolVehicleInspectionPage.doClickVehicleNumber("5673");
+		softAssert.assertEquals(patrolVehicleInspectionPage.getSelectedVehicleId(), "5673");
 		String milesValues = patrolVehicleInspectionPage.getStartingMilesValue();
 		patrolVehicleInspectionPage.enterEndingMiles(milesValues);
 		patrolVehicleInspectionPage.clickNextButton();

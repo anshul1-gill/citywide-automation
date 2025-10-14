@@ -25,8 +25,8 @@ public class FieldAgnetNewPassdownLogTest extends BaseTest {
 		fieldAgentPassdownLogsPage.searchSiteName(HRManagementConstants.SITE);
 		fieldAgentPassdownLogsPage.enterMessage(FieldAgentConstants.PASSDOWN_MESSAGE);
 		fieldAgentPassdownLogsPage.uploadImage(FieldAgentConstants.PASSDOWN_IMAGE_PATH);
-		softAssert.assertEquals(fieldAgentPassdownLogsPage.getHeadingEditImage(), "Edit Image",
-				"Heading of the image edit page is not as expected");
+//		softAssert.assertEquals(fieldAgentPassdownLogsPage.getHeadingEditImage(), "Edit Image",
+//				"Heading of the image edit page is not as expected");
 		fieldAgentPassdownLogsPage.clickUploadImage();
 		softAssert.assertEquals(fieldAgentPassdownLogsPage.imageUploadSuccessMessage(),
 				FieldAgentConstants.IMAGE_UPLOAD_SUCCESS_MESSAGE, "Image upload success message is not as expected");

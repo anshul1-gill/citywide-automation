@@ -21,7 +21,7 @@ public class AddViolationTest extends BaseTest {
 		violationsPage.fillAddNewViolationsForm(CompanySettingsConstant.VIOLATION_NAME,
 				CompanySettingsConstant.VIOLATION_DESCRIPTION, CompanySettingsConstant.VIOLATION_BRANCH);
 		violationsPage.clickSaveButton();
-		
+
 		softAssert.assertEquals(violationsPage.getSuccessMessage(),
 				CompanySettingsConstant.ADD_VIOLATION_SUCCESS_MESSAGE, "Add Violation Success Message does not match");
 
