@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
+import com.dits.citywide.pages.operationhub.OperationsHubHomePage;
 import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
 import com.dits.citywide.utilities.ElementUtils;
 
@@ -131,10 +132,23 @@ public class LoginPage {
 	// 
 	
 	public FieldAgentStartShiftPage doLoginFieldAgent(String email, String password) {
-		elementUtils.waitForElementVisible(txtboxEmail, Constants.DEFAULT_WAIT).sendKeys(email);
-		elementUtils.waitForElementVisible(txtboxPassword, Constants.DEFAULT_WAIT).sendKeys(password);
-		elementUtils.waitForElementToBeClickable(btnSignIn, Constants.DEFAULT_WAIT).click();
-		return new FieldAgentStartShiftPage(driver);
+		try {
+			// Try to find and interact with login elements
+			elementUtils.waitForElementVisible(txtboxEmail, Constants.DEFAULT_WAIT).sendKeys(email);
+			elementUtils.waitForElementVisible(txtboxPassword, Constants.DEFAULT_WAIT).sendKeys(password);
+			elementUtils.waitForElementToBeClickable(btnSignIn, Constants.DEFAULT_WAIT).click();
+			return new FieldAgentStartShiftPage(driver);
+		} catch (Exception e) {
+			System.err.println("[ERROR] Login failed: Unable to find or interact with login elements.");
+			System.err.println("[ERROR] Exception: " + e.getMessage());
+			try {
+				System.err.println("[ERROR] Current URL: " + driver.getCurrentUrl());
+				System.err.println("[ERROR] Page Source (first 500 chars): " + driver.getPageSource().substring(0, Math.min(500, driver.getPageSource().length())));
+			} catch (Exception ex) {
+				System.err.println("[ERROR] Could not get current URL or page source.");
+			}
+			return null;
+		}
 	}
 	
 	public PatrolStartShiftPage doLoginPatrol(String email, String password) {
@@ -142,6 +156,13 @@ public class LoginPage {
 		elementUtils.waitForElementVisible(txtboxPassword, Constants.DEFAULT_WAIT).sendKeys(password);
 		elementUtils.waitForElementToBeClickable(btnSignIn, Constants.DEFAULT_WAIT).click();
 		return new PatrolStartShiftPage(driver);
+	}
+
+	public OperationsHubHomePage doLoginAdmin(String email, String password) {
+		elementUtils.waitForElementVisible(txtboxEmail, Constants.DEFAULT_WAIT).sendKeys(email);
+		elementUtils.waitForElementVisible(txtboxPassword, Constants.DEFAULT_WAIT).sendKeys(password);
+		elementUtils.waitForElementToBeClickable(btnSignIn, Constants.DEFAULT_WAIT).click();
+		return new OperationsHubHomePage(driver);
 	}
 
 

@@ -12,7 +12,7 @@ public class CompanySettingsPage {
 	private ElementUtils elementUtils;
 
 	private By lnkCompanyDetails = By.xpath("//h4[normalize-space()='Company Details']");
-	private By lnkRiverside = By.xpath("//h4[normalize-space()='Riverside']");
+	private By lnkRiverside = By.xpath("//h4[normalize-space()='San Diego']");
 	private By lnkBranchListing = By.xpath("//h4[normalize-space()='Branch Listing']");
 	private By lnkServiceTypes = By.xpath("//h4[normalize-space()='Service Types']");
 	private By lnkRolesAndPermission = By.xpath("//h4[normalize-space()='Roles & Permission']");
@@ -171,5 +171,73 @@ public class CompanySettingsPage {
 		elementUtils.waitForElementToBeClickable(lnkTeamSupportTemplate, Constants.DEFAULT_WAIT).click();
 		return new TeamSupportTemplatePage(driver);
 	}
+	
+	public ServiceTypePage clickServiceTypeLink() {
+	    elementUtils.waitForElementToBeClickable(lnkServiceTypes, Constants.DEFAULT_WAIT).click();
+	    return new ServiceTypePage(driver);
+	}
+	public RankAndPositionPage clickRankAndPositionLink() {
+	    elementUtils.waitForElementToBeClickable(lnkRankOrPosition, Constants.DEFAULT_WAIT).click();
+	    return new RankAndPositionPage(driver);
+	}
+	public AssignmentTemplatePage clickAssignmentTemplateLink() {
+	    elementUtils.waitForElementToBeClickable(lnkAssignmentTemplates, Constants.DEFAULT_WAIT).click();
+	    return new AssignmentTemplatePage(driver);
+	}
+	// ✅ Opens Company Details Page
+	public CompanyDetailsPage clickCompanyDetailsLink() {
+	    elementUtils.waitForElementToBeClickable(lnkCompanyDetails, Constants.DEFAULT_WAIT).click();
+	    return new CompanyDetailsPage(driver);
+	}
+
+	// ✅ Opens Branch Page
+	public BranchPage clickBranchLink() {
+	    elementUtils.waitForElementToBeClickable(lnkRiverside, Constants.DEFAULT_WAIT).click();
+	    return new BranchPage(driver);
+	}
+
+	// ✅ Opens Branch Listing Page
+	public BranchListingPage clickBranchListingLink() {
+	    elementUtils.waitForElementToBeClickable(lnkBranchListing, Constants.DEFAULT_WAIT).click();
+	    return new BranchListingPage(driver);
+	}
+
+	// ✅ Opens Roles & Permission Page
+	public RolesPermissionPage clickRolesAndPermissionLink() {
+	    elementUtils.waitForElementToBeClickable(lnkRolesAndPermission, Constants.DEFAULT_WAIT).click();
+	    return new RolesPermissionPage(driver);
+	}
+
+	// ✅ Opens Mass Mail Page
+	public MassMailPage clickMassMailLink() {
+	    elementUtils.waitForElementToBeClickable(lnkMassEmail, Constants.DEFAULT_WAIT).click();
+	    return new MassMailPage(driver);
+	}
+
+	// ✅ Opens System Logs Page
+	public SystemLogsPage clickSystemLogsLink() {
+	    elementUtils.waitForElementToBeClickable(lnkSystemLogs, Constants.DEFAULT_WAIT).click();
+	    return new SystemLogsPage(driver);
+	}
+
+	// ✅ Opens Notifications Page
+	public NotificationsPage clickNotificationsLink() {
+	    elementUtils.waitForElementToBeClickable(lnkNotifications, Constants.DEFAULT_WAIT).click();
+	    return new NotificationsPage(driver);
+	}
+
+	// ✅ Opens System Configurations Page
+	public SystemConfigPage clickSystemConfigurationsLink() {
+	    elementUtils.waitForElementToBeClickable(lnkSystemConfigurations, Constants.DEFAULT_WAIT).click();
+	    return new SystemConfigPage(driver);
+	}
+
+
+	
+	
+
+
+	
+
 
 }

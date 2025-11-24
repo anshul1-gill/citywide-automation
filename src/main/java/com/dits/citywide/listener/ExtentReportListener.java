@@ -40,8 +40,8 @@ public class ExtentReportListener implements ITestListener {
 		ExtentSparkReporter reporter = new ExtentSparkReporter(OUTPUT_FOLDER + FILE_NAME);
 		reporter.config().setReportName("Citywide Automation Test Results");
 		extentReports.attachReporter(reporter);
-		extentReports.setSystemInfo("System", "mac");
-		extentReports.setSystemInfo("Author", "Kumar Amit");
+		extentReports.setSystemInfo("System", "Windows");
+		extentReports.setSystemInfo("Author", "Anshul Gill");
 		extentReports.setSystemInfo("Team", "Citywide QA Team");
 		extentReports.setSystemInfo("Customer Name", "Tom Tamar");
 		extentReports.setSystemInfo("Server", "Stage");

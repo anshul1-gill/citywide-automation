@@ -19,13 +19,26 @@ public class FieldAgentEndShiftTest extends BaseTest {
 	public void endShiftTest() throws InterruptedException {
 		Thread.sleep(1000);
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
+		softAssert.assertTrue(fieldAgentStartShiftPage.isStartBreakButtonVisible(),
+				"Start Break button should be visible");
+		  fieldAgentStartShiftPage.doClickStartBreak();
+		  Thread.sleep(2000);
+		  fieldAgentStartShiftPage.doSelectBreak();
+//		  String message = fieldAgentStartShiftPage.getSuccessBreakMessage();
+//		  softAssert.assertEquals(message, "Break started ", "Break started successfully message should be visible");
+		  Thread.sleep(2000);
+
+		  
+		  fieldAgentStartShiftPage.doClickEndBreak();
 		fieldAgentStartShiftPage.doClickTabStartShift();
 		Thread.sleep(3000);
 		fieldAgentStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);
 		softAssert.assertTrue(fieldAgentStartShiftPage.isEndShiftButtonVisible(), "End Shift button should be visible");
 		fieldAgentReportsPage = fieldAgentStartShiftPage.doClickEndShift();
-
+		fieldAgentStartShiftPage.doClickOkButton();
 		fieldAgentReportsPage.clickEndShift();
+		
+		fieldAgentStartShiftPage.doClickOkButton();
 
 //		softAssert.assertEquals(fieldAgentReportsPage.getNoDataFoundText(), FieldAgentConstants.NO_DATA_FOUND_TEXT,
 //				"No Data Found text mismatch!");

@@ -15,11 +15,11 @@ public class DeleteCategoryTest extends BaseTest {
 
 	@Test
 	public void deleteCategoryTest() throws InterruptedException {
-		trainingPage = dashboardPage.clickOnTrainingTab();
+		trainingPage = dashboardPage.clickOnTrainingTab(); 
 		courseCategoriesPage = trainingPage.clickOnCourseCategories();
 		softAssert.assertEquals(courseCategoriesPage.getHeadingCategories(), "Categories",
 				"Heading Categories is not visible");
-		courseCategoriesPage.clickDeleteCategoryButton(TrainingConstants.CATEGORY_NAME);
+		courseCategoriesPage.clickDeleteCategoryButton(TrainingConstants.CATEGORY_NAME_UPDATED);
 		courseCategoriesPage.clickOnOkDelete();
 
 		softAssert.assertEquals(courseCategoriesPage.getSuccessMessage(), TrainingConstants.CATEGORY_NAME_DELETED,

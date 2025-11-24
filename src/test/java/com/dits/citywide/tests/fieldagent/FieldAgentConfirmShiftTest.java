@@ -19,12 +19,14 @@ public class FieldAgentConfirmShiftTest extends BaseTest {
 	public void confirmShiftTest() throws InterruptedException {
 		Thread.sleep(500);
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
-		fieldAgentStartShiftPage.doClickTabStartShift();
-		fieldAgentStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);
+//		fieldAgentStartShiftPage.doClickTabStartShift();
+//		fieldAgentStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);
 
 		softAssert.assertTrue(fieldAgentStartShiftPage.isConfirmShiftButtonVisible(),
 				"Confirm Shift button should be visible");
 		fieldAgentStartShiftPage.doClickConfirmShift();
+		fieldAgentStartShiftPage.doSelectCheckbox();
+		fieldAgentStartShiftPage.doClickConfirmShiftbutton();
 		fieldAgentStartShiftPage.doClickOkButton();
 		// fieldAgentStartShiftPage.doClickCancelButton();
 		softAssert.assertEquals(fieldAgentStartShiftPage.getSuccessMessage(),

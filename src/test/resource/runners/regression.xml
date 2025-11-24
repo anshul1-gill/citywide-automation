@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Citywide Regression Suite">
 	<test thread-count="5" name="RegressionTest">
 		<classes>
@@ -44,6 +43,7 @@
 				name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsAddRemarkTest" />
 			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.EmployeesAddRemarksTest" />
+				
 			<class name="com.dits.citywide.tests.admin.training.AddCategoryTest" />
 			<class
 				name="com.dits.citywide.tests.admin.training.AddCertificateTest" />
@@ -51,14 +51,21 @@
 				name="com.dits.citywide.tests.admin.training.AddNewCourseTest" />
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
+				
 			<class name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
+			
 			<class name="com.dits.citywide.tests.patrol.PatrolApplyLeaveTest" />
+			
 			<class name="com.dits.citywide.tests.patrol.PatrolBeatsTest" />
+			
 			<class name="com.dits.citywide.tests.patrol.PatrolCancelLeaveTest" />
+			
 			<class name="com.dits.citywide.tests.patrol.PatrolStartShiftTest" />
 			<class
 				name="com.dits.citywide.tests.patrol.PatrolVehicleInspectionTest" />
+				
 			<class name="com.dits.citywide.tests.scheduling.AddShiftPatrolTest" />
+			
 			<class name="com.dits.citywide.tests.scheduling.AddShiftTest" />
 			<class
 				name="com.dits.citywide.tests.admin.companysettings.TeamSupportTemplateAddTemplateTest" />
@@ -210,10 +217,13 @@
 				name="com.dits.citywide.tests.fieldagent.FieldAgentViewSiteTest" />
 			<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgnetNewPassdownLogTest" />
-			<class
+		<!-- 	<class
 				name="com.dits.citywide.tests.fieldagent.FieldAgnetTeamSupportTest" />
+				 -->
 			<class name="com.dits.citywide.tests.LoginNegativeScenariosTest" />
+			
 			<class name="com.dits.citywide.tests.LoginTest" />
+			
 			<class name="com.dits.citywide.tests.LogoutTest" />
 			<class
 				name="com.dits.citywide.tests.admin.training.AssessmentsResultsTest" />
@@ -221,6 +231,8 @@
 				name="com.dits.citywide.tests.admin.training.AssignCourseTest" />
 			<class
 				name="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointTest" />
+				<class 
+				name = "com.dits.citywide.tests.operationhub.AdminSitesAddNewSiteTest"/>
 		</classes>
 	</test>
 </suite>

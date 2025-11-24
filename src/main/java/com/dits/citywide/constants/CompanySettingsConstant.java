@@ -90,7 +90,7 @@ public class CompanySettingsConstant {
 	public static final String VIOLATION_DESCRIPTION = "Exceeding the speed limit by more than 20 mph";
 	public static final String VIOLATION_BRANCH = "Riverside";
 
-	public static final String ADD_VIOLATION_SUCCESS_MESSAGE = "Parking violation added successfully";
+	public static final String ADD_VIOLATION_SUCCESS_MESSAGE = "Citation Violation added successfully";
 
 	public static final String VIOLATION_EDIT_NAME = "Speeding Violation Updated";
 	public static final String VIOLATION_EDIT_DESCRIPTION = "Exceeding the speed limit by more than 30 mph";
@@ -110,7 +110,7 @@ public class CompanySettingsConstant {
 
 	public static final String UPDATE_CHARGE_SUCCESS_MESSAGE = "Charge code updated successfully";
 
-	public static final String DELETE_CHARGE_SUCCESS_MESSAGE = "Charges deleted deleted successfully";
+	public static final String DELETE_CHARGE_SUCCESS_MESSAGE = "Charge code deleted successfully";
 
 	// Add new template data
 	public static final String ACTIVITY_TEMPLATE_NAME_TEST = "Activity Template Test";
@@ -245,5 +245,84 @@ public class CompanySettingsConstant {
 	public static final String FILEUPLOAD_TEXT_TO_DISPLAY = "Upload Patrol Shift Assistance Document";
 	public static final String FILEUPLOAD_LABEL_TO_DISPLAY = "Attach supporting file for Patrol Shift Assistance (PDF only)";
 	public static final String TEMPLATE_SUCCESS_MESSAGE = "Template created successfully";
+	
+	// Activity Code Constants
+	public static final String ACTIVITY_CODE_NAMES = "Test Activity Code";
+	public static final String ACTIVITY_CODE_DESCRIPTION = "Test Description for Activity Code";
+	public static final String ACTIVITY_CODE_PRIORITY = "High";
+	
+	public static final String ACTIVITY_CODE_EDIT_NAME = "Updated Patrol Response";
+	public static final String ACTIVITY_CODE_EDIT_DESCRIPTION = "Updated description for patrol response code.";
+	public static final String ACTIVITY_CODE_EDIT_PRIORITY = "Low";
+	
+	public static final String DELETED_ACTIVITY_CODE_SUCCESS_MESSAGE = "Record deleted successfully.";
+	
+	//-----------ServiceTypeName-----------
+	public static final String SERVICE_TYPE_NAME = "Standard Patrol Service";
+	public static final String SERVICE_TYPE_CODE = "SP001";
+	public static final String SERVICE_TYPE_DESCRIPTION = "This service type covers standard patrol operations for urban areas";
+	
+	// ---------- Service Type (Update Test Data) ----------
+	public static final String SERVICE_TYPE_EDIT_NAME = "Emergency Response Service Updated";
+	public static final String SERVICE_TYPE_EDIT_CODE = "ERS-UPD";
+	public static final String SERVICE_TYPE_EDIT_DESCRIPTION = "Updated description for Emergency Response Service type.";
+
+	
+    // --------- Service Status Dropdown ----------
+    public static final String STATUS_NO = "No";
+    public static final String STATUS_YES = "Yes";
+
+    // --------- Main Service Dropdown ----------
+    public static final String SERVICE_MOBILE_MULTIPLE_SITES = "Mobile/Multiple Sites";
+    public static final String SERVICE_STATIONARY_SINGLE_SITE = "Stationary/Single Site";
+
+    // --------- Department Dropdown ----------
+    public static final String DEPT_ADMIN = "Admin";
+    public static final String DEPT_DISPATCH = "Dispatch";
+    public static final String DEPT_PATROL = "Patrol";
+    public static final String DEPT_FIELD = "Field";
+    
+    public static final String RANK_NAME = "Senior Officer";
+    public static final String RANK_ORDER = "19";
+    public static final String UPDATED_RANK_NAME = "Senior Sergeant";
+    public static final String UPDATED_RANK_ORDER = "20";
+
+    
+ // ==============================
+ // Rank & Position Constants
+ // ==============================
+    public static final String RANK_BRANCH_SELECTALL = "Select all";
+ public static final String RANK_BRANCH_RIVERSIDE = "Riverside";
+ public static final String RANK_BRANCH_SAN_DIEGO = "Sandiego";
+ 
+ public static final String ASSIGNMENT_TEMPLATE_NAME = "Security Site Check Template";
+ public static final String UPDATED_TEMPLATE_NAME = "Updated Security Site Check Template";
+
+ // Dropdown options
+ public static final String ASSIGNMENT_ACTIVITY_CODE = "10-1 - Receiving Poorly";
+ public static final String BRANCH_NAME = "Riverside";
+ public static final String ASSIGNMENT_QUESTION_TYPE = "PHOTO UPLOAD";
+
+ // Question and Description
+ public static final String ASSIGNMENT_QUESTION_TEXT = "Is the site perimeter secured?";
+ public static final String DESCRIPTION_TEXT = "This question ensures guards check all site entry points.";
+ 
+ public static final String UPDATED_ASSIGNMENT_NAME = "Updated Night Patrol Routine";
+
+ public static final String UPDATED_ACTIVITY_CODE = "10-23 - Stand By";
+ public static final String UPDATED_QUESTION_TYPE = "LARGE TEXT AREA";
+ public static final String UPDATED_QUESTION = "Is the perimeter secure after inspection?";
+ public static final String UPDATED_DESCRIPTION = "Ensure the updated procedure covers all checkpoints.";
+
+	// Add FI-Crime Potential Data
+	public static final String CRIME_NAME = "Crime Potential Test";
+	public static final String CRIME_DESCRIPTION = "Potential crime for testing purposes";
+	public static final String ADD_CRIME_SUCCESS_MESSAGE = "FI - Crime Potential added successfully";
+
+	public static final String CRIME_EDIT_NAME = "Crime Potential Test Updated";
+	public static final String CRIME_EDIT_DESCRIPTION = "Updated potential crime for testing purposes";
+	public static final String UPDATE_CRIME_SUCCESS_MESSAGE = "FI - Crime Potential updated successfully";
+
+	public static final String DELETE_CRIME_SUCCESS_MESSAGE = "FI - Crime Potential deleted successfully";
 
 }

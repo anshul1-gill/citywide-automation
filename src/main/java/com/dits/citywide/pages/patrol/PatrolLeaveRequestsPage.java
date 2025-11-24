@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.constants.Constants;
+import com.dits.citywide.constants.PatrolConstants;
 import com.dits.citywide.utilities.Calendar;
 import com.dits.citywide.utilities.DateFormatterUtils;
 import com.dits.citywide.utilities.ElementUtils;
@@ -27,6 +28,11 @@ public class PatrolLeaveRequestsPage {
 	private By txtboxDescription = By.id("description");
 	private By btnApplyLeave = By.xpath("//button[contains(@type,'submit')]");
 	private By btnReset = By.xpath("//button[@type='reset']");
+	
+	//Filters
+	private By btnFilters = By.xpath("//span[normalize-space()='Filters']");
+	private By startrange = By.xpath("//input[@placeholder='Start date']");
+	private By endrange = By.xpath("//input[@placeholder='End date']");
 
 	private By dataLeaveType = By.xpath("(//td[@data-label='Leave Type'])[1]");
 	private By dataFromDate = By.xpath("(//td[@data-label='From'])[1]");
@@ -201,6 +207,26 @@ public class PatrolLeaveRequestsPage {
 				+ "')]]//div[normalize-space()='Canceled']";
 
 		return elementUtils.waitForElementVisible(By.xpath(expath), Constants.DEFAULT_WAIT).getText();
+	}
+
+	public void clickFilters() {
+		elementUtils.waitForElementToBeClickable(btnFilters, Constants.SHORT_TIME_OUT_WAIT).click();
+	}
+
+	public void applyDateFilters(String startDate, String endDate) {
+		clickFilters();
+		WebElement startInput = elementUtils.waitForElementVisible(startrange, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(startrange);
+		startInput.sendKeys(startDate);
+		WebElement endInput = elementUtils.waitForElementVisible(endrange, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(endrange);
+		endInput.sendKeys(endDate);
+		// Press Enter to submit filters if required
+		endInput.sendKeys(org.openqa.selenium.Keys.ENTER);
+	}
+
+	public void applyDefaultDateFilters() {
+		applyDateFilters(PatrolConstants.FILTER_START, PatrolConstants.FILTER_END);
 	}
 
 }

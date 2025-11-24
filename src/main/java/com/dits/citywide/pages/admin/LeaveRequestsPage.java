@@ -4,8 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.dits.citywide.constants.Constants;
-import com.dits.citywide.utilities.ElementUtils;
+import com.dits.citywide.constants.FieldAgentConstants;
 import com.dits.citywide.utilities.DateFormatterUtils;
+import com.dits.citywide.utilities.ElementUtils;
 
 public class LeaveRequestsPage {
 
@@ -48,6 +49,11 @@ public class LeaveRequestsPage {
 	private By txtboxDeclinedReason = By.xpath("//textarea[@id='reason']");
 	private By btnSubmitDecline = By.xpath("//button[@type='submit']");
 	private By declinedSucessMessage = By.xpath("//div[contains(text(),'Leave declined successfully')]");
+
+	// Filters
+	private By btnFilters = By.xpath("//span[normalize-space()='Filters']");
+	private By filterStartDate = By.xpath("//input[@placeholder='Start date']");
+	private By filterEndDate = By.xpath("//input[@placeholder='End date']");
 
 	public LeaveRequestsPage(WebDriver driver) {
 		this.driver = driver;
@@ -190,6 +196,32 @@ public class LeaveRequestsPage {
 		String statusxpath = "//tr[td[contains(text(),'" + id + "')] and td[contains(text(),'" + leavetype
 				+ "')]]//div[contains(@class,'status-completed')]";
 		return elementUtils.waitForElementVisible(By.xpath(statusxpath), Constants.DEFAULT_WAIT).getText();
+	}
+
+	// Filters
+	public void clickFilters() {
+		try {
+			if (elementUtils.isElementVisible(btnFilters, Constants.SHORT_TIME_OUT_WAIT)) {
+				elementUtils.waitForElementToBeClickable(btnFilters, Constants.DEFAULT_WAIT).click();
+			}
+		} catch (Exception e) {
+			System.out.println("Filters button not clickable: " + e.getMessage());
+		}
+	}
+
+	public void applyDateFilters(String startDate, String endDate) {
+		elementUtils.waitForElementVisible(btnFilters, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementVisible(filterStartDate, Constants.DEFAULT_WAIT).clear();
+		elementUtils.waitForElementVisible(filterStartDate, Constants.DEFAULT_WAIT).sendKeys(startDate);
+		elementUtils.waitForElementVisible(filterEndDate, Constants.DEFAULT_WAIT).clear();
+		elementUtils.waitForElementVisible(filterEndDate, Constants.DEFAULT_WAIT).sendKeys(endDate);
+		// If there is an 'Apply' button for filters, click it here
+		// Example: elementUtils.waitForElementVisible(applyButton, Constants.DEFAULT_WAIT).click();
+		// Otherwise, filters may auto-apply on input
+	}
+
+	public void applyDefaultDateFilters() {
+		applyDateFilters(FieldAgentConstants.FILTER_START, FieldAgentConstants.FILTER_END);
 	}
 
 }

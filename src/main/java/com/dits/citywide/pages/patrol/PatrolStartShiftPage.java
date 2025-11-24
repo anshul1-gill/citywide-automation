@@ -8,31 +8,39 @@ import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentFieldInterviewPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentIncidentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentLeaveRequestsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyAttendancePage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
-import com.dits.citywide.pages.fieldagent.FieldAgentPassdownLogsPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentParkingCitationPage;
+import com.dits.citywide.pages.patrol.PatrolAgentPassdownLogsPage;
 import com.dits.citywide.utilities.ElementUtils;
+import com.dits.citywide.pages.fieldagent.FieldAgentTrespassNoticesPage; // added import
+import com.dits.citywide.pages.fieldagent.FieldAgentTeamSupportPage; // added import
+import com.dits.citywide.pages.patrol.PatrolAgentReportsPage;
 
 public class PatrolStartShiftPage {
 
 	private WebDriver driver;
 	private ElementUtils elementUtils;
 
-//	private By txtMessageOfTheWeek = By.xpath(
-//	"//div[@class='flex items-center justify-between px-3 py-2 text-white rounded-t-lg bg-blue2 dark:bg-blue2']/h2");
+	// private By txtMessageOfTheWeek = By.xpath("//div[@class='flex items-center justify-between px-3 py-2 text-white rounded-t-lg bg-blue2 dark:bg-blue2']/h2");
 	private By btnMarkAsRead = By.xpath("//div[@class='flex items-center gap-3']/button");
 	private By tabStartShift = By.xpath("(//span[contains(text(),'Start Shift')])[1]");
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 	private By btnBeatSite = By.xpath("//span[normalize-space()='View Beat']");
 	private By btnStartShift = By.xpath("(//span[contains(text(),'Start Shift')])[2]");
-	private By btnConfirmShift = By.xpath("//span[normalize-space()='Confirm']");
+	private By btnConfirmShift = By.xpath("//span[normalize-space()='Confirm/Reject multiple shifts']");
+	private By selectCheckbox = By.xpath(" //tr[.//td[contains(@data-label,'Shift') and .//span[normalize-space()='Pending']]] //label[contains(@class,'ant-checkbox-wrapper')]");
 	private By btnRejectShift = By.xpath("//span[normalize-space()='Reject']");
 	private By txtboxRejectReason = By.xpath("//textarea[@id='reason']");
 	private By btnSaveRejectReason = By.xpath("//button[@type='submit']");
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 	private By btnCancel = By.xpath("//button[normalize-space()='Cancel']");
+	
+	private By btnReportsubmit = By.xpath("//span[normalize-space()='Submit Reports']");
 
 // Data displayed on Start Shift page popup
 	private By dataSite = By.xpath("//label[contains(text(),'Site')]/following-sibling::p");
@@ -67,8 +75,15 @@ public class PatrolStartShiftPage {
 // Previous Shift Logout
 	private By txtHeadingPreviousShiftLogout = By.xpath("//h2[normalize-space()='Log out of previous shift']");
 	private By txtboxReasonPreviousShiftLogout = By.xpath("//textarea[@id='activity_text']");
+	private By btnVerifyMileagePreviousShiftLogout = By.xpath("//input[@id='verify_miles']");
 	private By btnSubmitPreviousShiftLogout = By.xpath("//button[@id='submitButton']");
 	private By txtSucessMessagePreviousShiftLogout = By.xpath("//h2[@id='swal2-title']/span");
+	
+	private By btnStartBreak = By.xpath("//button[normalize-space()='Start Break']");
+	private By SelectBreak = By.xpath("//a[normalize-space()='Lunch Break']");
+	private By StartedSuccessmessage = By.xpath("//div[contains(text(),'Break Started')]");
+	private By EndBreakbutton = By.xpath("//span[@id='countup-timer']");
+	private By EndSuccessmessage = By.xpath("//div[contains(text(),'Break Ended')]");
 
 // Passdown of a day
 	private By txtPassdownOfADay = By.xpath("//h2[normalize-space()='Passdown of the day']");
@@ -85,9 +100,23 @@ public class PatrolStartShiftPage {
 	private By tabPatrolBeats = By.xpath("//span[normalize-space()='Patrol Beats']");
 
 	private By tabVehicleInspection = By.xpath("//span[normalize-space()='Vehicle Inspection']");
+	private By tabTeamSupport = By.xpath("//span[normalize-space()='Team Support']"); // added locator
 
 // Common
 	private By sucessMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
+
+	// Form locators added for Field Interview access
+	private By formsclick = By.xpath("//p[@title='Forms']");
+	private By fieldInterviewFormLink = By.xpath("//span[normalize-space()='Field Interview']");
+	// Add Incident Report form locator
+	private By incidentReportFormLink = By.xpath("//span[normalize-space()='Incident Report']");
+	private By parkingCitationFormLink = By.xpath("//span[normalize-space()='Parking Citation']");
+	private By skipSearchliunk = By.xpath("//a[@id='new_citation']");	
+	private By trespassNoticesFormLink = By.xpath("//span[normalize-space()='Trespass Notice']"); // added locator
+
+	// Profile navigation (mirroring FieldAgentStartShiftPage)
+    private By tabProfileMenu = By.xpath("//button[@class='flex items-center gap-2 text-sm']");
+    private By btnProfile = By.xpath("//a[normalize-space()='Profile']");
 
 	public PatrolStartShiftPage(WebDriver driver) {
 		this.driver = driver;
@@ -108,6 +137,22 @@ public class PatrolStartShiftPage {
 		} catch (Exception e) {
 			System.out.println("Exception while handling 'Mark As Read': " + e.getMessage());
 		}
+	}
+	
+	public void doClickConfirmShift() {
+		elementUtils.waitForElementToBeClickable(btnConfirmShift, Constants.DEFAULT_WAIT).click();
+	}
+
+	public boolean isConfirmShiftButtonVisible() {
+		return elementUtils.doIsDisplayed(btnConfirmShift, Constants.DEFAULT_WAIT);
+	}
+	
+	public void doSelectCheckbox() throws InterruptedException {
+		Thread.sleep(500);
+		elementUtils.waitForElementToBeClickable(selectCheckbox, Constants.DEFAULT_WAIT).click();
+	}
+	public void doClickConfirmShiftbutton() {
+		elementUtils.waitForElementToBeClickable(btnConfirm, Constants.DEFAULT_WAIT).click();
 	}
 
 	public void doClickTabStartShift() {
@@ -164,13 +209,7 @@ public class PatrolStartShiftPage {
 		return elementUtils.doIsDisplayed(btnStartShift, Constants.DEFAULT_WAIT);
 	}
 
-	public void doClickConfirmShift() {
-		elementUtils.waitForElementToBeClickable(btnConfirmShift, Constants.DEFAULT_WAIT).click();
-	}
 
-	public boolean isConfirmShiftButtonVisible() {
-		return elementUtils.doIsDisplayed(btnConfirmShift, Constants.DEFAULT_WAIT);
-	}
 
 	public void doClickRejectShift() {
 		elementUtils.waitForElementToBeClickable(btnRejectShift, Constants.DEFAULT_WAIT).click();
@@ -189,7 +228,25 @@ public class PatrolStartShiftPage {
 	}
 
 	public void doClickOkButton() {
-		elementUtils.waitForElementToBeClickable(btnOk, Constants.DEFAULT_WAIT).click();
+		try {
+			elementUtils.waitForElementToBeClickable(btnOk, Constants.DEFAULT_WAIT).click();
+		} catch (org.openqa.selenium.TimeoutException e) {
+			// Log page source and take screenshot for debugging
+			System.out.println("[ERROR] OK button not found or not clickable. Logging page source and taking screenshot.");
+			try {
+				String pageSource = driver.getPageSource();
+				System.out.println("[PAGE SOURCE]\n" + pageSource);
+				// Take screenshot (if driver supports it)
+				if (driver instanceof org.openqa.selenium.TakesScreenshot) {
+					java.io.File srcFile = ((org.openqa.selenium.TakesScreenshot) driver).getScreenshotAs(org.openqa.selenium.OutputType.FILE);
+					java.nio.file.Files.copy(srcFile.toPath(), java.nio.file.Paths.get("screenshot_doClickOkButton_failure.png"), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+					System.out.println("[SCREENSHOT] Saved to screenshot_doClickOkButton_failure.png");
+				}
+			} catch (Exception ex) {
+				System.out.println("[ERROR] Failed to log page source or take screenshot: " + ex.getMessage());
+			}
+			throw e;
+		}
 	}
 
 	public void doClickCancelButton() {
@@ -201,8 +258,10 @@ public class PatrolStartShiftPage {
 		return elementUtils.doIsDisplayed(btnEndShift, Constants.DEFAULT_WAIT);
 	}
 
-	public FieldAgentReportsPage doClickEndShift() {
+	public FieldAgentReportsPage doClickEndShift() throws InterruptedException {
 		elementUtils.waitForElementToBeClickable(btnEndShift, Constants.DEFAULT_WAIT).click();
+	    Thread.sleep(2000);
+		elementUtils.waitForElementToBeClickable(btnReportsubmit, Constants.DEFAULT_WAIT).click();
 		return new FieldAgentReportsPage(driver);
 	}
 
@@ -226,9 +285,10 @@ public class PatrolStartShiftPage {
 		return new FieldAgentCallsPage(driver);
 	}
 
-	public FieldAgentReportsPage clickOnReportsTab() {
+	public PatrolAgentReportsPage clickOnReportsTab() throws InterruptedException {
 		elementUtils.waitForElementToBeClickable(btnReportsTab, Constants.DEFAULT_WAIT).click();
-		return new FieldAgentReportsPage(driver);
+		return new PatrolAgentReportsPage(driver);
+		
 	}
 
 	// HR Management
@@ -275,6 +335,30 @@ public class PatrolStartShiftPage {
 	public void doClickReject() {
 		elementUtils.waitForElementToBeClickable(btnReject, Constants.DEFAULT_WAIT).click();
 	}
+	
+	// Start Break
+	public boolean isStartBreakButtonVisible() {
+		return elementUtils.doIsDisplayed(btnStartBreak, Constants.DEFAULT_WAIT);
+	}
+	
+	public void doClickStartBreak() {
+		elementUtils.waitForElementToBeClickable(btnStartBreak, Constants.DEFAULT_WAIT).click();
+	}
+	
+	public void doSelectBreak() {
+		elementUtils.waitForElementToBeClickable(SelectBreak, Constants.DEFAULT_WAIT).click();
+	}
+	
+	public String getSuccessBreakMessage() {
+		return elementUtils.waitForElementVisible(StartedSuccessmessage, Constants.DEFAULT_WAIT).getText();
+	}
+	public void doClickEndBreak() {
+		elementUtils.waitForElementToBeClickable(EndBreakbutton, Constants.DEFAULT_WAIT).click();
+	}
+	public String getSuccessBreakEndMessage() {
+		return elementUtils.waitForElementVisible(EndSuccessmessage, Constants.DEFAULT_WAIT).getText();
+	}
+	
 
 	public void enterRejectReasonMultipleShifts(String reason) {
 		elementUtils.waitForElementVisible(txtboxRejectReasonMultipleShifts, Constants.DEFAULT_WAIT).sendKeys(reason);
@@ -284,9 +368,9 @@ public class PatrolStartShiftPage {
 		elementUtils.waitForElementToBeClickable(btnSaveRejectReasonMultipleShifts, Constants.DEFAULT_WAIT).click();
 	}
 
-	public FieldAgentPassdownLogsPage clickOnPassdownLogsTab() {
+	public PatrolAgentPassdownLogsPage clickOnPassdownLogsTab() {
 		elementUtils.waitForElementToBeClickable(tabPassdownLogs, Constants.DEFAULT_WAIT).click();
-		return new FieldAgentPassdownLogsPage(driver);
+		return new PatrolAgentPassdownLogsPage(driver);
 	}
 
 	// Patrol Beats
@@ -301,6 +385,11 @@ public class PatrolStartShiftPage {
 		return new PatrolVehicleInspectionPage(driver);
 	}
 
+	public FieldAgentTeamSupportPage clickOnTeamSupportTab() { // added method
+		elementUtils.waitForElementToBeClickable(tabTeamSupport, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentTeamSupportPage(driver);
+	}
+
 	// Previous Shift Logout
 	public void logoutFromPreviousShift() {
 		try {
@@ -311,8 +400,11 @@ public class PatrolStartShiftPage {
 
 				elementUtils.waitForElementVisible(txtboxReasonPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT)
 						.sendKeys("Auto logout due to previous unclosed shift");
-
+				
+				elementUtils.waitForElementVisible(btnVerifyMileagePreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT).sendKeys("0");				
 				elementUtils.waitForElementVisible(btnSubmitPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT).click();
+				
+				
 
 				System.out.println("Submitted previous shift logout reason.");
 
@@ -357,4 +449,41 @@ public class PatrolStartShiftPage {
 		}
 	}
 
+	// Field Interview form navigation (added)
+	public FieldAgentFieldInterviewPage clickOnFieldInterviewFormLink() {
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(fieldInterviewFormLink, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentFieldInterviewPage(driver);
+	}
+	// Incident Report form navigation (added)
+	public FieldAgentIncidentReportsPage clickOnIncidentReportFormLink() {
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(incidentReportFormLink, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentIncidentReportsPage(driver);
+	}
+	// Parking Citation form navigation (added)
+	public FieldAgentParkingCitationPage clickOnParkingCitationFormLink() {
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(parkingCitationFormLink, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(skipSearchliunk, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentParkingCitationPage(driver);
+	}
+
+
+	public FieldAgentTrespassNoticesPage clickOnTrespassNoticesFormLink() { // added method
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(trespassNoticesFormLink, Constants.DEFAULT_WAIT).click();
+		return new FieldAgentTrespassNoticesPage(driver);
+	}
+
+	public com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage clickOnProfile() {
+        elementUtils.waitForElementToBeClickable(tabProfileMenu, com.dits.citywide.constants.Constants.EXPLICIT_WAIT).click();
+        elementUtils.waitForElementToBeClickable(btnProfile, com.dits.citywide.constants.Constants.EXPLICIT_WAIT).click();
+        return new com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage(driver);
+    }
+
+    public void selectUserByName(String officerName) {
+        By userRow = By.xpath("//*[text()='" + officerName + "']");
+        elementUtils.waitForElementToBeClickable(userRow, 10).click();
+    }
 }

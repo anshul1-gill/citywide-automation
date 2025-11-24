@@ -7,7 +7,7 @@ import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.FieldAgentConstants;
 import com.dits.citywide.constants.HRManagementConstants;
 
-public class FieldAgnetTeamSupportTest extends BaseTest {
+public class FieldAgentTeamSupportTest extends BaseTest {
 
 	@BeforeMethod
 	public void performLogin() throws InterruptedException {
@@ -24,8 +24,10 @@ public class FieldAgnetTeamSupportTest extends BaseTest {
 		fieldAgentTeamSupportPage.fillOutAndSubmitAbuseRequestForm(HRManagementConstants.SITE,
 				FieldAgentConstants.SUBJECT_NAME, FieldAgentConstants.MESSAGE);
 
-		fieldAgentTeamSupportPage.fillAbuseRequestForm(FieldAgentConstants.EXPLAIN_INCIDENCE,
-				FieldAgentConstants.Name_OR_Badge, FieldAgentConstants.INCIDENCE_DATE);
+//		fieldAgentTeamSupportPage.fillAbuseRequestForm(FieldAgentConstants.EXPLAIN_INCIDENCE,
+//				FieldAgentConstants.Name_OR_Badge, FieldAgentConstants.INCIDENCE_DATE);
+		
+		fieldAgentTeamSupportPage.selectAssignedTo(FieldAgentConstants.ASSIGNED_TO);
 
 		fieldAgentTeamSupportPage.clickOnSaveButton();
 	}

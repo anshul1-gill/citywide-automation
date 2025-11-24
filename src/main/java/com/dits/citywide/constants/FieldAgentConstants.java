@@ -13,18 +13,22 @@ public class FieldAgentConstants {
 	// Live data
 	// public static final String LEAVE_TYPE = "Vacation";
 
-	public static final String LEAVE_FROM_MONTH = "Oct";
+	public static final String LEAVE_FROM_MONTH = "Nov";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "29";
+	public static final String LEAVE_FROM_DATE = "22";
 
-	public static final String LEAVE_TO_MONTH = "Oct";
+	public static final String LEAVE_TO_MONTH = "Nov";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "30";
+	public static final String LEAVE_TO_DATE = "24";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";
 
 	public static final String LEAVE_DESCRIPTION = "Need to attend a workshop on urban planning and development.";
+
+	// Date Filter Range for Leave Requests (added)
+	public static final String FILTER_START = "11/01/2025";
+	public static final String FILTER_END = "11/30/2025";
 
 	// Edit Leave Request Data
 	public static final String EDIT_LEAVE_TYPE = "Sick leave";
@@ -47,6 +51,12 @@ public class FieldAgentConstants {
 	public static final String LEAVE_CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
 
 	public static final String LEAVE_STATUS = "Canceled";
+	
+	//SITESPAGE
+	
+	public static final String ADD_COMMENT_KUDDOS ="Kuddos";
+	public static final String ADD_COMMENT_FEEDBACK ="Great Work BY this site";
+	public static final String SELECT_RESPONSE_AGREE ="Agree";
 
 	// Attendance Data
 	public static final String SHIFT_START = "01:30";
@@ -89,7 +99,7 @@ public class FieldAgentConstants {
 	public static final String NO_DATA_FOUND_TEXT = "No Data Found";
 
 	// Team Support
-	public static final String SUBJECT_NAME = "Patrol Support - Incident Reporting";
+	public static final String SUBJECT_NAME = "Others";
 	public static final String MESSAGE = "I would like to report an incident of abuse that I witnessed during my shift.";
 
 	public static final String EXPLAIN_INCIDENCE = "Witnessed verbal abuse towards a colleague by a customer.";
@@ -97,6 +107,8 @@ public class FieldAgentConstants {
 	public static final String Name_OR_Badge = "John Doe / Badge 1234";
 
 	public static final String INCIDENCE_DATE = "11/22/2025";
+	
+	public static final String ASSIGNED_TO ="1110 - Anshul Gill";
 
 	// Forms
 	// Parking Citation
@@ -297,7 +309,7 @@ public class FieldAgentConstants {
 	// Basic Info
 	public static final String SITE_NUMBER = "Richmond";
 	public static final String INCIDENT_DATE_TIME = "09/12/2025 09:40";
-	public static final String REPORT_NUMBER = "2509120945009";
+	public static final String REPORT_NUMBER = "25042421231654";
 	public static final String INCIDENT_ACTIVITY_CODE = "10-17";
 	public static final String DISCOVER_DATE_TIME = "09/05/2025 10:30";
 	public static final String REPORTED_DATE_TIME = "09/06/2025 9:30";

@@ -14,11 +14,8 @@ public class FieldAgentCallsPage {
 	private WebDriver driver;
 	private ElementUtils elementUtils;
 
-//	private By btnAddPatrolLogsForCall = By.xpath(
-//			"//button[contains(text(),'843')]/ancestor::td/following-sibling::td//button[@title='Add Patrol Logs For Call']");
-
-//	private By btnCallAction = By
-//			.xpath("//button[contains(text(),'843')]/ancestor::td/following-sibling::td//button[@title='Call Action']");
+	// Locator for the calls search input (adjust if a more specific attribute is known)
+	private By searchCallById = By.xpath("//input[contains(@placeholder,'Search')]");
 
 	private By txtCallActions = By.xpath("//h2[contains(text(),'Call Actions')]");
 	private By txtAssignedUnits = By.xpath("//h2[contains(text(),'Assigned Units')]");
@@ -34,9 +31,10 @@ public class FieldAgentCallsPage {
 
 	private By successMessage = By.xpath("//div[contains(@class,'Toastify__toast-icon')]/following-sibling::div");
 
-	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
+	private By loader = By.xpath("//span[@class='anticon anticon-close']");
 
 	// New Officer Report Entry
+	private By clockArriveNow = By.xpath("(//span[@aria-label='clock-circle'])[1]");
 	private By calenderArriveDate = By.xpath("//input[@id='arrive_date']");
 	private By calenderArriveTime = By.xpath("//input[@id='arrive_time']");
 	private By calenderDepartDate = By.xpath("//input[@id='depart_date']");
@@ -56,12 +54,20 @@ public class FieldAgentCallsPage {
 
 	// Report photo/video upload
 	private By imgUpload = By.xpath("//input[@type='file']");
+	private By txtboxFileName = By.xpath("//input[@id='Name0']");
+	private By txtboxFileDescription = By.xpath("//input[@id='Description0']");
 
 	private By btnSaveNewLogEntry = By.xpath("//button[normalize-space()='Save New Log Entry']");
 
 	private By txtAreYouSure = By.xpath("//h2[@id='swal2-title']");
 	private By txtConfirmation = By.xpath("//div[@id='swal2-html-container']");
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
+	
+	private By CloseCallbtn = By.xpath("//button[@type='button' and normalize-space()='Close Call']");
+
+	// Replace incorrect loader locator (was pointing to close icon) with a real spinner locator
+	private By spinner = By.xpath("//span[contains(@class,'ant-spin-dot')]");
+	private By closeIcon = By.xpath("//span[@aria-label='close']"); // retained for fallback
 
 	public FieldAgentCallsPage(WebDriver driver) {
 		this.driver = driver;
@@ -70,15 +76,26 @@ public class FieldAgentCallsPage {
 
 	public void doClickAddPatrolLogsForCall(String callId) {
 		String callid = callId;
-		String callidxpath = "//a[contains(text(),'" + callid
-				+ "')]/ancestor::td/following-sibling::td//button[@title='Add Patrol Logs For Call']";
+		String callidxpath = "(.//div[@class='actionicons editPencil'])[2]";
 		elementUtils.waitForElementVisible(By.xpath(callidxpath), Constants.DEFAULT_WAIT).click();
+	}
+
+	// Search for a call by its Call ID in the Calls listing
+	public void searchCall(String callId) throws InterruptedException {
+		// Wait for search input, clear it, enter the call id and press Enter
+		elementUtils.waitForElementVisible(searchCallById, Constants.DEFAULT_WAIT).clear();
+		elementUtils.waitForElementVisible(searchCallById, Constants.DEFAULT_WAIT).sendKeys(callId);
+		elementUtils.pressEnterKey();
+		// Wait explicitly for the call id to appear in the results instead of sleeping
+		By callIdLocator = By.xpath("//div[normalize-space()='" + callId + "']");
+		elementUtils.waitForElementVisible(callIdLocator, Constants.MEDIUM_TIME_OUT_WAIT);
 	}
 
 	public void doClickCallAction(String callId) {
 		String callid = callId;
-		String callidxpath = "(//div[contains(text(),'" + callid
-				+ "')]/ancestor::td/following-sibling::td[7]//div[@class='actionicons editPencil'])[2]";
+		// More robust locator: find the cell/div that exactly matches the call id, go up to the row
+		// and find the Call Action icon/button inside that same row.
+		String callidxpath = "(//div[normalize-space()='" + callid + "']/ancestor::tr//div[@class='actionicons editPencil'])[3]";
 		elementUtils.waitForElementVisible(By.xpath(callidxpath), Constants.DEFAULT_WAIT).click();
 	}
 
@@ -102,10 +119,15 @@ public class FieldAgentCallsPage {
 		elementUtils.waitForInvisibilityOfElementLocated(successMessage, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnArrive, Constants.DEFAULT_WAIT).click();
 	}
-
+	
 	public void doClickCleared() {
 		elementUtils.waitForInvisibilityOfElementLocated(successMessage, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(btnCleared, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void doClickClose() {
+		elementUtils.waitForInvisibilityOfElementLocated(successMessage, Constants.DEFAULT_WAIT);
+		elementUtils.waitForElementToBeClickable(CloseCallbtn, Constants.DEFAULT_WAIT).click();
 	}
 
 	public String getSuccessMessageText() {
@@ -126,47 +148,82 @@ public class FieldAgentCallsPage {
 	}
 
 	public void closeCallActionPopup() {
-		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
-		// elementUtils.waitForElementToBeClickable(btnCloseCallAction,
-		// Constants.DEFAULT_WAIT).click();
-		elementUtils.doClickWithActionsAndWait(btnCloseCallAction, Constants.DEFAULT_WAIT);
+		// Wait for any spinner to disappear if present (short timeout to avoid long block)
+		try {
+			if (elementUtils.isElementVisible(spinner, Constants.SHORT_TIME_OUT_WAIT)) {
+				elementUtils.waitForInvisibilityOfElementLocated(spinner, Constants.DEFAULT_WAIT);
+			}
+		} catch (Exception e) {
+			System.out.println("Spinner wait skipped: " + e.getMessage());
+		}
+
+		// Attempt primary close via dedicated close button
+		try {
+			if (elementUtils.isElementVisible(btnCloseCallAction, Constants.SHORT_TIME_OUT_WAIT)) {
+				elementUtils.waitForElementToBeClickable(btnCloseCallAction, Constants.DEFAULT_WAIT).click();
+			} else if (elementUtils.isElementVisible(closeIcon, Constants.SHORT_TIME_OUT_WAIT)) { // fallback
+				elementUtils.waitForElementToBeClickable(closeIcon, Constants.DEFAULT_WAIT).click();
+			} else {
+				System.out.println("No close element visible, attempting ESC key.");
+				elementUtils.pressEscapeKey();
+			}
+		} catch (Exception clickEx) {
+			System.out.println("Close action failed, trying Actions click: " + clickEx.getMessage());
+			try {
+				elementUtils.doClickWithActionsAndWait(btnCloseCallAction, Constants.SHORT_TIME_OUT_WAIT);
+			} catch (Exception ignored) {
+				System.out.println("Actions fallback also failed.");
+			}
+		}
 	}
 
 	// New Officer Report Entry
-	public void fillNewOfficerReportEntry(String arriveDate, String arriveTime, String departDate, String departTime,
-			String activityCode, String streetNumber, String streetName, String apartmentNumber, String city,
-			String state, String Zipcode, String description, String imagePath) {
-		elementUtils.waitForElementVisible(calenderArriveDate, Constants.DEFAULT_WAIT).sendKeys(arriveDate);
-		elementUtils.waitForElementVisible(calenderArriveTime, Constants.DEFAULT_WAIT).sendKeys(arriveTime);
-		elementUtils.waitForElementVisible(calenderDepartDate, Constants.DEFAULT_WAIT).sendKeys(departDate);
-		elementUtils.waitForElementVisible(calenderDepartTime, Constants.DEFAULT_WAIT).sendKeys(departTime);
-		elementUtils.waitForElementToBeClickable(dropdownActivityCode, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(searchActivityCode, Constants.DEFAULT_WAIT).sendKeys(activityCode);
-		elementUtils.selectElementThroughLocator(activityCodeValue, activityCode, Constants.SHORT_TIME_OUT_WAIT);
+	public void fillNewOfficerReportEntry(String streetNumber, String streetName, String apartmentNumber,
+            String city, String state, String zipcode, String description,
+            String imagePath, String fileName, String fileDescription) throws InterruptedException {
 
-		elementUtils.waitForElementVisible(txtboxStreetNumber, Constants.DEFAULT_WAIT).sendKeys(streetNumber);
-		elementUtils.waitForElementVisible(txtboxStreetName, Constants.DEFAULT_WAIT).sendKeys(streetName);
-		elementUtils.waitForElementVisible(txtboxApartmentNumber, Constants.DEFAULT_WAIT).sendKeys(apartmentNumber);
-		elementUtils.waitForElementVisible(txtboxCity, Constants.DEFAULT_WAIT).sendKeys(city);
-		elementUtils.waitForElementVisible(txtboxState, Constants.DEFAULT_WAIT).sendKeys(state);
-		elementUtils.waitForElementVisible(txtboxZipcode, Constants.DEFAULT_WAIT).sendKeys(Zipcode);
-		elementUtils.waitForElementVisible(txtboxDescription, Constants.DEFAULT_WAIT).sendKeys(description);
+// Wait for loader to disappear
+elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 
-		WebElement fileInput = elementUtils.getElement(imgUpload);
-		String absolutePath = new File(imagePath).getAbsolutePath();
-		System.out.println("Uploading file from path: " + absolutePath);
-		fileInput.sendKeys(absolutePath);
+// Click "Arrive Now" button (auto-fills Arrive Date & Time)
+elementUtils.waitForElementToBeClickable(clockArriveNow, Constants.DEFAULT_WAIT).click();
 
-		elementUtils.waitForElementToBeClickable(btnSaveNewLogEntry, Constants.DEFAULT_WAIT).click();
-	}
+// Optional: Click "Depart Now" if needed
+// elementUtils.waitForElementToBeClickable(clockDepartNow, Constants.DEFAULT_WAIT).click();
 
-	public boolean isAreYouSureTextVisible() {
-		return elementUtils.doIsDisplayed(txtAreYouSure, Constants.DEFAULT_WAIT);
-	}
+Thread.sleep(2000); // Wait for site & activity fields to auto-populate
 
-	public String getConfirmationText() {
-		return elementUtils.waitForElementVisible(txtConfirmation, Constants.DEFAULT_WAIT).getText();
-	}
+// Fill address fields using method parameters
+elementUtils.waitForElementVisible(txtboxStreetNumber, Constants.DEFAULT_WAIT).sendKeys(streetNumber);
+elementUtils.waitForElementVisible(txtboxStreetName, Constants.DEFAULT_WAIT).sendKeys(streetName);
+elementUtils.waitForElementVisible(txtboxApartmentNumber, Constants.DEFAULT_WAIT).sendKeys(apartmentNumber);
+elementUtils.waitForElementVisible(txtboxCity, Constants.DEFAULT_WAIT).sendKeys(city);
+elementUtils.waitForElementVisible(txtboxState, Constants.DEFAULT_WAIT).sendKeys(state);
+elementUtils.waitForElementVisible(txtboxZipcode, Constants.DEFAULT_WAIT).sendKeys(zipcode);
+elementUtils.waitForElementVisible(txtboxDescription, Constants.DEFAULT_WAIT).sendKeys(description);
+
+// Upload photo/video file
+WebElement fileInput = elementUtils.getElement(imgUpload);
+String absolutePath = new File(imagePath).getAbsolutePath();
+System.out.println("Uploading file from path: " + absolutePath);
+fileInput.sendKeys(absolutePath);
+
+// File details
+elementUtils.waitForElementVisible(txtboxFileName, Constants.DEFAULT_WAIT).sendKeys(fileName);
+elementUtils.waitForElementVisible(txtboxFileDescription, Constants.DEFAULT_WAIT).sendKeys(fileDescription);
+
+// Save entry
+elementUtils.waitForElementToBeClickable(btnSaveNewLogEntry, Constants.DEFAULT_WAIT).click();
+}
+
+
+//	public boolean isAreYouSureTextVisible() {
+//		return elementUtils.doIsDisplayed(txtAreYouSure, Constants.DEFAULT_WAIT);
+//	}
+//
+//	public String getConfirmationText() {
+//		return elementUtils.waitForElementVisible(txtConfirmation, Constants.DEFAULT_WAIT).getText();
+//	}
 
 	public void doClickOk() {
 		elementUtils.waitForElementToBeClickable(btnOk, Constants.DEFAULT_WAIT).click();

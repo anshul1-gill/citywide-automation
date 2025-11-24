@@ -19,6 +19,8 @@ public class PatrolUpdateLeaveTest extends BaseTest {
 		patrolStartShiftPage.handleMessageOfTheWeek();
 		patrolStartShiftPage.clickOnHRManagementMenu();
 		patrolLeaveRequestsPage = patrolStartShiftPage.clickOnLeaveRequestsTab();
+		// Apply filters before locating edit icon
+		patrolLeaveRequestsPage.applyDefaultDateFilters();
 		patrolLeaveRequestsPage.doClickEditButton(prop.getProperty("patrolID"), PatrolConstants.LEAVE_TYPE);
 
 		patrolLeaveRequestsPage.updateLeaveForm(PatrolConstants.EDIT_LEAVE_TYPE, PatrolConstants.EDIT_LEAVE_FROM_MONTH,
@@ -28,6 +30,8 @@ public class PatrolUpdateLeaveTest extends BaseTest {
 				PatrolConstants.EDIT_LEAVE_END_TIME, PatrolConstants.EDIT_LEAVE_DESCRIPTION);
 
 		patrolLeaveRequestsPage.doClickUpdateLeave();
+
+		patrolLeaveRequestsPage.applyDefaultDateFilters();
 
 		softAssert.assertTrue(patrolLeaveRequestsPage.isAddLeaveRequestButtonDisplayed());
 

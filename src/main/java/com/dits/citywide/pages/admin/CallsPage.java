@@ -26,6 +26,7 @@ public class CallsPage {
 	private By txtViewSiteNotes = By.xpath("//span[normalize-space()='View site notes']");
 
 	private By dropdownActivityCode = By.xpath("//input[@id='activity_code']");
+	private By subActivityCode = By.xpath("//input[@id='sub_activity_code']");
 
 	// Reporting Person
 	private By txtboxFirstName = By.xpath("//input[@id='rp_first_name']");
@@ -37,14 +38,15 @@ public class CallsPage {
 
 	private By successMessage = By.xpath("//h2[@id='swal2-title']/span[@class='text-white']");
 
-	private By dataAssignedTo = By.xpath("(//div[@class='call-status'])[1]/p");
+	private By dataAssignedTo = By.xpath("(//div[@class='call-status'])[1]");
 
 	// private By dataCallId = By.xpath("(//td[@data-label='Call #'])[1]/a");
 	private By getCallIdByEmployeeId(String employeeId) {
-		String xpath = "//p[contains(normalize-space(),'" + employeeId + "')]"
-				+ "/ancestor::td/following-sibling::td[@data-label='Call #']/div";
-		return By.xpath(xpath);
+	    String xpath = "//span[contains(@class,'unit-name') and contains(normalize-space(),'" + employeeId + "')]"
+	            + "/ancestor::td/following-sibling::td[@data-label='Call #']/div";
+	    return By.xpath(xpath);
 	}
+
 
 	private By dataActivityCode = By.xpath("(//td[@data-label='Activity Code'])[1]");
 	private By dataSite = By.xpath("(//td[@data-label='Site'])[1]/div");
@@ -97,7 +99,7 @@ public class CallsPage {
 
 	// Add New Call
 
-	public void fillAddNewCallForm(String officerReceivedVia, String patrolSite, String activityCode)
+	public void fillAddNewCallForm(String officerReceivedVia, String patrolSite, String activityCode , String subActivity)
 			throws InterruptedException {
 		elementUtils.waitForElementToBeClickable(dropdownOfficerReceivedVia, Constants.DEFAULT_WAIT).click();
 		elementUtils.selectElementThroughLocator(valuesOfficerReceivedVia, officerReceivedVia,
@@ -111,6 +113,11 @@ public class CallsPage {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsClick(dropdownActivityCode);
 		elementUtils.waitForElementVisible(dropdownActivityCode, Constants.MEDIUM_TIME_OUT_WAIT).sendKeys(activityCode);
+		Thread.sleep(2000);
+		elementUtils.pressEnterKey();
+		
+		elementUtils.doActionsClick(subActivityCode);
+		elementUtils.waitForElementVisible(subActivityCode, Constants.MEDIUM_TIME_OUT_WAIT).sendKeys(subActivity);
 		Thread.sleep(2000);
 		elementUtils.pressEnterKey();
 	}
@@ -176,11 +183,17 @@ public class CallsPage {
 		elementUtils.waitForElementVisible(txtboxCallDescription, Constants.DEFAULT_WAIT).sendKeys(description);
 	}
 
-	public void selectAvailableUnits(String userId) throws InterruptedException {
-		String userid = userId;
-		By xpathUnit = By.xpath("//label[contains(normalize-space(), '" + userid + "')]");
-		elementUtils.doClickWithActionsAndWait(xpathUnit, Constants.DEFAULT_WAIT);
+	public void selectAvailableUnits(String userId, String unitType) {
+
+	    // 1. Select the Available Unit based on ID
+	    By unitOption = By.xpath("//label[.//span[normalize-space() = '" + userId + "']]");
+//	    elementUtils.doClickWithActionsAndWait(unitOption, Constants.DEFAULT_WAIT);
+
+	    // 2. Select Primary or Backup checkbox
+	    By unitTypeOption = By.xpath("//label[span[normalize-space()='" + unitType + "']]");
+	    elementUtils.doClickWithActionsAndWait(unitTypeOption, Constants.DEFAULT_WAIT);
 	}
+
 
 	public void doClickSaveAddNewCall() {
 		elementUtils.waitForElementVisible(btnSaveAddNewCall, Constants.DEFAULT_WAIT);

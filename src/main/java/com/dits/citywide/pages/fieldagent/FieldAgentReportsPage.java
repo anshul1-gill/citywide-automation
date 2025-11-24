@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.utilities.ElementUtils;
 import com.dits.citywide.utilities.ServerTimeUtil;
@@ -28,7 +30,7 @@ public class FieldAgentReportsPage {
 	// private By btnAddNewReport = By.xpath("(//span[contains(text(),'Add New
 	// Report')])[2]");
 	private By btnAddNewReport = By.xpath("//a[contains(text(),'Add New Report')]");
-	private By btnSubmitReports = By.xpath("//button[normalize-space()='Submit Reports']");
+	private By btnSubmitReports = By.xpath("//button[@type='submit']");
 	private By txtNoItemsFound = By
 			.xpath("//span[@class='px-2 py-8 text-base font-medium text-center text-gray-400 dark:text-white']");
 	private By btnEndShift = By.xpath("//button[normalize-space()='End Shift']");
@@ -59,7 +61,7 @@ public class FieldAgentReportsPage {
 
 	// private By btnNow = By.xpath("(//div[@class='ant-form-item clock-icon c-m-0
 	// css-p9nxzu'])[1]");
-	private By btnNow = By.cssSelector("div[title='Arrive Now']");
+//	private By btnNow = By.cssSelector("div[title='Arrive Now']");
 	private By dropdownPatrolSite = By.xpath("(//div[@class='ant-select-selector'])[1]");
 	private By patrolSite = By.cssSelector("#patrol_site_id");
 	private By dropdownActivityCode = By.xpath("(//div[@class='ant-select-selector'])[2]");
@@ -68,7 +70,9 @@ public class FieldAgentReportsPage {
 	private By callId = By.cssSelector("#call_id");
 	// private By valueActivityCode = By.xpath("//div[@class='list-none m-0
 	// p-0']/div/span");
-
+	
+	
+	private By clockArriveNow = By.xpath("(//span[@aria-label='clock-circle'])[1]");		
 	private By txtboxStreetNumber = By.xpath("//input[@id='street_num']");
 	private By txtboxStreetName = By.xpath("//input[@id='street_name']");
 	private By txtboxApartmentNumber = By.xpath("//input[@id='apartment']");
@@ -98,11 +102,11 @@ public class FieldAgentReportsPage {
 	private By dropdownColumn = By.xpath("//div[@class='ant-dropdown-trigger']");
 	private By selectActivityCode = By.xpath("//span[contains(text(),'Activity Code')]");
 
-	private By getOfficerNameDataStartOfShift = By.xpath("(//td[@data-label='Officer'])[10]");
+	private By getOfficerNameDataStartOfShift = By.xpath("(//td[@data-label='Officer'])[1]");
 	private By getSiteDataStartOfShift = By.xpath("(//td[@data-label='Site'])[10]/a");
-	private By getArriveDataStartOfShift = By.xpath("(//td[@data-label='Arrive'])[10]");
-	private By getDepartDataStartOfShift = By.xpath("(//td[@data-label='Depart'])[10]");
-	private By getActivityCodeDataStartOfShift = By.xpath("(//td[@data-label='Activity Code'])[10]");
+	private By getArriveDataStartOfShift = By.xpath("(//td[@data-label='Arrive'])[1]");
+	private By getDepartDataStartOfShift = By.xpath("(//td[@data-label='Depart'])[1]");
+	private By getActivityCodeDataStartOfShift = By.xpath("(//td[@data-label='Activity Code'])[1]");
 
 	private By getOfficerNameDataEndOfShift = By.xpath("(//td[@data-label='Officer'])[1]");
 	private By getSiteDataEndOfShift = By.xpath("(//td[@data-label='Site'])[1]/a");
@@ -112,7 +116,7 @@ public class FieldAgentReportsPage {
 
 	// My Assignments
 	// private By btnMyAssignments = By.cssSelector("#rc-tabs-0-tab-my-assignment");
-	private By btnMyAssignments = By.xpath("//a[@class='tabs-button'][normalize-space()='My Assignments']");
+	private By btnMyAssignments = By.xpath("(//div[normalize-space()='My Assignments'])[2]");
 
 	private By search = By.cssSelector("input[placeholder='Search']");
 
@@ -282,9 +286,10 @@ public class FieldAgentReportsPage {
 	}
 
 	public void clickEditReport2() {
-		// elementUtils.waitForInvisibilityOfElementLocated(btnPreFlightReports,
-		// Constants.DEFAULT_WAIT);
-		// elementUtils.waitForElementVisible(sucessMessage, Constants.DEFAULT_WAIT);
+		List<WebElement> editIcons = driver.findElements(By.xpath("//div[@class='actionicons editPencil']"));
+		if (editIcons.size() < 3) {
+			throw new RuntimeException("Not enough edit icons present. Expected at least 3, but found: " + editIcons.size());
+		}
 		elementUtils.waitForElementToBeClickable(btnEditReport2, Constants.SHORT_TIME_OUT_WAIT).click();
 	}
 
@@ -321,14 +326,13 @@ public class FieldAgentReportsPage {
 			String description, String imagePath, String fileName, String fileDescription) throws InterruptedException {
 
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
-		// isUpdateOfficerReportEntryVisible();
 		Thread.sleep(2000);
-		elementUtils.waitForElementVisible(btnNow, Constants.DEFAULT_WAIT);
-		elementUtils.doClickWithActionsAndWait(btnNow, Constants.DEFAULT_WAIT);
-		// elementUtils.waitForElementToBeClickable(btnNow,
-		// Constants.DEFAULT_WAIT).click();
-		String currenttime = ServerTimeUtil.getServerTimeInPST();
-		System.out.println(currenttime);
+		// Check if the clockArriveNow element is present and visible before clicking
+		if (!elementUtils.isElementVisible(clockArriveNow, Constants.SHORT_TIME_OUT_WAIT)) {
+			System.out.println("clockArriveNow element not visible. Skipping addOfficerReportEntry step.");
+			return;
+		}
+		elementUtils.waitForElementToBeClickable(clockArriveNow, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(dropdownPatrolSite, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementToBeClickable(dropdownPatrolSite, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(patrolSite, Constants.SHORT_TIME_OUT_WAIT).sendKeys(siteName);
@@ -502,6 +506,15 @@ public class FieldAgentReportsPage {
 
 	public void clickActionByAssignment(String assignmentName) {
 		elementUtils.waitForElementToBeClickable(actionByAssignment(assignmentName), Constants.DEFAULT_WAIT).click();
+	}
+
+	// DEBUG: Print all assignment names in the My Assignments table
+	public void printAllAssignmentNames() {
+		List<WebElement> assignmentCells = driver.findElements(By.xpath("//td[1]"));
+		System.out.println("[DEBUG] Assignment names in My Assignments table:");
+		for (WebElement cell : assignmentCells) {
+			System.out.println("[ASSIGNMENT] '" + cell.getText() + "'");
+		}
 	}
 
 	// Check Points Tab

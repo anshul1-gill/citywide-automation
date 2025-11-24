@@ -20,8 +20,8 @@ public class PatrolVehicleInspectionTest extends BaseTest {
 	public void patrolVehicleInspectionTest() throws InterruptedException {
 		patrolStartShiftPage.handleMessageOfTheWeek();
 		patrolVehicleInspectionPage = patrolStartShiftPage.clickOnVehicleInspectionTab();
-		patrolVehicleInspectionPage.doClickVehicleNumber("5673");
-		softAssert.assertEquals(patrolVehicleInspectionPage.getSelectedVehicleId(), "5673");
+		patrolVehicleInspectionPage.doClickVehicleNumber("5632");
+		softAssert.assertEquals(patrolVehicleInspectionPage.getSelectedVehicleId(), "5632");
 		String milesValues = patrolVehicleInspectionPage.getStartingMilesValue();
 		patrolVehicleInspectionPage.enterEndingMiles(milesValues);
 		patrolVehicleInspectionPage.clickNextButton();
@@ -76,6 +76,9 @@ public class PatrolVehicleInspectionTest extends BaseTest {
 		patrolVehicleInspectionPage.uploadFrontImage("./src/test/resource/testdata/image.jpeg");
 		patrolVehicleInspectionPage.uploadBackImage("./src/test/resource/testdata/image.jpeg");
 		patrolVehicleInspectionPage.clickCompleteVehicleInspection();
+		Thread.sleep(7000);
+		System.out.println("✅ Patrol Vehicle Inspection completed");
+		
 
 		softAssert.assertAll();
 	}

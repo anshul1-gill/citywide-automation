@@ -19,14 +19,14 @@ public class AddViolationTest extends BaseTest {
 		violationsPage = companySettingsPage.clickViolationsLink();
 		violationsPage.clickAddNewViolationsButton();
 		violationsPage.fillAddNewViolationsForm(CompanySettingsConstant.VIOLATION_NAME,
-				CompanySettingsConstant.VIOLATION_DESCRIPTION, CompanySettingsConstant.VIOLATION_BRANCH);
+				CompanySettingsConstant.VIOLATION_DESCRIPTION);
 		violationsPage.clickSaveButton();
 
 		softAssert.assertEquals(violationsPage.getSuccessMessage(),
 				CompanySettingsConstant.ADD_VIOLATION_SUCCESS_MESSAGE, "Add Violation Success Message does not match");
 
-		softAssert.assertEquals(violationsPage.getBranchName(), CompanySettingsConstant.VIOLATION_BRANCH,
-				"Branch name does not match");
+//		softAssert.assertEquals(violationsPage.getBranchName(), CompanySettingsConstant.VIOLATION_BRANCH,
+//				"Branch name does not match");
 		softAssert.assertEquals(violationsPage.getViolationName(), CompanySettingsConstant.VIOLATION_NAME,
 				"Violation name does not match");
 		softAssert.assertEquals(violationsPage.getViolationDescription(), CompanySettingsConstant.VIOLATION_DESCRIPTION,

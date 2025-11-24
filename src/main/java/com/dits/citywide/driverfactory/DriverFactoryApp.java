@@ -2,9 +2,7 @@ package com.dits.citywide.driverfactory;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
@@ -15,102 +13,85 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 
 public class DriverFactoryApp {
 
-	AppiumDriver driver;
-	Properties prop;
+    private AppiumDriver driver;
+    private Properties prop;
 
-	String filePath = "./src/test/resource/config/config.properties";
-	String apkpath = "/Users/ditsdev/Desktop/app-staging-release.apk";
-	String serverurl = "http://127.0.0.1:4723";
-	String devicename = "Pixel 8";
+    String filePath = "./src/test/resource/config/config.properties";
 
-	public AppiumDriver init_driver(Properties prop) {
-		String deviceType = "android";
+    public AppiumDriver init_driver(Properties prop) {
 
-		try {
-			if (deviceType.equalsIgnoreCase("android")) {
-				return setupAndroidDriver(prop);
-			} else {
-				throw new IllegalArgumentException("Unsupported or missing device type: " + deviceType);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new IllegalStateException("Driver initialization failed: " + e.getMessage(), e);
-		}
-	}
+        String deviceType = prop.getProperty("deviceType", "emulator");
 
-	private AppiumDriver setupAndroidDriver(Properties prop) {
-		try {
-			String devicename = prop.getProperty("devicename");
-			String apkpath = prop.getProperty("apkpath");
-			String serverurl = prop.getProperty("serverurl");
-			String deviceType = prop.getProperty("deviceType", "emulator");
+        try {
+            // Accept "android" or "emulator" as Android device
+            if (deviceType.equalsIgnoreCase("android") || deviceType.equalsIgnoreCase("emulator")) {
+                return setupAndroidDriver(prop);
+            } else {
+                throw new IllegalArgumentException("Unsupported Device Type: " + deviceType);
+            }
 
-			if (devicename == null || devicename.isEmpty()) {
-				throw new IllegalArgumentException("'devicename' is missing or empty.");
-			}
-			if (apkpath == null || apkpath.isEmpty()) {
-				throw new IllegalArgumentException("'apkpath' is missing or empty.");
-			}
-			File apkFile = new File(apkpath);
-			if (!apkFile.exists()) {
-				throw new IllegalArgumentException("APK file does not exist at: " + apkpath);
-			}
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Driver initialization failed: " + e);
+        }
+    }
 
-			UiAutomator2Options options = new UiAutomator2Options().setDeviceName(devicename).setApp(apkpath)
-					.setAutoGrantPermissions(true).setNewCommandTimeout(Duration.ofSeconds(300))
-					.setAppWaitDuration(Duration.ofSeconds(30));
 
-			// Device-specific capabilities
-			if (deviceType.equalsIgnoreCase("real")) {
-				// Real device
-				options.setCapability("udid", devicename);
-				options.setCapability("ignoreHiddenApiPolicyError", true);
-				options.setCapability("noReset", true);
-				options.setCapability("fullReset", false);
-				options.setCapability("skipDeviceInitialization", true);
-				options.setCapability("skipServerInstallation", true);
+    private AppiumDriver setupAndroidDriver(Properties prop) {
 
-				System.out.println("Initializing driver for real device: " + devicename);
-			} else {
-				// Emulator
-				options.setCapability("avd", devicename);
-				System.out.println("Initializing driver for emulator: " + devicename);
-			}
-			driver = new AndroidDriver(new URL(serverurl), options);
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        try {
 
-			System.out.println("AndroidDriver initialized successfully.");
-			return driver;
+            String deviceName = prop.getProperty("deviceName");
+            String apkPath = prop.getProperty("apkPath");
+            String serverUrl = prop.getProperty("serverUrl", "http://127.0.0.1:4723");
 
-		} catch (MalformedURLException e) {
-			throw new IllegalStateException("Invalid server URL: " + prop.getProperty("serverurl"), e);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new IllegalStateException("Failed to initialize AndroidDriver.", e);
-		}
-	}
+            // Validate APK
+            File apk = new File(apkPath);
+            if (!apk.exists()) {
+                throw new RuntimeException("APK NOT FOUND at: " + apkPath);
+            }
 
-	public Properties init_properties() {
-		prop = new Properties();
-		try (FileInputStream fis = new FileInputStream(filePath)) {
-			prop.load(fis);
-			return prop;
-		} catch (FileNotFoundException e) {
-			throw new IllegalStateException("Configuration file not found at path: " + filePath, e);
-		} catch (IOException e) {
-			throw new IllegalStateException("Error occurred while loading properties.", e);
-		}
-	}
+            UiAutomator2Options options = new UiAutomator2Options();
 
-	public AppiumDriver getDriver() {
-		return driver;
-	}
+            options.setPlatformName("Android");
+            options.setAutomationName("UiAutomator2");
+            options.setDeviceName(deviceName);
+            options.setApp(apkPath);
+            options.setAutoGrantPermissions(true);
+            options.setNewCommandTimeout(Duration.ofSeconds(300));
 
-	public void cleanupDriver() {
-		if (driver != null) {
-			driver.quit();
-			driver = null;
-			System.out.println("Driver cleaned up.");
-		}
-	}
+            // If emulator
+            if (prop.getProperty("deviceType").equalsIgnoreCase("emulator")) {
+                options.setAvd(prop.getProperty("avdName"));   // IMPORTANT
+            }
+
+            driver = new AndroidDriver(new URL(serverUrl), options);
+
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+            System.out.println("Android Driver initialized.");
+
+            return driver;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to start AndroidDriver → " + e.getMessage());
+        }
+    }
+
+    public Properties init_properties() {
+        prop = new Properties();
+        try (FileInputStream fis = new FileInputStream(filePath)) {
+            prop.load(fis);
+            return prop;
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to load config.properties");
+        }
+    }
+
+    public void cleanupDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
 }

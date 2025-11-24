@@ -17,20 +17,19 @@ public class AddChargesTest extends BaseTest {
 	public void addChargesTest() {
 		companySettingsPage = dashboardPage.doClickCompanySettingsTab();
 		violationsPage = companySettingsPage.clickViolationsLink();
-//		violationsPage.clickChargesTab();
-//		violationsPage.clickAddNewChargesButton();
-//		violationsPage.fillAddNewChargesForm(CompanySettingsConstant.CHARGE_CODE,
-//				CompanySettingsConstant.CHARGE_DESCRIPTION);
-//		violationsPage.clickSaveButton();
-
-//		softAssert.assertEquals(violationsPage.getSuccessMessage(), "Charges were not added successfully",
-//				"Charges added successfully");
 		softAssert.assertTrue(violationsPage.isViolationsPageVisible());
 		violationsPage.clickChargesTab();
 		softAssert.assertTrue(violationsPage.isAddNewChargesButtonVisible());
+		violationsPage.clickAddNewChargesButton();
+		  violationsPage.fillAddNewChargesForm(CompanySettingsConstant.CHARGE_CODE,
+		  CompanySettingsConstant.CHARGE_DESCRIPTION);
+		  violationsPage.clickSaveButton();
+			softAssert.assertEquals(violationsPage.getSuccessMessage(), CompanySettingsConstant.ADD_CHARGE_SUCCESS_MESSAGE,
+					"Charges added successfully");
 		softAssert.assertEquals(violationsPage.getChargesName(), CompanySettingsConstant.CHARGE_CODE);
 		softAssert.assertEquals(violationsPage.getChargesDescription(), CompanySettingsConstant.CHARGE_DESCRIPTION);
-
+	
+	
 		softAssert.assertAll();
 	}
 

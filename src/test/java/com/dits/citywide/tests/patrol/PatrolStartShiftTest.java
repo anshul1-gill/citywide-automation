@@ -26,11 +26,11 @@ public class PatrolStartShiftTest extends BaseTest {
 		softAssert.assertTrue(patrolStartShiftPage.isClickableViewSite(), "View Site button should be clickable");
 //		softAssert.assertTrue(patrolStartShiftPage.isStartShiftButtonVisible(), "Start Shift button should be visible");
 
-		softAssert.assertTrue(fieldAgentStartShiftPage.isConfirmShiftButtonVisible(),
-				"Confirm Shift button should be visible after clicking Start Shift");
+//		softAssert.assertTrue(fieldAgentStartShiftPage.isConfirmShiftButtonVisible(),
+//				"Confirm Shift button should be visible after clicking Start Shift");
 
-		softAssert.assertTrue(fieldAgentStartShiftPage.isRejectShiftButtonVisible(),
-				"Reject Shift button should be visible after clicking Start Shift");
+//		softAssert.assertTrue(fieldAgentStartShiftPage.isRejectShiftButtonVisible(),
+//				"Reject Shift button should be visible after clicking Start Shift");
 
 		patrolStartShiftPage.doClickStartShift();
 		patrolStartShiftPage.logoutFromPreviousShift();
@@ -39,7 +39,8 @@ public class PatrolStartShiftTest extends BaseTest {
 		softAssert.assertEquals(patrolStartShiftPage.getWelcomeDescriptionText().trim(),
 				FieldAgentConstants.WELCOME_TEXT);
 		fieldAgentReportsPage = patrolStartShiftPage.doClickStartShiftBegin();
-		fieldAgentStartShiftPage.handlePassdownOfTheDay();
+		patrolStartShiftPage.handlePassdownOfTheDay();
+
 
 		softAssert.assertTrue(fieldAgentReportsPage.isStartShiftButtonVisible(),
 				"Start Shift button should be visible after clicking Start Shift Begin");

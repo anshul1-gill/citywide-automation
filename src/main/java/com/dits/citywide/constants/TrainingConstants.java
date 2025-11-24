@@ -51,7 +51,7 @@ public class TrainingConstants {
 	public static final String MODULE_DURATION = "00:30";
 	public static final String MODULE_CONTENT = "This is a test module content.";
 	public static final String MODULE_FILE_PATH = System.getProperty("user.home")
-			+ "/Downloads/automation_test_file.pdf";
+	        + "/Downloads/file.pdf";
 	public static final String MODULE_FILE_NAME = "https://www.google.com";
 
 	public static final String MODULE_ADDED_SUCCESS_MESSAGE = "Module created successfully";

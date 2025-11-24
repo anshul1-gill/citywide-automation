@@ -507,4 +507,29 @@ public class TotalCoursesPage {
 		return elementUtils.waitForElementVisible(dataEmployeeIdForAssignedTo, Constants.DEFAULT_WAIT).getText();
 	}
 
+	// New helper: fetch all assigned agent IDs (in case multiple)
+	public java.util.List<String> getAllAssignedAgentIds() {
+		java.util.List<org.openqa.selenium.WebElement> els = driver.findElements(By.cssSelector(".assigned-agent"));
+		java.util.List<String> ids = new java.util.ArrayList<>();
+		for (org.openqa.selenium.WebElement e : els) {
+			try { ids.add(e.getText().trim()); } catch (Exception ignored) {}
+		}
+		return ids;
+	}
+
+	// Wait for a specific agent id to appear in the assigned list (normalized by removing whitespace)
+	public boolean waitForAgentAssignment(String agentId, int timeoutSeconds) {
+		String target = agentId.replaceAll("\\s+", "").toLowerCase();
+		long end = System.currentTimeMillis() + timeoutSeconds * 1000L;
+		while (System.currentTimeMillis() < end) {
+			for (String val : getAllAssignedAgentIds()) {
+				String norm = val.replaceAll("\\s+", "").toLowerCase();
+				if (norm.contains(target)) {
+					return true;
+				}
+			}
+			try { Thread.sleep(500); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+		}
+		return false;
+	}
 }

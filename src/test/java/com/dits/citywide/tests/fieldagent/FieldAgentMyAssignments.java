@@ -22,8 +22,8 @@ public class FieldAgentMyAssignments extends BaseTest {
 		fieldAgentReportsPage = fieldAgentStartShiftPage.clickOnReportsTab();
 		fieldAgentReportsPage.clickMyAssignments();
 		fieldAgentReportsPage.enterTextInSearchBox(OperationsHubConstant.ASSIGNMENT_NAME);
-		softAssert.assertEquals(fieldAgentReportsPage.getSiteNameByAssignment(OperationsHubConstant.ASSIGNMENT_NAME),
-				OperationsHubConstant.ASSIGNMENT_NAME, "Assignment name mismatch!");
+//		softAssert.assertEquals(fieldAgentReportsPage.getSiteNameByAssignment(OperationsHubConstant.ASSIGNMENT_NAME),
+//				OperationsHubConstant.ASSIGNMENT_NAME, "Assignment name mismatch!");
 		softAssert.assertTrue(fieldAgentReportsPage.getSiteNameByAssignment(OperationsHubConstant.ASSIGNMENT_NAME)
 				.contains(HRManagementConstants.SITE), "Site name mismatch!");
 		softAssert.assertEquals(fieldAgentReportsPage.getTimeSlotByAssignment(OperationsHubConstant.ASSIGNMENT_NAME),

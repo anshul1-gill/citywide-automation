@@ -14,14 +14,14 @@ public class AddNewCallTest extends BaseTest {
 		dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
 	}
 
-	@Test
+	@Test(groups = {"createCall"})
 	public void addNewCallTest() throws InterruptedException {
 		Thread.sleep(4000);
 		callsPage = dashboardPage.doClickCallsTab();
 
 		callsPage.doClickAddNewCallButton();
 		callsPage.fillAddNewCallForm(OperationsHubConstant.OFFICER_RECEIVED_VIA, HRManagementConstants.SITE,
-				OperationsHubConstant.ACTIVITY_CODE);
+				OperationsHubConstant.ACTIVITY_CODE , OperationsHubConstant.SUBACTIVITY_CODE);
 		callsPage.fillReportingPersonForm(OperationsHubConstant.REPORTING_PERSON_FIRST_NAME,
 				OperationsHubConstant.REPORTING_PERSON_LAST_NAME, OperationsHubConstant.REPORTING_PERSON_PHONE_NUMBER,
 				OperationsHubConstant.REPORTING_PERSON_DEMEANOR);
@@ -34,7 +34,7 @@ public class AddNewCallTest extends BaseTest {
 				OperationsHubConstant.SUSPECT_WEIGHT, OperationsHubConstant.SUSPECT_AGE,
 				OperationsHubConstant.SUSPECT_CLOTHING_WORN, OperationsHubConstant.SUSPECT_LAST_KNOWN_DIRECTION);
 		callsPage.fillCallDescription(OperationsHubConstant.CALL_DESCRIPTION);
-		callsPage.selectAvailableUnits(prop.getProperty("employeeID"));
+		callsPage.selectAvailableUnits(prop.getProperty("employeeID"),"Primary");
 		callsPage.doClickSaveAddNewCall();
 		Thread.sleep(2000);
 		softAssert.assertTrue(callsPage.isOpenCallsTabDisplayed(),

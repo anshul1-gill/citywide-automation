@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.dits.citywide.constants.Constants;
+import com.dits.citywide.constants.FieldAgentConstants;
 import com.dits.citywide.utilities.Calendar;
 import com.dits.citywide.utilities.DateFormatterUtils;
 import com.dits.citywide.utilities.ElementUtils;
@@ -46,6 +47,11 @@ public class FieldAgentLeaveRequestsPage {
 	private By txtCancelConfirmation = By.xpath("//div[contains(text(),'Leave cancelled successfully')]");
 
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
+
+	// Filters (added similar to PatrolLeaveRequestsPage)
+	private By btnFilters = By.xpath("//span[normalize-space()='Filters']");
+	private By startrange = By.xpath("//input[@placeholder='Start date']");
+	private By endrange = By.xpath("//input[@placeholder='End date']");
 
 	public FieldAgentLeaveRequestsPage(WebDriver driver) {
 		this.driver = driver;
@@ -210,6 +216,37 @@ public class FieldAgentLeaveRequestsPage {
 	public void doSearch(String employeeID) {
 		elementUtils.waitForElementVisible(search, Constants.DEFAULT_WAIT).sendKeys(employeeID);
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+	}
+
+	public void clickFilters() {
+		if (elementUtils.isElementVisible(btnFilters, Constants.SHORT_TIME_OUT_WAIT)) {
+			elementUtils.waitForElementToBeClickable(btnFilters, Constants.SHORT_TIME_OUT_WAIT).click();
+		}
+	}
+
+	public void applyDateFilters(String startDate, String endDate) {
+		clickFilters();
+		try {
+			if (elementUtils.isElementVisible(startrange, Constants.SHORT_TIME_OUT_WAIT)) {
+				WebElement startInput = elementUtils.waitForElementVisible(startrange, Constants.DEFAULT_WAIT);
+				elementUtils.clearTextBoxWithActions(startrange);
+				startInput.sendKeys(startDate);
+				WebElement endInput = elementUtils.waitForElementVisible(endrange, Constants.DEFAULT_WAIT);
+				elementUtils.clearTextBoxWithActions(endrange);
+				endInput.sendKeys(endDate);
+				endInput.sendKeys(org.openqa.selenium.Keys.ENTER);
+				// wait for potential loader/spinner to disappear
+				if (elementUtils.isElementVisible(loader, Constants.SHORT_TIME_OUT_WAIT)) {
+					elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Date filters not applied (possibly not present): " + e.getMessage());
+		}
+	}
+
+	public void applyDefaultDateFilters() {
+		applyDateFilters(FieldAgentConstants.FILTER_START, FieldAgentConstants.FILTER_END);
 	}
 
 }

@@ -18,6 +18,11 @@ public class FieldAgentCallActionTest extends BaseTest {
 	public void callActionFieldAgentTest() throws InterruptedException {
 		Thread.sleep(2000);
 		fieldAgentCallsPage = fieldAgentStartShiftPage.doClickCallsTab();
+//		fieldAgentCallsPage.doClickAddPatrolLogsForCall("callid");
+		
+		
+
+		
 		fieldAgentCallsPage.doClickCallAction(prop.getProperty("callid"));
 		fieldAgentCallsPage.doClickExpandCollapseAssignedUnits();
 		fieldAgentCallsPage.doClickEnroute();
@@ -39,5 +44,6 @@ public class FieldAgentCallActionTest extends BaseTest {
 
 		softAssert.assertAll();
 	}
+
 
 }

@@ -4,11 +4,11 @@ public class HRManagementConstants {
 
 // Field Agent
 	// Personal Information
-	public static final String FIRST_NAME = "Amit";
-	public static final String MIDDLE_NAME = "Kumar";
-	public static final String LAST_NAME = "Singh";
+	public static final String FIRST_NAME = "David"; 
+	public static final String MIDDLE_NAME = "Christopher";
+	public static final String LAST_NAME = "Brown";
 	public static final String GENDER = "Male";
-	public static final String BIRTH_MONTH = "Feb";
+	public static final String BIRTH_MONTH = "Nov";
 	public static final String BIRTH_YEAR = "2000";
 	public static final String BIRTH_DATE = "10";
 	public static final String SOCIAL_SECURITY_NUMBER = "234343243";
@@ -27,8 +27,8 @@ public class HRManagementConstants {
 	public static final String EMERGENCY_PHONE_NUMBER = "7891234568";
 
 	public static final String EMERGENCY_RELATIONSHIP = "Brother";
-	public static final String PASSWORD = "Sumit@7813@";
-	public static final String CONFIRM_PASSWORD = "Sumit@7813@";
+	public static final String PASSWORD = "123@Gill#";
+	public static final String CONFIRM_PASSWORD = "123@Gill#";
 
 	public static final String BRANCHES = "Riverside";
 	// Use the top 10 values because only 10 are shown in the listbox. Add the
@@ -36,6 +36,7 @@ public class HRManagementConstants {
 
 	// Staging data
 	public static final String SITE = "Richmond";
+	public static final String PATROL_SITE = "153";
 	
 	//Live Site Data
 //	public static final String SITE = "DITSTEK TESTING SITE";
@@ -56,9 +57,9 @@ public class HRManagementConstants {
 	public static final String PERSONAL_INFO_ADDED_SUCCESS_MESSAGE = "Personal Information added successfully!";
 
 	// Patrol Officer Data
-	public static final String FIRST_NAME_PATROL = "Suraj";
-	public static final String MIDDLE_NAME_PATROL = "Kumar";
-	public static final String LAST_NAME_PATROL = "Singh";
+	public static final String FIRST_NAME_PATROL = "Ansh";
+	public static final String MIDDLE_NAME_PATROL = "Singh";
+	public static final String LAST_NAME_PATROL = "Gill";
 	public static final String GENDER_PATROL = "Male";
 	public static final String BIRTH_MONTH_PATROL = "Feb";
 	public static final String BIRTH_YEAR_PATROL = "2002";
@@ -70,7 +71,7 @@ public class HRManagementConstants {
 	public static final String RANK_PATROL = "Commander";
 
 	public static final String BEAT = "DITS Beat";
-
+	public static final String SITE_TYPE = "Mobile";
 // Employment Information
 	public static final String EMPLOYMENT_STATUS = "Active";
 	public static final String EMPLOYMENT_HIRE_MONTH = "Feb";
@@ -213,13 +214,13 @@ public class HRManagementConstants {
 // Leave Requests
 	public static final String LEAVE_TYPE = "Study";
 
-	public static final String LEAVE_FROM_MONTH = "Jun";
-	public static final String LEAVE_FROM_YEAR = "2026";
+	public static final String LEAVE_FROM_MONTH = "Nov";
+	public static final String LEAVE_FROM_YEAR = "2025";
 	public static final String LEAVE_FROM_DATE = "10";
 
-	public static final String LEAVE_TO_MONTH = "Jun";
-	public static final String LEAVE_TO_YEAR = "2026";
-	public static final String LEAVE_TO_DATE = "15";
+	public static final String LEAVE_TO_MONTH = "Nov";
+	public static final String LEAVE_TO_YEAR = "2025";
+	public static final String LEAVE_TO_DATE = "12";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";
@@ -289,6 +290,9 @@ public class HRManagementConstants {
 
 	public static final String ASSIGNED_COURSE_SUCCESS_MESSAGE = "Course assigned successfully";
 
-	public static final String COURSE_NAME = "Activity course";
+	public static final String COURSE_NAME = "Automation Testing Course Name";
+
+	public static final String EMAIL = "userautomation1762757455476724@ditstek.com";
+	public static final String EMAIL_PRIMARY = "userautomation1762757455476724@ditstek.com";
 
 }

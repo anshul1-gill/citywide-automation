@@ -126,6 +126,12 @@ public class FieldAgentFieldInterviewPage {
 	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 	private By sucessMessage = By.xpath("//div[@role='alert']/h2");
 
+	// Edit Field Interview
+	private By getEditButtonLocator(String incidentNumber) {
+		String xpath = String.format("//a[normalize-space()='%s']/../following-sibling::td//button[@title='Edit Field Interview']", incidentNumber);
+		return By.xpath(xpath);
+	}
+
 	public FieldAgentFieldInterviewPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
@@ -287,6 +293,11 @@ public class FieldAgentFieldInterviewPage {
 
 	public String getSucessMessage() {
 		return elementUtils.waitForElementVisible(sucessMessage, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public void clickOnEditButton(String incidentNumber) throws InterruptedException {
+		elementUtils.waitForElementVisible(getEditButtonLocator(incidentNumber), Constants.DEFAULT_WAIT).click();
+		Thread.sleep(2000);
 	}
 
 }

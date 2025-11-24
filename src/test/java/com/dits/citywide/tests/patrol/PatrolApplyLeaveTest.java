@@ -27,6 +27,8 @@ public class PatrolApplyLeaveTest extends BaseTest {
 				PatrolConstants.LEAVE_END_TIME, PatrolConstants.LEAVE_DESCRIPTION);
 		patrolLeaveRequestsPage.doApplyLeave();
 
+		patrolLeaveRequestsPage.applyDefaultDateFilters();
+
 		softAssert.assertTrue(patrolLeaveRequestsPage.isAddLeaveRequestButtonDisplayed());
 
 		softAssert.assertEquals(patrolLeaveRequestsPage.getLeaveType(), PatrolConstants.LEAVE_TYPE);

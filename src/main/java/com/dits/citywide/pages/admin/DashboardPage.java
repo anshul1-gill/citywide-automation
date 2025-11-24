@@ -28,6 +28,7 @@ public class DashboardPage {
 	private By lnkFleetManagement = By.xpath("//span[normalize-space()='Fleet Management']");
 	private By lnkPayroll = By.xpath("//span[normalize-space()='Payroll']");
 	private By lnkInvoice = By.xpath("//span[normalize-space()='Invoice']");
+	private By lnkClient  =By.xpath("//span[normalize-space()='Clients']");
 
 	// Logout
 	private By btnLogout = By.id("user-menu-item-2");
@@ -191,6 +192,10 @@ public class DashboardPage {
 	public InvoicePage doClickInvoice() {
 		elementUtils.waitForElementToBeClickable(lnkInvoice, Constants.DEFAULT_WAIT).click();
 		return new InvoicePage(driver);
+	}
+	public ClientPage doClickClient() {
+		elementUtils.waitForElementToBeClickable(lnkClient, Constants.DEFAULT_WAIT).click();
+		return new ClientPage(driver);
 	}
 
 }

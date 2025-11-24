@@ -23,6 +23,7 @@ public class FieldAgentStartShiftPage {
 //			"//div[@class='flex items-center justify-between px-3 py-2 text-white rounded-t-lg bg-blue2 dark:bg-blue2']/h2");
 	private By btnMarkAsRead = By.xpath("//div[@class='flex items-center gap-3']/button");
 	private By tabStartShift = By.xpath("(//span[contains(text(),'Start Shift')])[1]");
+	private By tabOpenSites = By.xpath("//span[normalize-space()='Sites']");
 
 	private By getDateLocator(String day) {
 		return By.xpath(
@@ -33,7 +34,10 @@ public class FieldAgentStartShiftPage {
 	private By loader = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 	private By btnViewSite = By.xpath("//span[normalize-space()='View Site']");
 	private By btnStartShift = By.xpath("(//span[contains(text(),'Start Shift')])[2]");
-	private By btnConfirmShift = By.xpath("//span[normalize-space()='Confirm']");
+	private By btnConfirmShift = By.xpath("//span[normalize-space()='Confirm/Reject multiple shifts']");
+	private By selectCheckbox = By.xpath( "//tr[.//td[contains(@data-label,'Shift') and .//span[normalize-space()='Pending']]] //label[contains(@class,'ant-checkbox-wrapper')]");
+	private By Confirmbtn = By.xpath("//button[normalize-space()='Confirm']");
+	
 	private By btnRejectShift = By.xpath("//span[normalize-space()='Reject']");
 	private By txtboxRejectReason = By.xpath("//textarea[@id='reason']");
 	private By btnSaveRejectReason = By.xpath("//button[@type='submit']");
@@ -46,8 +50,15 @@ public class FieldAgentStartShiftPage {
 	private By dataServiceType = By.xpath("//label[contains(text(),'Service Type')]/following-sibling::p");
 	private By dataAddress = By.xpath("//label[contains(text(),'Address')]/following-sibling::p");
 	private By dataNotes = By.xpath("//label[contains(text(),'Notes')]/following-sibling::p");
+	
+	private By btnStartBreak = By.xpath("//button[normalize-space()='Start Break']");
+	private By SelectBreak = By.xpath("//a[normalize-space()='Lunch Break']");
+	private By StartedSuccessmessage = By.xpath("//div[contains(text(),'Break Started')]");
+	private By EndBreakbutton = By.xpath("//span[@id='countup-timer']");
+	private By EndSuccessmessage = By.xpath("//div[contains(text(),'Break Ended')]");
+	
 
-	private By btnEndShift = By.xpath("//span[contains(text(),'End Shift')]");
+	private By btnEndShift = By.xpath("//button[contains(text(),'End Shift')]");
 
 	// Start Shift Page
 	private By nameFieldAgentWithWelcome = By.xpath("//h3[contains(@class,'text-primary')]");
@@ -125,50 +136,50 @@ public class FieldAgentStartShiftPage {
 	}
 
 	public void doClickTabStartShift() {
-		elementUtils.waitForElementToBeClickable(tabStartShift, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(tabStartShift, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public void viewShiftDetails(String day) throws InterruptedException {
-		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.EXPLICIT_WAIT);
 		Thread.sleep(1000);
 		if (day.length() == 1) {
 			day = "0" + day;
 		}
-		elementUtils.doClickWithActionsAndWait(getDateLocator(day), Constants.DEFAULT_WAIT);
+		elementUtils.doClickWithActionsAndWait(getDateLocator(day), Constants.EXPLICIT_WAIT);
 	}
 
 	public String getSite() {
-		return elementUtils.waitForElementVisible(dataSite, Constants.DEFAULT_WAIT).getText();
+		return elementUtils.waitForElementVisible(dataSite, Constants.EXPLICIT_WAIT).getText();
 	}
 
 	public boolean getSchedule() {
-		return elementUtils.doIsDisplayed(dataSchedule, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(dataSchedule, Constants.EXPLICIT_WAIT);
 	}
 
 	public boolean getServiceType() {
-		return elementUtils.doIsDisplayed(dataServiceType, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(dataServiceType, Constants.EXPLICIT_WAIT);
 	}
 
 	public boolean getAddress() {
-		return elementUtils.doIsDisplayed(dataAddress, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(dataAddress, Constants.EXPLICIT_WAIT);
 	}
 
 	public String getNotes() {
-		return elementUtils.waitForElementVisible(dataNotes, Constants.DEFAULT_WAIT).getText();
+		return elementUtils.waitForElementVisible(dataNotes, Constants.EXPLICIT_WAIT).getText();
 	}
 
 	public void doClickViewSite() {
-		elementUtils.waitForElementToBeClickable(btnViewSite, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnViewSite, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public boolean isViewSiteVisible() {
-		return elementUtils.doIsDisplayed(btnViewSite, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(btnViewSite, Constants.EXPLICIT_WAIT);
 	}
 
 	// Start Shift
 	public void doClickStartShift() {
-		elementUtils.waitForInvisibilityOfElementLocated(txtSucessMessagePreviousShiftLogout, Constants.DEFAULT_WAIT);
-		elementUtils.waitForElementToBeClickable(btnStartShift, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForInvisibilityOfElementLocated(txtSucessMessagePreviousShiftLogout, Constants.EXPLICIT_WAIT);
+		elementUtils.waitForElementToBeClickable(btnStartShift, Constants.EXPLICIT_WAIT).click();
 		String currenttimeStartShift = ServerTimeUtil.getServerTimeInPST();
 		System.out.println("Start Shift Time: " + currenttimeStartShift);
 	}
@@ -188,166 +199,200 @@ public class FieldAgentStartShiftPage {
 	}
 
 	public boolean isStartShiftButtonVisible() {
-		return elementUtils.doIsDisplayed(btnStartShift, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(btnStartShift, Constants.EXPLICIT_WAIT);
 	}
 
 	public void doClickConfirmShift() {
-		elementUtils.waitForElementToBeClickable(btnConfirmShift, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnConfirmShift, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public boolean isConfirmShiftButtonVisible() {
-		return elementUtils.doIsDisplayed(btnConfirmShift, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(btnConfirmShift, Constants.EXPLICIT_WAIT);
+	}
+	
+	public void doSelectCheckbox() throws InterruptedException {
+		Thread.sleep(500);
+		elementUtils.waitForElementToBeClickable(selectCheckbox, Constants.EXPLICIT_WAIT).click();
+	}
+	
+	public void doClickConfirmShiftbutton() {
+		elementUtils.waitForElementToBeClickable(Confirmbtn, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public void doClickRejectShift() {
-		elementUtils.waitForElementToBeClickable(btnRejectShift, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnRejectShift, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public boolean isRejectShiftButtonVisible() {
-		return elementUtils.doIsDisplayed(btnRejectShift, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(btnRejectShift, Constants.EXPLICIT_WAIT);
 	}
 
 	public void enterRejectReason(String reason) {
-		elementUtils.waitForElementVisible(txtboxRejectReason, Constants.DEFAULT_WAIT).sendKeys(reason);
+		elementUtils.waitForElementVisible(txtboxRejectReason, Constants.EXPLICIT_WAIT).sendKeys(reason);
 	}
 
 	public void doClickSaveRejectReason() {
-		elementUtils.waitForElementToBeClickable(btnSaveRejectReason, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnSaveRejectReason, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public void doClickOkButton() {
-		elementUtils.waitForElementToBeClickable(btnOk, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnOk, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public void doClickCancelButton() {
-		elementUtils.waitForElementToBeClickable(btnCancel, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnCancel, Constants.EXPLICIT_WAIT).click();
 	}
+	
+	// Start Break
+	public boolean isStartBreakButtonVisible() {
+		return elementUtils.doIsDisplayed(btnStartBreak, Constants.EXPLICIT_WAIT);
+	}
+	
+	public void doClickStartBreak() {
+		elementUtils.waitForElementToBeClickable(btnStartBreak, Constants.EXPLICIT_WAIT).click();
+	}
+	
+	public void doSelectBreak() {
+		elementUtils.waitForElementToBeClickable(SelectBreak, Constants.EXPLICIT_WAIT).click();
+	}
+	
+	public String getSuccessBreakMessage() {
+		return elementUtils.waitForElementVisible(StartedSuccessmessage, Constants.EXPLICIT_WAIT).getText();
+	}
+	public void doClickEndBreak() {
+		elementUtils.waitForElementToBeClickable(EndBreakbutton, Constants.EXPLICIT_WAIT).click();
+	}
+	public String getSuccessBreakEndMessage() {
+		return elementUtils.waitForElementVisible(EndSuccessmessage, Constants.EXPLICIT_WAIT).getText();
+	}
+	
+	
 
 	// End Shift
 	public boolean isEndShiftButtonVisible() {
-		return elementUtils.doIsDisplayed(btnEndShift, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(btnEndShift, Constants.EXPLICIT_WAIT);
 	}
 
 	public FieldAgentReportsPage doClickEndShift() {
-		elementUtils.waitForElementToBeClickable(btnEndShift, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnEndShift, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentReportsPage(driver);
 	}
 
 	// Start Shift Page
 	public String getFieldAgentNameWithWelcome() {
-		return elementUtils.waitForElementVisible(nameFieldAgentWithWelcome, Constants.DEFAULT_WAIT).getText();
+		return elementUtils.waitForElementVisible(nameFieldAgentWithWelcome, Constants.EXPLICIT_WAIT).getText();
 	}
 
 	public String getWelcomeDescriptionText() {
-		return elementUtils.waitForElementVisible(txtWelcomeDescription, Constants.DEFAULT_WAIT).getText();
+		return elementUtils.waitForElementVisible(txtWelcomeDescription, Constants.EXPLICIT_WAIT).getText();
 	}
 
 	public FieldAgentReportsPage doClickStartShiftBegin() {
-		elementUtils.waitForInvisibilityOfElementLocated(txtHeadingPreviousShiftLogout, Constants.DEFAULT_WAIT);
-		elementUtils.waitForElementToBeClickable(btnStartShiftBegin, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForInvisibilityOfElementLocated(txtHeadingPreviousShiftLogout, Constants.EXPLICIT_WAIT);
+		elementUtils.waitForElementToBeClickable(btnStartShiftBegin, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentReportsPage(driver);
 	}
 
 	public FieldAgentCallsPage doClickCallsTab() {
-		elementUtils.waitForElementToBeClickable(tabCalls, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(tabCalls, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentCallsPage(driver);
 	}
 
 	public FieldAgentReportsPage clickOnReportsTab() {
-		elementUtils.waitForElementToBeClickable(btnReportsTab, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnReportsTab, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentReportsPage(driver);
 	}
 
 	// HR Management
 	public void clickOnHRManagementMenu() {
-		elementUtils.waitForElementToBeClickable(menuHRManagement, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(menuHRManagement, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public FieldAgentLeaveRequestsPage clickOnLeaveRequestsTab() {
-		elementUtils.waitForElementToBeClickable(tabLeaverequests, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(tabLeaverequests, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentLeaveRequestsPage(driver);
 	}
 
 	public FieldAgentMyCoursesPage clickOnMyCoursesTab() {
-		elementUtils.waitForElementToBeClickable(tabMyCourses, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(tabMyCourses, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentMyCoursesPage(driver);
 	}
 
 	public FieldAgentMyAttendancePage clickOnMyAttendanceTab() {
-		elementUtils.waitForElementToBeClickable(tabMyAttendance, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(tabMyAttendance, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentMyAttendancePage(driver);
 	}
 
 	public String getSuccessMessage() {
-		return elementUtils.waitForElementVisible(sucessMessage, Constants.DEFAULT_WAIT).getText();
+		return elementUtils.waitForElementVisible(sucessMessage, Constants.EXPLICIT_WAIT).getText();
 	}
 
 	// Confirm Reject Multiple Shifts
 	public void doClickConfirmRejectMultipleShifts() {
-		elementUtils.waitForElementToBeClickable(btnConfirmRejectMultipleShifts, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnConfirmRejectMultipleShifts, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public boolean isHeadingMyShiftsVisible() {
-		return elementUtils.doIsDisplayed(txtHeadingMyShifts, Constants.DEFAULT_WAIT);
+		return elementUtils.doIsDisplayed(txtHeadingMyShifts, Constants.EXPLICIT_WAIT);
 	}
 
 	public void doClickSelectAllShifts() {
-		elementUtils.waitForElementToBeClickable(checkboxSelectAllShifts, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(checkboxSelectAllShifts, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public void doClickConfirm() {
-		elementUtils.waitForElementToBeClickable(btnConfirm, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnConfirm, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public void doClickReject() {
-		elementUtils.waitForElementToBeClickable(btnReject, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnReject, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public void enterRejectReasonMultipleShifts(String reason) {
-		elementUtils.waitForElementVisible(txtboxRejectReasonMultipleShifts, Constants.DEFAULT_WAIT).sendKeys(reason);
+		elementUtils.waitForElementVisible(txtboxRejectReasonMultipleShifts, Constants.EXPLICIT_WAIT).sendKeys(reason);
 	}
 
 	public void doClickSaveRejectReasonMultipleShifts() {
-		elementUtils.waitForElementToBeClickable(btnSaveRejectReasonMultipleShifts, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnSaveRejectReasonMultipleShifts, Constants.EXPLICIT_WAIT).click();
 	}
 
 	public FieldAgentPassdownLogsPage clickOnPassdownLogsTab() {
-		elementUtils.waitForElementToBeClickable(tabPassdownLogs, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(tabPassdownLogs, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentPassdownLogsPage(driver);
 	}
 
 	public FieldAgentProfileDetailsPage clickOnProfile() {
-		elementUtils.waitForElementToBeClickable(tabProfileMenu, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementToBeClickable(btnProfile, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(tabProfileMenu, Constants.EXPLICIT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnProfile, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentProfileDetailsPage(driver);
 	}
 
 	public FieldAgentTeamSupportPage clickOnTeamSupportTab() {
-		elementUtils.waitForElementToBeClickable(tabTeamSupport, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(tabTeamSupport, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentTeamSupportPage(driver);
 	}
 
 	public FieldAgentParkingCitationPage clickOnParkingCitationFormLink() {
-		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementToBeClickable(parkingCitationFormLink, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.EXPLICIT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(parkingCitationFormLink, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentParkingCitationPage(driver);
 	}
 
 	public FieldAgentTrespassNoticesPage clickOnTrespassNoticesFormLink() {
-		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementToBeClickable(trespassNoticesFormLink, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.EXPLICIT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(trespassNoticesFormLink, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentTrespassNoticesPage(driver);
 	}
 
 	public FieldAgentFieldInterviewPage clickOnFieldInterviewFormLink() {
-		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementToBeClickable(fieldInterviewFormLink, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.EXPLICIT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(fieldInterviewFormLink, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentFieldInterviewPage(driver);
 	}
 
 	public FieldAgentIncidentReportsPage clickOnIncidentReportFormLink() {
-		elementUtils.waitForElementToBeClickable(formsclick, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementToBeClickable(incidentReportFormLink, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(formsclick, Constants.EXPLICIT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(incidentReportFormLink, Constants.EXPLICIT_WAIT).click();
 		return new FieldAgentIncidentReportsPage(driver);
 	}
 
@@ -408,5 +453,17 @@ public class FieldAgentStartShiftPage {
 			System.out.println("Exception while handling 'Passdown of a day': " + e.getMessage());
 		}
 	}
+
+	public FieldAgentOpenSitesPage navigateToOpenSitesTab() throws InterruptedException {
+		elementUtils.waitForElementToBeClickable(tabOpenSites, Constants.EXPLICIT_WAIT).click();
+		Thread.sleep(1000); // Wait for tab to load, adjust as needed
+		return new FieldAgentOpenSitesPage(driver);
+	}
+
+	public void selectUserByName(String officerName) {
+        // This assumes there is a clickable element (e.g., a row or link) with the officer's name visible
+        By userRow = By.xpath("//*[text()='" + officerName + "']");
+        elementUtils.waitForElementToBeClickable(userRow, 10).click();
+    }
 
 }

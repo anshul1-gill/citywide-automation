@@ -27,8 +27,8 @@ public class UpdateChargesTest extends BaseTest {
 		softAssert.assertEquals(violationsPage.getSuccessMessage(),
 				CompanySettingsConstant.UPDATE_CHARGE_SUCCESS_MESSAGE, "Charges updated successfully");
 		violationsPage.clickChargesTab();
-		softAssert.assertEquals(violationsPage.getChargesName(), "Updated Charge Code");
-		softAssert.assertEquals(violationsPage.getChargesDescription(), "Updated Charge Description");
+		softAssert.assertEquals(violationsPage.getChargesName(), CompanySettingsConstant.CHARGE_EDIT_CODE);
+		softAssert.assertEquals(violationsPage.getChargesDescription(), CompanySettingsConstant.CHARGE_EDIT_DESCRIPTION);
 
 		softAssert.assertAll();
 	}

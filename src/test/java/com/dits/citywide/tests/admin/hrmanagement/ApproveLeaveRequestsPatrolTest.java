@@ -20,6 +20,13 @@ public class ApproveLeaveRequestsPatrolTest extends BaseTest {
 		Thread.sleep(6000);
 		leaveRequestsPage = dashboardPage.doClickLeaveRequests();
 
+		// Construct start and end date strings for filter (format: yyyy-MM-dd)
+		String startDate = PatrolConstants.LEAVE_FROM_YEAR + "-" + PatrolConstants.LEAVE_FROM_MONTH + "-" + PatrolConstants.LEAVE_FROM_DATE;
+		String endDate = PatrolConstants.LEAVE_TO_YEAR + "-" + PatrolConstants.LEAVE_TO_MONTH + "-" + PatrolConstants.LEAVE_TO_DATE;
+		// If LEAVE_TO_YEAR, LEAVE_TO_MONTH, LEAVE_TO_DATE are not defined, use the corresponding constants for 'to' date
+
+		leaveRequestsPage.applyDateFilters(startDate, endDate);
+
 		softAssert.assertTrue(leaveRequestsPage.isAddLeaveRequestButtonDisplayed());
 		leaveRequestsPage.doSearchLeaveRequest(prop.getProperty("patrolID"));
 

@@ -108,12 +108,12 @@ public class TeamSupportTemplatePage {
 		elementUtils.waitForElementVisible(assignedToSearch, Constants.DEFAULT_WAIT).sendKeys(assignedto);
 		Thread.sleep(2000);
 		elementUtils.pressEnterKey();
-		elementUtils.waitForElementToBeClickable(txtboxDescriptionMaker, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(decisionMakerSearch, Constants.DEFAULT_WAIT).sendKeys(decisionmaker);
-		Thread.sleep(2000);
-		elementUtils.pressEnterKey();
-		elementUtils.waitForElementVisible(btnzdropdownStatus, Constants.DEFAULT_WAIT).click();
-		elementUtils.waitForElementVisible(getStatusLocator(status), Constants.DEFAULT_WAIT).click();
+//		elementUtils.waitForElementToBeClickable(txtboxDescriptionMaker, Constants.DEFAULT_WAIT).click();
+//		elementUtils.waitForElementVisible(decisionMakerSearch, Constants.DEFAULT_WAIT).sendKeys(decisionmaker);
+//		Thread.sleep(2000);
+//		elementUtils.pressEnterKey();
+//		elementUtils.waitForElementVisible(btnzdropdownStatus, Constants.DEFAULT_WAIT).click();
+//		elementUtils.waitForElementVisible(getStatusLocator(status), Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(txtDescription, Constants.DEFAULT_WAIT).sendKeys(description);
 	}
 //

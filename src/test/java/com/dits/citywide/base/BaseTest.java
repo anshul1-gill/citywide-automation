@@ -18,6 +18,7 @@ import com.dits.citywide.pages.admin.BeatsPage;
 import com.dits.citywide.pages.admin.BreaksPage;
 import com.dits.citywide.pages.admin.CallsPage;
 import com.dits.citywide.pages.admin.CertificatesPage;
+import com.dits.citywide.pages.admin.ClientPage;
 import com.dits.citywide.pages.admin.CompanySettingsPage;
 import com.dits.citywide.pages.admin.CourseCategoriesPage;
 import com.dits.citywide.pages.admin.DashboardPage;
@@ -51,17 +52,30 @@ import com.dits.citywide.pages.fieldagent.FieldAgentIncidentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentLeaveRequestsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyAttendancePage;
 import com.dits.citywide.pages.fieldagent.FieldAgentMyCoursesPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentParkingCitationPage;
+import com.dits.citywide.pages.fieldagent.FieldAgentPassdownLogsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentReportsPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentStartShiftPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentTeamSupportPage;
 import com.dits.citywide.pages.fieldagent.FieldAgentTrespassNoticesPage;
-import com.dits.citywide.pages.fieldagent.FieldAgentParkingCitationPage;
-import com.dits.citywide.pages.fieldagent.FieldAgentPassdownLogsPage;
 import com.dits.citywide.pages.patrol.PatrolBeatsPage;
 import com.dits.citywide.pages.patrol.PatrolLeaveRequestsPage;
 import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
 import com.dits.citywide.pages.patrol.PatrolVehicleInspectionPage;
+import com.dits.citywide.pages.patrol.PatrolAgentPassdownLogsPage;
+import com.dits.citywide.pages.admin.RankAndPositionPage;
+import com.dits.citywide.pages.admin.AssignmentTemplatePage;
+import com.dits.citywide.pages.admin.CompanyDetailsPage;
+import com.dits.citywide.pages.admin.BranchPage;
+import com.dits.citywide.pages.admin.BranchListingPage;
+import com.dits.citywide.pages.admin.RolesPermissionPage;
+import com.dits.citywide.pages.admin.MassMailPage;
+import com.dits.citywide.pages.admin.SystemLogsPage;
+import com.dits.citywide.pages.admin.NotificationsPage;
+import com.dits.citywide.pages.admin.SystemConfigPage;
+
+
 
 public class BaseTest {
 
@@ -103,6 +117,7 @@ public class BaseTest {
 	public PatrolStartShiftPage patrolStartShiftPage;
 	public PatrolBeatsPage patrolBeatsPage;
 	public PatrolVehicleInspectionPage patrolVehicleInspectionPage;
+	public PatrolAgentPassdownLogsPage patrolAgentPassdownLogsPage; // Added new patrol agent passdown page object
 	public UpdateEmployeePage updateEmployeePage;
 	public ERMPage ermPage;
 	public ERMSettingsPage ermSettingsPage;
@@ -123,6 +138,17 @@ public class BaseTest {
 	public PayrollPage payrollPage;
 	public InvoicePage invoicePage;
 	public MassEmailPage massEmailPage;
+	public RankAndPositionPage rankAndPositionPage;
+	public AssignmentTemplatePage assignmentTemplatePage;
+	public CompanyDetailsPage companyDetailsPage;
+	public BranchPage branchPage;
+	public BranchListingPage branchListingPage;
+	public RolesPermissionPage rolesPermissionPage;
+	public MassMailPage massMailPage;
+	public SystemLogsPage systemLogsPage;
+	public NotificationsPage notificationsPage;
+	public SystemConfigPage systemConfigPage;
+	public ClientPage clientPage; // restored missing field for AddClientTest
 
 	@BeforeClass
 	public void browserSetUp() {
@@ -135,7 +161,8 @@ public class BaseTest {
 
 	@AfterClass
 	public void tearDown() {
-		driver.quit();
+		if (driver != null) {
+			driver.quit();
+		}
 	}
-
 }

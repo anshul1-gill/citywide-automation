@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Client Regression Suite" verbose="1" parallel="false">
+  
+  <test name="Client Open Screens" preserve-order="true">
+    <classes>
+	<class 
+	name="com.dits.citywide.tests.operationhub.AddClientTest"/>
+	<class
+		name="com.dits.citywide.tests.Client.ClientModuleTest"/>
+
+
+    </classes>
+  </test>
+</suite>

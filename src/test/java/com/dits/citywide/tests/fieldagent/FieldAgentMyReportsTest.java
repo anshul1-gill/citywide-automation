@@ -145,7 +145,7 @@ public class FieldAgentMyReportsTest extends BaseTest {
 //		softAssert.assertTrue(fieldAgentReportsPage.isAllReportsButtonVisible());
 
 		fieldAgentReportsPage.clickSubmitReports();
-		fieldAgentReportsPage.clickOkButton();
+//		fieldAgentReportsPage.clickOkButton();
 		softAssert.assertEquals(fieldAgentReportsPage.getNoDataFoundText(), FieldAgentConstants.NO_DATA_FOUND_TEXT,
 				"No Data Found text mismatch!");
 

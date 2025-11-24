@@ -5,6 +5,7 @@ import java.io.File;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.utilities.Calendar;
@@ -288,7 +289,7 @@ public class AddEmployeePage {
 
 	private By txtboxCommissionRate = By.id("Pay Information_commission_info_0_commission_rate");
 
-	private By dropdownCommissionCycle = By.xpath("(//span[contains(@class,'ant-select-selection-search')])[4]");
+	private By dropdownCommissionCycle = By.xpath("(//span[contains(@class='ant-select-selection-search')])[4]");
 	private By dropdownSearchCommissionCycle = By.id("Pay Information_commission_info_0_commission_cycle");
 
 	private By calenderEffectiveDate = By.xpath("//div[@class='ant-picker-input']");
@@ -396,9 +397,20 @@ public class AddEmployeePage {
 		elementUtils.doClickWithActions(genderElement);
 		elementUtils.selectElementThroughLocator(genderValues, gender, Constants.SHORT_TIME_OUT_WAIT);
 
-		elementUtils.waitForElementToBeVisibleAndEnabled(birthDatecalender, Constants.DEFAULT_WAIT);
-		elementUtils.waitForElementToBeClickable(birthDatecalender, Constants.SHORT_TIME_OUT_WAIT).click();
-		Calendar.selectDatePrevious(driver, month, Year, date);
+		WebElement birthDateInput = elementUtils.waitForElementVisible(birthDatecalender, Constants.DEFAULT_WAIT);
+		birthDateInput.click();
+		// Wait for calendar popup to be visible
+		try {
+			WebElement calendarPopup = elementUtils.waitForElementVisible(By.className("ant-picker-panel"), Constants.DEFAULT_WAIT);
+			if (calendarPopup != null && calendarPopup.isDisplayed()) {
+				System.out.println("Calendar popup is visible, selecting date...");
+				Calendar.selectDatePrevious(driver, month, Year, date);
+			} else {
+				System.out.println("Calendar popup not visible after clicking birthdate input.");
+			}
+		} catch (Exception e) {
+			System.out.println("Exception waiting for calendar popup: " + e.getMessage());
+		}
 
 		elementUtils.waitForElementVisible(txtboxSocialSecurityNumber, Constants.SHORT_TIME_OUT_WAIT)
 				.sendKeys(socialSecurityNumber);
@@ -484,7 +496,7 @@ public class AddEmployeePage {
 //		elementUtils.clickElementWithScroll(blacklistedSiteNamexpath, Constants.DEFAULT_WAIT);
 		Thread.sleep(2000);
 		elementUtils.doSendKeysAction(txtboxSiteSearch, siteName);
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 		elementUtils.pressEnterKey();
 		Thread.sleep(2000);
 	}
@@ -991,7 +1003,7 @@ public class AddEmployeePage {
 	}
 
 	public void fillPayInformation(String employeePayRate, String payCycle, String allowanceRate,
-			String allowanceType) {
+			String allowanceType) throws InterruptedException {
 
 		elementUtils.waitForElementVisible(txtboxEmployeePayRate, Constants.SHORT_TIME_OUT_WAIT)
 				.sendKeys(employeePayRate);
@@ -999,10 +1011,13 @@ public class AddEmployeePage {
 		WebElement payCycleElement = elementUtils.waitForElementToBeClickable(dropdownPayCycle,
 				Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(payCycleElement);
-		WebElement dynamicPayCycle = elementUtils.waitForElementVisible(
-				By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='" + payCycle + "']"),
-				Constants.SHORT_TIME_OUT_WAIT);
-		dynamicPayCycle.click();
+//		WebElement dynamicPayCycle = elementUtils.waitForElementVisible(
+//				By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='" + payCycle + "']"),
+//				Constants.SHORT_TIME_OUT_WAIT);		
+		Thread.sleep(3000);
+	elementUtils.doClickWithActionsAndWait(By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='" + payCycle + "']"), Constants.DEFAULT_WAIT);
+		
+//		dynamicPayCycle.click();
 
 //		elementUtils.waitForElementToBeClickable(checkboxAdditionalPay, Constants.DEFAULT_WAIT).click();
 //
@@ -1018,7 +1033,7 @@ public class AddEmployeePage {
 	}
 
 	public void fillCommissionInfo(String commissionName, String commissionType, String commissionRate,
-			String CommissionCycle, String effectiveDate) {
+			String CommissionCycle, String effectiveDate) throws InterruptedException {
 
 		elementUtils.waitForElementVisible(txtboxCommissionName, Constants.SHORT_TIME_OUT_WAIT)
 				.sendKeys(commissionName);
@@ -1026,11 +1041,9 @@ public class AddEmployeePage {
 		WebElement payCycleElement = elementUtils.waitForElementToBeClickable(dropdownCommissionType,
 				Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(payCycleElement);
+		Thread.sleep(3000);
 		elementUtils.clickByLocator(dropdownSearchCommissionType);
-		WebElement commissiontype = elementUtils.waitForElementVisible(
-				By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='" + commissionType + "']"),
-				Constants.SHORT_TIME_OUT_WAIT);
-		commissiontype.click();
+		elementUtils.doClickWithActionsAndWait(By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='" + commissionType + "']"), Constants.DEFAULT_WAIT);
 
 		elementUtils.waitForElementVisible(txtboxCommissionRate, Constants.SHORT_TIME_OUT_WAIT)
 				.sendKeys(commissionRate);

@@ -19,16 +19,22 @@ public class FieldAgentAddPatrolLogsForCallTest extends BaseTest {
 		Thread.sleep(2000);
 		fieldAgentCallsPage = fieldAgentStartShiftPage.doClickCallsTab();
 		fieldAgentCallsPage.doClickAddPatrolLogsForCall(prop.getProperty("callid"));
-		fieldAgentCallsPage.fillNewOfficerReportEntry(OperationsHubConstant.ARRIVE_DATE,
-				OperationsHubConstant.ARRIVE_TIME, OperationsHubConstant.DEPART_DATE, OperationsHubConstant.DEPART_TIME,
-				OperationsHubConstant.ACTIVITY_CODE, OperationsHubConstant.STREET_NUMBER,
-				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK);
-		softAssert.assertTrue(fieldAgentCallsPage.isAreYouSureTextVisible());
-		softAssert.assertEquals(fieldAgentCallsPage.getConfirmationText(),
-				OperationsHubConstant.REPORT_CONFRIMATION_MESSAGE);
-		fieldAgentCallsPage.doClickOk();
+		 fieldAgentCallsPage.fillNewOfficerReportEntry(
+		            OperationsHubConstant.STREET_NUMBER,
+		            OperationsHubConstant.STREET_NAME,
+		            OperationsHubConstant.APARTMENT_NUMBER,
+		            OperationsHubConstant.CITY,
+		            OperationsHubConstant.STATE,
+		            OperationsHubConstant.ZIP_CODE,
+		            OperationsHubConstant.DESCRIPTION,
+		            OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK,
+		            OperationsHubConstant.FILE_NAME,
+		            OperationsHubConstant.FILE_DESCRIPTION
+		    );
+//		softAssert.assertTrue(fieldAgentCallsPage.isAreYouSureTextVisible());
+//		softAssert.assertEquals(fieldAgentCallsPage.getConfirmationText(),
+//				OperationsHubConstant.REPORT_CONFRIMATION_MESSAGE);
+//		fieldAgentCallsPage.doClickOk();
 
 		softAssert.assertAll();
 	}

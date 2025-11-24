@@ -7,5 +7,6 @@ public class Constants {
 	public static final int SHORT_TIME_OUT_WAIT = 30;
 	public static final int MEDIUM_TIME_OUT_WAIT = 120;
 	public static final int LONG_TIME_OUT_WAIT = 180;
+	public static final int EXPLICIT_WAIT = 15;
 
 }

@@ -47,7 +47,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 				HRManagementConstants.ALTERNATE_PHONE_NUMBER, HRManagementConstants.EMERGENCY_NAME,
 				HRManagementConstants.EMERGENCY_PHONE_NUMBER, HRManagementConstants.EMERGENCY_RELATIONSHIP,
 				HRManagementConstants.PASSWORD, HRManagementConstants.CONFIRM_PASSWORD, HRManagementConstants.BRANCHES);
-		addEmployeePage.fillSiteName(HRManagementConstants.SITE);
+//		addEmployeePage.fillSiteName(HRManagementConstants.SITE);
 
 		addEmployeePage.fillResidenceAddress(HRManagementConstants.RESIDENCE_ADDRESS_STREET_NAME,
 				HRManagementConstants.RESIDENCE_ADDRESS_STREET, HRManagementConstants.RESIDENCE_ADDRESS_STE_NUMBER,
@@ -181,6 +181,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 		addEmployeePage.doClickPayInformationTab();
 		addEmployeePage.fillPayInformation(HRManagementConstants.EMPLOYEE_PAY_RATE, HRManagementConstants.PAY_CYCYLE,
 				HRManagementConstants.ALLOWANCE_RATE, HRManagementConstants.ALLOWANCE_TYPE);
+		Thread.sleep(3000);
 		addEmployeePage.fillCommissionInfo(HRManagementConstants.COMMISSION_NAME, HRManagementConstants.COMMISSION_TYPE,
 				HRManagementConstants.COMMISSION_RATE, HRManagementConstants.COMMISSION_CYCLE,
 				HRManagementConstants.EFFECTIVE_DATE);

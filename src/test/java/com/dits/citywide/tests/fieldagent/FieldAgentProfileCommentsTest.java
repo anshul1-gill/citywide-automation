@@ -20,6 +20,8 @@ public class FieldAgentProfileCommentsTest extends BaseTest {
 		fieldAgentStartShiftPage.clickOnHRManagementMenu();
 		fieldAgentProfileDetailsPage = fieldAgentStartShiftPage.clickOnProfile();
 		fieldAgentProfileDetailsPage.clickCommentsTab();
+		// Optionally validate the Comments tab is loaded
+		fieldAgentProfileDetailsPage.validateCommentsTab();
 
 		// Common Assertions
 		softAssert.assertEquals(fieldAgentProfileDetailsPage.getHeadingText(), "Comments",
@@ -58,8 +60,7 @@ public class FieldAgentProfileCommentsTest extends BaseTest {
 			fieldAgentProfileDetailsPage.fillReasonTextBox(FieldAgentConstants.REASON_TEXT);
 			fieldAgentProfileDetailsPage.clickSubmit();
 			softAssert.assertEquals(fieldAgentProfileDetailsPage.getSuccessMessage(),
-					FieldAgentConstants.SUCCESS_MESSAGE_COMMENT_AGREE, // <-- This might need a DISAGREE message
-																		// constant
+					FieldAgentConstants.SUCCESS_MESSAGE_COMMENT_AGREE,
 					"Success message after disagreeing to comment is not as expected");
 		} else {
 			throw new IllegalArgumentException("Invalid response: " + selectedResponse);

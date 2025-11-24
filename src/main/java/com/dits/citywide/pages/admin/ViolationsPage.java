@@ -12,7 +12,7 @@ public class ViolationsPage {
 	private ElementUtils elementUtils;
 
 	private By txtHeadingViolations = By.xpath("//h1[normalize-space()='Violations']");
-	private By btnAddNewViolations = By.xpath("//span[normalize-space()='Add New Violation']");
+	private By btnAddNewViolations = By.xpath("//span[normalize-space()='Add New Citation Violation']");
 	private By txtboxViolationName = By.xpath("//input[@id='violation']");
 	private By txtboxViolationDescription = By.xpath("//textarea[@id='description']");
 	private By dropdownBranch = By
@@ -25,17 +25,27 @@ public class ViolationsPage {
 	private By txtSuccessMessage = By.xpath("//div[@role='alert']/div/following-sibling::div");
 
 	private By dataBranchName = By.xpath("(//td[@data-label='Branch Name'])[1]");
-	private By dataViolationName = By.xpath("(//td[@data-label='Violation'])[1]");
+	private By dataViolationName = By.xpath("(//td[@data-label='Citation Violation'])[1]");
 	private By dataDescription = By.xpath("(//td[@data-label='Description'])[1]");
+	
+	//FI-Crime Potential
+	private By btnCrimeTab = By.xpath("(//div[@id='rc-tabs-0-tab-2'])[1]");
+	private By btnAddNewCrime = By.xpath("//span[normalize-space()='Add FI Crime Potential']");
+	private By txtboxCrimeName = By.xpath("//input[@id='violation']");
+	private By txtboxCrimeDescription = By.xpath("//textarea[@id='description']");
+	
+	private By dataCrimeName = By.xpath("(//td[@data-label='Crime Potential'])[1]");
+	private By dataCrimeDescription = By.xpath("(//td[@data-label='Description'])[1]");
+
 
 	// Charges
-	private By btnChargesTab = By.xpath("(//div[@id='rc-tabs-0-tab-2'])[1]");
+	private By btnChargesTab = By.xpath("(//div[@id='rc-tabs-0-tab-3'])[1]");
 	private By btnAddNewCharges = By.xpath("//span[normalize-space()='Add Charges']");
 	private By txtboxCodeName = By.xpath("//input[@id='code']");
 	private By txtboxCodeDescription = By.xpath("//textarea[@id='description']");
 
 	private By dataChargesName = By.xpath("(//td[@data-label='Code'])[1]");
-	private By dataChargesDescription = By.xpath("(//td[@data-label=\"Description\"])[11]");
+	private By dataChargesDescription = By.xpath("(//td[@data-label=\"Description\"])[1]");
 	
 	private By btnUpdateCharges = By.xpath("//span[normalize-space()='Update']");
 
@@ -56,13 +66,14 @@ public class ViolationsPage {
 		elementUtils.waitForElementToBeClickable(btnAddNewViolations, Constants.DEFAULT_WAIT).click();
 	}
 
-	public void fillAddNewViolationsForm(String violationName, String violationDescription, String branch)
+	public void fillAddNewViolationsForm(String violationName, String violationDescription)
 			throws InterruptedException {
 		elementUtils.waitForElementVisible(txtboxViolationName, Constants.DEFAULT_WAIT).sendKeys(violationName);
 		elementUtils.waitForElementVisible(txtboxViolationDescription, Constants.DEFAULT_WAIT)
 				.sendKeys(violationDescription);
 		elementUtils.waitForElementVisible(dropdownBranch, Constants.DEFAULT_WAIT).click();
-		elementUtils.selectElementThroughLocator(selectBranchValue, branch, Constants.DEFAULT_WAIT);
+		Thread.sleep(3000);
+//		elementUtils.selectElementThroughLocator(selectBranchValue, branch, Constants.DEFAULT_WAIT);
 		elementUtils.pressEscapeKey();
 	}
 
@@ -76,10 +87,10 @@ public class ViolationsPage {
 		return elementUtils.waitForElementVisible(txtSuccessMessage, Constants.DEFAULT_WAIT).getText();
 	}
 
-	public String getBranchName() {
-		elementUtils.waitForInvisibilityOfElementLocated(txtSuccessMessage, Constants.DEFAULT_WAIT);
-		return elementUtils.getText(dataBranchName, Constants.DEFAULT_WAIT);
-	}
+//	public String getBranchName() {
+//		elementUtils.waitForInvisibilityOfElementLocated(txtSuccessMessage, Constants.DEFAULT_WAIT);
+//		return elementUtils.getText(dataBranchName, Constants.DEFAULT_WAIT);
+//	}
 
 	public String getViolationName() {
 		elementUtils.waitForInvisibilityOfElementLocated(txtSuccessMessage, Constants.DEFAULT_WAIT);
@@ -170,6 +181,62 @@ public class ViolationsPage {
 	
 	public void clickUpdateChargesButton() {
 		elementUtils.waitForElementToBeClickable(btnUpdateCharges, Constants.DEFAULT_WAIT).click();
+	}
+
+	// FI-Crime Potential Methods
+	public void clickCrimeTab() {
+		elementUtils.waitForElementToBeClickable(btnCrimeTab, Constants.DEFAULT_WAIT).click();
+	}
+
+	public boolean isAddNewCrimeButtonVisible() {
+		return elementUtils.doIsDisplayed(btnAddNewCrime, Constants.DEFAULT_WAIT);
+	}
+
+	public void clickAddNewCrimeButton() {
+		elementUtils.waitForElementToBeClickable(btnAddNewCrime, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void fillAddNewCrimeForm(String crimeName, String crimeDescription) {
+		elementUtils.waitForElementVisible(txtboxCrimeName, Constants.DEFAULT_WAIT).sendKeys(crimeName);
+		elementUtils.waitForElementVisible(txtboxCrimeDescription, Constants.DEFAULT_WAIT).sendKeys(crimeDescription);
+	}
+
+	public void clickSaveCrimeButton() {
+		elementUtils.doClickWithActionsAndWait(btnSave, Constants.DEFAULT_WAIT);
+	}
+
+	public String getCrimeName() {
+		elementUtils.waitForInvisibilityOfElementLocated(txtSuccessMessage, Constants.DEFAULT_WAIT);
+		return elementUtils.waitForElementVisible(dataCrimeName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getCrimeDescription() {
+		elementUtils.waitForInvisibilityOfElementLocated(txtSuccessMessage, Constants.DEFAULT_WAIT);
+		return elementUtils.waitForElementVisible(dataCrimeDescription, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public void clickEditCrimeButton(String crimeName) {
+		String editxpath = "//td[normalize-space()='" + crimeName + "']/following-sibling::td//a[@class='cursor-pointer']";
+		elementUtils.waitForElementToBeClickable(By.xpath(editxpath), Constants.SHORT_TIME_OUT_WAIT).click();
+	}
+
+	public void updateCrime(String crimeName, String crimeDescription) {
+		elementUtils.waitForElementVisible(txtboxCrimeName, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxCrimeName);
+		elementUtils.doActionsSendKeys(txtboxCrimeName, crimeName);
+
+		elementUtils.waitForElementVisible(txtboxCrimeDescription, Constants.DEFAULT_WAIT);
+		elementUtils.clearTextBoxWithActions(txtboxCrimeDescription);
+		elementUtils.doActionsSendKeys(txtboxCrimeDescription, crimeDescription);
+	}
+
+	public void clickUpdateCrimeButton() {
+		elementUtils.waitForElementToBeClickable(btnUpdateViolation, Constants.DEFAULT_WAIT).click(); // Reuse update button
+	}
+
+	public void clickDeleteCrimeButton(String crimeName) {
+		String deletexpath = "//td[normalize-space()='" + crimeName + "']/following-sibling::td//div[@class='cursor-pointer']";
+		elementUtils.waitForElementToBeClickable(By.xpath(deletexpath), Constants.SHORT_TIME_OUT_WAIT).click();
 	}
 
 }

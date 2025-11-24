@@ -19,6 +19,7 @@ public class PatrolCancelLeaveTest extends BaseTest {
 		patrolStartShiftPage.handleMessageOfTheWeek();
 		patrolStartShiftPage.clickOnHRManagementMenu();
 		patrolLeaveRequestsPage = patrolStartShiftPage.clickOnLeaveRequestsTab();
+		patrolLeaveRequestsPage.applyDefaultDateFilters();
 		patrolLeaveRequestsPage.doClickCancelButton(prop.getProperty("patrolID"), PatrolConstants.EDIT_LEAVE_TYPE);
 		softAssert.assertEquals(patrolLeaveRequestsPage.getCancelValidationMessage(),
 				PatrolConstants.LEAVE_CANCEL_VALIDATION_MESSAGE);
