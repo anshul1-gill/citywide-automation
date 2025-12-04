@@ -37,7 +37,7 @@ public class CompanySettingsConstant {
 	public static final String DELETE_HOLIDAY_CONFIRMATION_MESSAGE = "This action will permanently delete the holiday.";
 
 	// Add Holiday Data - Custome Holiday
-	public static final String CUSTOM_HOLIDAY_NAME = "Custom Holiday Test";
+	public static final String CUSTOM_HOLIDAY_NAME = "New Holiday Test";
 	public static final String CUSTOM_HOLIDAY_START_DATE = "06/15/2025"; // Format: MM/dd/yyyy
 	public static final String CUSTOM_HOLIDAY_START_TIME = "08:00";
 	public static final String CUSTOM_HOLIDAY_END_TIME = "17:00";
@@ -71,8 +71,8 @@ public class CompanySettingsConstant {
 	public static final String QUESTION_TEXT = "What are your goals for this year?";
 
 	// Add Beats Data
-	public static final String BEAT_ID = "B001";
-	public static final String BEAT_NAME = "Downtown Beat";
+	public static final String BEAT_ID = "B013";
+	public static final String BEAT_NAME = "Californiatown Beat";
 	public static final String SHIFT_TYPE = "Night";
 	public static final String NUMBER_OF_SITES = "Richmond";
 
@@ -96,16 +96,16 @@ public class CompanySettingsConstant {
 	public static final String VIOLATION_EDIT_DESCRIPTION = "Exceeding the speed limit by more than 30 mph";
 	public static final String VIOLATION_EDIT_BRANCH = "Downtown";
 
-	public static final String UPDATE_VIOLATION_SUCCESS_MESSAGE = "Parking violation updated successfully";
+	public static final String UPDATE_VIOLATION_SUCCESS_MESSAGE = "Citation Violation updated successfully";
 
-	public static final String DELETE_VIOLATION_SUCCESS_MESSAGE = "Violation deleted successfully]";
+	public static final String DELETE_VIOLATION_SUCCESS_MESSAGE = "Citation Violation deleted successfully";
 
 	// Add Charges Data
-	public static final String CHARGE_CODE = "CHG001";
+	public static final String CHARGE_CODE = "CHS001";
 	public static final String CHARGE_DESCRIPTION = "Charge for parking violations exceeding 30 minutes";
 	public static final String ADD_CHARGE_SUCCESS_MESSAGE = "Charge code added successfully";
 
-	public static final String CHARGE_EDIT_CODE = "CHG002";
+	public static final String CHARGE_EDIT_CODE = "CHS002";
 	public static final String CHARGE_EDIT_DESCRIPTION = "Updated charge for parking violations exceeding 30 minutes";
 
 	public static final String UPDATE_CHARGE_SUCCESS_MESSAGE = "Charge code updated successfully";
@@ -159,7 +159,7 @@ public class CompanySettingsConstant {
 
 	// HR Configurations Data
 	// Add Notification Type Data
-	public static final String NOTIFICATION_TYPE_NAME = "New Employee Onboarding";
+	public static final String NOTIFICATION_TYPE_NAME = "New Instance  Setup ";
 	public static final String EMPLOYEE_NAME = "John Smith";
 	public static final String NOTIFICATION_EMAILS = "john@yopmail.com";
 
@@ -203,7 +203,7 @@ public class CompanySettingsConstant {
 
 	// Team Support Template Data
 	// Template Info
-	public static final String TEMPLATE_NAME = "Patrol Support - Incident Reporting";
+	public static final String TEMPLATE_NAME = "Patrol Support - Field Interview";
 	public static final String DEPARTMENT = "Dispatch";
 	public static final String ASSIGNED_TO = "843";
 	public static final String DECISION_MAKER = "898";
@@ -247,19 +247,19 @@ public class CompanySettingsConstant {
 	public static final String TEMPLATE_SUCCESS_MESSAGE = "Template created successfully";
 	
 	// Activity Code Constants
-	public static final String ACTIVITY_CODE_NAMES = "Test Activity Code";
+	public static final String ACTIVITY_CODE_NAMES = "High Alert";
 	public static final String ACTIVITY_CODE_DESCRIPTION = "Test Description for Activity Code";
 	public static final String ACTIVITY_CODE_PRIORITY = "High";
 	
-	public static final String ACTIVITY_CODE_EDIT_NAME = "Updated Patrol Response";
+	public static final String ACTIVITY_CODE_EDIT_NAME = "Red Alert";
 	public static final String ACTIVITY_CODE_EDIT_DESCRIPTION = "Updated description for patrol response code.";
 	public static final String ACTIVITY_CODE_EDIT_PRIORITY = "Low";
 	
 	public static final String DELETED_ACTIVITY_CODE_SUCCESS_MESSAGE = "Record deleted successfully.";
 	
 	//-----------ServiceTypeName-----------
-	public static final String SERVICE_TYPE_NAME = "Standard Patrol Service";
-	public static final String SERVICE_TYPE_CODE = "SP001";
+	public static final String SERVICE_TYPE_NAME = "Normal Patrol Service";
+	public static final String SERVICE_TYPE_CODE = "NP001";
 	public static final String SERVICE_TYPE_DESCRIPTION = "This service type covers standard patrol operations for urban areas";
 	
 	// ---------- Service Type (Update Test Data) ----------
@@ -282,10 +282,10 @@ public class CompanySettingsConstant {
     public static final String DEPT_PATROL = "Patrol";
     public static final String DEPT_FIELD = "Field";
     
-    public static final String RANK_NAME = "Senior Officer";
-    public static final String RANK_ORDER = "19";
-    public static final String UPDATED_RANK_NAME = "Senior Sergeant";
-    public static final String UPDATED_RANK_ORDER = "20";
+    public static final String RANK_NAME = "Doctor Sergeant";
+    public static final String RANK_ORDER = "39";
+    public static final String UPDATED_RANK_NAME = "Special OOPS";
+    public static final String UPDATED_RANK_ORDER = "89";
 
     
  // ==============================

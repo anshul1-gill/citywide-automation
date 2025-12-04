@@ -52,6 +52,7 @@ public class LeaveRequestsPage {
 
 	// Filters
 	private By btnFilters = By.xpath("//span[normalize-space()='Filters']");
+	private By clearFilters = By.xpath("//span[normalize-space()='Clear']");
 	private By filterStartDate = By.xpath("//input[@placeholder='Start date']");
 	private By filterEndDate = By.xpath("//input[@placeholder='End date']");
 
@@ -60,6 +61,7 @@ public class LeaveRequestsPage {
 		elementUtils = new ElementUtils(driver);
 	}
 
+	// Existing first-row accessors
 	public String getLeaveTypeText() {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		return elementUtils.waitForElementVisible(dataLeaveType, Constants.DEFAULT_WAIT).getText();
@@ -211,6 +213,7 @@ public class LeaveRequestsPage {
 
 	public void applyDateFilters(String startDate, String endDate) {
 		elementUtils.waitForElementVisible(btnFilters, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(clearFilters, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(filterStartDate, Constants.DEFAULT_WAIT).clear();
 		elementUtils.waitForElementVisible(filterStartDate, Constants.DEFAULT_WAIT).sendKeys(startDate);
 		elementUtils.waitForElementVisible(filterEndDate, Constants.DEFAULT_WAIT).clear();
@@ -222,6 +225,48 @@ public class LeaveRequestsPage {
 
 	public void applyDefaultDateFilters() {
 		applyDateFilters(FieldAgentConstants.FILTER_START, FieldAgentConstants.FILTER_END);
+	}
+
+	// New dynamic, row-targeted accessors using Employee ID and Leave Type
+	private By rowCell(String employeeID, String leaveType, String dataLabel) {
+		String id = employeeID;
+		String leavetype = leaveType;
+		String xpath = "//tr[td[contains(text(),'" + id + "')] and td[contains(text(),'" + leavetype
+				+ "')]]//td[@data-label='" + dataLabel + "']";
+		return By.xpath(xpath);
+	}
+
+	public String[] getFromDateText(String employeeID, String leaveType) {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		String fromDate = elementUtils.waitForElementVisible(rowCell(employeeID, leaveType, "From"), Constants.DEFAULT_WAIT).getText();
+		return DateFormatterUtils.splitDateToMonthDayYear(fromDate);
+	}
+
+	public String[] getToDateText(String employeeID, String leaveType) {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		String toDate = elementUtils.waitForElementVisible(rowCell(employeeID, leaveType, "To"), Constants.DEFAULT_WAIT).getText();
+		return DateFormatterUtils.splitDateToMonthDayYear(toDate);
+	}
+
+	public String getTotalDaysText(String employeeID, String leaveType) {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		return elementUtils.waitForElementVisible(rowCell(employeeID, leaveType, "Total Days"), Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getStartTimeText(String employeeID, String leaveType) {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		return elementUtils.waitForElementVisible(rowCell(employeeID, leaveType, "Start Time"), Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getEndTimeText(String employeeID, String leaveType) {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		return elementUtils.waitForElementVisible(rowCell(employeeID, leaveType, "End Time"), Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getLeaveTypeText(String employeeID, String leaveType) {
+		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
+		return elementUtils
+				.waitForElementVisible(rowCell(employeeID, leaveType, "Leave Type"), Constants.DEFAULT_WAIT).getText();
 	}
 
 }

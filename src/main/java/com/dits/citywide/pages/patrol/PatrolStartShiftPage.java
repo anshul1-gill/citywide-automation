@@ -1,10 +1,14 @@
 package com.dits.citywide.pages.patrol;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.pages.fieldagent.FieldAgentCallsPage;
@@ -418,36 +422,137 @@ public class PatrolStartShiftPage {
 
 	// Handle Passdown of a day
 
-	public void handlePassdownOfTheDay() {
-		try {
-			if (elementUtils.isElementVisible(txtPassdownOfADay, Constants.SHORT_TIME_OUT_WAIT)) {
-				System.out.println("'Passdown of a day' popup is visible.");
+public void handlePassdownOfTheDay() {
+    try {
+        if (!elementUtils.isElementVisible(txtPassdownOfADay, Constants.SHORT_TIME_OUT_WAIT)) {
+            System.out.println("Popup not visible. Skipping.");
+            return;
+        }
 
-				List<WebElement> viewButtons = elementUtils.waitForVisibilityOfAllElements(btnCountViewPassdown,
-						Constants.SHORT_TIME_OUT_WAIT);
+        System.out.println("Popup is visible.");
 
-				int buttonCount = viewButtons.size();
-				System.out.println("Found " + buttonCount + " 'View Passdown' button(s).");
+        int maxIterations = 20; // Safety limit
+        int iteration = 0;
 
-				for (int i = 1; i <= buttonCount; i++) {
-					try {
-						WebElement createReportButton = elementUtils
-								.waitForElementVisible(getCreateReportButtonByIndex(i), Constants.SHORT_TIME_OUT_WAIT);
-						createReportButton.click();
-						System.out.println("Clicked on 'Create Report' button #" + i);
-					} catch (Exception clickException) {
-						System.out.println(
-								"Could not click 'Create Report' button #" + i + ": " + clickException.getMessage());
-					}
-				}
+        while (iteration < maxIterations) {
+            iteration++;
+            System.out.println("----- Iteration " + iteration + " -----");
 
-			} else {
-				System.out.println("'Passdown of a day' popup not visible. Skipping.");
-			}
-		} catch (Exception e) {
-			System.out.println("Exception while handling 'Passdown of a day': " + e.getMessage());
-		}
-	}
+            boolean actionTaken = false;
+
+            // ********************* MARK AS READ *********************
+            // Always check for the FIRST "Mark as Read" button
+            By markBtn = By.xpath("(//button[normalize-space()='Mark as Read'])[1]");
+            
+            if (elementUtils.isElementVisible(markBtn, 2)) {
+                try {
+                    WebElement btn = elementUtils.waitForElementVisible(markBtn, 3);
+                    elementUtils.scrollIntoView(btn);
+                    Thread.sleep(300); // Brief pause after scroll
+                    elementUtils.jsClick(btn);
+                    System.out.println("Clicked Mark As Read");
+                    actionTaken = true;
+                    Thread.sleep(1000); // Wait for DOM update after click
+                    continue; // Start next iteration immediately
+                } catch (Exception e) {
+                    System.out.println("Failed to click Mark As Read: " + e.getMessage());
+                }
+            }
+
+            // ********************* CREATE REPORT *********************
+            // Always check for the FIRST "Create Report" button
+            By createBtn = By.xpath("(//button[normalize-space()='Create Report'])[1]");
+            
+            if (elementUtils.isElementVisible(createBtn, 2)) {
+                try {
+                    WebElement btn = elementUtils.waitForElementVisible(createBtn, 3);
+                    elementUtils.scrollIntoView(btn);
+                    Thread.sleep(300);
+                    elementUtils.jsClick(btn);
+                    System.out.println("Clicked Create Report");
+                    actionTaken = true;
+                    Thread.sleep(1000); // Wait for DOM update
+                    continue; // Start next iteration immediately
+                } catch (Exception e) {
+                    System.out.println("Failed to click Create Report: " + e.getMessage());
+                }
+            }
+
+            // If no action was taken, we're done
+            if (!actionTaken) {
+                System.out.println("No more actionable buttons found. Exiting loop.");
+                break;
+            }
+        }
+
+        System.out.println("Completed processing all rows.");
+
+        // Now close the popup
+        closePopup();
+
+    } catch (Exception e) {
+        System.out.println("Error handling passdown: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+private void closePopup() {
+    try {
+        System.out.println("Attempting to close popup...");
+        
+        // Strategy 1: Press ESC
+        elementUtils.pressEscapeKey();
+        Thread.sleep(1000);
+        
+        // Strategy 2: Verify popup is gone
+        By overlay = By.xpath("//div[contains(@class,'modal-wrapper') or contains(@class,'overlay')]");
+        
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(overlay));
+            System.out.println("Popup closed successfully.");
+        } catch (TimeoutException e) {
+            System.out.println("Popup still visible after ESC. Trying close button...");
+            
+            // Strategy 3: Find and click close button
+            try {
+                WebElement closeBtn = driver.findElement(
+                    By.xpath("//button[contains(@aria-label, 'close') or contains(@class, 'close')]"));
+                elementUtils.jsClick(closeBtn);
+                Thread.sleep(1000);
+                System.out.println("Clicked close button.");
+            } catch (Exception ex) {
+                System.out.println("No close button found. Trying overlay click...");
+                
+                // Strategy 4: Click outside modal (on overlay)
+                try {
+                    WebElement overlayEl = driver.findElement(overlay);
+                    elementUtils.jsClick(overlayEl);
+                    Thread.sleep(1000);
+                } catch (Exception ex2) {
+                    System.out.println("Overlay click failed: " + ex2.getMessage());
+                }
+            }
+            
+            // Final ESC attempt
+            elementUtils.pressEscapeKey();
+            Thread.sleep(1000);
+        }
+        
+        // Final verification
+        if (elementUtils.isElementVisible(overlay, 2)) {
+            System.out.println("WARNING: Popup still visible after all close attempts!");
+        } else {
+            System.out.println("Popup successfully closed and verified.");
+        }
+        
+    } catch (Exception e) {
+        System.out.println("Error closing popup: " + e.getMessage());
+    }
+}
+
+
+
 
 	// Field Interview form navigation (added)
 	public FieldAgentFieldInterviewPage clickOnFieldInterviewFormLink() {

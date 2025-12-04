@@ -42,17 +42,22 @@ public class UpdateRankAndPositionTest extends BaseTest {
 //        softAssert.assertTrue(rankAndPositionPage.isAddNewRankButtonVisible(), "Add New Rank button is not visible after update.");
 //
 //        // Step 7: Verify success message after update
-//        String actualMessage = rankAndPositionPage.getUpdateSuccessMessage().trim();
-//        softAssert.assertEquals(
-//            actualMessage,
-//            "Information Updated Successfully",
-//            "Update success message not displayed correctly. Actual: " + actualMessage
-//        );
+        String actualMessage = rankAndPositionPage.getUpdateSuccessMessage()
+                .replace(".", "")
+                .trim()
+                .toLowerCase();
+
+softAssert.assertEquals(
+actualMessage,
+"rank updated successfully",
+"Update success message not displayed correctly. Actual: " + actualMessage
+);
+
 //
-//        // Log confirmation
-//        System.out.println("✅ Rank Updated Successfully: " + CompanySettingsConstant.UPDATED_RANK_NAME);
+        // Log confirmation
+        System.out.println("✅ Rank Updated Successfully: " + CompanySettingsConstant.UPDATED_RANK_NAME);
 //
 //        // Step 8: Assert all verifications
-//        softAssert.assertAll();
+        softAssert.assertAll();
     }
 }

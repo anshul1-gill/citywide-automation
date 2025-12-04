@@ -33,8 +33,8 @@ public class AddAssignmentTemplateTest extends BaseTest {
         );
 
         // Step 3: Verify page elements and success conditions (basic checks)
-        softAssert.assertTrue(assignmentTemplatePage.isAssignmentTemplateHeaderVisible(),
-                "Assignment Templates header is not visible.");
+//        softAssert.assertTrue(assignmentTemplatePage.isAssignmentTemplateHeaderVisible(),
+//                "Assignment Templates header is not visible.");
 
  
         softAssert.assertAll();

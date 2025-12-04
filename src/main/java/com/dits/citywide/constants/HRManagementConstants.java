@@ -4,9 +4,9 @@ public class HRManagementConstants {
 
 // Field Agent
 	// Personal Information
-	public static final String FIRST_NAME = "David"; 
-	public static final String MIDDLE_NAME = "Christopher";
-	public static final String LAST_NAME = "Brown";
+	public static final String FIRST_NAME = "Dom"; 
+	public static final String MIDDLE_NAME = "O";
+	public static final String LAST_NAME = "Torreto";
 	public static final String GENDER = "Male";
 	public static final String BIRTH_MONTH = "Nov";
 	public static final String BIRTH_YEAR = "2000";
@@ -57,9 +57,9 @@ public class HRManagementConstants {
 	public static final String PERSONAL_INFO_ADDED_SUCCESS_MESSAGE = "Personal Information added successfully!";
 
 	// Patrol Officer Data
-	public static final String FIRST_NAME_PATROL = "Ansh";
-	public static final String MIDDLE_NAME_PATROL = "Singh";
-	public static final String LAST_NAME_PATROL = "Gill";
+	public static final String FIRST_NAME_PATROL = "Shane";
+	public static final String MIDDLE_NAME_PATROL = "Christopher";
+	public static final String LAST_NAME_PATROL = "Simith";
 	public static final String GENDER_PATROL = "Male";
 	public static final String BIRTH_MONTH_PATROL = "Feb";
 	public static final String BIRTH_YEAR_PATROL = "2002";
@@ -214,13 +214,13 @@ public class HRManagementConstants {
 // Leave Requests
 	public static final String LEAVE_TYPE = "Study";
 
-	public static final String LEAVE_FROM_MONTH = "Nov";
+	public static final String LEAVE_FROM_MONTH = "Dec";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "10";
+	public static final String LEAVE_FROM_DATE = "13";
 
-	public static final String LEAVE_TO_MONTH = "Nov";
+	public static final String LEAVE_TO_MONTH = "Dec";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "12";
+	public static final String LEAVE_TO_DATE = "15";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";

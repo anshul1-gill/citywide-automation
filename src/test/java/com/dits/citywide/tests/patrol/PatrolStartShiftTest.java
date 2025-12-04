@@ -20,6 +20,7 @@ public class PatrolStartShiftTest extends BaseTest {
 	public void patrolStartShiftTest() throws InterruptedException {
 		// Thread.sleep(500);
 		patrolStartShiftPage.handleMessageOfTheWeek();
+		patrolStartShiftPage.handlePassdownOfTheDay();
 		// fieldAgentStartShiftPage.doClickTabStartShift();
 		patrolStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE);
 

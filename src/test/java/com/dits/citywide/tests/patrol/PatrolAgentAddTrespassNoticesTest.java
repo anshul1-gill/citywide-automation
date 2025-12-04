@@ -17,6 +17,7 @@ public class PatrolAgentAddTrespassNoticesTest extends BaseTest {
     public void addTrespassNoticesTest() throws InterruptedException {
         Thread.sleep(1000);
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         fieldAgentTrespassNoticesPage = patrolStartShiftPage.clickOnTrespassNoticesFormLink();
 
         fieldAgentTrespassNoticesPage.clickCreateNewTrespassNotice();

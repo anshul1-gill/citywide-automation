@@ -270,6 +270,8 @@ public class Calendar {
 			System.out.println("Wrong date passed: " + day);
 			return;
 		}
+		// Normalize day to strip any leading zeros for UI text match
+		String dayText = String.valueOf(dayInt);
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -307,30 +309,65 @@ public class Calendar {
 					nextBtn = driver.findElement(By.xpath("(//button[@aria-label='Next month (PageDown)']/span)[1]"));
 				}
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextBtn);
+				// Wait for calendar to update
+				Thread.sleep(500); // Small delay to allow UI update
 			} catch (Exception e) {
 				System.out.println("Error clicking next year: " + e.getMessage());
 				return;
 			}
 			actMonth = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(monthBtnXpath))).getText().trim();
 			actYear = driver.findElement(By.xpath(yearBtnXpath)).getText().trim();
-			// Normalize actMonth to full month name for comparison
 			actMonth = expandMonthName(actMonth);
 			System.out.println("DEBUG: actMonth='" + actMonth + "', expMonth='" + expMonth + "'");
 			System.out.println("DEBUG: actYear='" + actYear + "', expYear='" + expYear + "'");
 		}
+		if (!(actMonth.equalsIgnoreCase(expMonth) && actYear.equalsIgnoreCase(expYear))) {
+			throw new RuntimeException("Unable to navigate to expected month/year: " + expMonth + " " + expYear);
+		}
 
 		// Updated day selection logic using both potential date elements
-		String xpath1 = "(//td[@class='ant-picker-cell ant-picker-cell-in-view']/div[text()='" + day + "'])[1]";
-		String xpath2 = "(//td[@class='ant-picker-cell ant-picker-cell-in-view']/div[text()='" + day + "'])[2]";
-
-		WebElement dayElement;
-		try {
-			dayElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath1)));
-		} catch (TimeoutException e) {
-			System.out.println("First calendar not clickable, trying second calendar...");
-			dayElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath2)));
+		WebDriverWait waitDay = new WebDriverWait(driver, Duration.ofSeconds(20));
+		String baseDayXpath = "//td[contains(@class,'ant-picker-cell') and contains(@class,'ant-picker-cell-in-view') and not(contains(@class,'ant-picker-cell-disabled'))]/div[normalize-space(text())='" + dayText + "' or normalize-space(text())='" + day + "']";
+		java.util.List<WebElement> candidates = driver.findElements(By.xpath(baseDayXpath));
+		if (candidates.isEmpty()) {
+			// Give the UI a moment and retry presence
+			candidates = waitDay.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(baseDayXpath)));
 		}
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dayElement);
+		// Prefer the second calendar panel if dual calendars are present
+		WebElement dayElement = null;
+		if (candidates.size() >= 2) {
+			// Try second panel first by picking the last displayed candidate
+			for (WebElement el : candidates) {
+				if (el.isDisplayed()) {
+					dayElement = el; // keep updating to end up with the last visible one
+				}
+			}
+		} else if (candidates.size() == 1) {
+			dayElement = candidates.get(0);
+		}
+		if (dayElement == null) {
+			// As a final fallback, try explicit indexed XPaths and both day formats
+			String xpath1 = "(//td[contains(@class,'ant-picker-cell') and contains(@class,'ant-picker-cell-in-view')]/div[normalize-space(text())='" + dayText + "' or normalize-space(text())='" + day + "'])[1]";
+			String xpath2 = "(//td[contains(@class,'ant-picker-cell') and contains(@class,'ant-picker-cell-in-view')]/div[normalize-space(text())='" + dayText + "' or normalize-space(text())='" + day + "'])[2]";
+			try {
+				dayElement = waitDay.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath2)));
+			} catch (TimeoutException te) {
+				dayElement = waitDay.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath1)));
+			}
+		}
+		// Ensure in view and click via JS to bypass flaky clickability
+		try {
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", dayElement);
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", dayElement);
+		} catch (Exception clickEx) {
+			// One more attempt using explicit wait for clickability then JS click
+			try {
+				WebElement clickable = waitDay.until(ExpectedConditions.elementToBeClickable(dayElement));
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickable);
+			} catch (Exception e2) {
+				throw new TimeoutException("Failed to click day cell '" + day + "' in calendar: " + e2.getMessage(), e2);
+			}
+		}
 	}
 
 	// Helper method to check if element exists

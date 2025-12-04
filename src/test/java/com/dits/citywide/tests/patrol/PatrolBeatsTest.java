@@ -18,6 +18,7 @@ public class PatrolBeatsTest extends BaseTest {
 	public void patrolBeatsTest() throws InterruptedException {
 
 		patrolStartShiftPage.handleMessageOfTheWeek();
+		patrolStartShiftPage.handlePassdownOfTheDay();
 		patrolBeatsPage = patrolStartShiftPage.clickOnPatrolBeatsTab();
 
 		softAssert.assertTrue(patrolBeatsPage.isViewSitesButtonDisplayed(), "View Sites button should be displayed");
@@ -26,10 +27,10 @@ public class PatrolBeatsTest extends BaseTest {
 
 		softAssert.assertTrue(patrolBeatsPage.getBeatName().contains(HRManagementConstants.BEAT),
 				"Beat name should contain " + HRManagementConstants.BEAT);
-		softAssert.assertEquals(patrolBeatsPage.getNumberOfSites(), "10");
+		softAssert.assertEquals(patrolBeatsPage.getNumberOfSites(), "6");
 		softAssert.assertEquals(patrolBeatsPage.getSwiftType(), "Swing");
 		patrolBeatsPage.clickOnViewSites();
-		softAssert.assertEquals(patrolBeatsPage.getTotalCountOfSites(), "10");
+		softAssert.assertEquals(patrolBeatsPage.getTotalCountOfSites(), "6");
 
 		patrolBeatsPage.clickOnViewBeat();
 

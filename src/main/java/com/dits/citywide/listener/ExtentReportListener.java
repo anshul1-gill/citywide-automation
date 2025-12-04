@@ -7,6 +7,9 @@ import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.dits.citywide.utilities.ScreenshotUtils;
+import com.dits.citywide.driverfactory.DriverFactory;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -86,12 +89,48 @@ public class ExtentReportListener implements ITestListener {
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
+	@Override
 	public synchronized void onTestFailure(ITestResult result) {
-		System.out.println((result.getMethod().getMethodName() + " failed!"));
-		String methodName = result.getMethod().getMethodName();
-		test.get().fail("Test failed");
-		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
+	    System.out.println(result.getMethod().getMethodName() + " failed!");
+
+	    // 1) Get exception that caused the failure
+	    Throwable throwable = result.getThrowable();
+	    String errorMsg = (throwable != null && throwable.getMessage() != null)
+	            ? throwable.getMessage()
+	            : "No exception message available";
+
+	    // 2) Short readable reason in report
+	    test.get().fail("Reason: " + errorMsg);
+
+	    // 3) Full stack trace in report
+	    if (throwable != null) {
+	        test.get().fail(throwable);
+	    }
+
+	    // 4) Screenshot on failure (using your ScreenshotUtils)
+	    try {
+	        // Get driver from your framework – adjust this line to your actual getter
+	        // Example if you have DriverFactory.getDriver():
+	        // WebDriver driver = DriverFactory.getDriver();
+
+	        // TODO: replace with your real driver getter
+	        org.openqa.selenium.WebDriver driver =
+	                com.dits.citywide.driverfactory.DriverFactory.getDriver();
+
+	        String screenshotPath = ScreenshotUtils.captureScreenshot(
+	                driver, result.getMethod().getMethodName());
+
+	        if (screenshotPath != null) {
+	            test.get().addScreenCaptureFromPath(screenshotPath);
+	        }
+	    } catch (Exception e) {
+	        System.out.println("Unable to attach screenshot: " + e.getMessage());
+	    }
+
+	    // 5) End time
+	    test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
+
 
 	public synchronized void onTestSkipped(ITestResult result) {
 		System.out.println((result.getMethod().getMethodName() + " skipped!"));

@@ -27,6 +27,7 @@ public class PatrolAgentMyReportsTest extends BaseTest {
     public void myReportsPatrolAgentTest() throws InterruptedException {
         Thread.sleep(1000);
         patrolAgentStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         patrolAgentReportsPage = patrolAgentStartShiftPage.clickOnReportsTab();
         
 //        softAssert.assertEquals(patrolAgentReportsPage.getArriveDateTime(), prop.getProperty("startShiftDateTime"));

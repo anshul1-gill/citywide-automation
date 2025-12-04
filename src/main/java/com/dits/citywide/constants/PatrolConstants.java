@@ -11,14 +11,14 @@ public class PatrolConstants {
 
 	public static final String LEAVE_FROM_MONTH = "Nov";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "15";
+	public static final String LEAVE_FROM_DATE = "28";
 
 	public static final String LEAVE_TO_MONTH = "Nov";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "16";
+	public static final String LEAVE_TO_DATE = "29";
 	
 	public static final String FILTER_START = "11/01/2025";
-	public static final String FILTER_END = "11/30/2025";
+	public static final String FILTER_END = "12/15/2025";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";
@@ -28,13 +28,13 @@ public class PatrolConstants {
 	// Edit Leave Request Data
 	public static final String EDIT_LEAVE_TYPE = "Study";
 
-	public static final String EDIT_LEAVE_FROM_MONTH = "Nov";
+	public static final String EDIT_LEAVE_FROM_MONTH = "Dec";
 	public static final String EDIT_LEAVE_FROM_YEAR = "2025";
-	public static final String EDIT_LEAVE_FROM_DATE = "22";
+	public static final String EDIT_LEAVE_FROM_DATE = "02";
 
 	public static final String EDIT_LEAVE_TO_MONTH = "Nov";
 	public static final String EDIT_LEAVE_TO_YEAR = "2025";
-	public static final String EDIT_LEAVE_TO_DATE = "23";
+	public static final String EDIT_LEAVE_TO_DATE = "04";
 
 	public static final String EDIT_LEAVE_START_TIME = "06:30";
 	public static final String EDIT_LEAVE_END_TIME = "07:30";

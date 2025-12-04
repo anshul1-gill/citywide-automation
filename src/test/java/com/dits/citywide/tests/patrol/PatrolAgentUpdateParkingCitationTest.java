@@ -22,6 +22,7 @@ public class PatrolAgentUpdateParkingCitationTest extends BaseTest {
     public void updateParkingCitationTest() throws InterruptedException {
         Thread.sleep(1000);
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         fieldAgentParkingCitationPage = patrolStartShiftPage.clickOnParkingCitationFormLink();
         fieldAgentParkingCitationPage.searchParkingCitation(prop.getProperty("patrolID"));
         fieldAgentParkingCitationPage.clickOnEditButton(prop.getProperty("parkingcitationID"));

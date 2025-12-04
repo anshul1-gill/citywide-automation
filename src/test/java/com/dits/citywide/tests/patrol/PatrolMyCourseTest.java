@@ -17,6 +17,7 @@ public class PatrolMyCourseTest extends BaseTest {
     @Test
     public void verifyMyCoursesPatrolTest() throws InterruptedException {
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         Thread.sleep(5000);
         patrolStartShiftPage.clickOnHRManagementMenu();
         fieldAgentMyCoursesPage = patrolStartShiftPage.clickOnMyCoursesTab();

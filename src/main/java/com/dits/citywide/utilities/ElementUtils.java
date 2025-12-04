@@ -1136,6 +1136,10 @@ public class ElementUtils {
 	        throw new RuntimeException("Failed to select dropdown option: " + optionText, e);
 	    }
 	}
+	
+	
+
+	
 
 	public static void handleUnexpectedAlert(WebDriver driver) {
         try {
@@ -1146,12 +1150,81 @@ public class ElementUtils {
         }
     }
 
+	// Scrolls the element into view using JavaScript
+    public void scrollIntoView(WebElement element) {
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", element);
+        } catch (Exception e) {
+            System.out.println("Failed to scroll into view: " + e.getMessage());
+        }
+    }
+
+    // Clicks the element using JavaScript
+    public void jsClick(WebElement element) {
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        } catch (Exception e) {
+            System.out.println("Failed to JS click: " + e.getMessage());
+        }
+    }
+    
+    public void waitForDropdownOptionsVisible() {
+        // Waits for at least one visible Ant Design dropdown option
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+            .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.ant-select-item-option")));
+    }
+
+    public void selectAntDropdownOption(String optionText) {
+        List<WebElement> options = driver.findElements(
+            By.xpath("//div[contains(@class,'ant-select-item-option')][.//div[text()='" + optionText + "']]"));
+        for (WebElement option : options) {
+            if (option.isDisplayed()) {
+                try {
+                    new Actions(driver).moveToElement(option).click().perform();
+                } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
+                }
+                return;
+            }
+        }
+        System.out.println("Dropdown option '" + optionText + "' not found.");
+    }
+    public WebElement waitForElementClickable(By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+    
+    public boolean waitForInvisibilityOfElement(WebElement element, int timeout) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            return wait.until(ExpectedConditions.invisibilityOf(element));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public boolean waitForInvisibilityOfElement(By locator, int timeout) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks a checkbox if it is not already selected.
+     */
+    public void checkCheckbox(By checkboxLocator) {
+        WebElement checkbox = getElement(checkboxLocator);
+        if (!checkbox.isSelected()) {
+            checkbox.click();
+        }
+    }
 
 
 
 
-	
-
-
+    
 
 }

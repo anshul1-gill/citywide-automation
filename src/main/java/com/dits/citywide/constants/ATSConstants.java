@@ -16,8 +16,8 @@ public class ATSConstants {
     public static final String JOB_DEPARTMENT = "HR";
     public static final String JOB_LOCATION = "Riverside";
     public static final String JOB_EMPLOYMENT_TYPE = "Full time shift";
-    public static final String JOB_END_DATE = "10/26/2025";
-    public static final String JOB_QUALIFICATIONS = "General Educational Development";
+    public static final String JOB_END_DATE = "12/26/2025";
+    public static final String JOB_QUALIFICATIONS = "Advance Educational Development";
     public static final String JOB_EXPERIENCE = "2 years";
     public static final String JOB_OPENINGS = "5";
     public static final String JOB_SALARY_RANGE = "40000 - 60000";
@@ -41,7 +41,7 @@ public class ATSConstants {
     public static final String CANDIDATE_RESUME_FILE_PATH = "/home/ditsdev151/Downloads/nm06zk9948_Sample certs.docx.pdf";
 
     // Interview
-    public static final String INTERVIEW_DATE = "10/01/2025";
+    public static final String INTERVIEW_DATE = "12/12/2025";
     public static final String TIME_SLOT = "45 Minutes";
     public static final String INTERVIEW_START = "08:30";
     public static final String INTERVIEW_MODE = "Walk In";
@@ -50,7 +50,7 @@ public class ATSConstants {
     public static final String INTERVIEWER_NOTES = "The candidate has cleared the Interview.";
 
     // Offer
-    public static final String OFFER_EXPIRE_DATE = "10/30/2025";
+    public static final String OFFER_EXPIRE_DATE = "12/15/2025";
     public static final String OFFER_SUBJECT = "DISPATCH POSITION";
     public static final String OFFER_NOTES = "Hi Candidate , You have successfully cleared the interview";
     

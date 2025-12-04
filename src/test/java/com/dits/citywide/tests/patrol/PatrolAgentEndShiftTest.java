@@ -22,7 +22,9 @@ public class PatrolAgentEndShiftTest extends BaseTest {
     @Test
     public void endShiftTest() throws InterruptedException {
         Thread.sleep(1000);
-//        patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
+
 //        softAssert.assertTrue(patrolStartShiftPage.isStartBreakButtonVisible(),
 //                "Start Break button should be visible");
 //        patrolStartShiftPage.doClickStartBreak();

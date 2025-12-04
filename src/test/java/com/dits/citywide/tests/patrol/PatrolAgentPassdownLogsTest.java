@@ -19,6 +19,7 @@ public class PatrolAgentPassdownLogsTest extends BaseTest {
     @Test
     public void PatrolAgentNewPassdown() throws InterruptedException {
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         patrolAgentPassdownLogsPage = patrolStartShiftPage.clickOnPassdownLogsTab();
         patrolAgentPassdownLogsPage.clickAddPassdownLog();
         patrolAgentPassdownLogsPage.searchSiteName(HRManagementConstants.SITE);

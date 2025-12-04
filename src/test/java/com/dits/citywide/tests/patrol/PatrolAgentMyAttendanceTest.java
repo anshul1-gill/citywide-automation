@@ -16,6 +16,8 @@ public class PatrolAgentMyAttendanceTest extends BaseTest {
 
     @Test
     public void myAttendancePatrolAgentTest_dynamic() throws InterruptedException {
+   	 patrolStartShiftPage.handleMessageOfTheWeek();
+          patrolStartShiftPage.handlePassdownOfTheDay();
         patrolStartShiftPage.clickOnHRManagementMenu();
         fieldAgentMyAttendancePage = patrolStartShiftPage.clickOnMyAttendanceTab();
         String shiftStart = fieldAgentMyAttendancePage.getDataShiftStart();

@@ -19,6 +19,7 @@ public class PatrolConfirmShiftTest extends BaseTest {
     public void confirmPatrolShiftTest() throws InterruptedException {
         Thread.sleep(500); // small stabilization wait
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         // patrolStartShiftPage.viewShiftDetails(SchedulingConstant.ADD_SHIFT_DATE); // If required to expose Confirm button
 
         softAssert.assertTrue(patrolStartShiftPage.isConfirmShiftButtonVisible(), "Confirm Shift button should be visible");

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsDeleteReasonTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.UpdateEmploymentTypeTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddPatrolLogsForCallTest"/>
+      <class name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryAddRemarksTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.AddWCClassCodeTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentRejectShiftTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.DeleteDepartmentTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.DeleteEmploymentTypeTest"/>
+      <class name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsDeleteRemarkTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentRejectMultipleShiftsTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewShiftTest"/>
+      <class name="com.dits.citywide.tests.admin.hrmanagement.ViewPatrolEmployeeTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentProfileCommentsTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentScanImagesPassdownLogTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTypeTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.TeamSupportTemplateAddTemplateTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.AddFederalHolidayTest"/>
+      <class name="com.dits.citywide.tests.admin.training.AssignCourseTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.UpdateFederalHolidayTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.UpdateCustomHolidayTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTypeTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest"/>
+      <class name="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.AddBeatTest"/>
+      <class name="com.dits.citywide.tests.admin.training.UpdateCertificateTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.AddDepartmentTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.AddEmploymentTypeTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.UpdateBeatTest"/>
+      <class name="com.dits.citywide.tests.patrol.PatrolApplyLeaveTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest"/>
+      <class name="com.dits.citywide.tests.patrol.PatrolStartShiftTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.AddBreakPageTest"/>
+      <class name="com.dits.citywide.tests.admin.hrmanagement.ApplyLeaveTest"/>
+      <class name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryActionTakenTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.AddLeaveTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.UpdateViolationTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateLeaveTest"/>
+      <class name="com.dits.citywide.tests.LoginNegativeScenariosTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments"/>
+      <class name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryViewTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.DeleteChargesTest"/>
+      <class name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest"/>
+    </classes>
+  </test>
+</suite>

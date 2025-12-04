@@ -71,7 +71,7 @@ public class OperationsHubConstant {
 		// Post Orders
 		public static final String ASSIGNMENT_NAME = "Auto test assignment";
 		public static final String ASSIGNMENT_TEMPLATE = "Automation template";
-		public static final String COVERAGE_TYPE = "Emergency - Stationary/Single Site";
+		public static final String COVERAGE_TYPE = "Hospital Security - Stationary/Single Site";
 		public static final List<String> ASSIGNMENT_DAYS_OF_WEEK = List.of("Monday", "Tuesday", "Wednesday", "Thursday",
 				"Friday", "Saturday", "Sunday");
 		
@@ -108,8 +108,8 @@ public class OperationsHubConstant {
 
 		// Sites
 		// Site Details Tab
-		public static final String BRANCH_NAME = "Dev Branch";
-		public static final String SITE_NAME = " Manhatten G Downtown ";
+		public static final String BRANCH_NAME = "Riverside";
+		public static final String SITE_NAME = " North Z Downtown ";
 		// public static final String AGENCY_BEAT = "1212";
 		public static final String AGENCY_BEAT = "1212, 333, 558, TESTB321";
 		public static final String ASSIGN_OFFICER ="RS250-Jakob Crist";
@@ -249,4 +249,19 @@ public class OperationsHubConstant {
 		
 		public static final String SELECT_DISABLE       = "Show Disable";
 		public static final String SELECT_ENAABLE       = "Show Enabled";
+		
+		//Message of the Week Constants/===============================================================================
+		public static final String MESSAGE_TYPE_All = "Select all";   // Example, adjust as needed
+	    public static final String MESSAGE_TYPE_MANAGER = "Manager";
+
+	    // Message Subjects
+	    public static final String MESSAGE_SUBJECT = "Weekly Update";
+	    public static final String MESSAGE_SUBJECT_2 = "System Maintenance";
+
+	    // Message Text
+	    public static final String MESSAGE_TEXT = "This is the message of the week for all users.";
+	    public static final String MESSAGE_TEXT_2 = "System maintenance will occur this Friday.";
+		
+
+		
 }

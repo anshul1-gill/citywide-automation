@@ -17,6 +17,7 @@ public class PatrolUpdateLeaveTest extends BaseTest {
 	@Test
 	public void updateLeavePatrolTest() throws InterruptedException {
 		patrolStartShiftPage.handleMessageOfTheWeek();
+		patrolStartShiftPage.handlePassdownOfTheDay();
 		patrolStartShiftPage.clickOnHRManagementMenu();
 		patrolLeaveRequestsPage = patrolStartShiftPage.clickOnLeaveRequestsTab();
 		// Apply filters before locating edit icon

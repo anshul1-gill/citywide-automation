@@ -12,12 +12,12 @@ public class SchedulingConstant {
 	// Patrol data
 	public static final String ASSIGN_SHIFT_PATROL = "Assign to Employee";
 	public static final String SCHEDULED_BREAK_PATROL = "Lunch Break";
-	public static final String START_TIME_PATROL = "02:30AM";
+	public static final String START_TIME_PATROL = "01:30AM";
 	public static final String END_TIME_PATROL = "10:30AM";
 	public static final String ADD_NOTES_PATROL = "Assigned shift for patrol. Ensure to follow the route and report any incidents.";
 
 	// Shift Date
-	public static final String ADD_SHIFT_DATE = "19";
+	public static final String ADD_SHIFT_DATE = "3";
 
 	// Confirmation Message
 	public static final String ARE_YOU_SURE = "Are you sure?";

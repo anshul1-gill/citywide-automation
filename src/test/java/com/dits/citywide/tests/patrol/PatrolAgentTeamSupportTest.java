@@ -19,6 +19,7 @@ public class PatrolAgentTeamSupportTest extends BaseTest {
     public void teamSupportPatrolAgentTest() throws InterruptedException {
         Thread.sleep(1000);
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         fieldAgentTeamSupportPage = patrolStartShiftPage.clickOnTeamSupportTab();
         fieldAgentTeamSupportPage.clickOnAddNewRequestButton();
         fieldAgentTeamSupportPage.fillOutAndSubmitAbuseRequestForm(HRManagementConstants.SITE,

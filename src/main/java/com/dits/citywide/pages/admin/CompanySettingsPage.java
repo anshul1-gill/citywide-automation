@@ -12,7 +12,7 @@ public class CompanySettingsPage {
 	private ElementUtils elementUtils;
 
 	private By lnkCompanyDetails = By.xpath("//h4[normalize-space()='Company Details']");
-	private By lnkRiverside = By.xpath("//h4[normalize-space()='San Diego']");
+	private By lnkRiverside = By.xpath("//h4[normalize-space()='Riverside']");
 	private By lnkBranchListing = By.xpath("//h4[normalize-space()='Branch Listing']");
 	private By lnkServiceTypes = By.xpath("//h4[normalize-space()='Service Types']");
 	private By lnkRolesAndPermission = By.xpath("//h4[normalize-space()='Roles & Permission']");

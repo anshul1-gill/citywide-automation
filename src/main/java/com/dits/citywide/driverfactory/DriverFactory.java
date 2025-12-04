@@ -15,77 +15,88 @@ import org.openqa.selenium.safari.SafariDriver;
 
 public class DriverFactory {
 
-	public WebDriver driver;
-	public Properties prop;
-	private String filePath = "./src/test/resource/config/config.properties";
+    // Thread-safe driver storage so listeners can access the current driver
+    private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
-	public WebDriver initDriver(Properties prop) {
-		String browserName = prop.getProperty("browser").trim();
+    public WebDriver driver;
+    public Properties prop;
+    private String filePath = "./src/test/resource/config/config.properties";
 
-		if (browserName.equalsIgnoreCase("chrome")) {
-			//driver = new ChromeDriver();
-//			ChromeOptions options = new ChromeOptions();
-//			options.addArguments("--no-sandbox");
-//			options.addArguments("--disable-dev-shm-usage");
-//			options.addArguments("--remote-allow-origins=*");
-//			driver = new ChromeDriver(options);
-            System.setProperty("webdriver.chrome.driver", 
+    // Static getter for current WebDriver (used in ExtentReportListener)
+    public static WebDriver getDriver() {
+        return tlDriver.get();
+    }
+
+    // Initialize WebDriver based on browser in properties
+    public WebDriver initDriver(Properties prop) {
+        String browserName = prop.getProperty("browser").trim();
+
+        if (browserName.equalsIgnoreCase("chrome")) {
+            System.setProperty("webdriver.chrome.driver",
                     "/home/ditsdev151/Public/chromedriver-linux64/chromedriver");
-	          ChromeOptions options = new ChromeOptions();
-	            options.addArguments("--start-maximized");   // start in full screen
-	            options.addArguments("--disable-notifications"); // disable popup notifications
-	            options.addArguments("--disable-infobars");  // disable "Chrome is being controlled..." bar
-	            options.addArguments("--incognito");         // open in incognito mode (optional)
 
-	            // Create ChromeDriver with options
-	            driver = new ChromeDriver(options);
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--start-maximized");
+            options.addArguments("--disable-notifications");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--incognito");
 
+            driver = new ChromeDriver(options);
+            driver.manage().deleteAllCookies();
 
-			driver.manage().deleteAllCookies();
-		} else if (browserName.equalsIgnoreCase("firefox")) {
-			driver = new FirefoxDriver();
-			driver.manage().deleteAllCookies();
-		} else if (browserName.equalsIgnoreCase("safari")) {
-			driver = new SafariDriver();
-		} else if (browserName.equalsIgnoreCase("edge")) {
-			driver = new EdgeDriver();
-			driver.manage().deleteAllCookies();
-		} else {
-			System.out.println("Driver not exit");
-		}
-		driver.manage().window().maximize();
-		// driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("url").trim());
-		return driver;
-	}
+        } else if (browserName.equalsIgnoreCase("firefox")) {
+            driver = new FirefoxDriver();
+            driver.manage().deleteAllCookies();
 
-	public Properties initProperties() {
-		prop = new Properties();
+        } else if (browserName.equalsIgnoreCase("safari")) {
+            driver = new SafariDriver();
 
-		try {
-			FileInputStream fis = new FileInputStream(filePath);
-			prop.load(fis);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return prop;
-	}
+        } else if (browserName.equalsIgnoreCase("edge")) {
+            driver = new EdgeDriver();
+            driver.manage().deleteAllCookies();
 
-	// Update the value of an existing key in the properties file
-	public void updatePropertyValue(String key, String newValue) {
-		try {
-			FileInputStream fis = new FileInputStream(filePath);
-			prop.load(fis);
-			fis.close();
-			prop.setProperty(key, newValue);
-			FileOutputStream fos = new FileOutputStream(filePath);
-			prop.store(fos, null);
-			fos.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+        } else {
+            System.out.println("Driver not exit");
+        }
 
+        driver.manage().window().maximize();
+        driver.get(prop.getProperty("url").trim());
+
+        // store driver in ThreadLocal for global access
+        tlDriver.set(driver);
+
+        return driver;
+    }
+
+    // Load properties from config file
+    public Properties initProperties() {
+        prop = new Properties();
+
+        try {
+            FileInputStream fis = new FileInputStream(filePath);
+            prop.load(fis);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return prop;
+    }
+
+    // Update the value of an existing key in the properties file
+    public void updatePropertyValue(String key, String newValue) {
+        try {
+            FileInputStream fis = new FileInputStream(filePath);
+            prop.load(fis);
+            fis.close();
+
+            prop.setProperty(key, newValue);
+
+            FileOutputStream fos = new FileOutputStream(filePath);
+            prop.store(fos, null);
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

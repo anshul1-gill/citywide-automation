@@ -21,6 +21,7 @@ public class PatrolAgentUpdateTrespassNoticesTest extends BaseTest {
     public void updateTrespassNoticesTest() throws InterruptedException {
         Thread.sleep(1000);
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         fieldAgentTrespassNoticesPage = patrolStartShiftPage.clickOnTrespassNoticesFormLink();
         fieldAgentTrespassNoticesPage.searchTrespassNotice(prop.getProperty("patrolID"));
         fieldAgentTrespassNoticesPage.clickOnEditButton(prop.getProperty("trespassNoticesID"));

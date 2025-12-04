@@ -38,17 +38,22 @@ public class DeleteRankAndPositionTest extends BaseTest {
 //        softAssert.assertTrue(rankAndPositionPage.isAddNewRankButtonVisible(), "Add New Rank button is not visible after delete.");
 //
 //        // Step 6: Verify success message after deletion
-//        String actualMessage = rankAndPositionPage.getDeleteSuccessMessage().trim();
-//        softAssert.assertEquals(
-//            actualMessage,
-//            "Rank deleted successfully",
-//            "Delete success message not displayed correctly. Actual: " + actualMessage
-//        );
-//
+        String actualMessage = rankAndPositionPage.getDeleteSuccessMessage()
+                .replace(".", "")
+                .trim()
+                .toLowerCase();
+
+softAssert.assertEquals(
+actualMessage,
+"rank deleted successfully",
+"Delete success message not displayed correctly. Actual: " + actualMessage
+);
+
+
 //        // Step 7: Log confirmation
 //        System.out.println("🗑️ Rank Deleted Successfully: " + CompanySettingsConstant.UPDATED_RANK_NAME);
 //
 //        // Step 8: Assert all
-//        softAssert.assertAll();
+        softAssert.assertAll();
     }
 }

@@ -17,6 +17,7 @@ public class PatrolAgentAddFieldInterviewTest extends BaseTest {
 	public void AddFieldInterviewTest() throws InterruptedException {
 		Thread.sleep(1000);
 		patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
 		fieldAgentFieldInterviewPage = patrolStartShiftPage.clickOnFieldInterviewFormLink();
 
 		fieldAgentFieldInterviewPage.clickOnAddNew();

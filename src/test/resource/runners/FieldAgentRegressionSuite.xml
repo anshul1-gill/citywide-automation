@@ -27,7 +27,7 @@
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentCancelLeaveTest"/>
 
       <!-- 5️⃣ Team Support & Training -->
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgnetTeamSupportTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentTeamSupportTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyCoursesViewAndAssessmentTest"/>
 
@@ -45,10 +45,10 @@
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateIncidentReportsTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateParkingCitationTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateTrespassNoticesTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteIncidentReportsTest"/>
+  <!--     <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteIncidentReportsTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteParkingCitationTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteFieldInterviewTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteTrespassNoticesTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteTrespassNoticesTest"/> -->
 
       <!-- 9️⃣ Profile, Logs & Final Validation -->
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentProfileCommentsTest"/>

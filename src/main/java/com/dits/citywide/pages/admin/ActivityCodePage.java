@@ -30,16 +30,16 @@ public class ActivityCodePage {
 	);
 
 	private By inputSearchActivityCode = By.xpath("//input[@placeholder='Search']");
-	private By txtAddedCodeName = By.xpath("(//td[@data-label='Code'])[1]");
+	private By txtAddedCodeName = By.xpath("(//td[@data-label='Activity Code'])[1]");
 	private By txtAddedDescription = By.xpath("(//td[@data-label='Description'])[1]");
 	private By txtAddedPriority = By.xpath("(//td[@data-label='Priority'])[1]");
 
 	private By btnEditActivityCode = By.xpath("//button[@title='Edit Code']");
 	private By btnDeleteActivityCode = By.xpath("//button[@title='Delete Code']");
 	private By btnConfirmDelete = By.xpath("//button[normalize-space()='OK']");
-	private By txtDeleteSuccessMessage = By.xpath("//div[contains(text(),'Record deleted successfully.')]");
-	private By txtAddSuccessMessage = By.xpath("//div[contains(text(),'Information Saved Successfully.')]");
-	private By txtUpdateSuccessMessage = By.xpath("//div[contains(text(),'Information Updated Successfully.')]");
+	private By txtDeleteSuccessMessage = By.xpath("//div[contains(@role,'alert')and contains(.,'Record deleted successfully.')]");
+	private By txtAddSuccessMessage = By.xpath("//div[contains(@role,'alert') and contains(.,'Information Saved Successfully.')]");
+	private By txtUpdateSuccessMessage = By.xpath("//div[contains(@role,'alert)and contains(.,'Information Updated Successfully.')]");
 
 	// ---------- Constructor ----------
 	public ActivityCodePage(WebDriver driver) {
@@ -95,9 +95,16 @@ public class ActivityCodePage {
 	}
 
 	public String getAddSuccessMessage() {
-		return elementUtils.waitForElementVisible(txtAddSuccessMessage, Constants.DEFAULT_WAIT).getText();
+	    String rawMessage = elementUtils
+	            .waitForElementVisible(txtAddSuccessMessage, Constants.DEFAULT_WAIT)
+	            .getText();
+
+	    // Remove the close icon and whitespace/newline characters
+	    String cleanedMessage = rawMessage.replace("×", "").trim().replace("\n", "").trim();
+
+	    return cleanedMessage;
 	}
-	
+
 	public void searchActivityCode(String codeName) {
 	    elementUtils.waitForElementVisible(inputSearchActivityCode, Constants.DEFAULT_WAIT).clear();
 	    elementUtils.doActionsSendKeys(inputSearchActivityCode, codeName);
@@ -159,6 +166,13 @@ public class ActivityCodePage {
 	}
 
 	public String getDeleteSuccessMessage() {
-		return elementUtils.waitForElementVisible(txtDeleteSuccessMessage, Constants.DEFAULT_WAIT).getText();
+	    String rawMessage = elementUtils
+	            .waitForElementVisible(txtDeleteSuccessMessage, Constants.DEFAULT_WAIT)
+	            .getText()
+	            .trim();
+
+	    // Remove the close icon (×) if present
+	    return rawMessage.replace("×", "").trim();
 	}
+
 }

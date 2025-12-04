@@ -3,7 +3,7 @@ package com.dits.citywide.constants;
 public class TrainingConstants {
 
 	// Category Constants
-	public static final String CATEGORY_NAME = "Automation Testing Category";
+	public static final String CATEGORY_NAME = "A Automation Testing Category";
 	public static final String ADDED_CATEGORY_SUCCESS_MESSAGE = "Category added successfully";
 
 	public static final String CATEGORY_NAME_UPDATED = "Automation Testing Updated ";
@@ -12,8 +12,8 @@ public class TrainingConstants {
 	public static final String CATEGORY_NAME_DELETED = "Category deleted successfully!";
 
 	// Certificate Constants
-	public static final String CERTIFICATE_HEADING = "Certificates";
-	public static final String CERTIFICATE_NAME = "Automation Testing Certificate Name";
+	public static final String CERTIFICATE_HEADING = " Certificate A";
+	public static final String CERTIFICATE_NAME = "Automation Testing Certificate Name A";
 	public static final String CERTIFICATE_SERIAL_NUMBER = "1234567890";
 	// public static final String CERTIFICATE_FILE_PATH =
 	// "/Users/ditsdev/Downloads/automation_test_file.pdf";
@@ -32,7 +32,7 @@ public class TrainingConstants {
 
 	// Course Constants
 	// Add New Course data
-	public static final String COURSE_NAME = "Automation Testing Course Name";
+	public static final String COURSE_NAME = "AI course for Beginners";
 	public static final String CERTIFICATE = CERTIFICATE_NAME;
 	public static final String CATEGORY = CATEGORY_NAME;
 	public static final String PAYMENT_TYPE = "Paid";

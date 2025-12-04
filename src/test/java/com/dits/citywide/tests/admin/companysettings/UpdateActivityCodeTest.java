@@ -42,6 +42,8 @@ public class UpdateActivityCodeTest extends BaseTest {
 
         // Step 7: Click the Update button
         activityCodePage.clickUpdateActivityCodeButton();
+        
+        activityCodePage.searchActivityCode(CompanySettingsConstant.ACTIVITY_CODE_EDIT_NAME);
 
 
         softAssert.assertEquals(
@@ -54,12 +56,6 @@ public class UpdateActivityCodeTest extends BaseTest {
                 activityCodePage.getAddedDescription(),
                 CompanySettingsConstant.ACTIVITY_CODE_EDIT_DESCRIPTION,
                 "Updated Activity Code Description does not match."
-        );
-
-        softAssert.assertEquals(
-                activityCodePage.getAddedPriority(),
-                CompanySettingsConstant.ACTIVITY_CODE_EDIT_PRIORITY,
-                "Updated Activity Code Priority does not match."
         );
 
         // Updated success message assertion

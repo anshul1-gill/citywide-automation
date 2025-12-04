@@ -25,6 +25,7 @@ public class PatrolAgentAllReportsTest extends BaseTest {
     public void allReportsPatrolAgentTest() throws InterruptedException {
         Thread.sleep(1000);
         patrolAgentStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         patrolAgentReportsPage = patrolAgentStartShiftPage.clickOnReportsTab();
         patrolAgentReportsPage.clickAllReports();
 

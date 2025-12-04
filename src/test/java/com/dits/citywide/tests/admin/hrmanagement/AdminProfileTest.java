@@ -1,4 +1,4 @@
-package com.dits.citywide.tests.patrol;
+package com.dits.citywide.tests.admin.hrmanagement;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -6,42 +6,41 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 
 import com.dits.citywide.base.BaseTest;
-import com.dits.citywide.constants.PatrolAgentConstants;
-import com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage;
-import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
 import com.dits.citywide.constants.HRManagementConstants;
+import com.dits.citywide.pages.fieldagent.FieldAgentProfileDetailsPage;
+import com.dits.citywide.pages.admin.EmployeesPage;
 
-public class PatrolAgentProfileDetailsTest extends BaseTest {
-    private PatrolStartShiftPage patrolStartShiftPage;
+public class AdminProfileTest extends BaseTest {
+    private EmployeesPage employeesPage;
     private FieldAgentProfileDetailsPage fieldAgentProfileDetailsPage;
 
     @BeforeMethod
     public void performLogin() throws InterruptedException {
-        patrolStartShiftPage = loginPage.doLoginPatrol(prop.getProperty("patrolID"),
-                prop.getProperty("employeePassword"));
+        loginPage.doLoginAdmin(prop.getProperty("email"),
+                prop.getProperty("password"));
+        employeesPage = new EmployeesPage(driver);
     }
 
     @Test
-    public void verifyAllPatrolAgentProfileTabs() {
-    	patrolStartShiftPage.handleMessageOfTheWeek();
-    	patrolStartShiftPage.handlePassdownOfTheDay();
+    public void verifyAllAdminProfileTabs() {
+        // Navigate to employee profile (implement navigation as needed)
+        fieldAgentProfileDetailsPage = new FieldAgentProfileDetailsPage(driver);
         patrolStartShiftPage.clickOnHRManagementMenu();
         fieldAgentProfileDetailsPage = patrolStartShiftPage.clickOnProfile();
 
-        // Select Officer using Patrol-specific HRManagementConstants
-        String officerFullName = HRManagementConstants.FIRST_NAME_PATROL + " " +
-                                 HRManagementConstants.MIDDLE_NAME_PATROL + " " +
-                                 HRManagementConstants.LAST_NAME_PATROL;
 
-        patrolStartShiftPage.selectUserByName(officerFullName);
+        // Select Admin using available HRManagementConstants
+        String adminFullName = HRManagementConstants.FIRST_NAME + " " +
+                               HRManagementConstants.MIDDLE_NAME + " " +
+                               HRManagementConstants.LAST_NAME;
 
         /** ---------------- PERSONAL INFORMATION TAB ---------------- */
         Map<String, String> personalInfoFields = new LinkedHashMap<>();
-        personalInfoFields.put("Officer", officerFullName); // Add badge number if needed
-        personalInfoFields.put("Email Address", prop.getProperty("patrolPrimaryEmail"));
-        personalInfoFields.put("Email (Primary)", prop.getProperty("patrolPrimaryEmail"));
-        personalInfoFields.put("Email (Alternate)", prop.getProperty("patrolSecondaryEmail"));
-        personalInfoFields.put("Gender", HRManagementConstants.GENDER_PATROL);
+        personalInfoFields.put("Admin", adminFullName); // Add badge number if needed
+        personalInfoFields.put("Email Address", prop.getProperty("employeePrimaryEmail"));
+        personalInfoFields.put("Email (Primary)", prop.getProperty("employeePrimaryEmail"));
+        personalInfoFields.put("Email (Alternate)", prop.getProperty("employeeSecondaryEmail"));
+        personalInfoFields.put("Gender", HRManagementConstants.GENDER);
         personalInfoFields.put("Branches", HRManagementConstants.BRANCHES);
         personalInfoFields.put("Phone (Primary)", HRManagementConstants.PRIMARY_PHONE_NUMBER);
         personalInfoFields.put("Phone (Alternate)", HRManagementConstants.ALTERNATE_PHONE_NUMBER);
@@ -97,8 +96,8 @@ public class PatrolAgentProfileDetailsTest extends BaseTest {
 
     private Map<String, String> getEmploymentFields() {
         Map<String, String> employmentFields = new LinkedHashMap<>();
-        employmentFields.put("Position", HRManagementConstants.ROLE_PATROL);
-        employmentFields.put("Rank", HRManagementConstants.RANK_PATROL);
+        employmentFields.put("Position", HRManagementConstants.ROLE_FIELD);
+        employmentFields.put("Rank", HRManagementConstants.RANK);
         employmentFields.put("Employment Status", HRManagementConstants.EMPLOYMENT_STATUS);
         employmentFields.put("Hire Date", HRManagementConstants.EMPLOYMENT_HIRE_DATE + "-" + HRManagementConstants.EMPLOYMENT_HIRE_MONTH + "-" + HRManagementConstants.EMPLOYMENT_HIRE_YEAR);
         employmentFields.put("Employment Type", HRManagementConstants.EMPLOYMENT_TYPE);
@@ -109,7 +108,7 @@ public class PatrolAgentProfileDetailsTest extends BaseTest {
 
     private Map<String, String> getPayInfoFields() {
         Map<String, String> payInfoFields = new LinkedHashMap<>();
-        payInfoFields.put("Pay Rate", PatrolAgentConstants.PAY_RATE);
+        payInfoFields.put("Pay Rate", "N/A"); // No Admin-specific pay rate available
         return payInfoFields;
     }
 

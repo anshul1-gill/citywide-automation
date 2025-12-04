@@ -17,6 +17,7 @@ public class PatrolApplyLeaveTest extends BaseTest {
 	@Test
 	public void applyLeavePatrolTest() throws InterruptedException {
 		patrolStartShiftPage.handleMessageOfTheWeek();
+		patrolStartShiftPage.handlePassdownOfTheDay();
 		Thread.sleep(2000);
 		patrolStartShiftPage.clickOnHRManagementMenu();
 		patrolLeaveRequestsPage = patrolStartShiftPage.clickOnLeaveRequestsTab();

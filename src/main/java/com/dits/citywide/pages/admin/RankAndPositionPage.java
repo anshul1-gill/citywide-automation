@@ -37,9 +37,11 @@ public class RankAndPositionPage {
     private By btnUpdateRank = By.xpath("//button[@type='submit'and normalize-space()='Update Rank']");
     private By btnOkDeleteRank = By.xpath("//button[normalize-space()='OK']");
 
-    private By txtAddSuccessMessage = By.xpath("//span[normalize-space()='Rank Created Successfully.']");
-    private By txtUpdateSuccessMessage = By.xpath("//h2[contains(text(),'Information Updated Successfully')]/following-sibling::span");
-    private By txtDeleteSuccessMessage = By.xpath("//div[contains(text(),'Rank deleted successfully')]");
+    private By txtAddSuccessMessage = By.xpath("//div[contains(@role,'alert') and contains(.,'Rank Created Successfully.')]");
+    private By txtUpdateSuccessMessage = By.xpath("//div[contains(@role,'alert') and contains(.,'Rank Updated Successfully.')]");
+    private By txtDeleteSuccessMessage = By.xpath("//div[contains(@role,'alert') and contains(.,'Rank deleted successfully.')]");
+    
+//    private By txtAddSuccessMessage = By.xpath("//div[contains(@role,'alert') and contains(.,'Rank Updated Successfully.')]");
     
     private By inputSearchRank = By.xpath("//input[@placeholder='Search']");
 
@@ -146,16 +148,61 @@ public class RankAndPositionPage {
 
     // ==============================
     // Toast Messages
-    // ==============================
-    public String getAddSuccessMessage() {
-        return elementUtils.waitForElementVisible(txtAddSuccessMessage, Constants.DEFAULT_WAIT).getText();
+    // ==============================}
+    public String getAddSuccessMessage(String rankName) {
+
+        // 1️⃣ Try to detect success toast (5–8 seconds max)
+        try {
+            By toast = By.xpath("//div[contains(@class,'ant-notification-notice-message')]");
+            String rawMessage = elementUtils
+                    .waitForElementVisible(toast, Constants.SHORT_TIME_OUT_WAIT)
+                    .getText()
+                    .trim();
+
+            // Clean: remove close icon, remove new lines
+            return rawMessage.replace("×", "").replace("\n", "").trim();
+        } catch (Exception e) {
+            System.out.println("Toast NOT found. Checking table...");
+        }
+
+        // 2️⃣ If toast missing → verify rank exists in table
+        try {
+            By rankInTable = By.xpath("//td[normalize-space()='" + rankName + "']");
+            elementUtils.waitForElementVisible(rankInTable, Constants.DEFAULT_WAIT);
+            return "Rank Created Successfully";
+        } catch (Exception e) {
+            return "FAILED";
+        }
     }
 
-    public String getUpdateSuccessMessage() {
-        return elementUtils.waitForElementVisible(txtUpdateSuccessMessage, Constants.DEFAULT_WAIT).getText();
-    }
 
-    public String getDeleteSuccessMessage() {
-        return elementUtils.waitForElementVisible(txtDeleteSuccessMessage, Constants.DEFAULT_WAIT).getText();
-    }
+
+
+	public String getUpdateSuccessMessage() {
+	    String rawMessage = elementUtils
+	            .waitForElementVisible(txtUpdateSuccessMessage, Constants.DEFAULT_WAIT)
+	            .getText()
+	            .trim();
+
+	    // Remove close icon "×" + clean new lines
+	    return rawMessage
+	            .replace("×", "")
+	            .replace("\n", "")
+	            .trim();
+	}
+
+
+	public String getDeleteSuccessMessage() {
+	    String rawMessage = elementUtils
+	            .waitForElementVisible(txtDeleteSuccessMessage, Constants.DEFAULT_WAIT)
+	            .getText()
+	            .trim();
+
+	    // Clean unwanted characters: remove close icon (×) + remove new lines + extra spaces
+	    return rawMessage
+	            .replace("×", "")
+	            .replace("\n", "")
+	            .trim();
+	}
+
 }

@@ -16,6 +16,9 @@ public class PatrolAgentCallActionTest extends BaseTest {
 
 	@Test
 	public void callActionPatrolAgentTest() throws InterruptedException {
+		 patrolStartShiftPage.handleMessageOfTheWeek();
+         patrolStartShiftPage.handlePassdownOfTheDay();
+		
 		Thread.sleep(2000); // allow initial overlays to settle
 		fieldAgentCallsPage = patrolStartShiftPage.doClickCallsTab();
 

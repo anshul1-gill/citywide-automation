@@ -22,6 +22,7 @@ public class PatrolAgentUpdateIncidentReportsTest extends BaseTest {
         // Navigate to Incident Reports page
         Thread.sleep(1000);
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         fieldAgentIncidentReportsPage = patrolStartShiftPage.clickOnIncidentReportFormLink();
 
         fieldAgentIncidentReportsPage.clickOnEditIncidentReport(prop.getProperty("incidentReportID"));

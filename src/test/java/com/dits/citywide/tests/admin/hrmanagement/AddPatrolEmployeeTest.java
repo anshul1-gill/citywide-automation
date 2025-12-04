@@ -7,6 +7,7 @@ import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.HRManagementConstants;
 import com.dits.citywide.utilities.NormalizePhoneNumber;
 import com.dits.citywide.utilities.RandomEmailGenerator;
+import java.io.File;
 
 public class AddPatrolEmployeeTest extends BaseTest {
 
@@ -191,8 +192,13 @@ public class AddPatrolEmployeeTest extends BaseTest {
 
 		// Upload Document
 		Thread.sleep(2000);
-		addEmployeePage.doClickAdditionalDocumentsTab();
+//		addEmployeePage.doClickAdditionalDocumentsTab();
 		addEmployeePage.doClickAddAdditionalDocument();
+		
+		Thread.sleep(5000);
+		String absoluteFilePath = new File("./src/test/resource/testdata/image.jpeg").getAbsolutePath();
+		addEmployeePage.uploadAdditionalDocument(absoluteFilePath);
+
 		addEmployeePage.fillAdditionalDocuments(HRManagementConstants.ADDITIONAL_DOCUMENT_NAME,
 				HRManagementConstants.ADDITIONAL_DOCUMENT_DESCRIPTION);
 

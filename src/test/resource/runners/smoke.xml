@@ -1,302 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <suite name="Citywide Regression Suite" verbose="1">
 
-	<listeners>
-		<listener class-name="com.dits.citywide.listener.ExtentReportListener"></listener>
-	</listeners>
-	
-		<test name="Company Settings Tests" preserve-order="true">
-		<classes>
+    <listeners>
+        <listener class-name="com.dits.citywide.listener.ExtentReportListener"/>
+    </listeners>
 
-			<!-- 1️⃣ Service Types -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddServiceTypeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateServiceTypeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteServiceTypeTest" />
+    <!-- Company Settings Tests -->
+    <test name="Company Settings Tests" preserve-order="true">
+        <classes>
 
-			<!-- 2️⃣ Rank & Position -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddRankAndPositionTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateRankAndPositionTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteRankAndPositionTest" />
+            <!-- 1️⃣ Service Types -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddServiceTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateServiceTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteServiceTypeTest" />
 
-			<!-- 3️⃣ Breaks -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddBreakPageTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateBreakTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteBreakTest" />
+            <!-- 2️⃣ Rank & Position -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddRankAndPositionTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateRankAndPositionTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteRankAndPositionTest" />
 
-			<!-- 4️⃣ Holidays -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddCustomHolidayTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateCustomHolidayTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest" />
+            <!-- 3️⃣ Breaks -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddBreakPageTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateBreakTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteBreakTest" />
 
-			<class name="com.dits.citywide.tests.admin.companysettings.AddFederalHolidayTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateFederalHolidayTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteFederalHolidayTest" />
+            <!-- 4️⃣ Holidays -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddCustomHolidayTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateCustomHolidayTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest" />
 
-			<!-- 5️⃣ Leaves -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddLeaveTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateLeaveTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.AddFederalHolidayTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateFederalHolidayTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteFederalHolidayTest" />
 
-			<!-- 6️⃣ Activity Code -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddActivityCodeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityCodeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteActivityCodeTest" />
+            <!-- 5️⃣ Leaves -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteLeaveTest" />
 
-			<!-- 7️⃣ Activity Template -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddNewActivityTemplateTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityTemplateTest" />
+            <!-- 6️⃣ Activity Code -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddActivityCodeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityCodeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteActivityCodeTest" />
 
-			<!-- 8️⃣ Assignment Templates -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddAssignmentTemplateTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateAssignmentTemplate" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteAssignmentTemplateTest" />
+            <!-- 7️⃣ Activity Template -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddNewActivityTemplateTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityTemplateTest" />
 
-			<!-- 9️⃣ Violations -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddViolationTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateViolationTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteViolationTest" />
-			
-			<class name ="com.dits.citywide.tests.admin.companysettings.AddCrimePotentialTest" />
-			<class name ="com.dits.citywide.tests.admin.companysettings.UpdateCrimePotentialTest" />
-			<class name ="com.dits.citywide.tests.admin.companysettings.DeleteCrimePotentialTest" />
-			
-			<class
-				name="com.dits.citywide.tests.admin.companysettings.AddChargesTest" />
-				<class
-				name="com.dits.citywide.tests.admin.companysettings.UpdateChargesTest" />
-				<class
-				name="com.dits.citywide.tests.admin.companysettings.DeleteChargesTest" />
-			
+            <!-- 8️⃣ Assignment Templates -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddAssignmentTemplateTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateAssignmentTemplate" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteAssignmentTemplateTest" />
 
-			<!-- 🔟 Beats -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddBeatTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateBeatTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteBeatTest" />
+            <!-- 9️⃣ Violations -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddViolationTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateViolationTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteViolationTest" />
 
-			<!-- 11️⃣ HR Configurations -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddAllowanceTypeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateAllowanceTypeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeletedAllowanceTypeTest" />
+            <class name ="com.dits.citywide.tests.admin.companysettings.AddCrimePotentialTest" />
+            <class name ="com.dits.citywide.tests.admin.companysettings.UpdateCrimePotentialTest" />
+            <class name ="com.dits.citywide.tests.admin.companysettings.DeleteCrimePotentialTest" />
 
-			<class name="com.dits.citywide.tests.admin.companysettings.AddEmploymentTypeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateEmploymentTypeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteEmploymentTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.AddChargesTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateChargesTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteChargesTest" />
 
-			<class name="com.dits.citywide.tests.admin.companysettings.AddDepartmentTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateDepartmentTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteDepartmentTest" />
+            <!-- 🔟 Beats -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddBeatTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateBeatTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteBeatTest" />
 
-			<class name="com.dits.citywide.tests.admin.companysettings.AddWCClassCodeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateWCClassCodeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteWCClassCodeTest" />
-			
-			<class
-				name="com.dits.citywide.tests.admin.companysettings.AddNotificationTypeTest" />
+            <!-- 11️⃣ HR Configurations -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddAllowanceTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateAllowanceTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeletedAllowanceTypeTest" />
 
-			<!-- 12️⃣ Team Support Templates -->
-			<class name="com.dits.citywide.tests.admin.companysettings.TeamSupportTemplateAddTemplateTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.AddEmploymentTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateEmploymentTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteEmploymentTypeTest" />
 
-			<!-- 13️⃣ Responding Agencies -->
-			<class name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.AddDepartmentTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateDepartmentTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteDepartmentTest" />
 
-			<class name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTypeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTypeTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.AddWCClassCodeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateWCClassCodeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteWCClassCodeTest" />
 
-			<!-- 🧾 Extra Utility -->
-			<class name="com.dits.citywide.tests.admin.companysettings.CompanySettingsPageOpenTest" />
-			<class name="com.dits.citywide.tests.admin.companysettings.CompanySettingsTest" />
+            <!-- 12️⃣ Team Support Templates -->
+            <class name="com.dits.citywide.tests.admin.companysettings.TeamSupportTemplateAddTemplateTest" />
 
-		</classes>
-	</test>
+            <!-- 13️⃣ Responding Agencies -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTest" />
 
+            <class name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTypeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTypeTest" />
 
-	<test
-		name="Add Employee Test" preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.AddFieldAgentEmployeeTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
-		</classes>
-	</test>
+            <!-- 🧾 Extra Utility -->
+            <class name="com.dits.citywide.tests.admin.companysettings.CompanySettingsPageOpenTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.CompanySettingsTest" />
 
+        </classes>
+    </test>
 
-	<test
-		name="Decline Leave Request Test" preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsTest" />
-		</classes>
-	</test>
+    <test name="Adding the New site" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.operationhub.AdminSitesAddNewSiteTest" />
+        </classes>
+    </test>
 
-	<test
-		name="Approve Leave Request Test" preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsTest" />
-		</classes>
-	</test>
+    <test name="ApplicantTracking System" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.hrmanagement.AdminATSTest" />
+        </classes>
+    </test>
 
-	<test
-		name="My Courses Tests" preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.admin.training.AddCategoryTest" />
-			<class
-				name="com.dits.citywide.tests.admin.training.AddCertificateTest" />
-			<class
-				name="com.dits.citywide.tests.admin.training.AddNewCourseTest" />
-			<class
-				name="com.dits.citywide.tests.admin.training.AssignCourseTest" />
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyCoursesViewAndAssessmentTest"
-			/>
-			<class
-				name="com.dits.citywide.tests.admin.training.AssessmentsResultsTest" />
-			<class
-				name="com.dits.citywide.tests.admin.training.DeleteCategoryTest" />
-			<class
-				name="com.dits.citywide.tests.admin.training.DeleteCertificateTest" />
-		</classes>
-	</test>
-	
-	<test
-	     name= "My Attendance and sites tabSites tabs Open Add commments " preserve-order="true"> 
-		    <classes>
-		    	<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyAttendanceTest" />
-		    
-		            <class
-		                  name="com.dits.citywide.tests.fieldagent.FieldAgentOpenSitesTest" />
-                </classes>
-	                     </test>
+    <test name="Add Employee Test" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.hrmanagement.AddFieldAgentEmployeeTest" />
+        </classes>
+    </test>
 
-	<test
-		name="Employee Shift Management Tests with features Start Shift , Add New Call , My Assignments , Reports , End Shift "
-		preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
-				
-				<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentConfirmShiftTest" />
-				
-				
-			<class
-				name="com.dits.citywide.tests.operationhub.SitesPostOrdersDeleteAssignmentAndCheckpointTest"
-			/>
-			<class
-				name="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointTest"
-			/>
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
-			<class
-				name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
-				
-				<class 
-				      name="com.dits.citywide.tests.fieldagent.FieldAgentAddPatrolLogsForCallTest" />
-				      
-				      <class
-				           name ="com.dits.citywide.tests.operationhub.CloseCallTest"  />
-				           
-			<class
-			      name="com.dits.citywide.tests.fieldagent.FieldAgnetNewPassdownLogTest"	/>    
-			      
-			<class 
-			      name="com.dits.citywide.tests.fieldagent.FieldAgentViewPassdownLogTest" />  
-			      
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments" />
-				
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest" />
-		
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest" /> 
-			<class
-			      name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest" />
-		</classes>
-		
-	</test>
-	
-	
-		<test name="ERM And Field Agent Functional Tests" preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.EmployeesAddRemarksTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.EmployeesViewRemarksTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsAddRemarkTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsAddReasonTest" />
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryAddRemarksTest"
-			/>
-			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryAssignCourseTest"
-			/>
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest" />
-			<!-- 
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentProfileCommentsTest" />
-			<classDeleteCrimePotentialTest
-				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryViewTest" />
-			<class
-			name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryActionTakenTest"
-			/>
-			-->
-		</classes>
-	</test>
-	
-	
-	<test
-		name="Forms" preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentAddFieldInterviewTest" />
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteFieldInterviewTest" />
+    <test name="Decline Leave Request Test" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsTest" />
+        </classes>
+    </test>
 
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentAddIncidentReportsTest" />
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteIncidentReportsTest"
-	/>
+    <test name="Approve Leave Request Test" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsTest" />
+        </classes>
+    </test>
 
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentAddParkingCitationTest" />
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteParkingCitationTest"
-	/>
+    <test name="My Courses Tests" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.training.AddCategoryTest" />
+            <class name="com.dits.citywide.tests.admin.training.AddCertificateTest" />
+            <class name="com.dits.citywide.tests.admin.training.AddNewCourseTest" />
+            <class name="com.dits.citywide.tests.admin.training.AssignCourseTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyCoursesViewAndAssessmentTest" />
+            <class name="com.dits.citywide.tests.admin.training.AssessmentsResultsTest" />
+            <class name="com.dits.citywide.tests.admin.training.DeleteCategoryTest" />
+            <class name="com.dits.citywide.tests.admin.training.DeleteCertificateTest" />
+        </classes>
+    </test>
 
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentAddTrespassNoticesTest" />
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteTrespassNoticesTest"
-	/>
-	
-	<class 
-	name="com.dits.citywide.tests.operationhub.AddClientTest"/>
-	<class
-		name="com.dits.citywide.tests.Client.ClientModuleTest"/>
+    <test name="My Attendance and Sites tabs Open Add comments" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyAttendanceTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentOpenSitesTest" />
+        </classes>
+    </test>
 
+    <test name="Employee Shift Management Tests" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.scheduling.AddShiftTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentConfirmShiftTest" />
+            <class name="com.dits.citywide.tests.operationhub.SitesPostOrdersDeleteAssignmentAndCheckpointTest" />
+            <class name="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
+            <class name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddPatrolLogsForCallTest" />
+            <class name="com.dits.citywide.tests.operationhub.CloseCallTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgnetNewPassdownLogTest"/>    
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewPassdownLogTest" />  
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest" /> 
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest" />
+        </classes>
+    </test>
 
-    </classes>
-	</test>
+    <test name="ERM And Field Agent Functional Tests" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.hrmanagement.EmployeesAddRemarksTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.EmployeesViewRemarksTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsAddRemarkTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsAddReasonTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryAddRemarksTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryAssignCourseTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest" />
+        </classes>
+    </test>
 
+    <test name="Forms" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddFieldInterviewTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddIncidentReportsTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddParkingCitationTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddTrespassNoticesTest" />
+            <class name="com.dits.citywide.tests.operationhub.AddClientTest"/>
+            <class name="com.dits.citywide.tests.Client.ClientModuleTest"/>
+        </classes>
+    </test>
 
+    <!-- Patrol Agent Regression Test -->
+    <test name="Patrol Agent Regression Tests" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.hrmanagement.AddPatrolEmployeeTest"/>
+            <class name="com.dits.citywide.tests.patrol.PatrolApplyLeaveTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolUpdateLeaveTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolCancelLeaveTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolBeatsTest" />
+            <class name="com.dits.citywide.tests.scheduling.AddShiftPatrolTest"/>
+            <class name="com.dits.citywide.tests.patrol.PatrolConfirmShiftTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolStartShiftTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolVehicleInspectionTest" />
+            <class name="com.dits.citywide.tests.operationhub.AddNewPatrolCallTest"/>
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentCallActionTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddPatrolLogsForCallTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentMyReportsTest" />
+            <class name="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointPatrolAgentTest"/>
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentMyAssignments" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAllReportsTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentMyAttendanceTest" />
+            <class name="com.dits.citywide.tests.admin.training.AssignCoursePatrolTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolMyCourseTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentMyCoursesViewAndAssessmentTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentPassdownLogsTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentProfileDetailsTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddFieldInterviewTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateFieldInterviewTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddParkingCitationTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateParkingCitationTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddTrespassNoticesTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateTrespassNoticesTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddIncidentReportsTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateIncidentReportsTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentEndShiftTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentTeamSupportTest" />
+        </classes>
+    </test>
 
 </suite>

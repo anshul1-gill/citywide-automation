@@ -17,6 +17,7 @@ public class PatrolAgentAddIncidentReportsTest extends BaseTest {
     public void AddIncidentReportTest() throws InterruptedException {
         Thread.sleep(1000);
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         fieldAgentIncidentReportsPage = patrolStartShiftPage.clickOnIncidentReportFormLink();
         fieldAgentIncidentReportsPage.clickOnAddNewIncident();
 

@@ -7,6 +7,7 @@ import com.dits.citywide.base.BaseTest;
 import com.dits.citywide.constants.HRManagementConstants;
 import com.dits.citywide.utilities.NormalizePhoneNumber;
 import com.dits.citywide.utilities.RandomEmailGenerator;
+import java.io.File;
 
 public class AddFieldAgentEmployeeTest extends BaseTest {
 
@@ -47,7 +48,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 				HRManagementConstants.ALTERNATE_PHONE_NUMBER, HRManagementConstants.EMERGENCY_NAME,
 				HRManagementConstants.EMERGENCY_PHONE_NUMBER, HRManagementConstants.EMERGENCY_RELATIONSHIP,
 				HRManagementConstants.PASSWORD, HRManagementConstants.CONFIRM_PASSWORD, HRManagementConstants.BRANCHES);
-//		addEmployeePage.fillSiteName(HRManagementConstants.SITE);
+		addEmployeePage.fillSiteName(HRManagementConstants.SITE);
 
 		addEmployeePage.fillResidenceAddress(HRManagementConstants.RESIDENCE_ADDRESS_STREET_NAME,
 				HRManagementConstants.RESIDENCE_ADDRESS_STREET, HRManagementConstants.RESIDENCE_ADDRESS_STE_NUMBER,
@@ -61,7 +62,7 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 				HRManagementConstants.PERSONAL_INFO_ADDED_SUCCESS_MESSAGE);
 
 		// Employment Information
-		addEmployeePage.doClickEmploymentInformationTab();
+//		addEmployeePage.doClickEmploymentInformationTab();
 
 		String employeeId = addEmployeePage.getEmployeeID();
 		System.out.println(employeeId); // Print ID
@@ -191,8 +192,15 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 
 		// Upload Document
 		Thread.sleep(2000);
-		addEmployeePage.doClickAdditionalDocumentsTab();
+//		addEmployeePage.doClickAdditionalDocumentsTab();
+		
 		addEmployeePage.doClickAddAdditionalDocument();
+		
+		Thread.sleep(5000);
+		
+		String absoluteFilePath = new File("./src/test/resource/testdata/image.jpeg").getAbsolutePath();
+		addEmployeePage.uploadAdditionalDocument(absoluteFilePath);
+
 		addEmployeePage.fillAdditionalDocuments(HRManagementConstants.ADDITIONAL_DOCUMENT_NAME,
 				HRManagementConstants.ADDITIONAL_DOCUMENT_DESCRIPTION);
 

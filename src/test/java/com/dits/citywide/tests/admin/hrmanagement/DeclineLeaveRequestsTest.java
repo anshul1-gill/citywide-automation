@@ -19,6 +19,10 @@ public class DeclineLeaveRequestsTest extends BaseTest {
 		dashboardPage.doClickHRManagement();
 		Thread.sleep(6000);
 		leaveRequestsPage = dashboardPage.doClickLeaveRequests();
+		
+		leaveRequestsPage.applyDefaultDateFilters();
+		
+		
 
 		leaveRequestsPage.doSearchLeaveRequest(prop.getProperty("employeeID"));
 		Thread.sleep(4000);

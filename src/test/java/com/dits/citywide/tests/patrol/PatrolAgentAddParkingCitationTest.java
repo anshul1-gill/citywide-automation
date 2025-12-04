@@ -18,6 +18,7 @@ public class PatrolAgentAddParkingCitationTest extends BaseTest {
     public void AddParkingCitationTestPatrol() throws InterruptedException {
         Thread.sleep(1000);
         patrolStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
         fieldAgentParkingCitationPage = patrolStartShiftPage.clickOnParkingCitationFormLink();
         softAssert.assertTrue(fieldAgentParkingCitationPage.isClearButtonDisplayed(), "Clear Button not visible");
 

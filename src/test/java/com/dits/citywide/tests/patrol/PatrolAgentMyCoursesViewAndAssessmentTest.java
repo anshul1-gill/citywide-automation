@@ -16,6 +16,8 @@ public class PatrolAgentMyCoursesViewAndAssessmentTest extends BaseTest {
 
     @Test
     public void viewAndAssessmentMyCoursesPatrolTest() throws InterruptedException {
+    			patrolStartShiftPage.handleMessageOfTheWeek();
+          patrolStartShiftPage.handlePassdownOfTheDay();
         patrolStartShiftPage.clickOnHRManagementMenu();
         fieldAgentMyCoursesPage = patrolStartShiftPage.clickOnMyCoursesTab();
         softAssert.assertEquals(fieldAgentMyCoursesPage.getHeadingMyCourses(), "My Courses",

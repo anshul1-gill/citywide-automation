@@ -28,21 +28,27 @@ public class ApplyLeaveTest extends BaseTest {
 
 		softAssert.assertTrue(applyLeavePage.isLeaveAppliedSuccessMessageDisplayed());
 
-		softAssert.assertEquals(leaveRequestsPage.getLeaveTypeText(), HRManagementConstants.LEAVE_TYPE);
+		softAssert.assertEquals(leaveRequestsPage.getLeaveTypeText(HRManagementConstants.EMPLOYEE_ID,
+				HRManagementConstants.LEAVE_TYPE), HRManagementConstants.LEAVE_TYPE);
 
-		String[] fromDateParts = leaveRequestsPage.getFromDateText();
+		String[] fromDateParts = leaveRequestsPage.getFromDateText(HRManagementConstants.EMPLOYEE_ID,
+				HRManagementConstants.LEAVE_TYPE);
 		softAssert.assertEquals(fromDateParts[0], HRManagementConstants.LEAVE_FROM_MONTH);
 		softAssert.assertEquals(fromDateParts[1], HRManagementConstants.LEAVE_FROM_DATE);
 		softAssert.assertEquals(fromDateParts[2], HRManagementConstants.LEAVE_FROM_YEAR);
 
-		String[] toDateParts = leaveRequestsPage.getToDateText();
+		String[] toDateParts = leaveRequestsPage.getToDateText(HRManagementConstants.EMPLOYEE_ID,
+				HRManagementConstants.LEAVE_TYPE);
 		softAssert.assertEquals(toDateParts[0], HRManagementConstants.LEAVE_TO_MONTH);
 		softAssert.assertEquals(toDateParts[1], HRManagementConstants.LEAVE_TO_DATE);
 		softAssert.assertEquals(toDateParts[2], HRManagementConstants.LEAVE_TO_YEAR);
 
 		int totalDays = (Integer.parseInt(toDateParts[1]) - Integer.parseInt(fromDateParts[1])) + 1;
 		System.out.println(totalDays);
-		softAssert.assertEquals(leaveRequestsPage.getTotalDaysText().trim(), String.valueOf(totalDays));
+		softAssert.assertEquals(
+				leaveRequestsPage.getTotalDaysText(HRManagementConstants.EMPLOYEE_ID, HRManagementConstants.LEAVE_TYPE)
+						.trim(),
+				String.valueOf(totalDays));
 
 		softAssert.assertAll();
 	}

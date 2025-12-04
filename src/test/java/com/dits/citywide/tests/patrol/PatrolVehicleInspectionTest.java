@@ -19,6 +19,7 @@ public class PatrolVehicleInspectionTest extends BaseTest {
 	@Test
 	public void patrolVehicleInspectionTest() throws InterruptedException {
 		patrolStartShiftPage.handleMessageOfTheWeek();
+		patrolStartShiftPage.handlePassdownOfTheDay();
 		patrolVehicleInspectionPage = patrolStartShiftPage.clickOnVehicleInspectionTab();
 		patrolVehicleInspectionPage.doClickVehicleNumber("5632");
 		softAssert.assertEquals(patrolVehicleInspectionPage.getSelectedVehicleId(), "5632");

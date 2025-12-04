@@ -21,6 +21,8 @@ public class PatrolAgentMyAssignments extends BaseTest {
 	public void myAssignmentsPatrolAgentTest() throws InterruptedException {
 		Thread.sleep(1000);
 		fieldAgentStartShiftPage.handleMessageOfTheWeek();
+        patrolStartShiftPage.handlePassdownOfTheDay();
+
 		fieldAgentReportsPage = fieldAgentStartShiftPage.clickOnReportsTab();
 		fieldAgentReportsPage.clickMyAssignments();
 		fieldAgentReportsPage.enterTextInSearchBox(OperationsHubConstant.PATROL_AGENT_ASSIGNMENT_NAME);

@@ -42,6 +42,8 @@ public class AddActivityCodeTest extends BaseTest {
 
         // Step 7: Submit the form
         activityCodePage.clickSubmitActivityCodeButton();
+        
+        activityCodePage.searchActivityCode(CompanySettingsConstant.ACTIVITY_CODE_NAMES);
 
         softAssert.assertEquals(
                 activityCodePage.getAddSuccessMessage().trim(),
