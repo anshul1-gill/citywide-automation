@@ -62,3 +62,12 @@ local.properties
 ## OS X
 ##############################
 .DS_Store
+target/
+test-output/
+reports/
+**/screenshots/
+.vscode/
+.DS_Store
+*.log
+*.bak
+*.bak*

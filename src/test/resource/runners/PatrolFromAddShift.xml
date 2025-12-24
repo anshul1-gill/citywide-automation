@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Patrol Agent Suite From AddShift" verbose="1">
+    <listeners>
+        <listener class-name="com.dits.citywide.listener.ExtentReportListener"></listener>
+    </listeners>
+    <test name="Patrol Agent Tests From AddShift" preserve-order="true">
+        <classes>
+        
+         <class name = "com.dits.citywide.tests.scheduling.AddShiftPatrolTest"/>
+         
+          <class name="com.dits.citywide.tests.patrol.PatrolConfirmShiftTest" />
+        
+           <class name="com.dits.citywide.tests.patrol.PatrolStartShiftTest" />
+           
+           <class name="com.dits.citywide.tests.patrol.PatrolVehicleInspectionTest" />
+           
+           <class name = "com.dits.citywide.tests.operationhub.AddNewPatrolCallTest"/>
+           
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentCallActionTest" />
+            
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddPatrolLogsForCallTest" />
+            
+             <class name="com.dits.citywide.tests.patrol.PatrolAgentMyReportsTest" />
+             
+             <class name ="com.dits.citywide.tests.operationhub.SitesPostOrdersAddAssignmentAndCheckpointPatrolAgentTest"/>
+             
+                <class name="com.dits.citywide.tests.patrol.PatrolAgentMyAssignments" />
+             
+              <class name="com.dits.citywide.tests.patrol.PatrolAgentAllReportsTest" />
+              
+           <class name="com.dits.citywide.tests.patrol.PatrolAgentMyAttendanceTest" />
+           
+           <class name="com.dits.citywide.tests.admin.training.AssignCoursePatrolTest" />
+           
+          <class name="com.dits.citywide.tests.patrol.PatrolMyCourseTest" />
+          
+           <class name="com.dits.citywide.tests.patrol.PatrolAgentMyCoursesViewAndAssessmentTest" />
+           
+           <class name="com.dits.citywide.tests.patrol.PatrolAgentPassdownLogsTest" />
+           
+           <class name="com.dits.citywide.tests.patrol.PatrolAgentProfileDetailsTest" />
+            
+
+             <!-- Field Interview Tests -->
+             
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddFieldInterviewTest" />
+            
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateFieldInterviewTest" />
+            
+              <!-- <class name="com.dits.citywide.tests.patrol.PatrolAgentDeleteFieldInterviewTest" /> -->
+              
+            
+           <!-- Parking Citation Tests -->
+            
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddParkingCitationTest" />
+            
+             <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateParkingCitationTest" />
+            
+         <!--    <class name="com.dits.citywide.tests.patrol.PatrolAgentDeleteParkingCitationTest" /> -->
+
+            
+            <!-- Trespass Notice Tests -->
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddTrespassNoticesTest" />
+            
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateTrespassNoticesTest" />
+            
+             <!-- <class name="com.dits.citywide.tests.patrol.PatrolAgentDeleteTrespassNoticesTest" /> -->
+            
+           <!-- Incident Reports Tests -->
+            
+             <class name="com.dits.citywide.tests.patrol.PatrolAgentAddIncidentReportsTest" />
+            
+          <!--   <class name="com.dits.citywide.tests.patrol.PatrolAgentDeleteIncidentReportsTest" /> -->
+            
+             <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateIncidentReportsTest" />
+
+            
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentEndShiftTest" />
+            
+
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentTeamSupportTest" />
+            
+
+        </classes>
+    </test>
+</suite>

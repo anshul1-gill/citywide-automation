@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Citywide Missing Tests Suite" verbose="1">
+    <listeners>
+        <listener class-name="com.dits.citywide.listener.ExtentReportListener"/>
+    </listeners>
+
+    <test name="Top-level and Client" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.LoginNegativeScenariosTest" />
+            <class name="com.dits.citywide.tests.LoginTest" />
+            <class name="com.dits.citywide.tests.LogoutTest" />
+            <class name="com.dits.citywide.tests.Client.ClientLoginTest" />
+        </classes>
+    </test>
+
+    <test name="Admin HR Management - Missing" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.hrmanagement.AdminProfileTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.AddMessageOfWeekTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ApproveLeaveRequestsPatrolTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.AttendanceTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.DeclineLeaveRequestsPatrolTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryActionTakenTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryUpdateRemarksTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryViewTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsDeleteReasonTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsDeleteRemarkTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsUpdateReasonTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ERMSettingsUpdateRemarkTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.UpdateFieldAgentEmployeeTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ViewPatrolEmployeeTest" />
+            <class name="com.dits.citywide.tests.admin.hrmanagement.ApplyLeaveTest" />
+        </classes>
+    </test>
+
+    <test name="Admin Training - Missing Updates" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.training.UpdateCategoryTest" />
+            <class name="com.dits.citywide.tests.admin.training.UpdateCertificateTest" />
+            <class name="com.dits.citywide.tests.admin.training.UpdateNewCourcesTest" />
+        </classes>
+    </test>
+
+    <test name="Field Agent - Missing" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentCancelLeaveTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentConfirmMultipleShiftsTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteFieldInterviewTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteIncidentReportsTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteParkingCitationTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteTrespassNoticesTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentProfileCommentsTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentProfileDetailsTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentRejectMultipleShiftsTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentRejectShiftTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentScanImagesPassdownLogTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateIncidentReportsTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateLeaveTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateParkingCitationTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateTrespassNoticesTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewShiftTest" />
+            <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewSiteTest" />
+        </classes>
+    </test>
+
+    <test name="Patrol - Missing Deletes" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentDeleteFieldInterviewTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentDeleteIncidentReportsTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentDeleteParkingCitationTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentDeleteTrespassNoticesTest" />
+        </classes>
+    </test>
+
+    <test name="Scheduling - Missing" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.scheduling.AddOpenShiftTest" />
+            <class name="com.dits.citywide.tests.scheduling.AddShiftAdminTest" />
+            <class name="com.dits.citywide.tests.scheduling.AddSiteShiftPatrolTest" />
+            <class name="com.dits.citywide.tests.scheduling.CopyPasteSchedulingTest" />
+            <class name="com.dits.citywide.tests.scheduling.CreateShiftFor1180Test" />
+            <class name="com.dits.citywide.tests.scheduling.DeleteShiftTest" />
+            <class name="com.dits.citywide.tests.scheduling.DragDropSchedulingTest" />
+            <class name="com.dits.citywide.tests.scheduling.MarkAsCalloutTest" />
+            <class name="com.dits.citywide.tests.scheduling.SendShiftAcceptTest" />
+            <class name="com.dits.citywide.tests.scheduling.SimpleMarkAsCalloutTest" />
+            <class name="com.dits.citywide.tests.scheduling.UpdateOpenShiftTest" />
+            <class name="com.dits.citywide.tests.scheduling.UpdatePublishedShiftTest" />
+        </classes>
+    </test>
+
+
+</suite>

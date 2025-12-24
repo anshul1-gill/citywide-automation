@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Patrol Fix Verification Suite">
+    <listeners>
+        <listener class-name="com.dits.citywide.listener.ExtentReportListener" />
+    </listeners>
+    <test name="Patrol Fix Verification Tests">
+        <classes>
+         <class name = "com.dits.citywide.tests.scheduling.AddShiftPatrolTest"/>
+            <class name="com.dits.citywide.tests.scheduling.AddShiftPatrolTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolStartShiftTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolVehicleInspectionTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentMyReportsTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentAddIncidentReportsTest" />
+            <class name="com.dits.citywide.tests.patrol.PatrolAgentUpdateIncidentReportsTest" />
+        </classes>
+    </test>
+</suite>
