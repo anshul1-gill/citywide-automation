@@ -15,7 +15,7 @@ public class AddNewPatrolCallTest extends BaseTest {
         dashboardPage = loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
     }
 
-    @Test(groups = {"createPatrolCall"})
+    @Test(groups = { "createPatrolCall" })
     public void addNewPatrolCallTest() throws InterruptedException {
         Thread.sleep(4000);
         callsPage = dashboardPage.doClickCallsTab();
@@ -24,16 +24,15 @@ public class AddNewPatrolCallTest extends BaseTest {
         // Use patrol site constant instead of field agent SITE
         callsPage.fillAddNewCallForm(OperationsHubConstant.OFFICER_RECEIVED_VIA,
                 HRManagementConstants.PATROL_SITE,
-                OperationsHubConstant.ACTIVITY_CODE ,
-				OperationsHubConstant.SUBACTIVITY_CODE);
+                OperationsHubConstant.ACTIVITY_CODE,
+                OperationsHubConstant.SUBACTIVITY_CODE);
 
         callsPage.fillReportingPersonForm(
                 OperationsHubConstant.REPORTING_PERSON_FIRST_NAME,
                 OperationsHubConstant.REPORTING_PERSON_LAST_NAME,
                 OperationsHubConstant.REPORTING_PERSON_PHONE_NUMBER,
-                OperationsHubConstant.REPORTING_PERSON_DEMEANOR
-        );
-
+                OperationsHubConstant.REPORTING_PERSON_DEMEANOR);
+        Thread.sleep(4000);
         callsPage.doClickSameAsAboveAddress();
         callsPage.doClickCollapseSuspectDescription();
 
@@ -49,29 +48,31 @@ public class AddNewPatrolCallTest extends BaseTest {
                 OperationsHubConstant.SUSPECT_WEIGHT,
                 OperationsHubConstant.SUSPECT_AGE,
                 OperationsHubConstant.SUSPECT_CLOTHING_WORN,
-                OperationsHubConstant.SUSPECT_LAST_KNOWN_DIRECTION
-        );
+                OperationsHubConstant.SUSPECT_LAST_KNOWN_DIRECTION);
 
         callsPage.fillCallDescription(OperationsHubConstant.CALL_DESCRIPTION);
 
         // Select patrol available unit by patrol employee ID
-        callsPage.selectAvailableUnits(prop.getProperty("patrolID"),"Primary");
+        callsPage.selectAvailableUnits(prop.getProperty("patrolID"), "Primary");
 
         callsPage.doClickSaveAddNewCall();
         Thread.sleep(2000);
 
         softAssert.assertTrue(callsPage.isOpenCallsTabDisplayed(), "Open Calls tab not displayed.");
         softAssert.assertTrue(callsPage.isClosedCallsTabDisplayed(), "Closed Calls tab not displayed.");
-        softAssert.assertEquals(callsPage.getActivityCode(), OperationsHubConstant.ACTIVITY_CODE, "Activity code mismatch.");
+        softAssert.assertEquals(callsPage.getActivityCode(), OperationsHubConstant.ACTIVITY_CODE,
+                "Activity code mismatch.");
         // Debug line for patrol site
         String actualPatrolSite = callsPage.getSite();
         String expectedPatrolSite = HRManagementConstants.PATROL_SITE;
         // Normalize by removing spaces and making lowercase
         String normalizedActual = actualPatrolSite.replaceAll("\\s+", "").toLowerCase();
         String normalizedExpected = expectedPatrolSite.replaceAll("\\s+", "").toLowerCase();
-        System.out.println("DEBUG: Normalized expected patrol site: " + normalizedExpected + ", Normalized actual patrol site: " + normalizedActual);
+        System.out.println("DEBUG: Normalized expected patrol site: " + normalizedExpected
+                + ", Normalized actual patrol site: " + normalizedActual);
         softAssert.assertTrue(normalizedActual.contains(normalizedExpected), "Patrol site mismatch.");
-        softAssert.assertTrue(callsPage.getAssignedTo().contains(prop.getProperty("patrolID")), "Assigned officer mismatch.");
+        softAssert.assertTrue(callsPage.getAssignedTo().contains(prop.getProperty("patrolID")),
+                "Assigned officer mismatch.");
 
         String callId = callsPage.getCallId(prop.getProperty("patrolID"));
         System.out.println(callId);

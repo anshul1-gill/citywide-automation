@@ -20,11 +20,13 @@ public class PatrolAgentReportsPage {
     // No Pre-Flight locators here
     private By btnAddNewReport = By.xpath("//a[contains(text(),'Add New Report')]");
     private By btnSubmitReports = By.xpath("//span[normalize-space()='Submit Reports']");
-    private By txtNoItemsFound = By.xpath("//span[@class='px-2 py-8 text-base font-medium text-center text-gray-400 dark:text-white']");
+    private By txtNoItemsFound = By
+            .xpath("//span[@class='px-2 py-8 text-base font-medium text-center text-gray-400 dark:text-white']");
     private By btnEndShift = By.xpath("//button[normalize-space()='End Shift']");
     private By endShiftConfirmationMessage = By.xpath("//div[@id='swal2-html-container']");
     private By btnOk = By.xpath("//button[normalize-space()='OK']");
-    private List<By> btnReOpenPatrolLog = Arrays.asList(By.xpath("//button[normalize-space()='Re-Open Patrol Log']"), By.xpath("//button[normalize-space()='Re-open Patrol Log']"));
+    private List<By> btnReOpenPatrolLog = Arrays.asList(By.xpath("//button[normalize-space()='Re-Open Patrol Log']"),
+            By.xpath("//button[normalize-space()='Re-open Patrol Log']"));
     private By txtNoDataFound = By.xpath("//td[normalize-space()='No Data Found']");
     private By txtCloseOutFieldAgentLog = By.xpath("//h2[normalize-space()='Close Out Field Agent Log']");
     private By checkboxShiftIsEnd = By.cssSelector("label[for='equip_ok-3']");
@@ -63,9 +65,12 @@ public class PatrolAgentReportsPage {
     private By txtboxImageDescription = By.cssSelector("#Description0");
 
     // Start shift data
-    private By dataArriveDateTime = By.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Arrive']/p");
-    private By dataSiteName = By.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Site']//div");
-    private By dataDepartDateTime = By.xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Depart']/p");
+    private By dataArriveDateTime = By
+            .xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Arrive']/p");
+    private By dataSiteName = By
+            .xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Site']//div");
+    private By dataDepartDateTime = By
+            .xpath("//p[normalize-space()='SS']/ancestor::td/preceding-sibling::td[@data-label='Depart']/p");
 
     private By btnAllReports = By.cssSelector("#rc-tabs-0-tab-all-reports");
     private By txtboxSearch = By.xpath("//input[@placeholder='Search']");
@@ -75,7 +80,8 @@ public class PatrolAgentReportsPage {
 
     // Columns button and Activity Code checkbox (for All Reports table)
     private By btnColumns = By.xpath("//button[contains(.,'Columns')]");
-    // Make the XPath more robust: allow for possible whitespace and not requiring label as direct parent
+    // Make the XPath more robust: allow for possible whitespace and not requiring
+    // label as direct parent
     private By selectActivityCode = By.xpath("//span[contains(text(),'Activity Code')]");
 
     public PatrolAgentReportsPage(WebDriver driver) {
@@ -149,25 +155,40 @@ public class PatrolAgentReportsPage {
     }
 
     public void clickEditReport2() {
-        elementUtils.waitForElementToBeClickable(btnEditReport2, Constants.SHORT_TIME_OUT_WAIT).click();
+        elementUtils.jsClickWithWait(btnEditReport2, Constants.SHORT_TIME_OUT_WAIT);
     }
 
     public void clickEditReport3() {
-        elementUtils.waitForElementToBeClickable(btnEditReport3, Constants.DEFAULT_WAIT).click();
+        elementUtils.jsClickWithWait(btnEditReport3, Constants.DEFAULT_WAIT);
     }
 
     public void clickEditReport4() {
-        elementUtils.waitForElementToBeClickable(btnEditReport4, Constants.DEFAULT_WAIT).click();
+        elementUtils.jsClickWithWait(btnEditReport4, Constants.DEFAULT_WAIT);
     }
-    public void clickEditReport5() {
-		elementUtils.waitForElementToBeClickable(btnEditReport5, Constants.DEFAULT_WAIT).click();
-	}
-    public void clickEditReport6() {
-		elementUtils.waitForElementToBeClickable(btnEditReport6, Constants.DEFAULT_WAIT).click();
-	}
-    
 
-    public void addOfficerReportEntry(String url, String site, String activityCode, String callId, String streetNumber, String streetName, String apartmentNumber, String city, String state, String zipCode, String description, String photoVideoLink, String fileName, String fileDescription) {
+    public void clickEditReport5() {
+        elementUtils.jsClickWithWait(btnEditReport5, Constants.DEFAULT_WAIT);
+    }
+
+    public void clickEditReport6() {
+        elementUtils.jsClickWithWait(btnEditReport6, Constants.DEFAULT_WAIT);
+    }
+
+    public void clickEditReport7() {
+        elementUtils.jsClickWithWait(btnEditReport7, Constants.DEFAULT_WAIT);
+    }
+
+    public void clickEditReport8() {
+        elementUtils.jsClickWithWait(btnEditReport8, Constants.DEFAULT_WAIT);
+    }
+
+    public void clickEditReport9() {
+        elementUtils.jsClickWithWait(btnEditReport9, Constants.DEFAULT_WAIT);
+    }
+
+    public void addOfficerReportEntry(String url, String site, String activityCode, String callId, String streetNumber,
+            String streetName, String apartmentNumber, String city, String state, String zipCode, String description,
+            String photoVideoLink, String fileName, String fileDescription) {
         elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
         // Simulate filling out the report form
         elementUtils.waitForElementToBeClickable(clockArriveNow, Constants.DEFAULT_WAIT).click();
@@ -182,15 +203,18 @@ public class PatrolAgentReportsPage {
         elementUtils.pressEnterKey();
         elementUtils.waitForElementVisible(txtboxStreetNumber, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetNumber);
         elementUtils.waitForElementVisible(txtboxStreetName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetName);
-        elementUtils.waitForElementVisible(txtboxApartmentNumber, Constants.SHORT_TIME_OUT_WAIT).sendKeys(apartmentNumber);
+        elementUtils.waitForElementVisible(txtboxApartmentNumber, Constants.SHORT_TIME_OUT_WAIT)
+                .sendKeys(apartmentNumber);
         elementUtils.waitForElementVisible(txtboxCity, Constants.SHORT_TIME_OUT_WAIT).sendKeys(city);
         elementUtils.waitForElementVisible(txtboxStreetSate, Constants.SHORT_TIME_OUT_WAIT).sendKeys(state);
         elementUtils.waitForElementVisible(txtboxzipcode, Constants.SHORT_TIME_OUT_WAIT).sendKeys(zipCode);
         elementUtils.waitForElementVisible(txtboxDescription, Constants.SHORT_TIME_OUT_WAIT).sendKeys(description);
         // Optionally handle file upload if required by your UI
         // elementUtils.uploadFile(uploadFile, photoVideoLink);
-        // elementUtils.waitForElementVisible(txtboxImageName, Constants.DEFAULT_WAIT).sendKeys(fileName);
-        // elementUtils.waitForElementVisible(txtboxImageDescription, Constants.DEFAULT_WAIT).sendKeys(fileDescription);
+        // elementUtils.waitForElementVisible(txtboxImageName,
+        // Constants.DEFAULT_WAIT).sendKeys(fileName);
+        // elementUtils.waitForElementVisible(txtboxImageDescription,
+        // Constants.DEFAULT_WAIT).sendKeys(fileDescription);
     }
 
     public boolean isAllReportsButtonVisible() {
@@ -200,6 +224,7 @@ public class PatrolAgentReportsPage {
     public void clickUpdateLogEntry() {
         elementUtils.waitForElementToBeClickable(btnUpdateLogEntry, Constants.DEFAULT_WAIT).click();
     }
+
     public void clickAllReports() {
         elementUtils.waitForElementToBeClickable(btnAllReports, Constants.DEFAULT_WAIT).click();
     }
@@ -233,7 +258,7 @@ public class PatrolAgentReportsPage {
         By getActivityCodeDataStartOfShift = By.xpath("(//td[@data-label='Activity Code'])[1]");
         return elementUtils.waitForElementVisible(getActivityCodeDataStartOfShift, Constants.DEFAULT_WAIT).getText();
     }
-    
+
     public enum TableDataState {
         DATA_PRESENT,
         NO_DATA
@@ -249,17 +274,22 @@ public class PatrolAgentReportsPage {
         while (System.currentTimeMillis() < end) {
             try {
                 if (driver.findElements(firstRowOfficer).size() > 0 &&
-                    driver.findElements(firstRowOfficer).get(0).isDisplayed()) {
+                        driver.findElements(firstRowOfficer).get(0).isDisplayed()) {
                     return TableDataState.DATA_PRESENT;
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
             try {
                 if (driver.findElements(txtNoDataFound).size() > 0 &&
-                    driver.findElements(txtNoDataFound).get(0).isDisplayed()) {
+                        driver.findElements(txtNoDataFound).get(0).isDisplayed()) {
                     return TableDataState.NO_DATA;
                 }
-            } catch (Exception ignored) {}
-            try { Thread.sleep(500); } catch (InterruptedException ignored) {}
+            } catch (Exception ignored) {
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ignored) {
+            }
         }
         // Timeout: neither appeared
         throw new RuntimeException("Neither table data nor 'No Data Found' message appeared within timeout");
@@ -300,7 +330,10 @@ public class PatrolAgentReportsPage {
     public void clickColumnsButton() {
         WebElement columnsBtn = elementUtils.waitForElementToBeClickable(btnColumns, 10);
         columnsBtn.click();
-        try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {
+        }
         // Take screenshot for debugging
         try {
             File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -311,12 +344,13 @@ public class PatrolAgentReportsPage {
     }
 
     /**
-     * Selects the Activity Code checkbox in the columns menu if not already selected.
+     * Selects the Activity Code checkbox in the columns menu if not already
+     * selected.
      */
     public void selectActivityCodeColumn() {
-   
-    		elementUtils.waitForElementToBeClickable(selectActivityCode, Constants.DEFAULT_WAIT).click();
-    	
+
+        elementUtils.waitForElementToBeClickable(selectActivityCode, Constants.DEFAULT_WAIT).click();
+
     }
 
     /**

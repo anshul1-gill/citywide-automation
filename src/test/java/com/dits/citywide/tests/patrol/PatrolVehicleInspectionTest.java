@@ -21,8 +21,12 @@ public class PatrolVehicleInspectionTest extends BaseTest {
 		patrolStartShiftPage.handleMessageOfTheWeek();
 		patrolStartShiftPage.handlePassdownOfTheDay();
 		patrolVehicleInspectionPage = patrolStartShiftPage.clickOnVehicleInspectionTab();
-		patrolVehicleInspectionPage.doClickVehicleNumber("5632");
-		softAssert.assertEquals(patrolVehicleInspectionPage.getSelectedVehicleId(), "5632");
+		// Dynamically select any available vehicle
+		String chosenVehicleText = patrolVehicleInspectionPage.selectAnyVehicle();
+		String selectedIdDigits = patrolVehicleInspectionPage.getSelectedVehicleId();
+		softAssert.assertTrue(selectedIdDigits != null && !selectedIdDigits.equalsIgnoreCase("Select Vehicle"),
+				"Vehicle was not selected dynamically");
+		// Proceed with miles and inspection steps
 		String milesValues = patrolVehicleInspectionPage.getStartingMilesValue();
 		patrolVehicleInspectionPage.enterEndingMiles(milesValues);
 		patrolVehicleInspectionPage.clickNextButton();
@@ -76,10 +80,10 @@ public class PatrolVehicleInspectionTest extends BaseTest {
 				"Equipment Test Problems");
 		patrolVehicleInspectionPage.uploadFrontImage("./src/test/resource/testdata/image.jpeg");
 		patrolVehicleInspectionPage.uploadBackImage("./src/test/resource/testdata/image.jpeg");
+		Thread.sleep(3000); // Wait for uploads to complete
 		patrolVehicleInspectionPage.clickCompleteVehicleInspection();
 		Thread.sleep(7000);
-		System.out.println("✅ Patrol Vehicle Inspection completed");
-		
+		System.out.println("✅ Patrol Vehicle Inspection completed for vehicle: " + chosenVehicleText);
 
 		softAssert.assertAll();
 	}

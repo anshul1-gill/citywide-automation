@@ -12,8 +12,7 @@
 	<test
 		name="Add Employee Test" preserve-order="true">
 		<classes>
-		<class
-		                      name="com.dits.citywide.tests.mobile.LoginScreenTest" />
+		<class name="com.dits.citywide.tests.mobile.LoginScreenTest" />
 			<class
 				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
 			<class

@@ -175,15 +175,49 @@ public class PatrolLeaveRequestsPage {
 	}
 
 	public void doClickCancelButton(String employeeID, String leaveType) {
+        String id = employeeID;
+        String leavetype = leaveType;
+        String rowXpath = "//tr[td[contains(text(),'" + id + "')] and td[contains(text(),'" + leavetype + "')]]";
+        By rowBy = By.xpath(rowXpath);
 
-		String id = employeeID;
-		String leavetype = leaveType;
+        WebElement row = elementUtils.waitForElementVisible(rowBy, Constants.DEFAULT_WAIT);
+        elementUtils.scrollIntoView(row);
 
-		String expath = "//tr[td[contains(text(),'" + id + "')] and td[contains(text(),'" + leavetype
-				+ "')]]//span[@aria-label='close']";
+        // Primary locator: aria-label='close'
+        By closeIcon = By.xpath(rowXpath + "//span[@aria-label='close']");
+        // Fallbacks: common cancel icon/button variants
+        By closePiTimes = By.xpath(rowXpath + "//*[contains(@class,'pi-times') or contains(@class,'fa-times') or contains(@class,'icon-close')]");
+        By cancelBtnText = By.xpath(rowXpath + "//button[contains(.,'Cancel') or contains(@title,'Cancel')]");
 
-		elementUtils.waitForElementToBeClickable(By.xpath(expath), Constants.DEFAULT_WAIT).click();
-	}
+        WebElement target = null;
+        try {
+            target = elementUtils.waitForElementToBeClickable(closeIcon, Constants.SHORT_TIME_OUT_WAIT);
+        } catch (Exception e1) {
+            try {
+                target = elementUtils.waitForElementToBeClickable(closePiTimes, Constants.SHORT_TIME_OUT_WAIT);
+            } catch (Exception e2) {
+                target = elementUtils.waitForElementToBeClickable(cancelBtnText, Constants.DEFAULT_WAIT);
+            }
+        }
+
+        elementUtils.scrollIntoView(target);
+        try {
+            elementUtils.doClickWithActions(target);
+        } catch (Exception clickEx) {
+            try {
+                ((org.openqa.selenium.JavascriptExecutor) this.driver).executeScript("arguments[0].click();", target);
+            } catch (Exception jsEx) {
+                // As a last resort, try clicking at row level where cancel might be the only control
+                try {
+                    elementUtils.doClickWithActions(row);
+                } catch (Exception lastEx) {
+                    throw new RuntimeException("Failed to click Cancel control for leave row: " + id + " / " + leavetype, lastEx);
+                }
+            }
+        }
+        // brief wait for validation popup to appear
+        try { Thread.sleep(500); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+    }
 
 	public String getCancelValidationMessage() {
 		return elementUtils.waitForElementVisible(txtCancelVakidationMessage, Constants.DEFAULT_WAIT).getText();

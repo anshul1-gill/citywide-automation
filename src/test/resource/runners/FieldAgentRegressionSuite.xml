@@ -5,29 +5,44 @@
   <test name="Field Agent End-to-End Flow" preserve-order="true">
     <classes>
 	
-	
+	 <class name="com.dits.citywide.tests.admin.hrmanagement.AddFieldAgentEmployeeTest"/>
+	 <class name="com.dits.citywide.tests.admin.hrmanagement.UpdateFieldAgentEmployeeTest" />
+	  <class name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
+	 
       <!-- 1️⃣ Shift Setup and Management -->
       <class name="com.dits.citywide.tests.scheduling.AddShiftTest"/>
-       <class name="com.dits.citywide.tests.fieldagent.FieldAgentConfirmMultipleShiftsTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentConfirmMultipleShiftsTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentConfirmShiftTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewShiftTest"/>
 
       <!-- 2️⃣ Call Assignment & Actions -->
       <class name="com.dits.citywide.tests.operationhub.AddNewCallTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest"/>
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddPatrolLogsForCallTest"/>
 
       <!-- 3️⃣ Reports & Logs -->
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest"/>
+      
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyAttendanceTest"/>
+      <class name="com.dits.citywide.tests.operationhub.SitesPostOrdersDeleteAssignmentAndCheckpointTest"/>
+     
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments"/>
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest"/>
+      
 
       <!-- 4️⃣ Leave Management -->
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentApplyLeaveTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateLeaveTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentCancelLeaveTest"/>
+      
+      
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyAttendanceTest"/>
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgentOpenSitesTest"/>
+        <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewSiteTest"/>
 
       <!-- 5️⃣ Team Support & Training -->
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentTeamSupportTest"/>
+      <class name="com.dits.citywide.tests.admin.training.AssignCourseTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyCourseTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyCoursesViewAndAssessmentTest"/>
 
@@ -38,24 +53,23 @@
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddPatrolLogsForCallTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentAddTrespassNoticesTest"/>
 
-      <!-- 7️⃣ End Shift -->
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest"/>
-
-      <!-- 8️⃣ Update & Delete Operations -->
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateIncidentReportsTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateParkingCitationTest"/>
       <class name="com.dits.citywide.tests.fieldagent.FieldAgentUpdateTrespassNoticesTest"/>
-  <!--     <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteIncidentReportsTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteParkingCitationTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteFieldInterviewTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentDeleteTrespassNoticesTest"/> -->
-
-      <!-- 9️⃣ Profile, Logs & Final Validation -->
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentProfileCommentsTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgnetNewPassdownLogTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewPassdownLogTest"/>
-      <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewShiftTest"/>
-
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgnetNewPassdownLogTest"/>
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgentViewPassdownLogTest"/>
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgentScanImagesPassdownLogTest"/>
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgentProfileCommentsTest"/>    
+       <class name="com.dits.citywide.tests.fieldagent.FieldAgentProfileDetailsTest"/>
+      <!-- 7️⃣ End Shift -->
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest"/>
+    </classes>
+  </test>
+  <!-- Automatically added: classes that exist under com.dits.citywide.tests.fieldagent but were missing from this suite -->
+  <test name="Missing Field Agent Tests" preserve-order="true">
+    <classes>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentRejectMultipleShiftsTest"/>
+      <class name="com.dits.citywide.tests.fieldagent.FieldAgentRejectShiftTest"/>
     </classes>
   </test>
 </suite>

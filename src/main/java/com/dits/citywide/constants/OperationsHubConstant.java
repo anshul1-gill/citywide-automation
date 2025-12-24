@@ -109,7 +109,7 @@ public class OperationsHubConstant {
 		// Sites
 		// Site Details Tab
 		public static final String BRANCH_NAME = "Riverside";
-		public static final String SITE_NAME = " North Z Downtown ";
+		public static final String SITE_NAME = " North H Downtown ";
 		// public static final String AGENCY_BEAT = "1212";
 		public static final String AGENCY_BEAT = "1212, 333, 558, TESTB321";
 		public static final String ASSIGN_OFFICER ="RS250-Jakob Crist";

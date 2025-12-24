@@ -2,6 +2,9 @@ package com.dits.citywide.base;
 
 import java.util.Properties;
 
+import com.dits.citywide.utilities.PerformanceUtils;
+
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -78,6 +81,7 @@ import com.dits.citywide.pages.admin.SystemConfigPage;
 
 
 public class BaseTest {
+	
 
 	public DriverFactory driverFactory;
 	public Properties prop;
@@ -149,6 +153,9 @@ public class BaseTest {
 	public NotificationsPage notificationsPage;
 	public SystemConfigPage systemConfigPage;
 	public ClientPage clientPage; // restored missing field for AddClientTest
+	public PerformanceUtils performanceUtils;
+
+	
 
 	@BeforeClass
 	public void browserSetUp() {
@@ -157,6 +164,7 @@ public class BaseTest {
 		driver = driverFactory.initDriver(prop);
 		loginPage = new LoginPage(driver);
 		softAssert = new SoftAssert();
+		 performanceUtils = new PerformanceUtils(driver);
 	}
 
 	@AfterClass
@@ -165,4 +173,30 @@ public class BaseTest {
 			driver.quit();
 		}
 	}
+	public void captureAndLogPagePerformance(String pageName) {
+
+	    long pageLoadTime = performanceUtils.getPageLoadTimeInSeconds();
+	    long domLoadTime = performanceUtils.getDomContentLoadTimeInSeconds();
+
+	    System.out.println("=======================================");
+	    System.out.println("📊 PAGE PERFORMANCE METRICS");
+	    System.out.println("📄 Page Name      : " + pageName);
+	    System.out.println("⏱ Page Load Time : " + pageLoadTime + " sec");
+	    System.out.println("⚙ DOM Load Time  : " + domLoadTime + " sec");
+
+	    if (pageLoadTime <= com.dits.citywide.constants.Constants.PAGE_LOAD_PASS) {
+	        System.out.println("✅ STATUS : PASS (Fast Rendering)");
+	    } 
+	    else if (pageLoadTime <= com.dits.citywide.constants.Constants.PAGE_LOAD_WARNING) {
+	        System.out.println("⚠️ STATUS : WARNING (Needs Optimization)");
+	    } 
+	    else {
+	        System.out.println("❌ STATUS : FAIL (Critical Performance Issue)");
+	    }
+
+	    System.out.println("=======================================");
+	}
+
+	
+	
 }

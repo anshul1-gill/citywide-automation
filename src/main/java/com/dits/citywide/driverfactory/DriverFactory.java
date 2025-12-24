@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -32,10 +34,15 @@ public class DriverFactory {
         String browserName = prop.getProperty("browser").trim();
 
         if (browserName.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver",
-                    "/home/ditsdev151/Public/chromedriver-linux64/chromedriver");
+
+            // ---- Geolocation preference to avoid popup ----
+            // 2 = block, 1 = allow
+            Map<String, Object> prefs = new HashMap<>();
+            prefs.put("profile.default_content_setting_values.geolocation", 2); // block location popup
 
             ChromeOptions options = new ChromeOptions();
+            options.setExperimentalOption("prefs", prefs);
+
             options.addArguments("--start-maximized");
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-infobars");
@@ -67,6 +74,7 @@ public class DriverFactory {
 
         return driver;
     }
+
 
     // Load properties from config file
     public Properties initProperties() {

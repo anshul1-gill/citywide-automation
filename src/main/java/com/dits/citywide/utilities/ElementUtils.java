@@ -80,10 +80,11 @@ public class ElementUtils {
 	}
 
 	// --------------------------- Element Displayed -----------------------------
-//	public boolean doIsDisplayed(By locator, int timeOut) {
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
-//		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
-//	}
+	// public boolean doIsDisplayed(By locator, int timeOut) {
+	// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+	// return
+	// wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+	// }
 	public boolean doIsDisplayed(By locator, int timeOut) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
@@ -165,11 +166,11 @@ public class ElementUtils {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
 		return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 	}
-	public void waitForElementToBeVisible(By locator, int timeout) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	}
 
+	public void waitForElementToBeVisible(By locator, int timeout) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
 
 	public WebElement waitElementToBeClickableThroughElement(WebElement element, int timeOut) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
@@ -189,10 +190,10 @@ public class ElementUtils {
 	}
 
 	// -------------------- Actions Class -------------------------
-//	public void doActionsSendKeys(By by, String value) {
-//		Actions action = new Actions(driver);
-//		action.sendKeys(getElement(by), value).perform();
-//	}
+	// public void doActionsSendKeys(By by, String value) {
+	// Actions action = new Actions(driver);
+	// action.sendKeys(getElement(by), value).perform();
+	// }
 
 	public void doActionsSendKeys(By by, String value) {
 		if (value == null) {
@@ -204,25 +205,24 @@ public class ElementUtils {
 		Actions action = new Actions(driver);
 		action.moveToElement(element).click().sendKeys(value).perform();
 	}
-	
+
 	public void doSendKeysAction(By by, String value) {
-	    if (value == null) {
-	        throw new IllegalArgumentException("Cannot send null value using sendKeys.");
-	    }
+		if (value == null) {
+			throw new IllegalArgumentException("Cannot send null value using sendKeys.");
+		}
 
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-	    
-	    // Wait until element is visible and enabled (interactable)
-	    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-	    wait.until(ExpectedConditions.elementToBeClickable(element));
-	    
-	    // Clear the existing text (optional)
-	    element.clear();
-	    
-	    // Send the provided text
-	    element.sendKeys(value);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		// Wait until element is visible and enabled (interactable)
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+
+		// Clear the existing text (optional)
+		element.clear();
+
+		// Send the provided text
+		element.sendKeys(value);
 	}
-
 
 	public void doActionsClick(By by) {
 		Actions action = new Actions(driver);
@@ -234,7 +234,6 @@ public class ElementUtils {
 		Actions action = new Actions(driver);
 		action.click(element).perform();
 	}
-
 
 	public void moveToElementWithActions(By by, int timeOut) {
 		WebElement element = waitForElementVisible(by, timeOut);
@@ -308,7 +307,7 @@ public class ElementUtils {
 				for (WebElement e : elements) {
 					String eleText = e.getText();
 					// System.out.println("Dropdown option: " + eleText);
-					if (eleText.contains(fieldName)) {
+					if (eleText != null && fieldName != null && eleText.contains(fieldName)) {
 						e.click();
 						elementClicked = true;
 						break;
@@ -453,32 +452,34 @@ public class ElementUtils {
 	}
 
 	public void safeClick(By locator) {
-	    int retries = 3;
-	    while (retries > 0) {
-	        try {
-	            WebElement element = new WebDriverWait(driver, Duration.ofSeconds(5))
-	                    .until(ExpectedConditions.elementToBeClickable(locator));
-	            element.click();
-	            break; // success
-	        } catch (StaleElementReferenceException e) {
-	            retries--;
-	            System.out.println("Retry due to: " + e.getClass().getSimpleName());
-	        } catch (WebDriverException e) { // catches click intercepted & not interactable
-	            System.out.println("Click failed, trying JS click");
-	            try {
-	                WebElement element = driver.findElement(locator);
-	                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-	                break; // success with JS click
-	            } catch (Exception jsEx) {
-	                retries--;
-	            }
-	        }
+		int retries = 3;
+		while (retries > 0) {
+			try {
+				WebElement element = new WebDriverWait(driver, Duration.ofSeconds(5))
+						.until(ExpectedConditions.elementToBeClickable(locator));
+				element.click();
+				break; // success
+			} catch (StaleElementReferenceException e) {
+				retries--;
+				System.out.println("Retry due to: " + e.getClass().getSimpleName());
+			} catch (WebDriverException e) { // catches click intercepted & not interactable
+				System.out.println("Click failed, trying JS click");
+				try {
+					WebElement element = driver.findElement(locator);
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+					break; // success with JS click
+				} catch (Exception jsEx) {
+					retries--;
+				}
+			}
 
-	        try { Thread.sleep(500); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
-	    }
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException ie) {
+				Thread.currentThread().interrupt();
+			}
+		}
 	}
-
-
 
 	public void retryClickWithJS(By locator, int maxRetries) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -669,49 +670,50 @@ public class ElementUtils {
 			System.out.println("Error while clearing text box using Actions: " + e.getMessage());
 		}
 	}
+
 	public void scrollInsideDropdownToText(By dropdownValuesLocator, String visibleText) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-	    // Wait for dropdown container (first visible element)
-	    WebElement container = wait.until(ExpectedConditions.visibilityOfElementLocated(dropdownValuesLocator));
+		// Wait for dropdown container (first visible element)
+		WebElement container = wait.until(ExpectedConditions.visibilityOfElementLocated(dropdownValuesLocator));
 
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-	    boolean found = false;
-	    int maxScrolls = 20;
+		boolean found = false;
+		int maxScrolls = 20;
 
-	    for (int i = 0; i < maxScrolls; i++) {
+		for (int i = 0; i < maxScrolls; i++) {
 
-	        List<WebElement> options = driver.findElements(dropdownValuesLocator);
+			List<WebElement> options = driver.findElements(dropdownValuesLocator);
 
-	        for (WebElement option : options) {
-	            String text = option.getText().trim();
+			for (WebElement option : options) {
+				String text = option.getText().trim();
 
-	            if (text.equalsIgnoreCase(visibleText)) {
-	                js.executeScript("arguments[0].scrollIntoView(true);", option);
-	                wait.until(ExpectedConditions.elementToBeClickable(option)).click();
-	                found = true;
-	                break;
-	            }
-	        }
+				if (text.equalsIgnoreCase(visibleText)) {
+					js.executeScript("arguments[0].scrollIntoView(true);", option);
+					wait.until(ExpectedConditions.elementToBeClickable(option)).click();
+					found = true;
+					break;
+				}
+			}
 
-	        if (found) break;
+			if (found)
+				break;
 
-	        // Scroll dropdown container if item not found yet
-	        js.executeScript("arguments[0].scrollTop += 80;", container);
+			// Scroll dropdown container if item not found yet
+			js.executeScript("arguments[0].scrollTop += 80;", container);
 
-	        try {
-	            Thread.sleep(250); // allow UI to update
-	        } catch (InterruptedException e) {
-	            Thread.currentThread().interrupt();
-	        }
-	    }
+			try {
+				Thread.sleep(250); // allow UI to update
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
 
-	    if (!found) {
-	        throw new RuntimeException("Option '" + visibleText + "' not found in dropdown after scrolling.");
-	    }
+		if (!found) {
+			throw new RuntimeException("Option '" + visibleText + "' not found in dropdown after scrolling.");
+		}
 	}
-
 
 	public void scrollAndClick(By locator, int timeout) {
 		WebElement element = waitForElementVisible(locator, timeout);
@@ -786,445 +788,448 @@ public class ElementUtils {
 		}
 		return false;
 	}
-	
+
 	// Sends keys to an input field and then presses ENTER
 	public void sendKeysWithEnter(By locator, String value) {
-	    WebElement element = waitForElementVisible(locator, 10); // wait for element
-	    element.clear(); // optional, clear existing text
-	    element.sendKeys(value);
-	    element.sendKeys(Keys.ENTER);
+		WebElement element = waitForElementVisible(locator, 10); // wait for element
+		element.clear(); // optional, clear existing text
+		element.sendKeys(value);
+		element.sendKeys(Keys.ENTER);
 	}
 
 	// Overloaded version using Actions
 	public void sendKeysWithEnterAction(By locator, String value) {
-	    WebElement element = waitForElementVisible(locator, 10);
-	    element.clear();
-	    Actions actions = new Actions(driver);
-	    actions.moveToElement(element).click().sendKeys(value).sendKeys(Keys.ENTER).perform();
+		WebElement element = waitForElementVisible(locator, 10);
+		element.clear();
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).click().sendKeys(value).sendKeys(Keys.ENTER).perform();
 	}
-	
+
 	public void selectFromReactDropdown(By dropdownLocator, String optionText) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
-	    Actions actions = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		Actions actions = new Actions(driver);
 
-	    try {
-	        // 1️⃣ Find base element
-	        WebElement baseElement = wait.until(ExpectedConditions.presenceOfElementLocated(dropdownLocator));
+		try {
+			// 1️⃣ Find base element
+			WebElement baseElement = wait.until(ExpectedConditions.presenceOfElementLocated(dropdownLocator));
 
-	        // 2️⃣ Scroll into view
-	        js.executeScript("arguments[0].scrollIntoView({block:'center'});", baseElement);
+			// 2️⃣ Scroll into view
+			js.executeScript("arguments[0].scrollIntoView({block:'center'});", baseElement);
 
-	        // 3️⃣ If AntD input is hidden (opacity 0 or readonly), click its parent .ant-select-selector
-	        String opacity = baseElement.getCssValue("opacity");
-	        boolean isReadOnly = Boolean.parseBoolean(baseElement.getAttribute("readonly"));
-	        if ("0".equals(opacity) || isReadOnly) {
-	            try {
-	                WebElement clickableParent = baseElement.findElement(
-	                        By.xpath("./ancestor::div[contains(@class,'ant-select')][1]//div[contains(@class,'ant-select-selector')]")
-	                );
-	                wait.until(ExpectedConditions.elementToBeClickable(clickableParent)).click();
-	            } catch (NoSuchElementException e) {
-	                // fallback to normal click if no parent found
-	                wait.until(ExpectedConditions.elementToBeClickable(baseElement)).click();
-	            }
-	        } else {
-	            wait.until(ExpectedConditions.elementToBeClickable(baseElement)).click();
-	        }
+			// 3️⃣ If AntD input is hidden (opacity 0 or readonly), click its parent
+			// .ant-select-selector
+			String opacity = baseElement.getCssValue("opacity");
+			boolean isReadOnly = Boolean.parseBoolean(baseElement.getAttribute("readonly"));
+			if ("0".equals(opacity) || isReadOnly) {
+				try {
+					WebElement clickableParent = baseElement.findElement(
+							By.xpath(
+									"./ancestor::div[contains(@class,'ant-select')][1]//div[contains(@class,'ant-select-selector')]"));
+					wait.until(ExpectedConditions.elementToBeClickable(clickableParent)).click();
+				} catch (NoSuchElementException e) {
+					// fallback to normal click if no parent found
+					wait.until(ExpectedConditions.elementToBeClickable(baseElement)).click();
+				}
+			} else {
+				wait.until(ExpectedConditions.elementToBeClickable(baseElement)).click();
+			}
 
-	        // 4️⃣ Build option XPath
-	        By optionLocator = By.xpath(
-	                "//div[contains(@class,'ant-select-item-option-content') and normalize-space(text())='" + optionText + "']"
-	        );
+			// 4️⃣ Build option XPath
+			By optionLocator = By.xpath(
+					"//div[contains(@class,'ant-select-item-option-content') and normalize-space(text())='" + optionText
+							+ "']");
 
-	        // 5️⃣ Wait for dropdown to render & find matching option
-	        wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
-	        List<WebElement> options = driver.findElements(optionLocator);
+			// 5️⃣ Wait for dropdown to render & find matching option
+			wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
+			List<WebElement> options = driver.findElements(optionLocator);
 
-	        boolean found = false;
-	        for (WebElement opt : options) {
-	            try {
-	                js.executeScript("arguments[0].scrollIntoView({block:'center'});", opt);
-	                wait.until(ExpectedConditions.elementToBeClickable(opt)).click();
-	                System.out.println("✅ Selected option: " + optionText);
-	                found = true;
-	                break;
-	            } catch (Exception inner) {
-	                // try next
-	            }
-	        }
+			boolean found = false;
+			for (WebElement opt : options) {
+				try {
+					js.executeScript("arguments[0].scrollIntoView({block:'center'});", opt);
+					wait.until(ExpectedConditions.elementToBeClickable(opt)).click();
+					System.out.println("✅ Selected option: " + optionText);
+					found = true;
+					break;
+				} catch (Exception inner) {
+					// try next
+				}
+			}
 
-	        // 6️⃣ Fallback – if no clickable option found, try sending keys
-	        if (!found) {
-	            try {
-	                WebElement input = driver.findElement(By.xpath("//input[@role='combobox']"));
-	                input.clear();
-	                input.sendKeys(optionText);
-	                input.sendKeys(Keys.ENTER);
-	                System.out.println("⌨️ Selected via typing: " + optionText);
-	                found = true;
-	            } catch (Exception ignored) {}
-	        }
+			// 6️⃣ Fallback – if no clickable option found, try sending keys
+			if (!found) {
+				try {
+					WebElement input = driver.findElement(By.xpath("//input[@role='combobox']"));
+					input.clear();
+					input.sendKeys(optionText);
+					input.sendKeys(Keys.ENTER);
+					System.out.println("⌨️ Selected via typing: " + optionText);
+					found = true;
+				} catch (Exception ignored) {
+				}
+			}
 
-	        if (!found) {
-	            throw new RuntimeException("Option '" + optionText + "' not found or clickable.");
-	        }
+			if (!found) {
+				throw new RuntimeException("Option '" + optionText + "' not found or clickable.");
+			}
 
-	        // 7️⃣ Close dropdown cleanly
-	        actions.sendKeys(Keys.TAB).perform();
+			// 7️⃣ Close dropdown cleanly
+			actions.sendKeys(Keys.TAB).perform();
 
-	    } catch (Exception e) {
-	        System.out.println("❌ Dropdown selection failed for: " + optionText);
-	        throw new RuntimeException("Failed to select option via click: " + optionText, e);
-	    }
+		} catch (Exception e) {
+			System.out.println("❌ Dropdown selection failed for: " + optionText);
+			throw new RuntimeException("Failed to select option via click: " + optionText, e);
+		}
 	}
 
 	public void selectReqSkillOption(By dropdownLocator, String optionText) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	    Actions actions = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Actions actions = new Actions(driver);
 
-	    // 1️⃣ Click the dropdown
-	    WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(dropdownLocator));
-	    dropdown.click();
+		// 1️⃣ Click the dropdown
+		WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(dropdownLocator));
+		dropdown.click();
 
-	    // 2️⃣ Locate the input inside the dropdown
-	    WebElement searchInput = dropdown.findElement(By.cssSelector("input"));
+		// 2️⃣ Locate the input inside the dropdown
+		WebElement searchInput = dropdown.findElement(By.cssSelector("input"));
 
-	    // 3️⃣ Type the option text using Actions and press Enter
-	    actions.moveToElement(searchInput)
-	           .click()
-	           .sendKeys(optionText)
-	           .sendKeys(Keys.ENTER)
-	           .perform();
+		// 3️⃣ Type the option text using Actions and press Enter
+		actions.moveToElement(searchInput)
+				.click()
+				.sendKeys(optionText)
+				.sendKeys(Keys.ENTER)
+				.perform();
 
-	    // 4️⃣ Optional: TAB out to close dropdown
-	    actions.sendKeys(Keys.TAB).perform();
+		// 4️⃣ Optional: TAB out to close dropdown
+		actions.sendKeys(Keys.TAB).perform();
 	}
-	
+
 	public void selectDropdownValue(String labelText, String valueToSelect) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
-	    Actions actions = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		Actions actions = new Actions(driver);
 
-	    try {
-	        // 1️⃣ Locate and click the dropdown input by its label
-	        WebElement dropdownInput = wait.until(ExpectedConditions.elementToBeClickable(
-	            By.xpath("//label[normalize-space(text())='" + labelText + "']/following::input[@data-te-select-input-ref][1]")
-	        ));
-	        js.executeScript("arguments[0].scrollIntoView(true);", dropdownInput);
-	        js.executeScript("arguments[0].click();", dropdownInput);
+		try {
+			// 1️⃣ Locate and click the dropdown input by its label
+			WebElement dropdownInput = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//label[normalize-space(text())='" + labelText
+							+ "']/following::input[@data-te-select-input-ref][1]")));
+			js.executeScript("arguments[0].scrollIntoView(true);", dropdownInput);
+			js.executeScript("arguments[0].click();", dropdownInput);
 
-	        // 2️⃣ Wait for dropdown options to render
-	        wait.until(ExpectedConditions.visibilityOfElementLocated(
-	            By.xpath("//div[@data-te-select-option-ref]"))
-	        );
-	        Thread.sleep(800);
+			// 2️⃣ Wait for dropdown options to render
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//div[@data-te-select-option-ref]")));
+			Thread.sleep(800);
 
-	        // 3️⃣ Dismiss focus from the search box (click somewhere safe)
-	        actions.moveByOffset(0, 50).click().perform();
-	        Thread.sleep(400);
+			// 3️⃣ Dismiss focus from the search box (click somewhere safe)
+			actions.moveByOffset(0, 50).click().perform();
+			Thread.sleep(400);
 
-	        // 4️⃣ Now click your desired option
-	        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
-	            By.xpath("//div[@data-te-select-option-ref]//span[normalize-space(text())='" + valueToSelect + "']")
-	        ));
-	        js.executeScript("arguments[0].scrollIntoView(true);", option);
-	        js.executeScript("arguments[0].click();", option);
+			// 4️⃣ Now click your desired option
+			WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//div[@data-te-select-option-ref]//span[normalize-space(text())='" + valueToSelect
+							+ "']")));
+			js.executeScript("arguments[0].scrollIntoView(true);", option);
+			js.executeScript("arguments[0].click();", option);
 
-	        Thread.sleep(500);
-	        System.out.println("✅ Selected '" + valueToSelect + "' from '" + labelText + "' dropdown.");
+			Thread.sleep(500);
+			System.out.println("✅ Selected '" + valueToSelect + "' from '" + labelText + "' dropdown.");
 
-	    } catch (Exception e) {
-	        System.out.println("❌ Failed to select '" + valueToSelect + "' from dropdown '" + labelText + "'");
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
+			System.out.println("❌ Failed to select '" + valueToSelect + "' from dropdown '" + labelText + "'");
+			e.printStackTrace();
+		}
 	}
+
 	public void selectDropdownOption(WebDriver driver, String labelName, String optionText) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-	    WebElement dropdownInput = wait.until(ExpectedConditions.elementToBeClickable(
-	        By.xpath("//label[normalize-space()='" + labelName + "']/following::input[@data-te-select-input-ref][1]")
-	    ));
-	    dropdownInput.click();
+		WebElement dropdownInput = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//label[normalize-space()='" + labelName
+						+ "']/following::input[@data-te-select-input-ref][1]")));
+		dropdownInput.click();
 
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("//div[@data-te-select-option-ref]")
-	    ));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//div[@data-te-select-option-ref]")));
 
-	    WebElement desiredOption = wait.until(ExpectedConditions.elementToBeClickable(
-	        By.xpath("//div[@data-te-select-option-ref]//span[normalize-space(text())='" + optionText + "']")
-	    ));
-	    desiredOption.click();
+		WebElement desiredOption = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//div[@data-te-select-option-ref]//span[normalize-space(text())='" + optionText + "']")));
+		desiredOption.click();
 	}
 
 	public void selectFromDropdown(String labelName, String optionToSelect) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.EXPLICIT_WAIT));
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.EXPLICIT_WAIT));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-	    try {
-	        // 1️⃣ Handle MDB (custom TE) dropdowns
-	        String customDropdownXpath = "//label[normalize-space(text())='" + labelName +
-	                "']/ancestor::div[contains(@class,'relative')]//input[@data-te-select-input-ref]";
-	        List<WebElement> customDropdowns = driver.findElements(By.xpath(customDropdownXpath));
+		try {
+			// 1️⃣ Handle MDB (custom TE) dropdowns
+			String customDropdownXpath = "//label[normalize-space(text())='" + labelName +
+					"']/ancestor::div[contains(@class,'relative')]//input[@data-te-select-input-ref]";
+			List<WebElement> customDropdowns = driver.findElements(By.xpath(customDropdownXpath));
 
-	        if (!customDropdowns.isEmpty()) {
-	            WebElement dropdownToUse;
+			if (!customDropdowns.isEmpty()) {
+				WebElement dropdownToUse;
 
-	            // ⚙️ Special case for "Question Type" — pick the 3rd dropdown (index 2)
-	            if (labelName.equalsIgnoreCase("Question Type") && customDropdowns.size() >= 3) {
-	                dropdownToUse = customDropdowns.get(2);
-	            } else {
-	                dropdownToUse = customDropdowns.get(0);
-	            }
+				// ⚙️ Special case for "Question Type" — pick the 3rd dropdown (index 2)
+				if (labelName.equalsIgnoreCase("Question Type") && customDropdowns.size() >= 3) {
+					dropdownToUse = customDropdowns.get(2);
+				} else {
+					dropdownToUse = customDropdowns.get(0);
+				}
 
-	            js.executeScript("arguments[0].scrollIntoView(true);", dropdownToUse);
-	            js.executeScript("arguments[0].click();", dropdownToUse);
-	            Thread.sleep(700); // Let dropdown fully render outside the DOM hierarchy
+				js.executeScript("arguments[0].scrollIntoView(true);", dropdownToUse);
+				js.executeScript("arguments[0].click();", dropdownToUse);
+				Thread.sleep(700); // Let dropdown fully render outside the DOM hierarchy
 
-	            // 🔍 Try both possible option containers
-	            String globalOptionXpath = "//ul[contains(@class,'data-[te-select-dropdown-ref]') or contains(@id,'select')]//li[normalize-space()='" + optionToSelect + "']";
-	            String inlineOptionXpath = "//div[@data-te-select-option-ref]//span[normalize-space(text())='" + optionToSelect + "']";
+				// 🔍 Try both possible option containers
+				String globalOptionXpath = "//ul[contains(@class,'data-[te-select-dropdown-ref]') or contains(@id,'select')]//li[normalize-space()='"
+						+ optionToSelect + "']";
+				String inlineOptionXpath = "//div[@data-te-select-option-ref]//span[normalize-space(text())='"
+						+ optionToSelect + "']";
 
-	            List<WebElement> options = driver.findElements(By.xpath(globalOptionXpath));
-	            if (options.isEmpty()) {
-	                options = driver.findElements(By.xpath(inlineOptionXpath));
-	            }
+				List<WebElement> options = driver.findElements(By.xpath(globalOptionXpath));
+				if (options.isEmpty()) {
+					options = driver.findElements(By.xpath(inlineOptionXpath));
+				}
 
-	            if (!options.isEmpty()) {
-	                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(options.get(0)));
-	                js.executeScript("arguments[0].scrollIntoView(true);", option);
-	                js.executeScript("arguments[0].click();", option);
+				if (!options.isEmpty()) {
+					WebElement option = wait.until(ExpectedConditions.elementToBeClickable(options.get(0)));
+					js.executeScript("arguments[0].scrollIntoView(true);", option);
+					js.executeScript("arguments[0].click();", option);
 
-	                System.out.println("✅ Selected '" + optionToSelect + "' from *custom* dropdown '" + labelName + "'");
-	                return;
-	            } else {
-	                System.out.println("⚠️ No matching option found for '" + optionToSelect + "' in dropdown '" + labelName + "'");
-	            }
-	        }
+					System.out
+							.println("✅ Selected '" + optionToSelect + "' from *custom* dropdown '" + labelName + "'");
+					return;
+				} else {
+					System.out.println(
+							"⚠️ No matching option found for '" + optionToSelect + "' in dropdown '" + labelName + "'");
+				}
+			}
 
-	        // 2️⃣ Handle native <select> dropdowns
-	        String selectXpath = "//label[normalize-space(text())='" + labelName + "']/following::select[1]";
-	        List<WebElement> nativeSelects = driver.findElements(By.xpath(selectXpath));
+			// 2️⃣ Handle native <select> dropdowns
+			String selectXpath = "//label[normalize-space(text())='" + labelName + "']/following::select[1]";
+			List<WebElement> nativeSelects = driver.findElements(By.xpath(selectXpath));
 
-	        if (!nativeSelects.isEmpty()) {
-	            WebElement nativeSelect = wait.until(ExpectedConditions.elementToBeClickable(nativeSelects.get(0)));
-	            Select select = new Select(nativeSelect);
-	            select.selectByVisibleText(optionToSelect);
+			if (!nativeSelects.isEmpty()) {
+				WebElement nativeSelect = wait.until(ExpectedConditions.elementToBeClickable(nativeSelects.get(0)));
+				Select select = new Select(nativeSelect);
+				select.selectByVisibleText(optionToSelect);
 
-	            System.out.println("✅ Selected '" + optionToSelect + "' from *native* dropdown '" + labelName + "'");
-	            return;
-	        }
+				System.out.println("✅ Selected '" + optionToSelect + "' from *native* dropdown '" + labelName + "'");
+				return;
+			}
 
-	        // 3️⃣ If neither found
-	        System.out.println("⚠️ No dropdown found for label: " + labelName);
+			// 3️⃣ If neither found
+			System.out.println("⚠️ No dropdown found for label: " + labelName);
 
-	    } catch (Exception e) {
-	        System.out.println("❌ Failed to select '" + optionToSelect + "' from dropdown '" + labelName + "'");
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
+			System.out.println("❌ Failed to select '" + optionToSelect + "' from dropdown '" + labelName + "'");
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void selectCustomDropdownByVisibleText(By dropdownLocator, String visibleText, int timeout) {
-	    waitForElementToBeVisibleAndEnabled(dropdownLocator, timeout);
-	    doClick(dropdownLocator);
-	    By optionLocator = By.xpath("//div[contains(@class,'ant-select-item-option-content') and normalize-space(text())='" + visibleText + "']");
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-	    WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
-	    wait.until(ExpectedConditions.elementToBeClickable(optionLocator));
-	    option.click();
+		waitForElementToBeVisibleAndEnabled(dropdownLocator, timeout);
+		doClick(dropdownLocator);
+		By optionLocator = By
+				.xpath("//div[contains(@class,'ant-select-item-option-content') and normalize-space(text())='"
+						+ visibleText + "']");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
+		wait.until(ExpectedConditions.elementToBeClickable(optionLocator));
+		option.click();
 	}
+
 	// Add this method to ElementUtils
 	// Add this inside your ElementUtils class
 	public void selectMultiSelectOption(By dropdownLocator, String optionText) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
-	    try {
-	        // Click the dropdown to open options
-	        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(dropdownLocator));
-	        js.executeScript("arguments[0].scrollIntoView(true);", dropdown);
-	        dropdown.click();
-	        Thread.sleep(200); // Let options render
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		try {
+			// Click the dropdown to open options
+			WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(dropdownLocator));
+			js.executeScript("arguments[0].scrollIntoView(true);", dropdown);
+			dropdown.click();
+			Thread.sleep(200); // Let options render
 
-	        // Find the option by visible text (update the XPath if your UI is different)
-	        By optionLocator = By.xpath("//div[contains(@class,'ant-select-item-option-content') and normalize-space(text())='" + optionText + "']");
-	        WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
-	        js.executeScript("arguments[0].scrollIntoView(true);", option);
-	        wait.until(ExpectedConditions.elementToBeClickable(option)).click();
-	        Thread.sleep(200); // Let the selection register
+			// Find the option by visible text (update the XPath if your UI is different)
+			By optionLocator = By
+					.xpath("//div[contains(@class,'ant-select-item-option-content') and normalize-space(text())='"
+							+ optionText + "']");
+			WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
+			js.executeScript("arguments[0].scrollIntoView(true);", option);
+			wait.until(ExpectedConditions.elementToBeClickable(option)).click();
+			Thread.sleep(200); // Let the selection register
 
-	        // Optionally, press ESC to close dropdown if it remains open
-	        dropdown.sendKeys(org.openqa.selenium.Keys.ESCAPE);
-	    } catch (Exception e) {
-	        throw new RuntimeException("Failed to select multi-select option: " + optionText, e);
-	    }
+			// Optionally, press ESC to close dropdown if it remains open
+			dropdown.sendKeys(org.openqa.selenium.Keys.ESCAPE);
+		} catch (Exception e) {
+			throw new RuntimeException("Failed to select multi-select option: " + optionText, e);
+		}
 	}
-	
+
 	public void selectOptionsInHiddenMultiSelect(By selectLocator, List<String> optionTexts, int timeout) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-	    WebElement selectEl = wait.until(ExpectedConditions.presenceOfElementLocated(selectLocator));
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
-	    List<WebElement> options = selectEl.findElements(By.tagName("option"));
-	    int matched = 0;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		WebElement selectEl = wait.until(ExpectedConditions.presenceOfElementLocated(selectLocator));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		List<WebElement> options = selectEl.findElements(By.tagName("option"));
+		int matched = 0;
 
-	    for (String desiredRaw : optionTexts) {
-	        if (desiredRaw == null || desiredRaw.isBlank()) continue;
-	        String desired = desiredRaw.replaceAll("\\s+", " ").trim().toLowerCase();
-	        boolean found = false;
-	        for (WebElement opt : options) {
-	            String optNorm = (opt.getText() == null ? "" : opt.getText()).replaceAll("\\s+", " ").trim().toLowerCase();
-	            if (optNorm.equals(desired) || optNorm.startsWith(desired) || optNorm.contains(desired)) {
-	                js.executeScript("arguments[0].selected = true;", opt);
-	                found = true;
-	                matched++;
-	                break;
-	            }
-	        }
-	        if (!found) {
-	            System.out.println("[SiteSelect][WARN] No match for: " + desiredRaw);
-	        }
-	    }
+		for (String desiredRaw : optionTexts) {
+			if (desiredRaw == null || desiredRaw.isBlank())
+				continue;
+			String desired = desiredRaw.replaceAll("\\s+", " ").trim().toLowerCase();
+			boolean found = false;
+			for (WebElement opt : options) {
+				String optNorm = (opt.getText() == null ? "" : opt.getText()).replaceAll("\\s+", " ").trim()
+						.toLowerCase();
+				if (optNorm.equals(desired) || optNorm.startsWith(desired) || optNorm.contains(desired)) {
+					js.executeScript("arguments[0].selected = true;", opt);
+					found = true;
+					matched++;
+					break;
+				}
+			}
+			if (!found) {
+				System.out.println("[SiteSelect][WARN] No match for: " + desiredRaw);
+			}
+		}
 
-	    if (matched == 0 && !optionTexts.isEmpty()) {
-	        System.out.println("[SiteSelect][DEBUG] First 10 options:");
-	        for (int i = 0; i < Math.min(10, options.size()); i++) {
-	            System.out.println("  " + i + ": '" + options.get(i).getText().trim() + "'");
-	        }
-	        throw new RuntimeException("No site options matched: " + optionTexts);
-	    }
-	    js.executeScript(
-	        "arguments[0].dispatchEvent(new Event('input',{bubbles:true})); arguments[0].dispatchEvent(new Event('change',{bubbles:true}));",
-	        selectEl
-	    );
-	    System.out.println("[SiteSelect] Matched " + matched + " sites");
+		if (matched == 0 && !optionTexts.isEmpty()) {
+			System.out.println("[SiteSelect][DEBUG] First 10 options:");
+			for (int i = 0; i < Math.min(10, options.size()); i++) {
+				System.out.println("  " + i + ": '" + options.get(i).getText().trim() + "'");
+			}
+			throw new RuntimeException("No site options matched: " + optionTexts);
+		}
+		js.executeScript(
+				"arguments[0].dispatchEvent(new Event('input',{bubbles:true})); arguments[0].dispatchEvent(new Event('change',{bubbles:true}));",
+				selectEl);
+		System.out.println("[SiteSelect] Matched " + matched + " sites");
 	}
-	
+
 	public void selectVirtualDropdownOption(WebDriver driver, String optionText) {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-	    try {
-	        // Wait for dropdown options to become visible
-	        List<WebElement> options = wait.until(ExpectedConditions
-	                .presenceOfAllElementsLocatedBy(By.xpath("//div[@role='option']//span[@data-te-select-option-text-ref]")));
+		try {
+			// Wait for dropdown options to become visible
+			List<WebElement> options = wait.until(ExpectedConditions
+					.presenceOfAllElementsLocatedBy(
+							By.xpath("//div[@role='option']//span[@data-te-select-option-text-ref]")));
 
-	        boolean found = false;
-	        for (WebElement option : options) {
-	            String visibleText = option.getText().trim();
-	            if (visibleText.equalsIgnoreCase(optionText) || visibleText.contains(optionText)) {
-	                js.executeScript("arguments[0].scrollIntoView({block:'center'});", option);
-	                WebElement checkbox = option.findElement(By.xpath(".//input[@type='checkbox']"));
-	                js.executeScript("arguments[0].click();", checkbox);
+			boolean found = false;
+			for (WebElement option : options) {
+				String visibleText = option.getText().trim();
+				if (visibleText.equalsIgnoreCase(optionText) || visibleText.contains(optionText)) {
+					js.executeScript("arguments[0].scrollIntoView({block:'center'});", option);
+					WebElement checkbox = option.findElement(By.xpath(".//input[@type='checkbox']"));
+					js.executeScript("arguments[0].click();", checkbox);
 
-	                js.executeScript(
-	                    "var el=document.querySelector('select[id*=assign_site],input[name*=assign_site]');" +
-	                    "if(el){el.dispatchEvent(new Event('input',{bubbles:true}));" +
-	                    "el.dispatchEvent(new Event('change',{bubbles:true}));}"
-	                );
+					js.executeScript(
+							"var el=document.querySelector('select[id*=assign_site],input[name*=assign_site]');" +
+									"if(el){el.dispatchEvent(new Event('input',{bubbles:true}));" +
+									"el.dispatchEvent(new Event('change',{bubbles:true}));}");
 
-	                System.out.println("[SiteSelect][INFO] Selected: " + visibleText);
-	                found = true;
-	                break;
-	            }
-	        }
+					System.out.println("[SiteSelect][INFO] Selected: " + visibleText);
+					found = true;
+					break;
+				}
+			}
 
-	        if (!found) {
-	            System.out.println("[SiteSelect][WARN] Option not found in dropdown: " + optionText);
-	            throw new RuntimeException("Option not found: " + optionText);
-	        }
+			if (!found) {
+				System.out.println("[SiteSelect][WARN] Option not found in dropdown: " + optionText);
+				throw new RuntimeException("Option not found: " + optionText);
+			}
 
-	    } catch (Exception e) {
-	        throw new RuntimeException("Failed to select dropdown option: " + optionText, e);
-	    }
+		} catch (Exception e) {
+			throw new RuntimeException("Failed to select dropdown option: " + optionText, e);
+		}
 	}
-	
-	
-
-	
 
 	public static void handleUnexpectedAlert(WebDriver driver) {
-        try {
-            org.openqa.selenium.Alert alert = driver.switchTo().alert();
-            alert.accept();
-        } catch (org.openqa.selenium.NoAlertPresentException e) {
-            // No alert to handle
-        }
-    }
+		try {
+			org.openqa.selenium.Alert alert = driver.switchTo().alert();
+			alert.accept();
+		} catch (org.openqa.selenium.NoAlertPresentException e) {
+			// No alert to handle
+		}
+	}
 
 	// Scrolls the element into view using JavaScript
-    public void scrollIntoView(WebElement element) {
-        try {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", element);
-        } catch (Exception e) {
-            System.out.println("Failed to scroll into view: " + e.getMessage());
-        }
-    }
+	public void scrollIntoView(WebElement element) {
+		try {
+			((JavascriptExecutor) driver)
+					.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", element);
+		} catch (Exception e) {
+			System.out.println("Failed to scroll into view: " + e.getMessage());
+		}
+	}
 
-    // Clicks the element using JavaScript
-    public void jsClick(WebElement element) {
-        try {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-        } catch (Exception e) {
-            System.out.println("Failed to JS click: " + e.getMessage());
-        }
-    }
-    
-    public void waitForDropdownOptionsVisible() {
-        // Waits for at least one visible Ant Design dropdown option
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-            .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.ant-select-item-option")));
-    }
+	// Clicks the element using JavaScript
+	public void jsClick(WebElement element) {
+		try {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+		} catch (Exception e) {
+			System.out.println("Failed to JS click: " + e.getMessage());
+		}
+	}
 
-    public void selectAntDropdownOption(String optionText) {
-        List<WebElement> options = driver.findElements(
-            By.xpath("//div[contains(@class,'ant-select-item-option')][.//div[text()='" + optionText + "']]"));
-        for (WebElement option : options) {
-            if (option.isDisplayed()) {
-                try {
-                    new Actions(driver).moveToElement(option).click().perform();
-                } catch (org.openqa.selenium.ElementClickInterceptedException e) {
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
-                }
-                return;
-            }
-        }
-        System.out.println("Dropdown option '" + optionText + "' not found.");
-    }
-    public WebElement waitForElementClickable(By locator, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
-    
-    public boolean waitForInvisibilityOfElement(WebElement element, int timeout) {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-            return wait.until(ExpectedConditions.invisibilityOf(element));
-        } catch (Exception e) {
-            return false;
-        }
-    }
-    
-    public boolean waitForInvisibilityOfElement(By locator, int timeout) {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-            return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-        } catch (Exception e) {
-            return false;
-        }
-    }
+	public void waitForDropdownOptionsVisible() {
+		// Waits for at least one visible Ant Design dropdown option
+		new WebDriverWait(driver, Duration.ofSeconds(5))
+				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.ant-select-item-option")));
+	}
 
-    /**
-     * Checks a checkbox if it is not already selected.
-     */
-    public void checkCheckbox(By checkboxLocator) {
-        WebElement checkbox = getElement(checkboxLocator);
-        if (!checkbox.isSelected()) {
-            checkbox.click();
-        }
-    }
+	public void selectAntDropdownOption(String optionText) {
+		List<WebElement> options = driver.findElements(
+				By.xpath("//div[contains(@class,'ant-select-item-option')][.//div[text()='" + optionText + "']]"));
+		for (WebElement option : options) {
+			if (option.isDisplayed()) {
+				try {
+					new Actions(driver).moveToElement(option).click().perform();
+				} catch (org.openqa.selenium.ElementClickInterceptedException e) {
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
+				}
+				return;
+			}
+		}
+		System.out.println("Dropdown option '" + optionText + "' not found.");
+	}
 
+	public WebElement waitForElementClickable(By locator, int timeout) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		return wait.until(ExpectedConditions.elementToBeClickable(locator));
+	}
 
+	public boolean waitForInvisibilityOfElement(WebElement element, int timeout) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+			return wait.until(ExpectedConditions.invisibilityOf(element));
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
+	public boolean waitForInvisibilityOfElement(By locator, int timeout) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+			return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
-    
+	/**
+	 * Checks a checkbox if it is not already selected.
+	 */
+	public void checkCheckbox(By checkboxLocator) {
+		WebElement checkbox = getElement(checkboxLocator);
+		if (!checkbox.isSelected()) {
+			checkbox.click();
+		}
+	}
 
 }

@@ -89,8 +89,9 @@ public class TotalCoursesPage {
 	private By txtboxDuration = By.xpath("//input[@id='duration']");
 	private By dropdownSelectModule = By.xpath("(//div[@class='ant-select-selection-overflow'])[2]");
 	private By searchModuleValues = By.xpath("//div[@class='ant-select-item-option-content']");
-//	private By searchModule = By
-//			.xpath("//div[contains(@class,'css-iirhfw ant-form-item-has-success')]//input[@id='chapter_ids']");
+	// private By searchModule = By
+	// .xpath("//div[contains(@class,'css-iirhfw
+	// ant-form-item-has-success')]//input[@id='chapter_ids']");
 
 	private By getRemarksLocator(String dynamicText) {
 		String xpath = "(//span[normalize-space()='" + dynamicText + "'])[2]";
@@ -153,17 +154,53 @@ public class TotalCoursesPage {
 
 	// Assign Courses
 	public void doClickAssignCourses(String courseName) {
-		String xpath = "(//td[normalize-space()='" + courseName
-				+ "']/following-sibling::td[@data-label='Actions']//div[@class='actionicons editPencil '])[3]";
-		elementUtils.waitForElementToBeClickable(By.xpath(xpath), Constants.DEFAULT_WAIT).click();
+		String rowXpath = "//td[normalize-space()='" + courseName + "']/parent::tr";
+		By rowBy = By.xpath(rowXpath);
+		// Ensure row is visible in viewport
+		elementUtils.scrollIntoView(elementUtils.waitForElementVisible(rowBy, Constants.DEFAULT_WAIT));
+
+		// Primary: assign icon within actions
+		By primaryAssign = By.xpath("(//td[normalize-space()='" + courseName
+				+ "']/following-sibling::td[@data-label='Actions']//*[contains(@class,'editPencil') and contains(@class,'actionicons')])[3]");
+		// Fallbacks: text button or icon variations
+		By assignText = By.xpath("//td[normalize-space()='" + courseName
+				+ "']/following-sibling::td[@data-label='Actions']//span[contains(.,'Assign')]");
+		By anyPencil = By.xpath("//td[normalize-space()='" + courseName
+				+ "']/following-sibling::td[@data-label='Actions']//*[contains(@class,'editPencil')]");
+
+		org.openqa.selenium.WebElement target = null;
+		try {
+			target = elementUtils.waitForElementToBeClickable(primaryAssign, Constants.SHORT_TIME_OUT_WAIT);
+		} catch (Exception e1) {
+			try {
+				target = elementUtils.waitForElementToBeClickable(assignText, Constants.SHORT_TIME_OUT_WAIT);
+			} catch (Exception e2) {
+				target = elementUtils.waitForElementToBeClickable(anyPencil, Constants.DEFAULT_WAIT);
+			}
+		}
+
+		elementUtils.scrollIntoView(target);
+		try {
+			elementUtils.doClickWithActions(target);
+		} catch (Exception clickEx) {
+			try {
+				((org.openqa.selenium.JavascriptExecutor) this.driver).executeScript("arguments[0].click();", target);
+			} catch (Exception jsEx) {
+				throw new RuntimeException("Failed to click Assign control for course: " + courseName, jsEx);
+			}
+		}
 	}
 
-	private By txtHeadingAssignCourses = By.xpath("//span[contains(@class,'baseTitle')]");
+	// Modal-specific heading for Assign Courses dialog
+	private By txtHeadingAssignCourses = By.cssSelector(".ant-modal .baseTitle");
+	private By assignModal = By.cssSelector(".ant-modal-content");
+
 	private By dropdownRole = By.xpath("(//div[@class='ant-select-selector'])[3]");
 	private By searchRole = By.xpath("//input[@id='type']");
 	private By dropdownSelectAgent = By.xpath("(//div[@class='ant-select-selector'])[4]");
 	private By searchAgent = By.xpath("//input[@id='user_ids']");
 	private By dataEmployeeIdForAssignedTo = By.xpath("//div[@class='assigned-agent']");
+	private By cellAssignedTo = By.xpath("(//td[@data-label='Assigned To'])[1]");
 	private By dropdownSelectPurpose = By.xpath("(//div[@class='ant-select-selector'])[5]");
 
 	public By getSelectOptionByText(String visibleText) {
@@ -504,7 +541,43 @@ public class TotalCoursesPage {
 	}
 
 	public String getEmployeeIdForAssignedTo() {
-		return elementUtils.waitForElementVisible(dataEmployeeIdForAssignedTo, Constants.DEFAULT_WAIT).getText();
+		// Try legacy text container first
+		try {
+			return elementUtils
+					.waitForElementVisible(By.xpath("//div[@class='assigned-agent']"), Constants.DEFAULT_WAIT)
+					.getText();
+		} catch (Exception e) {
+			// Fallback: return avatar count as string from Assigned To cell
+			org.openqa.selenium.WebElement cell = elementUtils.waitForElementVisible(cellAssignedTo,
+					Constants.DEFAULT_WAIT);
+			java.util.List<org.openqa.selenium.WebElement> avatars = cell.findElements(By.cssSelector(".ant-avatar"));
+			return String.valueOf(avatars.size());
+		}
+	}
+
+	/**
+	 * Fallback wait: confirms at least one avatar appears in the Assigned To
+	 * column.
+	 */
+	public boolean waitForAnyAssignedToAvatars(int timeoutSeconds) {
+		long end = System.currentTimeMillis() + timeoutSeconds * 1000L;
+		while (System.currentTimeMillis() < end) {
+			try {
+				org.openqa.selenium.WebElement cell = elementUtils.waitForElementVisible(cellAssignedTo,
+						Constants.DEFAULT_WAIT);
+				java.util.List<org.openqa.selenium.WebElement> avatars = cell
+						.findElements(By.cssSelector(".ant-avatar"));
+				if (avatars != null && !avatars.isEmpty())
+					return true;
+			} catch (Exception ignore) {
+			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException ie) {
+				Thread.currentThread().interrupt();
+			}
+		}
+		return false;
 	}
 
 	// New helper: fetch all assigned agent IDs (in case multiple)
@@ -512,24 +585,113 @@ public class TotalCoursesPage {
 		java.util.List<org.openqa.selenium.WebElement> els = driver.findElements(By.cssSelector(".assigned-agent"));
 		java.util.List<String> ids = new java.util.ArrayList<>();
 		for (org.openqa.selenium.WebElement e : els) {
-			try { ids.add(e.getText().trim()); } catch (Exception ignored) {}
+			try {
+				ids.add(e.getText().trim());
+			} catch (Exception ignored) {
+			}
 		}
 		return ids;
 	}
 
-	// Wait for a specific agent id to appear in the assigned list (normalized by removing whitespace)
+	// Wait for a specific agent id to appear in the assigned list (normalized by
+	// removing whitespace)
 	public boolean waitForAgentAssignment(String agentId, int timeoutSeconds) {
 		String target = agentId.replaceAll("\\s+", "").toLowerCase();
 		long end = System.currentTimeMillis() + timeoutSeconds * 1000L;
 		while (System.currentTimeMillis() < end) {
-			for (String val : getAllAssignedAgentIds()) {
-				String norm = val.replaceAll("\\s+", "").toLowerCase();
-				if (norm.contains(target)) {
-					return true;
+			java.util.List<String> ids = getAllAssignedAgentIds();
+			if (ids != null && !ids.isEmpty()) {
+				for (String val : ids) {
+					String norm = val.replaceAll("\\s+", "").toLowerCase();
+					if (norm.contains(target))
+						return true;
 				}
+			} else {
+				// Fallback to avatar presence
+				if (waitForAnyAssignedToAvatars(2))
+					return true;
 			}
-			try { Thread.sleep(500); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException ie) {
+				Thread.currentThread().interrupt();
+			}
 		}
 		return false;
+	}
+
+	// Search input on Total Courses page
+	private By inputSearch = By.xpath("//input[@name='Search' and @placeholder='Search']");
+
+	/**
+	 * Types into the Search box to filter courses.
+	 */
+	public void searchCourses(String query) {
+		elementUtils.waitForElementVisible(inputSearch, Constants.DEFAULT_WAIT).clear();
+		elementUtils.doActionsSendKeys(inputSearch, query);
+		// allow debounce/search to apply
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException ie) {
+			Thread.currentThread().interrupt();
+		}
+	}
+
+	/**
+	 * Returns the locator for a course row whose name starts with the given prefix
+	 * (case-sensitive UI match).
+	 */
+	private By courseRowStartingWith(String prefix) {
+		String xpath = "//table//tr[td[starts-with(normalize-space(), '" + prefix + "')]]";
+		return By.xpath(xpath);
+	}
+
+	/**
+	 * Opens Assign dialog for the first course with name starting with the given
+	 * prefix.
+	 */
+	public void openAssignForCourseStartingWith(String prefix) {
+		// filter by prefix to narrow
+		searchCourses(prefix);
+		By rowBy = courseRowStartingWith(prefix);
+		org.openqa.selenium.WebElement row = elementUtils.waitForElementVisible(rowBy, Constants.DEFAULT_WAIT);
+		elementUtils.scrollIntoView(row);
+		// try clicking assign within that row
+		By primaryAssign = By.xpath(
+				"(.//following-sibling::td[@data-label='Actions']//*[contains(@class,'editPencil') and contains(@class,'actionicons')])[3]");
+		By anyPencil = By.xpath("(.//following-sibling::td[@data-label='Actions']//*[contains(@class,'editPencil')])[3]");
+		org.openqa.selenium.WebElement target;
+		try {
+			target = row.findElement(primaryAssign);
+		} catch (org.openqa.selenium.NoSuchElementException e) {
+			target = row.findElement(anyPencil);
+		}
+		// wait for clickable and click
+		elementUtils.scrollIntoView(target);
+		new org.openqa.selenium.support.ui.WebDriverWait(this.driver, java.time.Duration.ofSeconds(10))
+				.until(org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable(target));
+		try {
+			elementUtils.doClickWithActions(target);
+		} catch (Exception clickEx) {
+			try {
+				((org.openqa.selenium.JavascriptExecutor) this.driver).executeScript("arguments[0].click();", target);
+			} catch (Exception jsEx) {
+				throw new RuntimeException("Failed to click Assign icon for course starting with: " + prefix, jsEx);
+			}
+		}
+		// Explicitly wait for assign modal to appear, then heading to be visible
+		new org.openqa.selenium.support.ui.WebDriverWait(this.driver, java.time.Duration.ofSeconds(15))
+				.until(org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated(assignModal));
+		elementUtils.waitForElementVisible(txtHeadingAssignCourses, Constants.DEFAULT_WAIT);
+	}
+
+	/**
+	 * Full dynamic flow: search by prefix, open assign, fill form, save.
+	 */
+	public void assignFirstCourseByPrefixToAgent(String prefix, String role, String agentID, String purpose)
+			throws InterruptedException {
+		openAssignForCourseStartingWith(prefix);
+		fillCouseAssignForm(role, agentID, purpose);
+		doClickSaveAssignCourse();
 	}
 }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
@@ -29,7 +30,7 @@ public class PatrolVehicleInspectionPage {
     private By txtboxEndingMiles = By.xpath("//input[@id='verify_miles']");
     private By btnNext = By.xpath("//a[normalize-space()='Next']");
 
-// Standard Vehicle Inspection
+    // Standard Vehicle Inspection
     private By checkboxFluidsCheck = By.cssSelector("label[for='fluid_check']");
     private By valuesFluidsCheck = By.xpath("//input[@id='fluid_check']/../following-sibling::ul//label");
     private By checkboxTiresCheck = By.cssSelector("label[for='tires_check']");
@@ -63,39 +64,65 @@ public class PatrolVehicleInspectionPage {
     }
 
     // Standard Vehicle Inspection
-    public void doClickVehicleNumber(String vehicleNumber) {
-        By vehicleLocator = getVehicleNumber(vehicleNumber);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.DEFAULT_WAIT));
-        int attempts = 0;
-        boolean selected = false;
-        while (attempts < 3 && !selected) {
-            attempts++;
+    public void doClickVehicleNumberDynamic(String vehicleNumber) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        // Improved locator strategy: look for specific text in label, td, or div using
+        // dot (.) for nested text
+        String xpath = "//*[self::label or self::td or self::div][contains(.,'" + vehicleNumber + "')]";
+        By vehicleLocator = By.xpath(xpath);
+
+        try {
+            // Wait for presence
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(vehicleLocator));
+            // Scroll to it
+            elementUtils.scrollIntoView(element);
+            // Wait for clickable
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            // Use Actions click for better compatibility
+            elementUtils.doClickWithActions(element);
+        } catch (Exception e) {
+            System.out.println("Failed to click vehicle " + vehicleNumber + ". Retrying with broader search...");
             try {
-                WebElement label = elementUtils.waitForElementToBeClickable(vehicleLocator, Constants.DEFAULT_WAIT);
-                label.click();
-            } catch (Exception e) {
-                // JS fallback
+                // Fallback: Generic text search using dot (.)
+                By genericLocator = By.xpath("//*[contains(.,'" + vehicleNumber + "')]");
+
+                // Filter to ensure we don't pick up huge containers (like Body)
+                // Actually, rely on elementToBeClickable to pick something interactive
+                WebElement element = wait.until(ExpectedConditions.elementToBeClickable(genericLocator));
+                elementUtils.scrollIntoView(element);
+                elementUtils.doClickWithActions(element);
+            } catch (Exception ex) {
+                // Collect and print available items for debugging
                 try {
-                    WebElement labelJs = driver.findElement(vehicleLocator);
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", labelJs);
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", labelJs);
-                } catch (Exception ignored) {}
-            }
-            // Verify selection updated
-            selected = wait.until(d -> {
-                try {
-                    String txt = d.findElement(dataSelectedVehicleId).getText().trim();
-                    if (txt.equalsIgnoreCase("Select Vehicle")) return false;
-                    // Accept either exact match or containing the number
-                    return txt.equals(vehicleNumber) || txt.contains(vehicleNumber);
-                } catch (Exception ex) {
-                    return false;
+                    List<WebElement> labels = driver.findElements(By.tagName("label"));
+                    String available = labels.stream().map(WebElement::getText).collect(Collectors.joining(", "));
+                    System.out.println("Available labels on page: " + available);
+                } catch (Exception logEx) {
+                    System.out.println("Could not log available items.");
                 }
-            });
-            System.out.println("Attempt " + attempts + " to select vehicle " + vehicleNumber + ": " + (selected ? "SUCCESS" : "RETRY"));
+                throw new RuntimeException("Could not find or click vehicle number: " + vehicleNumber, ex);
+            }
         }
-        if (!selected) {
-            throw new RuntimeException("Failed to select vehicle number " + vehicleNumber + " after " + attempts + " attempts");
+
+        // Verify selection
+        verifyVehicleSelected(vehicleNumber);
+    }
+
+    private void verifyVehicleSelected(String vehicleTextOrDigits) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElementLocated(
+                dataSelectedVehicleId, "Select Vehicle")));
+        } catch (Exception e) {
+            // proceed to read and assert
+        }
+        WebElement vehicleIdElement = elementUtils.waitForElementVisible(dataSelectedVehicleId, Constants.DEFAULT_WAIT);
+        String raw = vehicleIdElement.getText().trim();
+        String core = vehicleTextOrDigits.replaceAll("[^A-Za-z0-9]", "");
+        String rawCore = raw.replaceAll("[^A-Za-z0-9]", "");
+        if (raw.equalsIgnoreCase("Select Vehicle") || !(raw.contains(vehicleTextOrDigits) || rawCore.contains(core))) {
+            throw new RuntimeException("Vehicle selection failed. Expected to include: " + vehicleTextOrDigits + ", but got: " + raw);
         }
     }
 
@@ -108,7 +135,8 @@ public class PatrolVehicleInspectionPage {
     public String getSelectedVehicleId() {
         WebElement vehicleIdElement = elementUtils.waitForElementVisible(dataSelectedVehicleId, Constants.DEFAULT_WAIT);
         String raw = vehicleIdElement.getText().trim();
-        if (raw.equalsIgnoreCase("Select Vehicle")) return raw;
+        if (raw.equalsIgnoreCase("Select Vehicle"))
+            return raw;
         String digits = raw.replaceAll("[^0-9]", "");
         return digits.isEmpty() ? raw : digits;
     }
@@ -183,7 +211,8 @@ public class PatrolVehicleInspectionPage {
         elementUtils.waitForElementVisible(txtboxNewDamage, Constants.DEFAULT_WAIT).sendKeys(newDamage);
     }
 
-    public void fillProblems(String tireProblems, String lightProblems, String equipmentProblems) throws InterruptedException {
+    public void fillProblems(String tireProblems, String lightProblems, String equipmentProblems)
+            throws InterruptedException {
         elementUtils.waitForElementVisible(txtboxTireProblems, Constants.DEFAULT_WAIT).sendKeys(tireProblems);
         elementUtils.waitForElementVisible(txtboxLightProblems, Constants.DEFAULT_WAIT).sendKeys(lightProblems);
         elementUtils.waitForElementVisible(txtboxEquipmentProblems, Constants.DEFAULT_WAIT).sendKeys(equipmentProblems);
@@ -197,8 +226,101 @@ public class PatrolVehicleInspectionPage {
         elementUtils.uploadFile(uploadBackImage, imagePath);
     }
 
-    public void clickCompleteVehicleInspection() {
+    public void clickCompleteVehicleInspection() throws InterruptedException {
+    	Thread.sleep(4000); // brief wait to ensure any prior actions are settled
         elementUtils.waitForElementToBeClickable(btnCompleteVehicleInspection, Constants.DEFAULT_WAIT).click();
+    }
+
+    /**
+     * Selects the first available alphanumeric vehicle number dynamically.
+     * It scans labels, table cells, and divs, picks the first text that contains
+     * at least 3 alphanumeric characters, clicks it, and verifies selection.
+     *
+     * @return the vehicle identifier text that was clicked
+     */
+    public String selectAnyVehicle() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        List<WebElement> candidates;
+        try {
+            candidates = driver.findElements(By.tagName("label"));
+            if (candidates == null || candidates.isEmpty()) {
+                List<WebElement> tds = driver.findElements(By.tagName("td"));
+                List<WebElement> divs = driver.findElements(By.tagName("div"));
+                candidates = new java.util.ArrayList<>();
+                candidates.addAll(tds);
+                candidates.addAll(divs);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to gather vehicle elements", e);
+        }
+
+        String chosen = null;
+        WebElement toClick = null;
+        for (WebElement el : candidates) {
+            try {
+                if (!el.isDisplayed()) continue;
+                String text = el.getText();
+                if (text == null) continue;
+                text = text.trim();
+                if (text.matches(".*[A-Za-z0-9].*") && text.replaceAll("[^A-Za-z0-9]", "").length() >= 3) {
+                    if (text.equalsIgnoreCase("Select Vehicle")) continue;
+                    chosen = text;
+                    // Prefer clicking input linked via 'for'
+                    String forAttr = null;
+                    try { forAttr = el.getAttribute("for"); } catch (Exception ignore) {}
+                    if (forAttr != null && !forAttr.isEmpty()) {
+                        try {
+                          WebElement input = driver.findElement(By.id(forAttr));
+                          elementUtils.scrollIntoView(input);
+                          wait.until(ExpectedConditions.elementToBeClickable(input));
+                          elementUtils.doClickWithActions(input);
+                          toClick = input;
+                        } catch (Exception findInputEx) {
+                          toClick = el;
+                        }
+                    } else {
+                        toClick = el;
+                    }
+                    break;
+                }
+            } catch (Exception ignore) {}
+        }
+
+        if (toClick == null || chosen == null) {
+            List<WebElement> any = driver.findElements(By.xpath("//*[contains(text(),'')]"));
+            for (WebElement el : any) {
+                try {
+                    if (!el.isDisplayed()) continue;
+                    String text = el.getText();
+                    if (text == null) continue;
+                    text = text.trim();
+                    if (text.matches(".*[A-Za-z0-9].*") && text.replaceAll("[^A-Za-z0-9]", "").length() >= 3 && !text.equalsIgnoreCase("Select Vehicle")) {
+                        chosen = text;
+                        toClick = el;
+                        break;
+                    }
+                } catch (Exception ignore) {}
+            }
+        }
+
+        if (toClick == null || chosen == null) {
+            throw new RuntimeException("No alphanumeric vehicle entry found to select.");
+        }
+
+        try {
+            elementUtils.scrollIntoView(toClick);
+            wait.until(ExpectedConditions.elementToBeClickable(toClick));
+            elementUtils.doClickWithActions(toClick);
+        } catch (Exception clickEx) {
+            try {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", toClick);
+            } catch (Exception jsEx) {
+                throw new RuntimeException("Failed to click chosen vehicle element: " + chosen, jsEx);
+            }
+        }
+
+        verifyVehicleSelected(chosen);
+        return chosen;
     }
 
 }

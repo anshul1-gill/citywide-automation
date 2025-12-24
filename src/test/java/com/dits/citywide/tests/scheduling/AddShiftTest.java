@@ -25,7 +25,7 @@ public class AddShiftTest extends BaseTest {
 		schedulingPage.addShift(SchedulingConstant.ADD_SHIFT_DATE);
 		schedulingPage.selectAssignShift(SchedulingConstant.ASSIGN_SHIFT);
 		schedulingPage.fillShiftForm(SchedulingConstant.ASSIGN_SHIFT, prop.getProperty("employeeID"),
-				
+
 				SchedulingConstant.START_TIME, SchedulingConstant.END_TIME,
 				SchedulingConstant.SCHEDULED_BREAK, SchedulingConstant.ADD_NOTES);
 

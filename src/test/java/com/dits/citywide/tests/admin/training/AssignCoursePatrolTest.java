@@ -20,15 +20,18 @@ public class AssignCoursePatrolTest extends BaseTest {
         totalCoursesPage = trainingPage.clickOnTotalCourses();
         softAssert.assertEquals(totalCoursesPage.getHeadingCourses(), "Courses", "Heading Courses is not visible");
 
-        totalCoursesPage.doClickAssignCourses(TrainingConstants.COURSE_NAME);
-        softAssert.assertEquals(totalCoursesPage.getHeadingAssignCourses(), "Course Assign", "Heading Assign Course is not visible");
+        // Dynamic: search any course starting with 'Automation' and assign to Patrol agent
+        totalCoursesPage.assignFirstCourseByPrefixToAgent(
+            "Automation",
+            HRManagementConstants.ROLE_PATROL,
+            prop.getProperty("patrolID") + " ",
+            TrainingConstants.SELECTED_COURSE_PURPOSE
+        );
 
-        totalCoursesPage.fillCouseAssignForm(HRManagementConstants.ROLE_PATROL, prop.getProperty("patrolID") + " ", TrainingConstants.SELECTED_COURSE_PURPOSE);
-        totalCoursesPage.doClickSaveAssignCourse();
-
-        softAssert.assertEquals(totalCoursesPage.getSuccessMessage(), TrainingConstants.ASSIGN_COURSE_SUCCESS_MESSAGE, "Assign Course success message is not displayed");
-        // Use robust wait helper for dynamic assignment rendering
-        softAssert.assertTrue(totalCoursesPage.waitForAgentAssignment(prop.getProperty("patrolID"), 15), "Assigned course is not displayed for Patrol ID in the Assigned Courses table");
+        softAssert.assertEquals(totalCoursesPage.getSuccessMessage(), TrainingConstants.ASSIGN_COURSE_SUCCESS_MESSAGE,
+                "Assign Course success message is not displayed");
+        softAssert.assertTrue(totalCoursesPage.waitForAgentAssignment(prop.getProperty("patrolID"), 15),
+                "Assigned course is not displayed for Patrol ID in the Assigned Courses table");
 
         softAssert.assertAll();
     }

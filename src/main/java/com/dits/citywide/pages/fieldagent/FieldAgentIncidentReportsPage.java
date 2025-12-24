@@ -658,19 +658,20 @@ public class FieldAgentIncidentReportsPage {
 	public void updateBasicIncidentDetails(String siteName, String dateTime, String activityCode,
 			String discoverDateTime, String reportDateTime) throws InterruptedException {
 		Thread.sleep(2000);
-//		elementUtils.clearTextBoxWithActions(txtboxSiteSearch);
-//		elementUtils.doActionsSendKeys(txtboxSiteSearch, siteName);
-//		elementUtils.waitForElementVisible(getSiteNameLocator(siteName), Constants.DEFAULT_WAIT).click();
+		// elementUtils.clearTextBoxWithActions(txtboxSiteSearch);
+		// elementUtils.doActionsSendKeys(txtboxSiteSearch, siteName);
+		// elementUtils.waitForElementVisible(getSiteNameLocator(siteName),
+		// Constants.DEFAULT_WAIT).click();
 		elementUtils.clearTextBoxWithJS(datetimeField, Constants.DEFAULT_WAIT);
 		elementUtils.sendKeysUsingJavaScript(datetimeField, dateTime, Constants.DEFAULT_WAIT);
 		Thread.sleep(2000);
 		elementUtils.doClickWithActionsAndWait(dropdownActivitycode, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsSendKeys(searchActivitycode, activityCode);
 		elementUtils.waitForElementVisible(getStateLocator(activityCode), Constants.DEFAULT_WAIT).click();
-		elementUtils.clearTextBoxWithActions(discoverdateTime);
+		elementUtils.clearTextBoxWithJS(discoverdateTime, Constants.DEFAULT_WAIT);
 		elementUtils.sendKeysUsingJavaScript(discoverdateTime, discoverDateTime, Constants.DEFAULT_WAIT);
 		Thread.sleep(2000);
-		elementUtils.clearTextBoxWithActions(reportDatetime);
+		elementUtils.clearTextBoxWithJS(reportDatetime, Constants.DEFAULT_WAIT);
 		elementUtils.sendKeysUsingJavaScript(reportDatetime, reportDateTime, Constants.DEFAULT_WAIT);
 		Thread.sleep(2000);
 
@@ -856,8 +857,9 @@ public class FieldAgentIncidentReportsPage {
 		elementUtils.doActionsSendKeys(txtboxUpdateWitnessUnitNum, unitNum);
 		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessCity);
 		elementUtils.doActionsSendKeys(txtboxUpdateWitnessCity, city);
-//		elementUtils.waitForElementToBeClickable(dropdownUpdateWitnessStateDropdown, Constants.DEFAULT_WAIT);
-//		elementUtils.doSelectBy(dropdownUpdateWitnessStateDropdown, state);
+		// elementUtils.waitForElementToBeClickable(dropdownUpdateWitnessStateDropdown,
+		// Constants.DEFAULT_WAIT);
+		// elementUtils.doSelectBy(dropdownUpdateWitnessStateDropdown, state);
 		elementUtils.clearTextBoxWithActions(txtboxUpdateWitnessZipCode);
 		elementUtils.doActionsSendKeys(txtboxUpdateWitnessZipCode, zipCode);
 	}

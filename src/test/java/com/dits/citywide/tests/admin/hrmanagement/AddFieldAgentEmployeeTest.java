@@ -218,11 +218,9 @@ public class AddFieldAgentEmployeeTest extends BaseTest {
 		softAssert.assertEquals(addEmployeePage.getAvailableTimesSuccessMessageText(),
 				HRManagementConstants.AVAILABLE_TIMES_SUCCESS_MESSAGE);
 
-		// Access
-//		addEmployeePage.doClickAccessTab();
-//		addEmployeePage.fillModuleAccess();
-//		softAssert.assertEquals(addEmployeePage.getAccessSuccessMessageText(),
-//				HRManagementConstants.ACCESS_SUCCESS_MESSAGE);
+//		 Access
+		addEmployeePage.clickAccesstab();
+		
 
 		// References
 		addEmployeePage.doClickReferencesTab();

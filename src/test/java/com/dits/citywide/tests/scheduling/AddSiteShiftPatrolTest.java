@@ -21,13 +21,21 @@ public class AddSiteShiftPatrolTest extends BaseTest {
 		Thread.sleep(2000);
 		schedulingPage.clickOnFilters();
 		schedulingPage.clickOnServiceTypeCheckbox();
-		schedulingPage.selectSiteAndApply(HRManagementConstants.SITE);
+		// Create stationary patrol shift using Richmond site (patrol agent can work on
+		// stationary sites too)
+		schedulingPage.selectSiteAndApply("Richmond");
+		// Proceed to add shift
 		schedulingPage.addShift(SchedulingConstant.ADD_SHIFT_DATE);
+		// Use regular assign shift method for stationary
 		schedulingPage.selectAssignShift(SchedulingConstant.ASSIGN_SHIFT);
-		schedulingPage.fillShiftForm(SchedulingConstant.ASSIGN_SHIFT, prop.getProperty("patrolID"),
-				
-				SchedulingConstant.START_TIME, SchedulingConstant.END_TIME,
-				SchedulingConstant.SCHEDULED_BREAK, SchedulingConstant.ADD_NOTES);
+		// Use regular form fill for stationary patrol shift
+		schedulingPage.fillShiftForm(
+				SchedulingConstant.ASSIGN_SHIFT,
+				prop.getProperty("patrolID"),
+				"23:00",
+				"06:00",
+				SchedulingConstant.SCHEDULED_BREAK_PATROL,
+				SchedulingConstant.ADD_NOTES_PATROL);
 
 		softAssert.assertEquals(schedulingPage.getSuccessMessageShiftAdded(),
 				SchedulingConstant.SUCCESS_MESSAGE_ADD_SHIFT);

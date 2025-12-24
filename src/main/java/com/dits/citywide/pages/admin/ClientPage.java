@@ -13,7 +13,8 @@ public class ClientPage {
     private ElementUtils elementUtils;
 
     private By btnAddNewClient = By.xpath("//a[normalize-space()='Add new']");
-    private By dropdownSelectSites = By.xpath("//label[contains(text(),'Site') or contains(text(),'Select Site')]/following-sibling::div//input[@role='combobox']");
+    private By dropdownSelectSites = By.xpath(
+            "//label[contains(text(),'Site') or contains(text(),'Select Site')]/following-sibling::div//input[@role='combobox']");
     private By txtClientId = By.xpath("//input[@name='badge_number']");
     private By txtClientfirstname = By.xpath("//input[@name='first_name']");
     private By txtClientLastName = By.xpath("//input[@name='last_name']");
@@ -41,7 +42,8 @@ public class ClientPage {
             elementUtils.doClick(btnAddNewClient);
             try {
                 WebElement combo = driver.findElement(dropdownSelectSites);
-                ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", combo);
+                ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                        combo);
                 combo.click();
             } catch (Exception e) {
                 System.out.println("[ClientPage] Site dropdown focus attempt failed: " + e.getMessage());
@@ -53,7 +55,8 @@ public class ClientPage {
 
     // Handle both hidden <select> or virtual dropdowns
     private void selectSites(List<String> sites) {
-        if (sites == null || sites.isEmpty()) return;
+        if (sites == null || sites.isEmpty())
+            return;
         try {
             // Try normal select first
             elementUtils.selectOptionsInHiddenMultiSelect(selectAssignSite, sites, 10);
@@ -73,13 +76,18 @@ public class ClientPage {
 
     // Fill client creation form
     public void createNewClient(String badgeId, List<String> sites, String firstName, String lastName,
-                                String phone, String email, String password, String status,
-                                boolean activityTracking, String comments) {
+            String phone, String email, String password, String status,
+            boolean activityTracking, String comments) throws InterruptedException {
 
         // 1) Select Sites FIRST
         selectSites(sites);
 
-        // 2) Fill text fields
+        // IMPORTANT: Wait for auto-fill to complete after site selection
+        System.out.println("[ClientPage] Waiting for auto-fill to complete after site selection...");
+        Thread.sleep(2000);
+
+        // 2) Fill text fields - clear any auto-filled values first
+        System.out.println("[ClientPage] Clearing and filling form fields with custom data...");
         elementUtils.doSendKeysWithClear(txtClientId, badgeId);
         elementUtils.doSendKeysWithClear(txtClientfirstname, firstName);
         elementUtils.doSendKeysWithClear(txtClientLastName, lastName);
@@ -111,24 +119,48 @@ public class ClientPage {
                 elementUtils.safeClick(CheckboxActivitytracking);
             }
         } catch (Exception e) {
-            throw new RuntimeException("[ClientPage] Activity tracking checkbox interaction failed: " + e.getMessage(), e);
+            throw new RuntimeException("[ClientPage] Activity tracking checkbox interaction failed: " + e.getMessage(),
+                    e);
         }
 
         // 5) Comments
         if (comments != null && !comments.isBlank()) {
             elementUtils.doSendKeysWithClear(textareaCmnt, comments);
         }
+
+        System.out.println("[ClientPage] ✅ Form filled successfully with custom data");
     }
 
     // Click the final Add Client button
-    public void clickAddClientButton() {
+    public void clickAddClientButton() throws InterruptedException {
         try {
             elementUtils.waitForElementToBeVisibleAndEnabled(btnAddClient, 15);
             elementUtils.safeClick(btnAddClient);
+            System.out.println("[ClientPage] Clicked Add Client button");
+
+            // Wait a moment for any validation errors to appear
+            Thread.sleep(1000);
+
+            // Check for validation errors
+            List<WebElement> validationErrors = driver.findElements(By.xpath(
+                    "//div[contains(@class, 'error') or contains(@class, 'invalid-feedback') or contains(@class, 'alert-danger')]"));
+            if (!validationErrors.isEmpty()) {
+                System.out.println("[ClientPage] ⚠️ VALIDATION ERRORS FOUND:");
+                for (WebElement error : validationErrors) {
+                    if (error.isDisplayed()) {
+                        System.out.println("  - " + error.getText());
+                    }
+                }
+            }
+
+            // Wait for the form to submit and success message to appear
+            Thread.sleep(2000);
         } catch (Exception e) {
             System.out.println("[ClientPage] safeClick failed, trying jsClick: " + e.getMessage());
             try {
                 elementUtils.jsClick(btnAddClient);
+                System.out.println("[ClientPage] Clicked Add Client button using JS");
+                Thread.sleep(3000);
             } catch (Exception e2) {
                 throw new RuntimeException("Add Client submit button not clickable after retries", e2);
             }
@@ -137,12 +169,65 @@ public class ClientPage {
 
     // Check success message
     public boolean isSuccessMessageDisplayed() {
-        return elementUtils.doIsDisplayed(successMessage, 10);
+        try {
+            // Try multiple success message locators
+            By[] successLocators = {
+                    By.cssSelector(".alert-success, .success-message, .alert.alert-success"),
+                    By.xpath(
+                            "//div[contains(@class, 'Toastify')]//div[contains(text(), 'success') or contains(text(), 'Success') or contains(text(), 'created') or contains(text(), 'Created')]"),
+                    By.xpath(
+                            "//div[contains(@class, 'toast')]//div[contains(text(), 'success') or contains(text(), 'Success')]"),
+                    By.xpath(
+                            "//*[contains(text(), 'Client created successfully') or contains(text(), 'successfully created')]")
+            };
+
+            for (By locator : successLocators) {
+                if (elementUtils.doIsDisplayed(locator, 5)) {
+                    System.out.println("[ClientPage] Success message found!");
+                    return true;
+                }
+            }
+            System.out.println("[ClientPage] No success message found with any locator");
+            return false;
+        } catch (Exception e) {
+            System.out.println("[ClientPage] Error checking success message: " + e.getMessage());
+            return false;
+        }
     }
 
     // Verify if a client email exists in table
-    public boolean isClientPresent(String email) {
-        List<WebElement> emailCells = driver.findElements(By.xpath("//table//td[contains(text(), '" + email + "')]"));
-        return !emailCells.isEmpty();
+    public boolean isClientPresent(String email) throws InterruptedException {
+        try {
+            // Wait a bit for the page to refresh/update
+            Thread.sleep(2000);
+
+            // Try to find the email in the table
+            List<WebElement> emailCells = driver
+                    .findElements(By.xpath("//table//td[contains(text(), '" + email + "')]"));
+
+            if (!emailCells.isEmpty()) {
+                System.out.println("[ClientPage] Client found in table: " + email);
+                return true;
+            }
+
+            // If not found, try refreshing the page
+            System.out.println("[ClientPage] Client not found, refreshing page...");
+            driver.navigate().refresh();
+            Thread.sleep(3000);
+
+            emailCells = driver.findElements(By.xpath("//table//td[contains(text(), '" + email + "')]"));
+            boolean found = !emailCells.isEmpty();
+
+            if (found) {
+                System.out.println("[ClientPage] Client found after refresh: " + email);
+            } else {
+                System.out.println("[ClientPage] Client still not found after refresh: " + email);
+            }
+
+            return found;
+        } catch (Exception e) {
+            System.out.println("[ClientPage] Error checking if client is present: " + e.getMessage());
+            return false;
+        }
     }
 }

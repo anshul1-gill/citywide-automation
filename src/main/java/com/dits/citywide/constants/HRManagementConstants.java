@@ -4,9 +4,9 @@ public class HRManagementConstants {
 
 // Field Agent
 	// Personal Information
-	public static final String FIRST_NAME = "Dom"; 
+	public static final String FIRST_NAME = "Lionel"; 
 	public static final String MIDDLE_NAME = "O";
-	public static final String LAST_NAME = "Torreto";
+	public static final String LAST_NAME = "Messi";
 	public static final String GENDER = "Male";
 	public static final String BIRTH_MONTH = "Nov";
 	public static final String BIRTH_YEAR = "2000";
@@ -57,9 +57,9 @@ public class HRManagementConstants {
 	public static final String PERSONAL_INFO_ADDED_SUCCESS_MESSAGE = "Personal Information added successfully!";
 
 	// Patrol Officer Data
-	public static final String FIRST_NAME_PATROL = "Shane";
-	public static final String MIDDLE_NAME_PATROL = "Christopher";
-	public static final String LAST_NAME_PATROL = "Simith";
+	public static final String FIRST_NAME_PATROL = "Alberto";
+	public static final String MIDDLE_NAME_PATROL = "Del";
+	public static final String LAST_NAME_PATROL = "Rio";
 	public static final String GENDER_PATROL = "Male";
 	public static final String BIRTH_MONTH_PATROL = "Feb";
 	public static final String BIRTH_YEAR_PATROL = "2002";
@@ -290,7 +290,7 @@ public class HRManagementConstants {
 
 	public static final String ASSIGNED_COURSE_SUCCESS_MESSAGE = "Course assigned successfully";
 
-	public static final String COURSE_NAME = "Automation Testing Course Name";
+	public static final String COURSE_NAME = "Automation Testing Course Names";
 
 	public static final String EMAIL = "userautomation1762757455476724@ditstek.com";
 	public static final String EMAIL_PRIMARY = "userautomation1762757455476724@ditstek.com";

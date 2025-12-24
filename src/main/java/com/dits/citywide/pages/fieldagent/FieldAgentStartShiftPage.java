@@ -19,8 +19,9 @@ public class FieldAgentStartShiftPage {
 	private WebDriver driver;
 	private ElementUtils elementUtils;
 
-//	private By txtMessageOfTheWeek = By.xpath(
-//			"//div[@class='flex items-center justify-between px-3 py-2 text-white rounded-t-lg bg-blue2 dark:bg-blue2']/h2");
+	// private By txtMessageOfTheWeek = By.xpath(
+	// "//div[@class='flex items-center justify-between px-3 py-2 text-white
+	// rounded-t-lg bg-blue2 dark:bg-blue2']/h2");
 	private By btnMarkAsRead = By.xpath("//div[@class='flex items-center gap-3']/button");
 	private By tabStartShift = By.xpath("(//span[contains(text(),'Start Shift')])[1]");
 	private By tabOpenSites = By.xpath("//span[normalize-space()='Sites']");
@@ -35,9 +36,10 @@ public class FieldAgentStartShiftPage {
 	private By btnViewSite = By.xpath("//span[normalize-space()='View Site']");
 	private By btnStartShift = By.xpath("(//span[contains(text(),'Start Shift')])[2]");
 	private By btnConfirmShift = By.xpath("//span[normalize-space()='Confirm/Reject multiple shifts']");
-	private By selectCheckbox = By.xpath( "//tr[.//td[contains(@data-label,'Shift') and .//span[normalize-space()='Pending']]] //label[contains(@class,'ant-checkbox-wrapper')]");
+	private By selectCheckbox = By.xpath(
+			"//tr[.//td[contains(@data-label,'Shift') and .//span[normalize-space()='Pending']]] //label[contains(@class,'ant-checkbox-wrapper')]");
 	private By Confirmbtn = By.xpath("//button[normalize-space()='Confirm']");
-	
+
 	private By btnRejectShift = By.xpath("//span[normalize-space()='Reject']");
 	private By txtboxRejectReason = By.xpath("//textarea[@id='reason']");
 	private By btnSaveRejectReason = By.xpath("//button[@type='submit']");
@@ -50,13 +52,12 @@ public class FieldAgentStartShiftPage {
 	private By dataServiceType = By.xpath("//label[contains(text(),'Service Type')]/following-sibling::p");
 	private By dataAddress = By.xpath("//label[contains(text(),'Address')]/following-sibling::p");
 	private By dataNotes = By.xpath("//label[contains(text(),'Notes')]/following-sibling::p");
-	
+
 	private By btnStartBreak = By.xpath("//button[normalize-space()='Start Break']");
 	private By SelectBreak = By.xpath("//a[normalize-space()='Lunch Break']");
 	private By StartedSuccessmessage = By.xpath("//div[contains(text(),'Break Started')]");
 	private By EndBreakbutton = By.xpath("//span[@id='countup-timer']");
 	private By EndSuccessmessage = By.xpath("//div[contains(text(),'Break Ended')]");
-	
 
 	private By btnEndShift = By.xpath("//button[contains(text(),'End Shift')]");
 
@@ -85,6 +86,8 @@ public class FieldAgentStartShiftPage {
 	private By txtHeadingPreviousShiftLogout = By.xpath("//h2[normalize-space()='Log out of previous shift']");
 	private By txtboxCheckOutDateTime = By.cssSelector("#depart_timedate");
 	private By txtboxReasonPreviousShiftLogout = By.xpath("//textarea[@id='activity_text']");
+	private By txtboxEndingMI = By.cssSelector("#ending_miles"); // Corrected ID from ending_mi to ending_miles
+	private By txtboxVerifyMI = By.xpath("//input[@id='verify_miles']"); // Corrected ID from verify_mi to verify_miles
 	private By btnSubmitPreviousShiftLogout = By.xpath("//button[@id='submitButton']");
 	private By txtSucessMessagePreviousShiftLogout = By.xpath("//h2[@id='swal2-title']/span");
 
@@ -209,12 +212,12 @@ public class FieldAgentStartShiftPage {
 	public boolean isConfirmShiftButtonVisible() {
 		return elementUtils.doIsDisplayed(btnConfirmShift, Constants.EXPLICIT_WAIT);
 	}
-	
+
 	public void doSelectCheckbox() throws InterruptedException {
 		Thread.sleep(500);
 		elementUtils.waitForElementToBeClickable(selectCheckbox, Constants.EXPLICIT_WAIT).click();
 	}
-	
+
 	public void doClickConfirmShiftbutton() {
 		elementUtils.waitForElementToBeClickable(Confirmbtn, Constants.EXPLICIT_WAIT).click();
 	}
@@ -242,31 +245,31 @@ public class FieldAgentStartShiftPage {
 	public void doClickCancelButton() {
 		elementUtils.waitForElementToBeClickable(btnCancel, Constants.EXPLICIT_WAIT).click();
 	}
-	
+
 	// Start Break
 	public boolean isStartBreakButtonVisible() {
 		return elementUtils.doIsDisplayed(btnStartBreak, Constants.EXPLICIT_WAIT);
 	}
-	
+
 	public void doClickStartBreak() {
 		elementUtils.waitForElementToBeClickable(btnStartBreak, Constants.EXPLICIT_WAIT).click();
 	}
-	
+
 	public void doSelectBreak() {
 		elementUtils.waitForElementToBeClickable(SelectBreak, Constants.EXPLICIT_WAIT).click();
 	}
-	
+
 	public String getSuccessBreakMessage() {
 		return elementUtils.waitForElementVisible(StartedSuccessmessage, Constants.EXPLICIT_WAIT).getText();
 	}
+
 	public void doClickEndBreak() {
 		elementUtils.waitForElementToBeClickable(EndBreakbutton, Constants.EXPLICIT_WAIT).click();
 	}
+
 	public String getSuccessBreakEndMessage() {
 		return elementUtils.waitForElementVisible(EndSuccessmessage, Constants.EXPLICIT_WAIT).getText();
 	}
-	
-	
 
 	// End Shift
 	public boolean isEndShiftButtonVisible() {
@@ -403,21 +406,82 @@ public class FieldAgentStartShiftPage {
 			if (elementUtils.isElementVisible(txtHeadingPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT)) {
 
 				System.out.println("Previous shift logout popup is visible.");
-				elementUtils.waitForElementVisible(txtboxCheckOutDateTime, Constants.SHORT_TIME_OUT_WAIT).clear();
+				// Don't clear the field as it causes invalid element state error
+				// Just use doActionsSendKeys which will select all and replace
 				elementUtils.doActionsSendKeys(txtboxCheckOutDateTime, CurrentDateTimeUtils.getCurrentDateTime());
+				System.out.println("Filled checkout datetime");
 
 				elementUtils.waitForElementVisible(txtboxReasonPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT)
 						.sendKeys("Auto logout due to previous unclosed shift");
+				System.out.println("Filled reason");
+
+				// Handle Ending MI and Verify MI fields
+				String endingMIValue = "0"; // Default value
+
+				if (elementUtils.isElementVisible(txtboxEndingMI, Constants.SHORT_TIME_OUT_WAIT)) {
+					String currentEndingMI = elementUtils
+							.waitForElementVisible(txtboxEndingMI, Constants.SHORT_TIME_OUT_WAIT).getAttribute("value");
+					System.out.println("Current Ending MI value: " + currentEndingMI);
+
+					// If Ending MI is 0 or empty, update it to 10
+					if (currentEndingMI == null || currentEndingMI.isEmpty() || currentEndingMI.equals("0")) {
+						System.out.println("Ending MI is 0 or empty, updating to 10");
+						elementUtils.waitForElementVisible(txtboxEndingMI, Constants.SHORT_TIME_OUT_WAIT).clear();
+						elementUtils.waitForElementVisible(txtboxEndingMI, Constants.SHORT_TIME_OUT_WAIT)
+								.sendKeys("10");
+						endingMIValue = "10";
+						System.out.println("Updated Ending MI to: 10");
+					} else {
+						endingMIValue = currentEndingMI;
+					}
+				} else {
+					System.out.println("Ending MI field not visible, will use default value 10");
+					endingMIValue = "10";
+				}
+
+				// Fill Verify MI with the Ending MI value
+				if (elementUtils.isElementVisible(txtboxVerifyMI, Constants.SHORT_TIME_OUT_WAIT)) {
+					elementUtils.waitForElementVisible(txtboxVerifyMI, Constants.SHORT_TIME_OUT_WAIT)
+							.sendKeys(endingMIValue);
+					System.out.println("Filled Verify MI field with: " + endingMIValue);
+				} else {
+					System.out.println("Verify MI field not visible");
+				}
 
 				elementUtils.waitForElementVisible(btnSubmitPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT).click();
+				System.out.println("Clicked submit button (1st time)");
+				Thread.sleep(1000);
 
-				System.out.println("Submitted previous shift logout reason.");
+				// Click submit button 2nd time
+				try {
+					if (elementUtils.isElementVisible(btnSubmitPreviousShiftLogout, 2)) {
+						elementUtils.waitForElementVisible(btnSubmitPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT)
+								.click();
+						System.out.println("Clicked submit button (2nd time)");
+						Thread.sleep(1000);
+					}
+				} catch (Exception e) {
+					System.out.println("Submit button not visible for 2nd click");
+				}
+
+				// Click submit button 3rd time
+				try {
+					if (elementUtils.isElementVisible(btnSubmitPreviousShiftLogout, 2)) {
+						elementUtils.waitForElementVisible(btnSubmitPreviousShiftLogout, Constants.SHORT_TIME_OUT_WAIT)
+								.click();
+						System.out.println("Clicked submit button (3rd time)");
+						Thread.sleep(2000);
+					}
+				} catch (Exception e) {
+					System.out.println("Submit button not visible for 3rd click");
+				}
 
 			} else {
 				System.out.println("Previous shift logout popup not visible. Skipping logout action.");
 			}
 		} catch (Exception e) {
 			System.out.println("Exception while handling previous shift logout: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -428,21 +492,33 @@ public class FieldAgentStartShiftPage {
 			if (elementUtils.isElementVisible(txtPassdownOfADay, Constants.SHORT_TIME_OUT_WAIT)) {
 				System.out.println("'Passdown of a day' popup is visible.");
 
-				List<WebElement> viewButtons = elementUtils.waitForVisibilityOfAllElements(btnCountViewPassdown,
-						Constants.SHORT_TIME_OUT_WAIT);
+				// First try to click "Mark as Read" button
+				By btnMarkAsReadPassdown = By.xpath("//button[normalize-space()='Mark as Read']");
+				if (elementUtils.isElementVisible(btnMarkAsReadPassdown, 5)) {
+					elementUtils.waitForElementVisible(btnMarkAsReadPassdown, Constants.SHORT_TIME_OUT_WAIT).click();
+					System.out.println("Clicked 'Mark as Read' button in passdown popup.");
+					Thread.sleep(1000); // Wait for modal to close
+				} else {
+					// If "Mark as Read" is not available, try "Create Report" buttons
+					System.out.println("'Mark as Read' button not found, trying 'Create Report' buttons.");
+					List<WebElement> viewButtons = elementUtils.waitForVisibilityOfAllElements(btnCountViewPassdown,
+							Constants.SHORT_TIME_OUT_WAIT);
 
-				int buttonCount = viewButtons.size();
-				System.out.println("Found " + buttonCount + " 'View Passdown' button(s).");
+					int buttonCount = viewButtons.size();
+					System.out.println("Found " + buttonCount + " 'View Passdown' button(s).");
 
-				for (int i = 1; i <= buttonCount; i++) {
-					try {
-						WebElement createReportButton = elementUtils
-								.waitForElementVisible(getCreateReportButtonByIndex(i), Constants.SHORT_TIME_OUT_WAIT);
-						createReportButton.click();
-						System.out.println("Clicked on 'Create Report' button #" + i);
-					} catch (Exception clickException) {
-						System.out.println(
-								"Could not click 'Create Report' button #" + i + ": " + clickException.getMessage());
+					for (int i = 1; i <= buttonCount; i++) {
+						try {
+							WebElement createReportButton = elementUtils
+									.waitForElementVisible(getCreateReportButtonByIndex(i),
+											Constants.SHORT_TIME_OUT_WAIT);
+							createReportButton.click();
+							System.out.println("Clicked on 'Create Report' button #" + i);
+						} catch (Exception clickException) {
+							System.out.println(
+									"Could not click 'Create Report' button #" + i + ": "
+											+ clickException.getMessage());
+						}
 					}
 				}
 
@@ -461,9 +537,10 @@ public class FieldAgentStartShiftPage {
 	}
 
 	public void selectUserByName(String officerName) {
-        // This assumes there is a clickable element (e.g., a row or link) with the officer's name visible
-        By userRow = By.xpath("//*[text()='" + officerName + "']");
-        elementUtils.waitForElementToBeClickable(userRow, 10).click();
-    }
+		// This assumes there is a clickable element (e.g., a row or link) with the
+		// officer's name visible
+		By userRow = By.xpath("//*[text()='" + officerName + "']");
+		elementUtils.waitForElementToBeClickable(userRow, 10).click();
+	}
 
 }

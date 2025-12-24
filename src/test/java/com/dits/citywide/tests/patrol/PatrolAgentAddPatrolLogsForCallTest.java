@@ -13,7 +13,7 @@ public class PatrolAgentAddPatrolLogsForCallTest extends BaseTest {
     @BeforeMethod
     public void performLogin() throws InterruptedException {
         patrolAgentStartShiftPage = loginPage.doLoginPatrol(prop.getProperty("patrolID"),
-                prop.getProperty("patrolPassword"));
+                prop.getProperty("employeePassword"));
     }
 
     @Test

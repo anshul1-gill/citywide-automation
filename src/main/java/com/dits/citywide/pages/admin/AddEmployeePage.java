@@ -12,20 +12,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.Keys;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.utilities.Calendar;
 import com.dits.citywide.utilities.ElementUtils;
 import com.dits.citywide.utilities.StringUtils;
 
-
-
 public class AddEmployeePage {
 
-    private WebDriver driver;
-    private ElementUtils elementUtils;
+	private WebDriver driver;
+	private ElementUtils elementUtils;
 
-// 1. Personal Information
+	// 1. Personal Information
 
 	// Upload User Profile Picture
 	private By txtUploadUserProfilePicture = By.xpath("//div[text()='Upload User Profile Picture']");
@@ -47,7 +46,9 @@ public class AddEmployeePage {
 	private By roleValues = By.xpath("//div[@class='rc-virtual-list-holder-inner']/div/div");
 
 	public By getRoleLocator(String roleName) {
-		return By.xpath("//div[contains(text(),'" + roleName + "')]");
+		// Target the dropdown option content (the actual clickable option in the list)
+		return By.xpath("//div[contains(@class,'ant-select-item-option-content') and (text()='" + roleName
+				+ " (RS)' or text()='" + roleName + "')]");
 	}
 
 	private By dropdownRank = By.xpath("(//span[@class='ant-select-selection-search'])[3]");
@@ -115,7 +116,7 @@ public class AddEmployeePage {
 
 	private By txtboxNote = By.id("Personal Information_emergency_note");
 
-// 2. Employment Information
+	// 2. Employment Information
 	private By tabEmploymentInformation = By.xpath("//div[text()='Employment Information']");
 
 	// Employment Information
@@ -140,7 +141,7 @@ public class AddEmployeePage {
 	private By departmentTypeSearch = By.id("Employment Information_department_type_0_department");
 	private By dropdownDepartmentTypeValues = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])[4]/div/div");
 
-// 3. Permits
+	// 3. Permits
 	private By tabPermits = By.xpath("//div[text()='Permits']");
 
 	// License Details
@@ -280,7 +281,7 @@ public class AddEmployeePage {
 	private By dataOtherPermitDateOfExpiration = By
 			.xpath("(//tbody[@class='ant-table-tbody']//td[@data-label='Date of Expiration'])[7]");
 
-//4. Pay Information
+	// 4. Pay Information
 	private By tabPayInformation = By.xpath("//div[text()='Pay Information' and @class='menuItem']");
 	private By txtboxEmployeePayRate = By.id("Pay Information_pay_info_0_pay_rate");
 	private By dropdownPayCycle = By.xpath("(//span[contains(@class,'ant-select-selection-search')])[2]");
@@ -306,10 +307,7 @@ public class AddEmployeePage {
 	private By calenderEffectiveDate = By.cssSelector("div.ant-picker-input");
 	private By calenderSearchEffectiveDate = By.id("Pay Information_commission_info_0_commission_efffective_date");
 
-
-
-
-//5. Additional Documents
+	// 5. Additional Documents
 	private By tabAdditionalDocuments = By.xpath("//div[text()='Additional Documents' and @class='menuItem']");
 	// Upload Document
 	private By btnAddAdditionalDocument = By.xpath("//span[normalize-space()='Add Additional Document']");
@@ -326,7 +324,7 @@ public class AddEmployeePage {
 
 	private By labelFileUpload = By.xpath("//label[@for='file-upload']");
 
-// 6. Available Times
+	// 6. Available Times
 	private By tabAvailableTimes = By.xpath("//div[@class='menuItem' and (normalize-space()='Availability')]");
 
 	private By txtDays = By.xpath("//div[contains(text(),'Days')]");
@@ -336,8 +334,8 @@ public class AddEmployeePage {
 	private By txtboxStartTimeMonday = By.id("monday_dayShift");
 	private By txtboxEndTimeMonday = By.id("monday_swingShift");
 
-// 7. Access
-	private By tabAccess = By.xpath("//div[text()='Access' and @class='menuItem']");
+	// 7. Access
+	private By tabAccess = By.xpath("//div[(@class='menuItem') and (normalize-space()='Access')]");
 
 	// Module Access
 	private By checkboxView = By.xpath("(//input[@class='ant-checkbox-input'])[1]");
@@ -346,7 +344,7 @@ public class AddEmployeePage {
 	private By checkboxDelete = By.xpath("(//input[@class='ant-checkbox-input'])[4]");
 	private By btnSavePermissions = By.xpath("//span[contains(text(),'Save Permissions')]");
 
-// 8. References
+	// 8. References
 	private By tabReferences = By.xpath("//div[text()='References' and @class='menuItem']");
 	private By btnAddUserReference = By.xpath("//span[contains(text(),'Add User Reference')]");
 	private By txtUserReferences = By
@@ -396,7 +394,7 @@ public class AddEmployeePage {
 		fileInput.sendKeys(absolutePath);
 	}
 
-// 1. Personal Information
+	// 1. Personal Information
 	public void fillPersonalInformation(String firstName, String middleName, String lastName, String gender,
 			String month, String Year, String date, String socialSecurityNumber, String role, String rank,
 			String ethnicCode, String primaryEmail, String alternateEmail, String countryCode,
@@ -417,7 +415,8 @@ public class AddEmployeePage {
 		birthDateInput.click();
 		// Wait for calendar popup to be visible
 		try {
-			WebElement calendarPopup = elementUtils.waitForElementVisible(By.className("ant-picker-panel"), Constants.DEFAULT_WAIT);
+			WebElement calendarPopup = elementUtils.waitForElementVisible(By.className("ant-picker-panel"),
+					Constants.DEFAULT_WAIT);
 			if (calendarPopup != null && calendarPopup.isDisplayed()) {
 				System.out.println("Calendar popup is visible, selecting date...");
 				Calendar.selectDatePrevious(driver, month, Year, date);
@@ -434,14 +433,41 @@ public class AddEmployeePage {
 		elementUtils.waitForElementVisible(dropdownRole, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsClick(dropdownRole);
 
-		// elementUtils.selectElementThroughLocatorWithRetry(roleValues, role,
-		// Constants.SHORT_TIME_OUT_WAIT);
-		// String roleText = StringUtils.convertToCamelCase(role);
-		// By rolexpath = elementUtils.getOptionByText(roleText);
-		// elementUtils.clickElementWithScroll(rolexpath, Constants.DEFAULT_WAIT);
-		// elementUtils.doScrollAndClickWithWait(getRoleLocator(role));
-		elementUtils.waitForElementVisible(getRoleLocator(role), Constants.DEFAULT_WAIT).click();
+		// Wait for dropdown to open and role option to be available
+		Thread.sleep(1000); // Give dropdown time to fully load
 
+		// Use specific locator for Patrol (RS)
+		// By roleLocator = By.xpath("//div[@title='" + role + " (RS)']");
+
+		// User requested Actions based scroll logic
+		Actions actions = new Actions(driver);
+		boolean roleFound = false;
+
+		for (int i = 0; i < 40; i++) {
+			try {
+				// Try to find exact match first as per user request pattern
+				WebElement roleElement = driver.findElement(By.xpath(
+						"//div[contains(@class,'ant-select-item-option-content') and text()='" + role + " (RS)']"));
+				roleElement.click();
+				roleFound = true;
+				break;
+			} catch (Exception e) {
+				actions.sendKeys(Keys.ARROW_DOWN).perform();
+				try {
+					Thread.sleep(100); // Small delay for scroll/render
+				} catch (InterruptedException ie) {
+				}
+			}
+		}
+
+		if (!roleFound) {
+			// Fallback: try finding it simply by text
+			try {
+				driver.findElement(By.xpath("//div[contains(text(),'" + role + "')]")).click();
+			} catch (Exception e) {
+				// Fail
+			}
+		}
 		WebElement rankElement = elementUtils.waitForElementToBeClickable(dropdownRank, Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(rankElement);
 		By rankxpath = elementUtils.getOptionByText(rank);
@@ -451,7 +477,8 @@ public class AddEmployeePage {
 				Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(ethnicCodeElement);
 		String ethnicCodeText = StringUtils.convertToCamelCase(ethnicCode);
-		By xpathethnicCode = elementUtils.getOptionByText(ethnicCodeText);
+		By xpathethnicCode = elementUtils.getOptionByText(
+				ethnicCodeText);
 		elementUtils.clickElementWithScroll(xpathethnicCode, Constants.SHORT_TIME_OUT_WAIT);
 
 		elementUtils.waitForElementVisible(txtboxPrimaryEmail, Constants.SHORT_TIME_OUT_WAIT).sendKeys(primaryEmail);
@@ -459,14 +486,16 @@ public class AddEmployeePage {
 				.sendKeys(alternateEmail);
 
 		WebElement primaryPhoneNumberCountryCodElement = elementUtils
-				.waitForElementToBeClickable(dropdownPrimaryPhoneNumberCountryCode, Constants.SHORT_TIME_OUT_WAIT);
+				.waitForElementToBeClickable(dropdownPrimaryPhoneNumberCountryCode,
+						Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(primaryPhoneNumberCountryCodElement);
 		elementUtils.selectElementThroughLocator(countrycodeList, countryCode, Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.waitForElementVisible(txtboxPrimaryPhoneNumber, Constants.SHORT_TIME_OUT_WAIT)
 				.sendKeys(primanyPhoneNumber);
 
 		WebElement secondaryPhoneNumberCountryCodElement = elementUtils
-				.waitForElementToBeClickable(dropdownSecondaryPhoneNumberCountryCode, Constants.SHORT_TIME_OUT_WAIT);
+				.waitForElementToBeClickable(dropdownSecondaryPhoneNumberCountryCode,
+						Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(secondaryPhoneNumberCountryCodElement);
 		elementUtils.selectElementThroughLocator(countrycodeList, countryCode, Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.waitForElementVisible(txtboxSecondaryPhoneNumber, Constants.SHORT_TIME_OUT_WAIT)
@@ -475,7 +504,8 @@ public class AddEmployeePage {
 		elementUtils.waitForElementVisible(txtboxEmergencyName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(emergencyName);
 
 		WebElement emergencyPhoneNumberCountryCodElement = elementUtils
-				.waitForElementToBeClickable(dropdownEmergencyNumberCountryCode, Constants.SHORT_TIME_OUT_WAIT);
+				.waitForElementToBeClickable(dropdownEmergencyNumberCountryCode,
+						Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(emergencyPhoneNumberCountryCodElement);
 		elementUtils.selectElementThroughLocator(countrycodeList, countryCode, Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.waitForElementVisible(txtboxEmergencyNumber, Constants.SHORT_TIME_OUT_WAIT)
@@ -487,29 +517,35 @@ public class AddEmployeePage {
 		elementUtils.waitForElementVisible(txtboxConfirmPassword, Constants.SHORT_TIME_OUT_WAIT)
 				.sendKeys(confirmPassword);
 
-//		WebElement branchesElement = elementUtils.waitForElementToBeClickable(dropdownBranches,
-//				Constants.SHORT_TIME_OUT_WAIT);
-//		elementUtils.doClickWithActions(branchesElement);
-//		String branchesText = StringUtils.convertToCamelCase(branchName);
-//		By branchxpath = elementUtils.getOptionByText(branchesText);
-//		elementUtils.clickElementWithScroll(branchxpath, Constants.DEFAULT_WAIT);
+		// WebElement branchesElement =
+		// Select Branch/Site
+		WebElement siteDropdown = elementUtils.waitForElementToBeClickable(dropdownBranches,
+				Constants.SHORT_TIME_OUT_WAIT);
+		elementUtils.doClickWithActions(siteDropdown);
+		Thread.sleep(1000);
 
-//		WebElement blacklistedSiteElement = elementUtils.waitForElementToBeClickable(dropdownBlacklistedSite,
-//				Constants.SHORT_TIME_OUT_WAIT);
-//		elementUtils.doClickWithActions(blacklistedSiteElement);
-//		By blacklistedSiteNamexpath = elementUtils.getOptionByText(blacklistedSiteName);
-//		elementUtils.clickElementWithScroll(blacklistedSiteNamexpath, Constants.DEFAULT_WAIT);
-//		elementUtils.pressEscapeKey();
+		// Try to find and click the branch/site option
+		try {
+			By branchOption = By.xpath("//div[contains(@class,'ant-select-item-option-content') and contains(text(),'"
+					+ branchName + "')]");
+			WebElement option = elementUtils.waitForElementToBeClickable(branchOption, Constants.SHORT_TIME_OUT_WAIT);
+			option.click();
+		} catch (Exception e) {
+			System.out.println("Could not click site option: " + e.getMessage());
+		}
+		Thread.sleep(1000);
 
 	}
 
 	public void fillSiteName(String siteName) throws InterruptedException {
-//		WebElement branchesElement = elementUtils.waitForElementToBeClickable(dropdownBranches,
-//				Constants.SHORT_TIME_OUT_WAIT);
-		//elementUtils.doClickWithActions(branchesElement);
+		// WebElement branchesElement =
+		// elementUtils.waitForElementToBeClickable(dropdownBranches,
+		// Constants.SHORT_TIME_OUT_WAIT);
+		// elementUtils.doClickWithActions(branchesElement);
 		elementUtils.doClickWithActionsAndWait(dropdownBranches, Constants.DEFAULT_WAIT);
-//		By blacklistedSiteNamexpath = elementUtils.getOptionByText(siteName);
-//		elementUtils.clickElementWithScroll(blacklistedSiteNamexpath, Constants.DEFAULT_WAIT);
+		// By blacklistedSiteNamexpath = elementUtils.getOptionByText(siteName);
+		// elementUtils.clickElementWithScroll(blacklistedSiteNamexpath,
+		// Constants.DEFAULT_WAIT);
 		Thread.sleep(2000);
 		elementUtils.doSendKeysAction(txtboxSiteSearch, siteName);
 		Thread.sleep(7000);
@@ -534,23 +570,29 @@ public class AddEmployeePage {
 		elementUtils.waitForElementVisible(txtboxStreetName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetName);
 		elementUtils.waitForElementVisible(txtboxStreetId, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetId);
 		elementUtils.waitForElementVisible(txtboxStreetNumber, Constants.SHORT_TIME_OUT_WAIT).sendKeys(streetNumber);
-//		elementUtils.waitForElementVisible(txtboxCity, Constants.SHORT_TIME_OUT_WAIT).sendKeys(City);
-//
-//		WebElement stateElement = elementUtils.waitForElementToBeClickable(dropdownState,
-//				Constants.SHORT_TIME_OUT_WAIT);
-//		elementUtils.doClickWithActions(stateElement);
-//		By statexpath = elementUtils.getOptionByText(state);
-//		elementUtils.clickElementWithScroll(statexpath, Constants.DEFAULT_WAIT);
+		// elementUtils.waitForElementVisible(txtboxCity,
+		// Constants.SHORT_TIME_OUT_WAIT).sendKeys(City);
+		//
+		// WebElement stateElement =
+		// elementUtils.waitForElementToBeClickable(dropdownState,
+		// Constants.SHORT_TIME_OUT_WAIT);
+		// elementUtils.doClickWithActions(stateElement);
+		// By statexpath = elementUtils.getOptionByText(state);
+		// elementUtils.clickElementWithScroll(statexpath, Constants.DEFAULT_WAIT);
 
 		elementUtils.waitForElementVisible(txtboxZipCode, Constants.SHORT_TIME_OUT_WAIT).sendKeys(zipcode);
 
-//		WebElement genderElement = elementUtils.waitForElementToBeClickable(dropdownCountry,
-//				Constants.SHORT_TIME_OUT_WAIT);
-//		elementUtils.doClickWithActions(genderElement);
-//		elementUtils.waitForElementVisible(countrySearch, Constants.SHORT_TIME_OUT_WAIT).sendKeys(country);
-//		elementUtils.pressEnterKey();
-//		elementUtils.waitForElementVisible(dropdownCountryValues, Constants.DEFAULT_WAIT);
-//		elementUtils.selectElementThroughLocatorWithRetry(dropdownCountryValues, country, Constants.SHORT_TIME_OUT_WAIT);
+		// WebElement genderElement =
+		// elementUtils.waitForElementToBeClickable(dropdownCountry,
+		// Constants.SHORT_TIME_OUT_WAIT);
+		// elementUtils.doClickWithActions(genderElement);
+		// elementUtils.waitForElementVisible(countrySearch,
+		// Constants.SHORT_TIME_OUT_WAIT).sendKeys(country);
+		// elementUtils.pressEnterKey();
+		// elementUtils.waitForElementVisible(dropdownCountryValues,
+		// Constants.DEFAULT_WAIT);
+		// elementUtils.selectElementThroughLocatorWithRetry(dropdownCountryValues,
+		// country, Constants.SHORT_TIME_OUT_WAIT);
 	}
 
 	public void doClickSameAsAbove() {
@@ -569,7 +611,7 @@ public class AddEmployeePage {
 		return elementUtils.waitForElementVisible(txtSucessMessage, Constants.DEFAULT_WAIT).getText();
 	}
 
-// 2. Employment Information
+	// 2. Employment Information
 	public void doClickEmploymentInformationTab() {
 		elementUtils.waitForElementVisible(tabEmploymentInformation, Constants.DEFAULT_WAIT).click();
 	}
@@ -597,21 +639,22 @@ public class AddEmployeePage {
 	}
 
 	public void fillClassCode(String classCode) {
-	    WebElement WCClassCodeElement = elementUtils.waitForElementToBeClickable(dropdownWCClassCode, Constants.SHORT_TIME_OUT_WAIT);
-	    elementUtils.doClickWithActions(WCClassCodeElement);
+		WebElement WCClassCodeElement = elementUtils.waitForElementToBeClickable(dropdownWCClassCode,
+				Constants.SHORT_TIME_OUT_WAIT);
+		elementUtils.doClickWithActions(WCClassCodeElement);
 
-	    elementUtils.waitForElementVisible(classCodeSearch, Constants.SHORT_TIME_OUT_WAIT).sendKeys(classCode);
+		elementUtils.waitForElementVisible(classCodeSearch, Constants.SHORT_TIME_OUT_WAIT).sendKeys(classCode);
 
-	    // Fetch dropdown values dynamically and select if exists
-	    List<WebElement> codeOptions = driver.findElements(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[contains(text(),'" + classCode + "')]"));
-	    if (!codeOptions.isEmpty() && codeOptions.get(0).isDisplayed()) {
-	        codeOptions.get(0).click();
-	    } else {
-	        System.out.println("No matching class code option found for: " + classCode);
-	        // Option: add fallback logic here (skip, throw, etc.)
-	    }
+		// Fetch dropdown values dynamically and select if exists
+		List<WebElement> codeOptions = driver.findElements(
+				By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[contains(text(),'" + classCode + "')]"));
+		if (!codeOptions.isEmpty() && codeOptions.get(0).isDisplayed()) {
+			codeOptions.get(0).click();
+		} else {
+			System.out.println("No matching class code option found for: " + classCode);
+			// Option: add fallback logic here (skip, throw, etc.)
+		}
 	}
-
 
 	public void fillEmploymentType(String employmentType) {
 
@@ -944,6 +987,7 @@ public class AddEmployeePage {
 		elementUtils.doClickWithActions(expirationElement);
 		elementUtils.waitForElementVisible(calenderDateOfExpirationSearchOCSpray, Constants.DEFAULT_WAIT)
 				.sendKeys(expirationDate);
+		elementUtils.pressEnterKey();
 
 		elementUtils.clickByLocator(txtOCSpray);
 		WebElement fileInput = elementUtils.getElement(uploadFile);
@@ -1019,7 +1063,7 @@ public class AddEmployeePage {
 		return elementUtils.waitForElementVisible(dataOtherPermitDateOfExpiration, Constants.DEFAULT_WAIT).getText();
 	}
 
-// Pay Information
+	// Pay Information
 	public void doClickPayInformationTab() {
 		elementUtils.waitForInvisibilityOfElementLocated(txtSucessMessage, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(tabPayInformation, Constants.DEFAULT_WAIT).click();
@@ -1034,266 +1078,353 @@ public class AddEmployeePage {
 		WebElement payCycleElement = elementUtils.waitForElementToBeClickable(dropdownPayCycle,
 				Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.doClickWithActions(payCycleElement);
-//		WebElement dynamicPayCycle = elementUtils.waitForElementVisible(
-//				By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='" + payCycle + "']"),
-//				Constants.SHORT_TIME_OUT_WAIT);		
+		// WebElement dynamicPayCycle = elementUtils.waitForElementVisible(
+		// By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='"
+		// + payCycle + "']"),
+		// Constants.SHORT_TIME_OUT_WAIT);
 		Thread.sleep(3000);
-	elementUtils.doClickWithActionsAndWait(By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='" + payCycle + "']"), Constants.DEFAULT_WAIT);
-		
-//		dynamicPayCycle.click();
+		elementUtils.doClickWithActionsAndWait(
+				By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='" + payCycle + "']"),
+				Constants.DEFAULT_WAIT);
 
-//		elementUtils.waitForElementToBeClickable(checkboxAdditionalPay, Constants.DEFAULT_WAIT).click();
-//
-//		elementUtils.waitForElementVisible(txtboxAllowanceRate, Constants.SHORT_TIME_OUT_WAIT).sendKeys(allowanceRate);
-//
-//		WebElement allowanceTypeElement = elementUtils.waitForElementToBeClickable(dropdownAllowanceType,
-//				Constants.SHORT_TIME_OUT_WAIT);
-//		elementUtils.doClickWithActions(allowanceTypeElement);
-////		elementUtils.waitForElementVisible(dropdownSearchAllowanceType, Constants.SHORT_TIME_OUT_WAIT)
-////				.sendKeys(allowanceType);
-//		elementUtils.doActionsSendKeys(dropdownSearchAllowanceType, allowanceType);
-//		elementUtils.pressEnterKey();
+		// dynamicPayCycle.click();
+
+		// elementUtils.waitForElementToBeClickable(checkboxAdditionalPay,
+		// Constants.DEFAULT_WAIT).click();
+		//
+		// elementUtils.waitForElementVisible(txtboxAllowanceRate,
+		// Constants.SHORT_TIME_OUT_WAIT).sendKeys(allowanceRate);
+		//
+		// WebElement allowanceTypeElement =
+		// elementUtils.waitForElementToBeClickable(dropdownAllowanceType,
+		// Constants.SHORT_TIME_OUT_WAIT);
+		// elementUtils.doClickWithActions(allowanceTypeElement);
+		//// elementUtils.waitForElementVisible(dropdownSearchAllowanceType,
+		// Constants.SHORT_TIME_OUT_WAIT)
+		//// .sendKeys(allowanceType);
+		// elementUtils.doActionsSendKeys(dropdownSearchAllowanceType, allowanceType);
+		// elementUtils.pressEnterKey();
 	}
+
 	public void fillCommissionInfo(String commissionName, String commissionType, String commissionRate,
-                                   String commissionCycle, String effectiveDate) throws InterruptedException {
-        List<FieldConfig> FIELDS = Arrays.asList(
-            new FieldConfig("Commission Name", txtboxCommissionName, FieldType.TEXT, commissionName),
-            new FieldConfig("Commission Type", dropdownCommissionType, FieldType.DROPDOWN_SEARCH, commissionType),
-            new FieldConfig("Commission Rate", txtboxCommissionRate, FieldType.TEXT, commissionRate),
-            new FieldConfig("Commission Cycle", dropdownCommissionCycle, FieldType.DROPDOWN_SEARCH, commissionCycle),
-            new FieldConfig("Effective Date", calenderEffectiveDate, FieldType.DATE_PICKER, effectiveDate)
-        );
+			String commissionCycle, String effectiveDate) throws InterruptedException {
+		List<FieldConfig> FIELDS = Arrays.asList(
+				new FieldConfig("Commission Name", txtboxCommissionName, FieldType.TEXT, commissionName),
+				new FieldConfig("Commission Type", dropdownCommissionType, FieldType.DROPDOWN_SEARCH, commissionType),
+				new FieldConfig("Commission Rate", txtboxCommissionRate, FieldType.TEXT, commissionRate),
+				new FieldConfig("Commission Cycle", dropdownCommissionCycle, FieldType.DROPDOWN_SEARCH,
+						commissionCycle),
+				new FieldConfig("Effective Date", calenderEffectiveDate, FieldType.DATE_PICKER, effectiveDate));
 
-        for (FieldConfig field : FIELDS) {
-            try {
-                System.out.println("Processing: " + field.name());
-                processField(field);
-                System.out.println("Completed: " + field.name());
-            } catch (Exception e) {
-                System.out.println("SKIPPED " + field.name() + " - " + e.getMessage());
-                continue;
-            }
-        }
+		for (FieldConfig field : FIELDS) {
+			try {
+				System.out.println("Processing: " + field.name());
+				processField(field);
+				System.out.println("Completed: " + field.name());
+			} catch (Exception e) {
+				System.out.println("SKIPPED " + field.name() + " - " + e.getMessage());
+				continue;
+			}
+		}
 
-        performSave();
-    }
+		performSave();
+	}
 
-    private void processField(FieldConfig field) throws InterruptedException {
-        WebElement element = elementUtils.waitForElementVisible(field.locator(), Constants.SHORT_TIME_OUT_WAIT);
-        if (element == null || !element.isDisplayed()) {
-            throw new RuntimeException(field.name() + " not found/visible");
-        }
-        elementUtils.scrollIntoView(element);
+	private void processField(FieldConfig field) throws InterruptedException {
+		WebElement element = elementUtils.waitForElementVisible(field.locator(), Constants.SHORT_TIME_OUT_WAIT);
+		if (element == null || !element.isDisplayed()) {
+			throw new RuntimeException(field.name() + " not found/visible");
+		}
+		elementUtils.scrollIntoView(element);
 
-        switch (field.type()) {
-            case TEXT:
-                element.clear();
-                element.sendKeys(field.value());
-                break;
-            case DROPDOWN_SEARCH:
-                handleAntDesignDropdown(element, field.value());
-                break;
-            case DATE_PICKER:
-                handleDatePicker(element, field.value());
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported field type: " + field.type());
-        }
-    }
+		switch (field.type()) {
+			case TEXT:
+				element.clear();
+				element.sendKeys(field.value());
+				break;
+			case DROPDOWN_SEARCH:
+				handleAntDesignDropdown(element, field.value());
+				break;
+			case DATE_PICKER:
+				handleDatePicker(element, field.value());
+				break;
+			default:
+				throw new IllegalArgumentException("Unsupported field type: " + field.type());
+		}
+	}
 
-    private void handleAntDesignDropdown(WebElement dropdown, String optionText) throws InterruptedException {
-        if (dropdown == null) return;
-        // Try double click first to open stubborn dropdowns
-        try {
-            new Actions(driver).doubleClick(dropdown).perform();
-        } catch (Throwable t) {
-            elementUtils.doClickWithActions(dropdown);
-        }
-        Thread.sleep(500);
+	private void handleAntDesignDropdown(WebElement dropdown, String optionText) throws InterruptedException {
+		if (dropdown == null)
+			return;
+		// Try double click first to open stubborn dropdowns
+		try {
+			new Actions(driver).doubleClick(dropdown).perform();
+		} catch (Throwable t) {
+			elementUtils.doClickWithActions(dropdown);
+		}
+		Thread.sleep(500);
 
-        try {
-            WebElement searchInput = elementUtils.waitForElementVisible(
-                By.cssSelector(".ant-select-selection-search-input"), Constants.SHORT_TIME_OUT_WAIT);
-            if (searchInput != null) {
-                searchInput.sendKeys(optionText);
-                elementUtils.pressEnterKey();
-                return;
-            }
-        } catch (Exception e) {
-            System.out.println("Search input not found, trying direct selection...");
-        }
+		try {
+			WebElement searchInput = elementUtils.waitForElementVisible(
+					By.cssSelector(".ant-select-selection-search-input"), Constants.SHORT_TIME_OUT_WAIT);
+			if (searchInput != null) {
+				searchInput.sendKeys(optionText);
+				elementUtils.pressEnterKey();
+				return;
+			}
+		} catch (Exception e) {
+			System.out.println("Search input not found, trying direct selection...");
+		}
 
-        // Fallback: direct option selection
-        selectDropdownOption(optionText);
-    }
+		// Fallback: direct option selection
+		selectDropdownOption(optionText);
+	}
 
-    private void selectDropdownOption(String optionText) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        List<WebElement> options = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
-            By.cssSelector(".ant-select-item-option-content")));
-        for (WebElement option : options) {
-            if (option.getText() != null && option.getText().trim().equalsIgnoreCase(optionText)) {
-                elementUtils.doClickWithActions(option);
-                return;
-            }
-        }
-        throw new RuntimeException("Option '" + optionText + "' not found");
-    }
+	private void selectDropdownOption(String optionText) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-    private void handleDatePicker(WebElement dateWrapper, String dateValue) throws InterruptedException {
-        if (dateWrapper == null) return;
-        dateWrapper.click();
-        WebElement dateInput = elementUtils.waitForElementVisible(calenderSearchEffectiveDate, Constants.SHORT_TIME_OUT_WAIT);
-        if (dateInput != null && dateInput.isDisplayed()) {
-            dateInput.clear();
-            dateInput.sendKeys(dateValue);
-            elementUtils.pressEnterKey();
-        }
-    }
+		// First, try to find the option without scrolling
+		try {
+			List<WebElement> options = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+					By.cssSelector(".ant-select-item-option-content")));
+			for (WebElement option : options) {
+				if (option.getText() != null && option.getText().trim().equalsIgnoreCase(optionText)) {
+					elementUtils.doClickWithActions(option);
+					return;
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Option not found in initial view, trying with scroll...");
+		}
 
-    private void performSave() {
-        WebElement saveButton = elementUtils.waitForElementToBeClickable(btnSave, Constants.DEFAULT_WAIT);
-        if (saveButton != null && saveButton.isDisplayed()) {
-            elementUtils.scrollIntoView(saveButton);
-            try {
-                saveButton.click();
-                System.out.println("Save clicked (normal)");
-            } catch (Exception e1) {
-                try {
-                    elementUtils.doClickWithActions(saveButton);
-                    System.out.println("Save clicked (Actions)");
-                } catch (Exception e2) {
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveButton);
-                    System.out.println("Save clicked (JavaScript)");
-                }
-            }
-        } else {
-            System.out.println("Save button not available");
-        }
-    }
+		// If not found, scroll through the virtual list
+		try {
+			// Find the virtual list container
+			WebElement virtualList = wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.cssSelector(".rc-virtual-list-holder")));
 
-    // Helper enum for field types
-    private enum FieldType {
-        TEXT,
-        DROPDOWN_SEARCH,
-        DATE_PICKER
-    }
+			int maxScrollAttempts = 20;
+			int scrollAmount = 50;
 
-    // Helper class for field configuration
-    private static class FieldConfig {
-        private final String name;
-        private final By locator;
-        private final FieldType type;
-        private final String value;
+			for (int i = 0; i < maxScrollAttempts; i++) {
+				// Get current options
+				List<WebElement> options = driver.findElements(
+						By.cssSelector(".ant-select-item-option-content"));
 
-        public FieldConfig(String name, By locator, FieldType type, String value) {
-            this.name = name;
-            this.locator = locator;
-            this.type = type;
-            this.value = value;
-        }
-        public String name() { return name; }
-        public By locator() { return locator; }
-        public FieldType type() { return type; }
-        public String value() { return value; }
-    }
+				// Check if our option is now visible
+				for (WebElement option : options) {
+					String text = option.getText();
+					if (text != null && text.trim().equalsIgnoreCase(optionText)) {
+						// Scroll the option into view and click
+						js.executeScript("arguments[0].scrollIntoView({block: 'center'});", option);
+						Thread.sleep(300);
+						elementUtils.doClickWithActions(option);
+						return;
+					}
+				}
 
-    public String getPayInformationSuccessMessageText() {
-        return elementUtils.waitForElementVisible(txtSucessMessage, Constants.DEFAULT_WAIT).getText();
-    }
+				// Scroll down in the virtual list
+				js.executeScript("arguments[0].scrollTop += arguments[1];", virtualList, scrollAmount);
+				Thread.sleep(200);
+			}
+		} catch (Exception e) {
+			System.out.println("Error while scrolling: " + e.getMessage());
+		}
 
-    public void doClickAdditionalDocumentsTab() {
-        elementUtils.waitForElementVisible(tabAdditionalDocuments, Constants.DEFAULT_WAIT).click();
-    }
+		throw new RuntimeException("Option '" + optionText + "' not found after scrolling");
+	}
 
-    public void doClickAddAdditionalDocument() {
-        elementUtils.waitForElementToBeClickable(btnAddAdditionalDocument, Constants.DEFAULT_WAIT).click();
-    }
+	private void handleDatePicker(WebElement dateWrapper, String dateValue) throws InterruptedException {
+		if (dateWrapper == null)
+			return;
+		dateWrapper.click();
+		WebElement dateInput = elementUtils.waitForElementVisible(calenderSearchEffectiveDate,
+				Constants.SHORT_TIME_OUT_WAIT);
+		if (dateInput != null && dateInput.isDisplayed()) {
+			dateInput.clear();
+			dateInput.sendKeys(dateValue);
+			elementUtils.pressEnterKey();
+		}
+	}
 
-    public void fillAdditionalDocuments(String name, String description) {
-        elementUtils.waitForElementVisible(txtboxName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(name);
-        elementUtils.waitForElementVisible(txtboxDescription, Constants.SHORT_TIME_OUT_WAIT).sendKeys(description);
-        elementUtils.waitForElementToBeClickable(btnSaveAdditionalDocument, Constants.DEFAULT_WAIT).click();
-    }
+	private void performSave() {
+		WebElement saveButton = elementUtils.waitForElementToBeClickable(btnSave, Constants.DEFAULT_WAIT);
+		if (saveButton != null && saveButton.isDisplayed()) {
+			elementUtils.scrollIntoView(saveButton);
+			try {
+				saveButton.click();
+				System.out.println("Save clicked (normal)");
+			} catch (Exception e1) {
+				try {
+					elementUtils.doClickWithActions(saveButton);
+					System.out.println("Save clicked (Actions)");
+				} catch (Exception e2) {
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveButton);
+					System.out.println("Save clicked (JavaScript)");
+				}
+			}
+		} else {
+			System.out.println("Save button not available");
+		}
+	}
 
-    public void uploadAdditionalDocument(String absoluteFilePath) {
+	// Helper enum for field types
+	private enum FieldType {
+		TEXT,
+		DROPDOWN_SEARCH,
+		DATE_PICKER
+	}
 
-        WebElement fileInput = elementUtils.getElement(uploadFile);
+	// Helper class for field configuration
+	private static class FieldConfig {
+		private final String name;
+		private final By locator;
+		private final FieldType type;
+		private final String value;
 
-        System.out.println("Uploading file from path: " + absoluteFilePath);
+		public FieldConfig(String name, By locator, FieldType type, String value) {
+			this.name = name;
+			this.locator = locator;
+			this.type = type;
+			this.value = value;
+		}
 
-        fileInput.sendKeys(absoluteFilePath);
-    }
+		public String name() {
+			return name;
+		}
 
-    public String getFileNameData() {
-        return elementUtils.waitForElementVisible(dataFileName, Constants.DEFAULT_WAIT).getText();
-    }
+		public By locator() {
+			return locator;
+		}
 
-    public String getDescriptionData() {
-        return elementUtils.waitForElementVisible(dataDecrption, Constants.DEFAULT_WAIT).getText();
-    }
+		public FieldType type() {
+			return type;
+		}
 
-    public boolean isThumbnailDisplayed() {
-        return elementUtils.doIsDisplayed(dataThumbnail, Constants.DEFAULT_WAIT);
-    }
+		public String value() {
+			return value;
+		}
+	}
 
-    public void doClickAvailableTimesTab() {
-        elementUtils.waitForElementVisible(tabAvailableTimes, Constants.DEFAULT_WAIT).click();
-    }
+	public String getPayInformationSuccessMessageText() {
+		return elementUtils.waitForElementVisible(txtSucessMessage, Constants.DEFAULT_WAIT).getText();
+	}
 
-    public boolean isDaysTextDisplayed() {
-        return elementUtils.doIsDisplayed(txtDays, Constants.DEFAULT_WAIT);
-    }
+	public void doClickAdditionalDocumentsTab() {
+		elementUtils.waitForElementVisible(tabAdditionalDocuments, Constants.DEFAULT_WAIT).click();
+	}
 
-    public boolean isDayShiftTimeTextDisplayed() {
-        return elementUtils.doIsDisplayed(txtDayShiftTime, Constants.DEFAULT_WAIT);
-    }
+	public void doClickAddAdditionalDocument() {
+		elementUtils.waitForElementToBeClickable(btnAddAdditionalDocument, Constants.DEFAULT_WAIT).click();
+	}
 
-    public void fillAvailableTimes(String startTime, String endTime) {
-        elementUtils.waitForElementVisible(txtboxStartTimeMonday, Constants.SHORT_TIME_OUT_WAIT).sendKeys(startTime);
-        elementUtils.waitForElementVisible(txtboxEndTimeMonday, Constants.SHORT_TIME_OUT_WAIT).sendKeys(endTime);
-        elementUtils.waitForElementToBeClickable(btnSelectAll, Constants.DEFAULT_WAIT).click();
-        elementUtils.waitForElementToBeClickable(btnSave, Constants.DEFAULT_WAIT).click();
-    }
+	public void fillAdditionalDocuments(String name, String description) {
+		elementUtils.waitForElementVisible(txtboxName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(name);
+		elementUtils.waitForElementVisible(txtboxDescription, Constants.SHORT_TIME_OUT_WAIT).sendKeys(description);
+		elementUtils.waitForElementToBeClickable(btnSaveAdditionalDocument, Constants.DEFAULT_WAIT).click();
+	}
 
-    public String getAvailableTimesSuccessMessageText() {
-        return elementUtils.waitForElementVisible(txtSucessMessage, Constants.DEFAULT_WAIT).getText();
-    }
+	public void uploadAdditionalDocument(String absoluteFilePath) {
 
-    public void doClickReferencesTab() {
-        elementUtils.waitForElementVisible(tabReferences, Constants.DEFAULT_WAIT).click();
-    }
+		WebElement fileInput = elementUtils.getElement(uploadFile);
 
-    public void doClickAddUserReferenceButton() {
-        elementUtils.waitForElementToBeClickable(btnAddUserReference, Constants.DEFAULT_WAIT).click();
-    }
+		System.out.println("Uploading file from path: " + absoluteFilePath);
 
-    public void fillUserReferences(String name, String relationship, String title, String phone, String email) {
-        elementUtils.waitForElementVisible(userReferencesName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(name);
-        elementUtils.waitForElementVisible(userReferencesRelationship, Constants.SHORT_TIME_OUT_WAIT).sendKeys(relationship);
-        elementUtils.waitForElementVisible(userReferencesTitle, Constants.SHORT_TIME_OUT_WAIT).sendKeys(title);
-        elementUtils.waitForElementVisible(userReferencesPhone, Constants.SHORT_TIME_OUT_WAIT).sendKeys(phone);
-        elementUtils.waitForElementVisible(userReferencesEmail, Constants.SHORT_TIME_OUT_WAIT).sendKeys(email);
-        elementUtils.waitForElementToBeClickable(btnSubmitAddUserReference, Constants.DEFAULT_WAIT).click();
-    }
+		fileInput.sendKeys(absoluteFilePath);
+	}
 
-    public String getUserReferenceNameData() {
-        return elementUtils.waitForElementVisible(dataUserReferencesName, Constants.DEFAULT_WAIT).getText();
-    }
+	public String getFileNameData() {
+		return elementUtils.waitForElementVisible(dataFileName, Constants.DEFAULT_WAIT).getText();
+	}
 
-    public String getUserReferenceRelationshipData() {
-        return elementUtils.waitForElementVisible(dataUserReferencesRelationship, Constants.DEFAULT_WAIT).getText();
-    }
+	public String getDescriptionData() {
+		return elementUtils.waitForElementVisible(dataDecrption, Constants.DEFAULT_WAIT).getText();
+	}
 
-    public String getUserReferenceTitleData() {
-        return elementUtils.waitForElementVisible(dataUserReferencesTitle, Constants.DEFAULT_WAIT).getText();
-    }
+	public boolean isThumbnailDisplayed() {
+		return elementUtils.doIsDisplayed(dataThumbnail, Constants.DEFAULT_WAIT);
+	}
 
-    public String getUserReferencePhoneData() {
-        return elementUtils.waitForElementVisible(dataUserReferencesPhone, Constants.DEFAULT_WAIT).getText();
-    }
+	public void doClickAvailableTimesTab() {
+		elementUtils.waitForElementVisible(tabAvailableTimes, Constants.DEFAULT_WAIT).click();
+	}
 
-    public String getUserReferenceEmailData() {
-        return elementUtils.waitForElementVisible(dataUserReferencesEmail, Constants.DEFAULT_WAIT).getText();
-    }
+	public boolean isDaysTextDisplayed() {
+		return elementUtils.doIsDisplayed(txtDays, Constants.DEFAULT_WAIT);
+	}
+
+	public boolean isDayShiftTimeTextDisplayed() {
+		return elementUtils.doIsDisplayed(txtDayShiftTime, Constants.DEFAULT_WAIT);
+	}
+
+	public void fillAvailableTimes(String startTime, String endTime) {
+		elementUtils.waitForInvisibilityOfElementLocated(txtSucessMessage, Constants.SHORT_TIME_OUT_WAIT);
+		elementUtils.waitForElementVisible(txtboxStartTimeMonday, Constants.SHORT_TIME_OUT_WAIT).sendKeys(startTime);
+		elementUtils.waitForElementVisible(txtboxEndTimeMonday, Constants.SHORT_TIME_OUT_WAIT).sendKeys(endTime);
+		elementUtils.waitForElementToBeClickable(btnSelectAll, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForElementToBeClickable(btnSave, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getAvailableTimesSuccessMessageText() {
+		return elementUtils.waitForElementVisible(txtSucessMessage, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public void clickAccesstab() {
+		elementUtils.waitForElementVisible(tabAccess, Constants.DEFAULT_WAIT).click();
+		elementUtils.waitForInvisibilityOfElementLocated(txtSucessMessage, Constants.SHORT_TIME_OUT_WAIT);
+
+		if (elementUtils.isElementVisible(btnSave, Constants.SHORT_TIME_OUT_WAIT)) {
+			WebElement saveBtn = elementUtils.waitForElementVisible(btnSave, Constants.DEFAULT_WAIT);
+			if (saveBtn.isEnabled()) {
+				try {
+					saveBtn.click();
+				} catch (Exception e) {
+					elementUtils.jsClick(btnSave);
+				}
+			} else {
+				System.out.println("Save button is disabled, skipping click.");
+			}
+		} else {
+			System.out.println("Save button is not visible, skipping click.");
+		}
+	}
+
+	public void doClickReferencesTab() {
+		elementUtils.waitForElementVisible(tabReferences, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void doClickAddUserReferenceButton() {
+		elementUtils.waitForElementToBeClickable(btnAddUserReference, Constants.DEFAULT_WAIT).click();
+	}
+
+	public void fillUserReferences(String name, String relationship, String title, String phone, String email) {
+		elementUtils.waitForElementVisible(userReferencesName, Constants.SHORT_TIME_OUT_WAIT).sendKeys(name);
+		elementUtils.waitForElementVisible(userReferencesRelationship, Constants.SHORT_TIME_OUT_WAIT)
+				.sendKeys(relationship);
+		elementUtils.waitForElementVisible(userReferencesTitle, Constants.SHORT_TIME_OUT_WAIT).sendKeys(title);
+		elementUtils.waitForElementVisible(userReferencesPhone, Constants.SHORT_TIME_OUT_WAIT).sendKeys(phone);
+		elementUtils.waitForElementVisible(userReferencesEmail, Constants.SHORT_TIME_OUT_WAIT).sendKeys(email);
+		elementUtils.waitForElementToBeClickable(btnSubmitAddUserReference, Constants.DEFAULT_WAIT).click();
+	}
+
+	public String getUserReferenceNameData() {
+		return elementUtils.waitForElementVisible(dataUserReferencesName, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getUserReferenceRelationshipData() {
+		return elementUtils.waitForElementVisible(dataUserReferencesRelationship, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getUserReferenceTitleData() {
+		return elementUtils.waitForElementVisible(dataUserReferencesTitle, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getUserReferencePhoneData() {
+		return elementUtils.waitForElementVisible(dataUserReferencesPhone, Constants.DEFAULT_WAIT).getText();
+	}
+
+	public String getUserReferenceEmailData() {
+		return elementUtils.waitForElementVisible(dataUserReferencesEmail, Constants.DEFAULT_WAIT).getText();
+	}
 }

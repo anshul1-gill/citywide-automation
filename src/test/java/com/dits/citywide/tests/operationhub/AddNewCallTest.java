@@ -25,6 +25,11 @@ public class AddNewCallTest extends BaseTest {
 		callsPage.fillReportingPersonForm(OperationsHubConstant.REPORTING_PERSON_FIRST_NAME,
 				OperationsHubConstant.REPORTING_PERSON_LAST_NAME, OperationsHubConstant.REPORTING_PERSON_PHONE_NUMBER,
 				OperationsHubConstant.REPORTING_PERSON_DEMEANOR);
+//		Thread.sleep(2500);
+//		callsPage.CallHistoryCount(); // Stays on same page
+//
+//		// Pattern 2: New tab validation (use wrapper)
+//		callsPage.openCallHistoryInNewTabAndReturn();
 		callsPage.doClickSameAsAboveAddress();
 		callsPage.doClickCollapseSuspectDescription();
 		callsPage.fillSuspectDescriptionForm(OperationsHubConstant.SUSPECT_NAME, OperationsHubConstant.SUSPECT_GENDER,

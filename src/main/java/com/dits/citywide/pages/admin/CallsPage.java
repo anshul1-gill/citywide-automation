@@ -1,15 +1,25 @@
 package com.dits.citywide.pages.admin;
 
+import java.time.Duration;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.dits.citywide.constants.Constants;
 import com.dits.citywide.utilities.ElementUtils;
+import com.dits.citywide.utilities.ScreenshotUtils;
 
 public class CallsPage {
 
 	private WebDriver driver;
 	private ElementUtils elementUtils;
+	private WebDriverWait wait;
 
 	private By tabOpenCalls = By.xpath("//div[@id='rc-tabs-0-tab-open-calls']");
 	private By tabClosedCalls = By.xpath("//div[@id='rc-tabs-0-tab-past-calls']");
@@ -32,6 +42,13 @@ public class CallsPage {
 	private By txtboxFirstName = By.xpath("//input[@id='rp_first_name']");
 	private By txtboxLastName = By.xpath("//input[@id='rp_last_name']");
 	private By txtboxPhoneNumber = By.xpath("//input[@type='tel']");
+	
+	// Broaden locator to match the element text anywhere, regardless of tag or extra whitespace
+	private By CallhistoryCount = By.xpath("//*[normalize-space()='Call History Count' or contains(normalize-space(), 'Call History Count')]");
+	// Fallbacks
+	private By CallhistoryCountAlt1 = By.xpath("//*[contains(normalize-space(), 'Call History')]");
+	private By CallhistoryCountAlt2 = By.xpath("//span[contains(., 'Call History')]|//div[contains(., 'Call History')]");
+
 	private By btnSaveAddNewCall = By.xpath("//button[@type='submit']");
 
 	private By checkboxSameAsAboveAddress = By.xpath("//span[normalize-space()='Same as above address']");
@@ -74,6 +91,7 @@ public class CallsPage {
 	public CallsPage(WebDriver driver) {
 		this.driver = driver;
 		elementUtils = new ElementUtils(driver);
+		wait = new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(Constants.DEFAULT_WAIT));
 	}
 
 	// Calls
@@ -113,7 +131,7 @@ public class CallsPage {
 		elementUtils.waitForInvisibilityOfElementLocated(loader, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsClick(dropdownActivityCode);
 		elementUtils.waitForElementVisible(dropdownActivityCode, Constants.MEDIUM_TIME_OUT_WAIT).sendKeys(activityCode);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		elementUtils.pressEnterKey();
 		
 		elementUtils.doActionsClick(subActivityCode);
@@ -130,6 +148,95 @@ public class CallsPage {
 		By xpathDemeanor = By.xpath("//span[contains(normalize-space(), '" + demeanor + "')]");
 		elementUtils.waitForElementToBeClickable(xpathDemeanor, Constants.DEFAULT_WAIT).click();
 	}
+	
+	public void CallHistoryCount() {
+	    System.out.println("Page title: " + driver.getTitle());
+	    System.out.println("Page source length: " + driver.getPageSource().length());
+
+	    try {
+	        // Ensure we are at top-level DOM (avoid lingering frames)
+	        try { driver.switchTo().defaultContent(); } catch (Exception ignored) {}
+
+	        WebDriverWait localWait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+	        By[] candidates = new By[] { CallhistoryCount, CallhistoryCountAlt1, CallhistoryCountAlt2 };
+	        WebElement target = null;
+	        By used = null;
+
+	        // Find first visible candidate
+	        for (By by : candidates) {
+	            try {
+	                localWait.until(ExpectedConditions.presenceOfElementLocated(by));
+	                target = localWait.ignoring(org.openqa.selenium.StaleElementReferenceException.class)
+	                        .until(d -> {
+	                            WebElement el = d.findElement(by);
+	                            return (el != null && el.isDisplayed()) ? el : null;
+	                        });
+	                if (target != null) { used = by; break; }
+	            } catch (TimeoutException te) {
+	                // try next candidate
+	            }
+	        }
+
+	        if (target == null) {
+	            // Not found; capture and return gracefully to avoid hard fail
+	            ScreenshotUtils.captureScreenshot(driver, "CallHistoryCount_NotFound");
+	            System.out.println("Call History element not found; skipping click.");
+	            return;
+	        }
+
+	        // Scroll into view
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", target);
+
+	        // Attempt click with retry and JS fallback
+	        for (int attempt = 0; attempt < 2; attempt++) {
+	            try {
+	                target = driver.findElement(used); // fresh element
+	                if (target.isDisplayed()) {
+	                    try {
+	                        target.click();
+	                    } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+	                        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", target);
+	                    }
+	                    break;
+	                }
+	            } catch (org.openqa.selenium.StaleElementReferenceException sere) {
+	                // will retry
+	            }
+	            try { Thread.sleep(200); } catch (InterruptedException ignored) {}
+	        }
+	    } catch (TimeoutException e) {
+	        ScreenshotUtils.captureScreenshot(driver, "CallHistoryCount_Failure");
+	        throw e;
+	    }
+	}
+
+	public void openCallHistoryInNewTabAndReturn() {
+	    String parentWindow = driver.getWindowHandle();
+
+	    // Use the updated CallHistoryCount (handles staleness internally)
+	    CallHistoryCount();
+
+	    // Wait for new tab
+	    new WebDriverWait(driver, Duration.ofSeconds(10))
+	            .until(ExpectedConditions.numberOfWindowsToBe(2));
+
+	    for (String handle : driver.getWindowHandles()) {
+	        if (!handle.equals(parentWindow)) {
+	            driver.switchTo().window(handle);
+	            break;
+	        }
+	    }
+
+	    // Perform any validations in the new tab here
+
+	    driver.close();
+	    driver.switchTo().window(parentWindow);
+	}
+
+
+		
+	
 
 	public void doClickSameAsAboveAddress() {
 		elementUtils.waitForElementToBeClickable(checkboxSameAsAboveAddress, Constants.DEFAULT_WAIT).click();
@@ -185,14 +292,57 @@ public class CallsPage {
 
 	public void selectAvailableUnits(String userId, String unitType) {
 
-	    // 1. Select the Available Unit based on ID
-	    By unitOption = By.xpath("//label[.//span[normalize-space() = '" + userId + "']]");
-//	    elementUtils.doClickWithActionsAndWait(unitOption, Constants.DEFAULT_WAIT);
+	    List<WebElement> allTiles = driver.findElements(
+	            By.xpath("//div[contains(@class,'ant-card')]")
+	    );
 
-	    // 2. Select Primary or Backup checkbox
-	    By unitTypeOption = By.xpath("//label[span[normalize-space()='" + unitType + "']]");
-	    elementUtils.doClickWithActionsAndWait(unitTypeOption, Constants.DEFAULT_WAIT);
+	    boolean backupSelected = false;
+
+	    for (WebElement tile : allTiles) {
+
+	        String tileText = tile.getText().trim();
+
+	        // ----- SELECT PRIMARY FOR MY USER -----
+	        if (tileText.contains(userId)) {
+
+	            WebElement primaryCheckbox = tile.findElement(
+	                By.xpath(".//label[span[normalize-space()='Primary']]//input[@type='checkbox']")
+	            );
+
+	            if (!primaryCheckbox.isSelected()) {
+	                primaryCheckbox.click();
+	            }
+
+	            wait.until(ExpectedConditions.elementToBeSelected(primaryCheckbox));
+
+	            System.out.println("PRIMARY selected for: " + userId);
+	            continue; // do NOT allow backup selection for my user
+	        }
+
+	        // ----- SELECT BACKUP FOR FIRST OTHER USER -----
+	        if (!backupSelected) {
+
+	            WebElement backupCheckbox = tile.findElement(
+	                By.xpath(".//label[span[normalize-space()='Backup']]//input[@type='checkbox']")
+	            );
+
+	            if (!backupCheckbox.isSelected()) {
+	                backupCheckbox.click();
+	            }
+
+	            wait.until(ExpectedConditions.elementToBeSelected(backupCheckbox));
+
+	            backupSelected = true;
+
+	            System.out.println("BACKUP selected for: " + tileText);
+	        }
+	    }
+
+	    if (!backupSelected) {
+	        throw new RuntimeException("❌ No other user found to assign Backup!");
+	    }
 	}
+
 
 
 	public void doClickSaveAddNewCall() {

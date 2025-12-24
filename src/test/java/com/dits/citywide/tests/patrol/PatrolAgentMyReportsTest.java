@@ -14,87 +14,110 @@ import com.dits.citywide.pages.patrol.PatrolStartShiftPage;
 import com.dits.citywide.pages.patrol.PatrolAgentReportsPage;
 
 public class PatrolAgentMyReportsTest extends BaseTest {
-    private PatrolStartShiftPage patrolAgentStartShiftPage;
-    private PatrolAgentReportsPage patrolAgentReportsPage;
+        private PatrolStartShiftPage patrolAgentStartShiftPage;
+        private PatrolAgentReportsPage patrolAgentReportsPage;
 
-    @BeforeMethod
-    public void performLogin() throws InterruptedException {
-        patrolAgentStartShiftPage = loginPage.doLoginPatrol(prop.getProperty("patrolID"),
-                prop.getProperty("employeePassword"));
-    }
+        @BeforeMethod
+        public void performLogin() throws InterruptedException {
+                patrolAgentStartShiftPage = loginPage.doLoginPatrol(prop.getProperty("patrolID"),
+                                prop.getProperty("employeePassword"));
+        }
 
-    @Test
-    public void myReportsPatrolAgentTest() throws InterruptedException {
-        Thread.sleep(1000);
-        patrolAgentStartShiftPage.handleMessageOfTheWeek();
-        patrolStartShiftPage.handlePassdownOfTheDay();
-        patrolAgentReportsPage = patrolAgentStartShiftPage.clickOnReportsTab();
-        
-//        softAssert.assertEquals(patrolAgentReportsPage.getArriveDateTime(), prop.getProperty("startShiftDateTime"));
-//        softAssert.assertTrue(patrolAgentReportsPage.getSiteName().contains(HRManagementConstants.SITE));
-//        String startShift = prop.getProperty("startShiftDateTime");
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
-//        LocalDateTime shiftDateTime = LocalDateTime.parse(startShift, formatter);
-//        String expectedDeparture = shiftDateTime.plusMinutes(15).format(formatter);
-//        softAssert.assertEquals(patrolAgentReportsPage.getDepartDateTime(), expectedDeparture,
-//                "Departure DateTime mismatch!");
+        @Test
+        public void myReportsPatrolAgentTest() throws InterruptedException {
+                Thread.sleep(1000);
+                patrolAgentStartShiftPage.handleMessageOfTheWeek();
+                patrolAgentStartShiftPage.handlePassdownOfTheDay();
+                patrolAgentReportsPage = patrolAgentStartShiftPage.clickOnReportsTab();
 
-        // Add three reports
-        patrolAgentReportsPage.clickEditReport2();
-        Thread.sleep(2000);
-        patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-                OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-                OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-                OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-                OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-                OperationsHubConstant.FILE_DESCRIPTION);
-        patrolAgentReportsPage.clickUpdateLogEntry();
-        softAssert.assertTrue(patrolAgentReportsPage.isAllReportsButtonVisible());
+                // softAssert.assertEquals(patrolAgentReportsPage.getArriveDateTime(),
+                // prop.getProperty("startShiftDateTime"));
+                // softAssert.assertTrue(patrolAgentReportsPage.getSiteName().contains(HRManagementConstants.SITE));
+                // String startShift = prop.getProperty("startShiftDateTime");
+                // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy
+                // HH:mm");
+                // LocalDateTime shiftDateTime = LocalDateTime.parse(startShift, formatter);
+                // String expectedDeparture = shiftDateTime.plusMinutes(15).format(formatter);
+                // softAssert.assertEquals(patrolAgentReportsPage.getDepartDateTime(),
+                // expectedDeparture,
+                // "Departure DateTime mismatch!");
 
-        patrolAgentReportsPage.clickEditReport3();
-        Thread.sleep(2000);
-        patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-                OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-                OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-                OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-                OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-                OperationsHubConstant.FILE_DESCRIPTION);
-        patrolAgentReportsPage.clickUpdateLogEntry();
-        softAssert.assertTrue(patrolAgentReportsPage.isAllReportsButtonVisible());
+                // Add three reports
+                patrolAgentReportsPage.clickEditReport2();
+                Thread.sleep(2000);
+                patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+                                OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"),
+                                OperationsHubConstant.STREET_NUMBER,
+                                OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER,
+                                OperationsHubConstant.CITY,
+                                OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE,
+                                OperationsHubConstant.DESCRIPTION,
+                                OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+                                OperationsHubConstant.FILE_DESCRIPTION);
+                patrolAgentReportsPage.clickUpdateLogEntry();
+                softAssert.assertTrue(patrolAgentReportsPage.isAllReportsButtonVisible());
 
-        patrolAgentReportsPage.clickEditReport4();
-        Thread.sleep(2000);
-        patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-                OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-                OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-                OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-                OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-                OperationsHubConstant.FILE_DESCRIPTION);
-        patrolAgentReportsPage.clickUpdateLogEntry();
-        softAssert.assertTrue(patrolAgentReportsPage.isAllReportsButtonVisible());
-        
-//        patrolAgentReportsPage.clickEditReport5();
-//        Thread.sleep(2000);
-//        patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-//				OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-//				OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-//				OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-//				OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-//				OperationsHubConstant.FILE_DESCRIPTION);
-//        
-//        patrolAgentReportsPage.clickEditReport6();
-//        Thread.sleep(2000);
-//        patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
-//        						OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"), OperationsHubConstant.STREET_NUMBER,
-//        						OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER, OperationsHubConstant.CITY,
-//        						OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE, OperationsHubConstant.DESCRIPTION,
-//								OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
-//									OperationsHubConstant.FILE_DESCRIPTION);
+                patrolAgentReportsPage.clickEditReport3();
+                Thread.sleep(2000);
+                patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+                                OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"),
+                                OperationsHubConstant.STREET_NUMBER,
+                                OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER,
+                                OperationsHubConstant.CITY,
+                                OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE,
+                                OperationsHubConstant.DESCRIPTION,
+                                OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+                                OperationsHubConstant.FILE_DESCRIPTION);
+                patrolAgentReportsPage.clickUpdateLogEntry();
+                softAssert.assertTrue(patrolAgentReportsPage.isAllReportsButtonVisible());
 
-        patrolAgentReportsPage.clickSubmitReports();
-        softAssert.assertEquals(patrolAgentReportsPage.getNoDataFoundText(), PatrolAgentConstants.NO_DATA_FOUND_TEXT,
-                "No Data Found text mismatch!");
+                patrolAgentReportsPage.clickEditReport4();
+                Thread.sleep(2000);
+                patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"), HRManagementConstants.SITE,
+                                OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"),
+                                OperationsHubConstant.STREET_NUMBER,
+                                OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER,
+                                OperationsHubConstant.CITY,
+                                OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE,
+                                OperationsHubConstant.DESCRIPTION,
+                                OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK, OperationsHubConstant.FILE_NAME,
+                                OperationsHubConstant.FILE_DESCRIPTION);
+                patrolAgentReportsPage.clickUpdateLogEntry();
+                softAssert.assertTrue(patrolAgentReportsPage.isAllReportsButtonVisible());
 
-        softAssert.assertAll();
-    }
+                // patrolAgentReportsPage.clickEditReport5();
+                // Thread.sleep(2000);
+                // patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"),
+                // HRManagementConstants.SITE,
+                // OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"),
+                // OperationsHubConstant.STREET_NUMBER,
+                // OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER,
+                // OperationsHubConstant.CITY,
+                // OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE,
+                // OperationsHubConstant.DESCRIPTION,
+                // OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK,
+                // OperationsHubConstant.FILE_NAME,
+                // OperationsHubConstant.FILE_DESCRIPTION);
+                //
+                // patrolAgentReportsPage.clickEditReport6();
+                // Thread.sleep(2000);
+                // patrolAgentReportsPage.addOfficerReportEntry(prop.getProperty("url"),
+                // HRManagementConstants.SITE,
+                // OperationsHubConstant.ACTIVITY_CODE, prop.getProperty("callid"),
+                // OperationsHubConstant.STREET_NUMBER,
+                // OperationsHubConstant.STREET_NAME, OperationsHubConstant.APARTMENT_NUMBER,
+                // OperationsHubConstant.CITY,
+                // OperationsHubConstant.STATE, OperationsHubConstant.ZIP_CODE,
+                // OperationsHubConstant.DESCRIPTION,
+                // OperationsHubConstant.REPORT_PHOTO_VIDEO_LINK,
+                // OperationsHubConstant.FILE_NAME,
+                // OperationsHubConstant.FILE_DESCRIPTION);
+
+                patrolAgentReportsPage.clickSubmitReports();
+                softAssert.assertEquals(patrolAgentReportsPage.getNoDataFoundText(),
+                                PatrolAgentConstants.NO_DATA_FOUND_TEXT,
+                                "No Data Found text mismatch!");
+
+                softAssert.assertAll();
+        }
 }

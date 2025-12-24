@@ -28,6 +28,7 @@ public class FieldAgentPassdownLogsPage {
 	private By txtboxImageDescription = By.xpath("//input[@id='Description0']");
 	private By btnSavePassdown = By.xpath("//span[normalize-space()='Save Passdown']");
 	private By btnSaveAndScanQRCode = By.xpath("//span[normalize-space()='Save and Scan QR Code']");
+	private By btnOk = By.xpath("//button[normalize-space()='OK']");
 
 	// Data
 	private By dataSiteName = By.xpath("(//td[@data-label='Site'])[1]");
@@ -113,6 +114,7 @@ public class FieldAgentPassdownLogsPage {
 		String absolutePath = new File(imagePath).getAbsolutePath();
 		System.out.println("Uploading file from path: " + absolutePath);
 		fileInput.sendKeys(absolutePath);
+		elementUtils.waitForElementToBeClickable(btnOk, Constants.DEFAULT_WAIT).click();
 	}
 
 	public String getHeadingEditImage() {
@@ -121,6 +123,7 @@ public class FieldAgentPassdownLogsPage {
 
 	public void clickUploadImage() {
 		elementUtils.waitForElementToBeClickable(btnUploadImage, Constants.DEFAULT_WAIT).click();
+		
 	}
 
 	public String imageUploadSuccessMessage() {
