@@ -28,7 +28,7 @@
             <!-- 4️⃣ Holidays -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddCustomHolidayTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateCustomHolidayTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest" />  
 
             <class name="com.dits.citywide.tests.admin.companysettings.AddFederalHolidayTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateFederalHolidayTest" />
@@ -116,7 +116,7 @@
 
     <test name="Adding the New site" preserve-order="true">
         <classes>
-            <class name="com.dits.citywide.tests.operationhub.AdminSitesAddNewSiteTest" />
+            <class name="com.dits.citywide.tests.operationhub.ReactAdminSitesAddNewSiteTest" />
         </classes>
     </test>
 

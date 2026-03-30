@@ -71,3 +71,6 @@ reports/
 *.log
 *.bak
 *.bak*
+
+
+*.agent

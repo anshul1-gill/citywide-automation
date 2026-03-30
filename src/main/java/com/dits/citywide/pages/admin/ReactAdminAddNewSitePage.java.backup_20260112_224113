@@ -1,0 +1,724 @@
+package com.dits.citywide.pages.admin;
+
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.dits.citywide.utilities.ElementUtils;
+
+/**
+ * React version of Add New Site page object.
+ * NOTE: Locators are placeholders and must be updated to match the React DOM.
+ */
+public class ReactAdminAddNewSitePage {
+    private final WebDriver driver;
+    private final ElementUtils elementUtils;
+    private final WebDriverWait wait;
+
+    public ReactAdminAddNewSitePage(WebDriver driver, ElementUtils elementUtils) {
+        this.driver = driver;
+        this.elementUtils = elementUtils;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    }
+
+    // genral details locators
+    private By addNewSiteButton = By.xpath("//button[normalize-space()='Add New Site']");
+    private By BranchSelectDropdown = By.xpath("");
+    private By SiteNameInputField = By
+            .xpath("//input[@id='site_name'] | //label[contains(.,'Site Name')]/following::input[1]");
+    private By AgencybeatMultiSelect = By
+            .xpath("//input[@id='agency_beat']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By AssignofficerDropdown = By
+            .xpath("//input[@id='assign_officers']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By Callresponsedropdown = By
+            .xpath("//input[@id='call_response_only']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By ServicestarttimeInputField = By.xpath("//input[@id='service_starting_time']");
+    private By ServiceendtimeInputField = By.xpath("//input[@id='service_end_time']");
+    private By SitetypeStationaryCheckbox = By.xpath("//input[@value='stationary']");
+    private By SitetypeMobileCheckbox = By.xpath("//input[@value='mobile']");
+    private By AdminDispatchSites = By.xpath("//input[@value='admin_dispatch']");
+    private By PaypostrateCheckbox = By.xpath("//input[@value='Pay Post Rate']");
+    private By reportApprovalneeded = By.xpath("//input[@value='Report Approval Needed']");
+    private By pdfreportneededyes = By.xpath("//input[@value='1']");
+    private By pdfreportneededno = By.xpath("//input[@value='0']");
+    private By ReporttimeInputField = By.xpath(
+            "//label[@title='Report Time (HH:mm)']/ancestor::div[contains(@class,'ant-form-item')]//input | //input[@id='report_time']");
+    private By ClientemailInputField = By.xpath("//input[@id='client_email']");
+    private By PolicesAgencies = By
+            .xpath("//input[@id='police_agencies']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By FireDepartments = By
+            .xpath("//input[@id='fire_agencies']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By MedicalServices = By
+            .xpath("//input[@id='medic_agencies']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By StreetnumberInputField = By
+            .xpath("//input[@id='other_agencies']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By accountmanagerInputField = By
+            .xpath("//input[@id='site_account_manager']/ancestor::div[contains(@class,'ant-select-selector')]");
+
+    // Site Address
+    private By SitestreetnumberInputField = By.xpath("//input[@id='site_address_street_num']");
+    private By SitestreetnameInputField = By.xpath("//input[@id='site_address_street']");
+    private By SitecityInputField = By.xpath("//input[@id='site_address_city']");
+    private By SitestateDropdown = By
+            .xpath("//input[@id='site_address_state']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By SitezipInputField = By.xpath("//input[@id='site_address_zip']");
+
+    // Site Geofencing
+    private By GeofencenRAdiustypedropdown = By
+            .xpath("//input[@id='radius_type']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By GeofenceaddressInputField = By.xpath("//input[@id='radius_value']");
+
+    // Main Contact
+    private By ContactfirstnameInputField = By.xpath("//input[@id='contact_name_first']");
+    private By ContactlastnameInputField = By.xpath("//input[@id='contact_name_last']");
+    private By ContactphonemainInputField = By.xpath(
+            "//label[normalize-space()='Main Phone']/ancestor::div[contains(@class,'ant-form-item')]//input[@type='tel']");
+    private By ContactmobileInputField = By.xpath(
+            "//label[normalize-space()='Mobile']/ancestor::div[contains(@class,'ant-form-item')]//input[@type='tel']");
+    private By ContactfaxInputField = By.xpath(
+            "//label[normalize-space()='Fax (Office)']/ancestor::div[contains(@class,'ant-form-item')]//input[@type='tel']");
+    private By ContactemailInputField = By.id("contact_email");
+
+    // Site Contacts
+    private By AddsitecontactButton = By.xpath("//button[.//span[@aria-label='plus']]");
+    private By SitecontantOrderNumber = By.xpath("//input[@id='site_contacts_0_job_title']");
+    private By SitecontactNameInputField = By.xpath("//input[@id='site_contacts_0_contact_name']");
+    private By SitecontactPhoneInputField = By.xpath(
+            "//label[normalize-space()='New Contact Phone']/ancestor::div[contains(@class,'ant-form-item')]//input[@type='tel']");
+    private By DeleteIconButton = By.xpath("//button[.//span[@aria-label='delete']]");
+    private By SaveandnextButton = By.xpath("//button[normalize-space()='Save & Next']");
+
+    // Add alternative form-ready markers
+    private By AddNewSiteFormHeading = By.xpath(
+            "//h1[contains(.,'Add New Site')] | //h2[contains(.,'Add New Site')] | //div[contains(@class,'page-title')][contains(.,'Add New Site')]");
+
+    // Ant Select helpers - using patterns from other working pages
+    private By AntSelectDropdownPanel = By.cssSelector(".ant-select-dropdown");
+    private By AntSelectOptions = By.xpath(
+            "//div[@class='rc-virtual-list-holder-inner']/div/div | //div[contains(@class,'ant-select-dropdown')]//div[contains(@class,'ant-select-item-option')]");
+    private By AntSelectOptionContent = By.xpath("//div[contains(@class,'ant-select-item-option-content')]");
+    private By AntSelectActiveOption = By.cssSelector(".ant-select-dropdown .ant-select-item-option-active");
+
+    // 2nd Page locators - Property Access
+    private By SiteGateCode = By.xpath("//input[@id='gate_codes']");
+    private By SiteAlarmCode = By.xpath("//input[@id='alarm_code_arm']");
+    private By SiteunArmCode = By.xpath("//input[@id='alarm_code_unarm']");
+    private By AlarmNotes = By.xpath("//textarea[@id='alarm_code_notes']");
+    private By SiteBoCode = By.xpath("//input[@id='lock_box_code']");
+    private By LockBoxRequired = By.xpath("//label[.//span[normalize-space()='Yes']]//input[@type='radio']");
+    private By LockBoxNotes = By.xpath("//textarea[@id='lock_box_notes']");
+    private By ButtonUpdate = By.xpath("//button[normalize-space()='Update']");
+
+    // 3rd Page locators - Parking Enforcement
+    private By TowCompanyNAme = By.xpath("//input[@id='towing_company_name']");
+    private By TowCompanyPhone = By.xpath(
+            "//label[normalize-space()='Tow Phone']/ancestor::div[contains(@class,'ant-form-item-row')]//input[@type='tel']");
+    private By TowRequirementYes = By.xpath("(//label[.//span[normalize-space()='Yes']]//input[@type='radio'])[1]");
+    private By TowingNotes = By.xpath("//textarea[@id='parking_enforcement_notes']");
+    private By ParkingEnforcementRequired = By
+            .xpath("(//label[.//span[normalize-space()='Yes']]//input[@type='radio'])[2]");
+    private By ParkingEnforcementNotes = By.xpath("//textarea[@id='tow_company_notes']");
+    // use update Button
+
+    // 4th Page - Security Report
+    private By ReportInstructions = By.xpath("//textarea[@id='report_notes']");
+    // use Update Button here also
+
+    // 5th -Page Locators - Overall Site Coverage
+    private By OverallSiteCoverageNotes = By.xpath("//textarea[@id='overall_site_coverage']");
+    // Use the Update Button Here also
+
+    // 6th Page - Stationary Coverage
+    private By StationaryAddCoverageButton = By.xpath("//button[normalize-space()='Add Stationary Coverage']");
+    private By StationaryCoverageName = By.xpath("//input[@id='coverage_name_0_0']");
+    private By StationaryServiceTypeDropdown = By
+            .xpath("//input[@id='service_id_0']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By StationaryCoverageEndDate = By.xpath("//input[@id='date_0_[object Object]']");
+    private By StationaryBillingTypeDropdown = By
+            .xpath("//input[@id='billing_type_0']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By StationaryUSDRates = By.xpath("//input[@id='billing_rate_0']");
+    private By StationaryHolidayRates = By.xpath("//input[@id='holiday_rate_0']");
+    private By StationaryStartTimeFrom = By.xpath("//input[@id='mon_from_0']");
+    private By StationaryEndTimeTo = By.xpath("//input[@id='mon_to_0']");
+    private By StationaryCopytoAllDays = By.xpath("//span[@role='img' and @aria-label='copy']");
+    private By StationaryDayTimeCoverageNotes = By.xpath("//textarea[@id='standing_coverage_notes_day']");
+    private By StationarySwingTimeCoverageNotes = By.xpath("//textarea[@id='standing_coverage_notes_swing']");
+    private By StationaryNightTimeCoverageNotes = By.xpath("//textarea[@id='standing_coverage_notes_night']");
+    // Use Update Button here also
+
+    // 7th Page - Mobile Patrol Coverage
+    private By MobilePatrolAddCoverageButton = By.xpath("//button[normalize-space()='Add Mobile Coverage']");
+    private By MobileCoverageName = By.xpath("//input[@id='coverage_name_0']");
+    private By MobileServiceTypeDropdown = By
+            .xpath("//input[@id='service_id_0']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By MondayBillingTypeDropdown = By
+            .xpath("//input[@id='billing_type_0']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By BillingUSDRates = By.xpath("//input[@id='billing_rate_0']");
+    private By HolidayBillingRates = By.xpath("//input[@id='holiday_rate_0']");
+    private By CoverageEndDate = By.xpath("//input[@id='patrol_date_0']");
+    private By MobileStartTimeFrom = By.xpath("//input[@id='mon_from_0']");
+    private By MobileEndTimeTo = By.xpath("//input[@id='mon_to_0']");
+    private By MobileDayHits = By.xpath("//input[@id='mon_day_hits_0']");
+    private By MobileSwingHits = By.xpath("//input[@id='mon_swing_hits_0']");
+    private By MobileNightHits = By.xpath("//input[@id='mon_night_hits_0']");
+    private By MobileCopyToAllDays = By.xpath("//span[@role='img' and @aria-label='copy']");
+    private By MobilePatrolCoverageNotes = By.xpath("//textarea[@id='patrol_coverage_notes_day_0']");
+    private By MobilePatrolSwingCoverageNotes = By.xpath("//textarea[@id='patrol_coverage_notes_swing_1']");
+    private By MobilePatrolNightCoverageNotes = By.xpath("//textarea[@id='patrol_coverage_notes_night_2']");
+    // Use Update Button here also
+
+    // 8th Page - Admin Coverage
+    private By AdmninADDCoverageButton = By.xpath("//button[normalize-space()='Add Admin Coverage']");
+    private By AdminCoverageName = By.xpath("//input[@id='coverage_name_0']");
+    private By AdminServiceTypeDropdown = By
+            .xpath("//input[@id='service_id_0']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By AdminMondayStarttimeFrom = By.xpath("//input[@id='mon_from_0']");
+    private By AdminMondayEndTimeTo = By.xpath("//input[@id='mon_to_0']");
+    private By AdminCopyToAllDays = By.xpath("//span[@role='img' and @aria-label='copy']");
+    private By AdminDayTimeCoverageNotes = By.xpath("//textarea[@id='admin_coverage_notes_day_0']");
+    private By AdminSwingTimeCoverageNotes = By.xpath("//textarea[@id='admin_coverage_notes_swing_1']");
+    private By AdminNightTimeCoverageNotes = By.xpath("//textarea[@id='admin_coverage_notes_night_2']");
+    // Use Update Button here also
+
+    // 9th Page - Temporary Post Order
+    private By ButtonCreateNew = By.xpath("//button[normalize-space()='Create New']");
+    private By temporaryOrderExpireDate = By.xpath("//input[@id='expires_date']");
+    private By temporaryExpireTime = By.xpath("//input[@id='expires_time']");
+    private By temporaryOrderNotes = By.xpath("//textarea[@id='post_order_text']");
+    private By buttonCreate = By.xpath("//button[normalize-space()='Create']");
+    private By HistoryTab = By.xpath("//div[@role='tab' and normalize-space()='History']");
+    // Use Update Button here also
+
+    // 10th Page - Site Area
+    private By SiteAreaAddNewButton = By.xpath("//button[normalize-space()='Add New Site Area']");
+    private By SiteAreaNameInputField = By.xpath("//input[@name='area_name_0']");
+    private By SiteDoorCountInputField = By.xpath("//input[@id='door_count_0']");
+    private By SiteAreaNotes = By.xpath("//textarea[@id='area_notes_0']");
+
+    // 11th Post Orders
+    private By PostOrdertextField = By.xpath("//textarea[@id='site_notes']");
+    private By ProblemAreasTextField = By.xpath("//textarea[@id='problem_areas']");
+    // CheckPoint locators
+    private By ButtonCheckpoint = By.xpath("//button[normalize-space()='Check Point']");
+    private By ButtonAddCheckPoint = By.xpath("//button[normalize-space()='Add Checkpoint']");
+    private By CheckpointName = By.xpath("//input[@id='label']");
+    private By CheckpointDescription = By.xpath("//input[@id='description']");
+    private By CheckpointTypeDropdown = By
+            .xpath("//input[@id='checkpoint_type']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By CheckpointSaveButton = By.xpath("//button[normalize-space()='Save']");
+    private By tabScanRules = By.xpath("//div[normalize-space()='Scan Rules']");
+    private By ButtonAddScanRule = By.xpath("//button[normalize-space()='Add Scan Rule']");
+    private By ScanTime = By.xpath("//input[@id='scan_deadline_time']");
+    private By SnitchTime = By.xpath("//input[@id='grace_period']");
+    private By ActiveDropdown = By.xpath("//input[@id='days']/ancestor::div[contains(@class,'ant-select-selector')]");
+    // ButtonAddScanRule use this loctor also
+    private By TabActionRules = By.xpath("//div[normalize-space()='Action Rules']");
+    private By buttonAddActionRules = By.xpath("//button[normalize-space()='Add Action Rule']");
+    private By ActionPriority = By.xpath("//input[@id='priority']");
+    private By DropdownInputType = By
+            .xpath("//input[@id='input_type']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By ActionDirective = By.xpath("//input[@id='directive']");
+    // buttonAddActionRules use this locator also
+    private By TabLocationSetting = By.xpath("(//div[normalize-space()='Location settings'])[3]");
+    private By AddressInputField = By.xpath("//input[@id='react-select-5-input']");
+    private By RadiusInput = By.xpath("//input[@id='radius']");
+    private By buttonUpdate = By.xpath("//button[normalize-space()='Update']");
+
+    // --Assigmnet Loctors--//
+    private By AssignmentNameField = By.xpath("//input[@id='assignment_task']");
+    private By AssignmentTemplateDropdown = By
+            .xpath("//input[@id='template_id']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By CoverageTypeDropdown = By.xpath("//input[@id='coverage_name']");
+    private By DaysOFWeekDropdown = By
+            .xpath("//input[@id='day_of_Week']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By AssignmentTime = By.xpath("//input[@id='assignment_time']");
+    private By snitchTime = By.xpath("//input[@id='assignment_grace_time']");
+    private By ButtonAddAssignment = By.xpath("//button[normalize-space()='Add Assignment']");
+    // use Update Button here also
+
+    // 12th Page - Site Photos
+    private By SitePhotosUploadInput = By.xpath("//input[@type='file' and @accept='.jpg,.png']");
+    // Use Update Button here also
+
+    // 13th Page - Site map
+    // Use Update Button here also
+
+    // 14th Page - Site Doc/ payement Terms
+    private By ClientFirstName = By.xpath("//input[@id='client_name_first']");
+    private By ClientLastName = By.xpath("//input[@id='client_name_last']");
+    private By ComapanyName = By.xpath("//input[@id='client_company_name']");
+    private By ClientDisplayName = By.xpath("//input[@id='client_display_name']");
+    private By ClientMainPhone = By.xpath(
+            "//label[normalize-space()='Main Phone']/ancestor::div[contains(@class,'ant-form-item')]//input[@type='tel']");
+    private By ClientMobilePhone = By.xpath(
+            "//label[normalize-space()='Mobile']/ancestor::div[contains(@class,'ant-form-item')]//input[@type='tel']");
+    private By ClientEmail = By.xpath("//input[@id='client_email']");
+    private By FaxOffice = By.xpath(
+            "//label[normalize-space()='Fax (Office)']/ancestor::div[contains(@class,'ant-form-item')]//input[@type='tel']");
+    private By Clientterms = By.xpath("//input[@id='client_terms']");
+    private By BillingCycleDropdown = By
+            .xpath("//input[@id='client_billing_cycle']/ancestor::div[contains(@class,'ant-select-selector')]");
+    private By BillingStartDate = By.xpath("//input[@id='client_billing_date']");
+    private By BillingInvoiceNumber = By.xpath("//input[@id='client_billing_invoice']");
+    private By ProjectedActualToggle = By.xpath("//button[@id='projected_hours']");
+    // Billing Addressn locators
+    private By BillingStreetNumber = By.xpath("//input[@id='client_address_street_num']");
+    private By BillingStreetName = By.xpath("//input[@id='client_address_street']");
+    private By BillingCity = By.xpath("//input[@id='client_address_city']");
+    private By BillingState = By.xpath("//input[@id='client_address_state']");
+    private By BillingZipCode = By.xpath("//input[@id='client_address_zip']");
+    private By BillingCountry = By.xpath("//input[@id='client_address_country']");
+    // Upload Document
+    private By UploadDocumentInput = By.xpath("//div[contains(@class,'ant-upload')]//div[normalize-space()='Upload']");
+    // Use Update Button here also
+    
+    // 15th Page - Feedback Comments Compliments
+    private By CommnetsComplimentsTextArea = By.xpath("//textarea[@id='comment']");
+
+    public void openAddNewSiteForm() {
+        // Scroll to button, try safe click, fallback to JS click
+        try {
+            elementUtils.scrollAndClickUsingJS(addNewSiteButton);
+        } catch (Exception e) {
+            try {
+                elementUtils.safeClick(addNewSiteButton);
+            } catch (Exception e2) {
+                // Final fallback
+                elementUtils.jsClickWithWait(addNewSiteButton, 10);
+            }
+        }
+
+        // Wait for form to be ready
+        waitForAddNewSiteFormReady();
+    }
+
+    private void waitForAddNewSiteFormReady() {
+        // Heuristic: wait for any of these conditions
+        try {
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOfElementLocated(SiteNameInputField),
+                    ExpectedConditions.visibilityOfElementLocated(AddNewSiteFormHeading),
+                    ExpectedConditions.urlContains("/sites/add")));
+        } catch (Exception ignore) {
+            // As a secondary attempt, small pause and re-check
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+            if (!elementUtils.doIsDisplayed(SiteNameInputField, 3)) {
+                // Attempt opening again if still not visible
+                elementUtils.retryClickWithJS(addNewSiteButton, 3);
+                wait.until(ExpectedConditions.or(
+                        ExpectedConditions.visibilityOfElementLocated(SiteNameInputField),
+                        ExpectedConditions.visibilityOfElementLocated(AddNewSiteFormHeading)));
+            }
+        }
+    }
+
+    // ===== Public high-level flows =====
+    public void fillGeneralDetails(String siteName,
+            String agencyBeatCsv,
+            String assignOfficerCsv,
+            String callResponse,
+            String serviceStartTime,
+            String serviceEndTime,
+            boolean isStationary,
+            boolean isMobile,
+            boolean isAdminDispatch,
+            boolean isPayPostRate,
+            boolean isReportApprovalNeeded,
+            boolean isPdfReportNeeded,
+            String reportTime,
+            String clientEmail,
+            String policeAgenciesCsv,
+            String fireAgenciesCsv,
+            String medicalAgenciesCsv,
+            String otherAgenciesCsv,
+            String accountManager) {
+        // Site name
+        elementUtils.doSendKeysWithClear(SiteNameInputField, siteName);
+
+        // Assign Beat via ARROWDOWN scrolling for long lists
+        selectAssignBeatWithArrowScrolling(agencyBeatCsv, 200);
+
+        // Assign officer
+        multiSelectCsv(AssignofficerDropdown, assignOfficerCsv);
+
+        // call response dropdown
+        selectFromAntSelect(Callresponsedropdown, callResponse);
+
+        // Times
+        elementUtils.doSendKeysWithClear(ServicestarttimeInputField, serviceStartTime);
+        elementUtils.doSendKeysWithClear(ServiceendtimeInputField, serviceEndTime);
+
+        // Checkboxes/toggles
+        setCheckbox(SitetypeStationaryCheckbox, isStationary);
+        setCheckbox(SitetypeMobileCheckbox, isMobile);
+        setCheckbox(AdminDispatchSites, isAdminDispatch);
+        setCheckbox(PaypostrateCheckbox, isPayPostRate);
+        setCheckbox(reportApprovalneeded, isReportApprovalNeeded);
+
+        // PDF report radio
+        setRadio(pdfreportneededyes, pdfreportneededno, isPdfReportNeeded);
+
+        // Report time & Client email
+        elementUtils.doSendKeysWithClear(ReporttimeInputField, reportTime);
+        elementUtils.doSendKeysWithClear(ClientemailInputField, clientEmail);
+
+        // Agencies
+        multiSelectCsv(PolicesAgencies, policeAgenciesCsv);
+        multiSelectCsv(FireDepartments, fireAgenciesCsv);
+        multiSelectCsv(MedicalServices, medicalAgenciesCsv);
+        multiSelectCsv(StreetnumberInputField, otherAgenciesCsv);
+
+        // Account Manager
+        selectFromAntSelect(accountmanagerInputField, accountManager);
+    }
+
+    public void fillAddress(String streetNumber, String streetName, String city, String state, String zip) {
+        elementUtils.doSendKeysWithClear(SitestreetnumberInputField, streetNumber);
+        elementUtils.doSendKeysWithClear(SitestreetnameInputField, streetName);
+        elementUtils.doSendKeysWithClear(SitecityInputField, city);
+        selectFromAntSelect(SitestateDropdown, state);
+        elementUtils.doSendKeysWithClear(SitezipInputField, zip);
+    }
+
+    public void fillGeofencing(String radiusType, String radiusValue) {
+        selectFromAntSelect(GeofencenRAdiustypedropdown, radiusType);
+        elementUtils.doSendKeysWithClear(GeofenceaddressInputField, radiusValue);
+    }
+
+    public void fillMainContact(String firstName, String lastName, String phoneMain, String mobile, String fax,
+            String email) {
+        elementUtils.doSendKeysWithClear(ContactfirstnameInputField, firstName);
+        elementUtils.doSendKeysWithClear(ContactlastnameInputField, lastName);
+        elementUtils.doSendKeysWithClear(ContactphonemainInputField, phoneMain);
+        elementUtils.doSendKeysWithClear(ContactmobileInputField, mobile);
+        elementUtils.doSendKeysWithClear(ContactfaxInputField, fax);
+        elementUtils.doSendKeysWithClear(ContactemailInputField, email);
+    }
+
+    public void addSiteContact(String jobTitle, String name, String phone) {
+        elementUtils.safeClick(AddsitecontactButton);
+        elementUtils.doSendKeysWithClear(SitecontantOrderNumber, jobTitle);
+        elementUtils.doSendKeysWithClear(SitecontactNameInputField, name);
+        elementUtils.doSendKeysWithClear(SitecontactPhoneInputField, phone);
+    }
+
+    public void clickSaveAndNext() throws InterruptedException {
+        // Wait for form to be fully ready before saving
+        Thread.sleep(3000);
+
+        elementUtils.safeClick(SaveandnextButton);
+
+        // Wait for and verify success toast message
+        try {
+            By successToast = By.xpath(
+                    "//div[contains(@class,'ant-message-success') or contains(@class,'ant-notification')]//span[contains(text(),'success') or contains(text(),'saved') or contains(text(),'Site')]");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(successToast));
+            System.out.println("✅ Site details saved successfully - toast message appeared");
+        } catch (Exception e) {
+            System.out.println("⚠️ Success toast not detected, but continuing...");
+        }
+    }
+
+    // ===== Helpers =====
+    private void setCheckbox(By locator, boolean desired) {
+        WebElement el = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        boolean selected = el.isSelected();
+        if (selected != desired)
+            elementUtils.clickByLocator(locator);
+    }
+
+    private void setRadio(By yesLocator, By noLocator, boolean yes) {
+        elementUtils.safeClick(yes ? yesLocator : noLocator);
+    }
+
+    private void selectFromAntSelect(By selectContainerLocator, String visibleText) {
+        if (visibleText == null || visibleText.isEmpty())
+            return;
+
+        try {
+            // Click to open the dropdown
+            elementUtils.safeClick(selectContainerLocator);
+            Thread.sleep(500);
+
+            // Try to find and type in the search input
+            WebElement searchInput = null;
+            try {
+                // Method 1: Find input inside the container
+                WebElement container = driver.findElement(selectContainerLocator);
+                searchInput = container.findElement(By.cssSelector("input.ant-select-selection-search-input"));
+            } catch (Exception e1) {
+                try {
+                    // Method 2: Get the active element (should be the search input after clicking)
+                    searchInput = driver.switchTo().activeElement();
+                } catch (Exception e2) {
+                    // Method 3: Find any visible search input
+                    searchInput = driver.findElement(By.cssSelector(".ant-select-focused input"));
+                }
+            }
+
+            // Type to filter
+            if (searchInput != null) {
+                searchInput.clear();
+                searchInput.sendKeys(visibleText);
+                Thread.sleep(1000); // Wait for filter results
+            }
+
+            // Try to find and click matching option using ant-select-item-option-content
+            By optionLocator = By
+                    .xpath("//div[contains(@class,'ant-select-item-option-content')][contains(normalize-space(),'"
+                            + visibleText + "')]");
+            boolean found = false;
+
+            try {
+                List<WebElement> options = driver.findElements(optionLocator);
+                for (WebElement opt : options) {
+                    try {
+                        String text = opt.getText().trim();
+                        if (text.toLowerCase().contains(visibleText.toLowerCase())) {
+                            try {
+                                opt.click();
+                            } catch (Exception clickEx) {
+                                ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();",
+                                        opt);
+                            }
+                            found = true;
+                            System.out.println("✅ Selected: " + visibleText);
+                            break;
+                        }
+                    } catch (Exception ex) {
+                        // Continue to next option
+                    }
+                }
+            } catch (Exception e) {
+                // Options not found
+            }
+
+            // If clicking didn't work, try pressing Enter
+            if (!found && searchInput != null) {
+                try {
+                    searchInput.sendKeys(org.openqa.selenium.Keys.ENTER);
+                    found = true;
+                    System.out.println("✅ Selected via Enter: " + visibleText);
+                } catch (Exception e) {
+                    System.out.println("⚠️ Enter key failed for: " + visibleText);
+                }
+            }
+
+            if (!found) {
+                System.out.println("⚠️ Could not select: " + visibleText);
+            }
+
+        } catch (Exception e) {
+            System.out.println("⚠️ selectFromAntSelect failed for: " + visibleText + " - " + e.getMessage());
+        }
+
+        // Press escape to close any open dropdown
+        elementUtils.pressEscapeKey();
+    }
+
+    private void multiSelectCsv(By selectContainerLocator, String csv) {
+        if (csv == null || csv.isEmpty())
+            return;
+        List<String> values = Arrays.stream(csv.split(",")).map(String::trim).filter(s -> !s.isEmpty()).toList();
+
+        for (String v : values) {
+            try {
+                // Click to open the dropdown
+                elementUtils.safeClick(selectContainerLocator);
+                Thread.sleep(500);
+
+                // Try to find the search input
+                WebElement searchInput = null;
+                try {
+                    WebElement container = driver.findElement(selectContainerLocator);
+                    searchInput = container.findElement(By.cssSelector("input.ant-select-selection-search-input"));
+                } catch (Exception e1) {
+                    try {
+                        searchInput = driver.switchTo().activeElement();
+                    } catch (Exception e2) {
+                        searchInput = driver.findElement(By.cssSelector(".ant-select-focused input"));
+                    }
+                }
+
+                // Type to filter
+                if (searchInput != null) {
+                    searchInput.sendKeys(v);
+                    Thread.sleep(1000); // Wait for filter
+                }
+
+                // Find and click matching option
+                By optionLocator = By
+                        .xpath("//div[contains(@class,'ant-select-item-option-content')][contains(normalize-space(),'"
+                                + v + "')]");
+                boolean found = false;
+
+                try {
+                    List<WebElement> options = driver.findElements(optionLocator);
+                    for (WebElement opt : options) {
+                        try {
+                            String text = opt.getText().trim();
+                            if (text.toLowerCase().contains(v.toLowerCase())) {
+                                try {
+                                    opt.click();
+                                } catch (Exception clickEx) {
+                                    ((org.openqa.selenium.JavascriptExecutor) driver)
+                                            .executeScript("arguments[0].click();", opt);
+                                }
+                                found = true;
+                                System.out.println("✅ Multi-selected: " + v);
+                                break;
+                            }
+                        } catch (Exception ex) {
+                            // Continue
+                        }
+                    }
+                } catch (Exception e) {
+                    // Options not found
+                }
+
+                // Try Enter if click didn't work
+                if (!found && searchInput != null) {
+                    try {
+                        searchInput.sendKeys(org.openqa.selenium.Keys.ENTER);
+                        found = true;
+                        System.out.println("✅ Multi-selected via Enter: " + v);
+                    } catch (Exception e) {
+                        // Enter failed
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("⚠️ Could not multi-select: " + v);
+                }
+
+                Thread.sleep(300); // Brief pause between selections
+
+            } catch (Exception e) {
+                System.out.println("⚠️ multiSelectCsv failed for: " + v + " - " + e.getMessage());
+            }
+        }
+        elementUtils.pressEscapeKey();
+    }
+
+    // ===== Keyboard-based selection for long dropdowns =====
+    private void selectAssignBeatWithArrowScrolling(String csv, int maxArrowScrollsPerValue) {
+        if (csv == null || csv.isEmpty())
+            return;
+        List<String> values = Arrays.stream(csv.split(",")).map(String::trim).filter(s -> !s.isEmpty()).toList();
+        for (String target : values) {
+            // Open the dropdown
+            elementUtils.safeClick(AgencybeatMultiSelect);
+
+            // Wait for dropdown panel to appear
+            try {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(AntSelectDropdownPanel));
+            } catch (Exception e) {
+                // Dropdown may not have appeared, try clicking again
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+                elementUtils.safeClick(AgencybeatMultiSelect);
+                try {
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(AntSelectDropdownPanel));
+                } catch (Exception e2) {
+                    System.out.println("Warning: Could not open Agency Beat dropdown for: " + target);
+                    continue;
+                }
+            }
+
+            // Try direct click if present in viewport - with error handling
+            boolean foundInView = false;
+            try {
+                List<WebElement> options = driver.findElements(AntSelectOptions);
+                if (!options.isEmpty()) {
+                    for (WebElement opt : options) {
+                        try {
+                            String text = opt.getText().trim();
+                            if (text.equalsIgnoreCase(target)) {
+                                elementUtils.doClickWeBElement(opt);
+                                foundInView = true;
+                                break;
+                            }
+                        } catch (Exception ex) {
+                            // Element may be stale, continue
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                // Options not found with this selector, will use keyboard navigation
+                System.out.println("Direct option selection failed, using keyboard navigation for: " + target);
+            }
+            if (foundInView)
+                continue;
+
+            // Type the search term to filter the dropdown
+            try {
+                WebElement searchInput = driver.findElement(By.xpath("//input[@id='agency_beat']"));
+                searchInput.clear();
+                searchInput.sendKeys(target);
+                Thread.sleep(500); // Wait for filter
+
+                // Try to find and click the matching option
+                List<WebElement> filteredOptions = driver.findElements(AntSelectOptions);
+                for (WebElement opt : filteredOptions) {
+                    try {
+                        String text = opt.getText().trim();
+                        if (text.toLowerCase().contains(target.toLowerCase())) {
+                            elementUtils.doClickWeBElement(opt);
+                            foundInView = true;
+                            break;
+                        }
+                    } catch (Exception ex) {
+                        // Continue
+                    }
+                }
+                if (foundInView)
+                    continue;
+            } catch (Exception e) {
+                // Search input not found, use arrow navigation
+            }
+
+            // Keyboard ARROW_DOWN scrolling: move through list until match or limit
+            int attempts = 0;
+            while (attempts < maxArrowScrollsPerValue) {
+                try {
+                    // Send ARROW_DOWN to active element (ant-select input)
+                    WebElement panel = driver.findElement(AntSelectDropdownPanel);
+                    panel.click(); // focus
+                    new org.openqa.selenium.interactions.Actions(driver)
+                            .sendKeys(org.openqa.selenium.Keys.ARROW_DOWN)
+                            .perform();
+
+                    // Check currently active option text
+                    List<WebElement> active = driver.findElements(AntSelectActiveOption);
+                    if (!active.isEmpty()) {
+                        String t = active.get(0).getText().trim();
+                        if (t.equalsIgnoreCase(target)) {
+                            // Select it
+                            new org.openqa.selenium.interactions.Actions(driver)
+                                    .sendKeys(org.openqa.selenium.Keys.ENTER)
+                                    .perform();
+                            break;
+                        }
+                    }
+                    attempts++;
+                } catch (Exception e) {
+                    attempts++;
+                }
+            }
+        }
+        elementUtils.pressEscapeKey();
+    }
+}

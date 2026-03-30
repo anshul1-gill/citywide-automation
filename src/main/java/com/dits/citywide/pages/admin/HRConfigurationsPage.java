@@ -21,7 +21,7 @@ public class HRConfigurationsPage {
 	private By btnSaveNotificationsType = By.xpath("//button[contains(@type,'submit')]");
 
 	// Allowance Type
-	private By tabAllowanceType = By.xpath("//div[@id='rc-tabs-0-tab-3']");
+	private By tabAllowanceType = By.xpath("(//div[contains(@class, 'base-card') and .//h5[text()='Allowance Type']])[3]");
 	private By btnAddAllowanceType = By.xpath("//span[normalize-space()='Add Allowance type']");
 	private By headingAllowanceType = By.xpath("//span[@class='ant-table-column-title']");
 	private By txtboxAllowanceTypeName = By.xpath("//input[@id='allowance']");
@@ -32,7 +32,8 @@ public class HRConfigurationsPage {
 	private By btnUpdateAllowanceType = By.xpath("//span[normalize-space()='Update Allowance Type']");
 
 	// Department
-	private By tabDepartmentType = By.xpath("//div[@id='rc-tabs-0-tab-4']");
+	private By tabDepartmentType = By
+			.xpath("(//div[contains(@class, 'base-card') and .//h5[text()='Departments']])[3]");
 	private By btnAddDepartmentType = By.xpath("//span[normalize-space()='Add Department']");
 	private By txtboxDepartmentName = By.xpath("//input[@id='name']");
 	private By btnSaveDepartment = By.xpath("//span[normalize-space()='Save']");
@@ -41,7 +42,7 @@ public class HRConfigurationsPage {
 	private By btnUpdateDepartment = By.xpath("//span[normalize-space()='Update']");
 
 	// WC Class Code
-	private By tabWCClassCode = By.xpath("//div[@id='rc-tabs-0-tab-5']");
+	private By tabWCClassCode = By.xpath("(//div[contains(@class, 'base-card') and .//h5[text()='WC Class Code']])[3]");
 	private By btnAddWCClassCode = By.xpath("//span[normalize-space()='Add WC Class Code']");
 	private By txtboxWCClassCode = By.xpath("//input[@id='name']");
 	private By btnSaveWCClassCode = By.xpath("//span[normalize-space()='Save']");
@@ -49,7 +50,7 @@ public class HRConfigurationsPage {
 	private By dataWCClassCode = By.xpath("(//td[@data-label='WC Class Code'])[1]");
 
 	// Employment Type
-	private By tabEmploymentType = By.xpath("//div[@id='rc-tabs-0-tab-6']");
+	private By tabEmploymentType = By.xpath("(//div[contains(@class, 'base-card') and .//h5[text()=\"Employment Type\"]])[3]");
 	private By btnAddEmploymentType = By.xpath("//span[normalize-space()='Add Employment Type']");
 	private By txtboxEmploymentType = By.xpath("//input[@id='name']");
 	private By btnSaveEmploymentType = By.xpath("//span[normalize-space()='Save']");
@@ -160,7 +161,24 @@ public class HRConfigurationsPage {
 	}
 
 	public void clickOnDepartmentTab() {
+		String originalWindow = driver.getWindowHandle();
 		elementUtils.waitForElementToBeClickable(tabDepartmentType, Constants.DEFAULT_WAIT).click();
+		try {
+			Thread.sleep(2000); // Wait for window switch
+			// Check if original window is still available
+			if (driver.getWindowHandles().size() > 1) {
+				// Multiple windows - switch to the new one
+				for (String windowHandle : driver.getWindowHandles()) {
+					if (!windowHandle.equals(originalWindow)) {
+						driver.switchTo().window(windowHandle);
+						break;
+					}
+				}
+			}
+			// If only one window exists, we're already in the right window
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public boolean isAddDepartmentButtonVisible() {
@@ -181,6 +199,7 @@ public class HRConfigurationsPage {
 	}
 
 	public String getDepartmentNameData() {
+		elementUtils.waitForInvisibilityOfElementLocated(successMessage, Constants.DEFAULT_WAIT);
 		return elementUtils.getText(dataDepartmentName, Constants.DEFAULT_WAIT);
 
 	}
@@ -285,67 +304,68 @@ public class HRConfigurationsPage {
 	public String getDeleteWCClassCodeSuccessMessage() {
 		return elementUtils.getText(successMessage, Constants.DEFAULT_WAIT);
 	}
-	
+
 	// Employment Type Methods
 	public boolean isEmploymentTypeTabVisible() {
 		return elementUtils.doIsDisplayed(tabEmploymentType, Constants.DEFAULT_WAIT);
 	}
-	
+
 	public void clickOnEmploymentTypeTab() {
 		elementUtils.waitForElementToBeClickable(tabEmploymentType, Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public boolean isAddEmploymentTypeButtonVisible() {
 		return elementUtils.doIsDisplayed(btnAddEmploymentType, Constants.DEFAULT_WAIT);
 	}
-	
+
 	public void clickOnAddEmploymentTypeButton() {
 		elementUtils.waitForElementToBeClickable(btnAddEmploymentType, Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public void fillAddEmploymentTypeForm(String employmentTypeName) {
 		elementUtils.waitForElementToBeClickable(txtboxEmploymentType, Constants.DEFAULT_WAIT)
 				.sendKeys(employmentTypeName);
 		elementUtils.waitForElementToBeClickable(btnSaveEmploymentType, Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public String getEmploymentTypeData() {
 		elementUtils.waitForInvisibilityOfElementLocated(successMessage, Constants.DEFAULT_WAIT);
 		return elementUtils.getText(dataEmploymentType, Constants.DEFAULT_WAIT);
 	}
-	
+
 	// Edit Employment Type
 	public void clickEditEmploymentTypeButton(String employmentTypeName) {
 		String editXpath = "//td[@data-label='Employment Type' and normalize-space()='" + employmentTypeName
 				+ "']/following-sibling::td//a[@class='cursor-pointer']";
 		elementUtils.waitForElementToBeClickable(By.xpath(editXpath), Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public boolean isUpdateEmploymentTypeButtonVisible() {
 		return elementUtils.doIsDisplayed(btnUpdate, Constants.DEFAULT_WAIT);
 	}
-	
+
 	public void updateEmploymentType(String updatedEmploymentTypeName) {
 		elementUtils.clearTextBoxWithActions(txtboxEmploymentType);
 		elementUtils.doActionsSendKeys(txtboxEmploymentType, updatedEmploymentTypeName);
 		elementUtils.waitForElementToBeClickable(btnUpdate, Constants.DEFAULT_WAIT).click();
 	}
+
 	public String getUpdateEmploymentTypeSuccessMessage() {
 		elementUtils.waitForInvisibilityOfElementLocated(successMessage, Constants.DEFAULT_WAIT);
 		return elementUtils.getText(successMessage, Constants.DEFAULT_WAIT);
 	}
-	
+
 	// Delete Employment Type
 	public void clickDeleteEmploymentTypeButton(String employmentTypeName) {
 		String deleteXpath = "//td[@data-label='Employment Type' and normalize-space()='" + employmentTypeName
 				+ "']/following-sibling::td//div[@class='actionicons deleteIcon']";
 		elementUtils.waitForElementToBeClickable(By.xpath(deleteXpath), Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public void confirmDeleteEmploymentType() {
 		elementUtils.waitForElementToBeClickable(btnOkDelete, Constants.DEFAULT_WAIT).click();
 	}
-	
+
 	public String getDeleteEmploymentTypeSuccessMessage() {
 		return elementUtils.getText(successMessage, Constants.DEFAULT_WAIT);
 	}

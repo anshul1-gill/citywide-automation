@@ -884,24 +884,64 @@ public class ElementUtils {
 	}
 
 	public void selectReqSkillOption(By dropdownLocator, String optionText) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Actions actions = new Actions(driver);
 
-		// 1️⃣ Click the dropdown
-		WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(dropdownLocator));
-		dropdown.click();
+		// 1️⃣ Scroll dropdown into center view to avoid label overlap
+		WebElement dropdown = wait.until(ExpectedConditions.presenceOfElementLocated(dropdownLocator));
+		js.executeScript("arguments[0].scrollIntoView({block:'center'});", dropdown);
 
-		// 2️⃣ Locate the input inside the dropdown
-		WebElement searchInput = dropdown.findElement(By.cssSelector("input"));
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 
-		// 3️⃣ Type the option text using Actions and press Enter
+		// 2️⃣ Click the .ant-select-selector inside the dropdown (not the wrapper div)
+		try {
+			WebElement selector = dropdown.findElement(
+					By.cssSelector(".ant-select-selector"));
+			js.executeScript("arguments[0].scrollIntoView({block:'center'});", selector);
+			wait.until(ExpectedConditions.elementToBeClickable(selector)).click();
+		} catch (Exception e) {
+			System.out.println("⚠️ Could not click .ant-select-selector, trying wrapper div...");
+			try {
+				wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
+			} catch (ElementClickInterceptedException ex) {
+				System.out.println("⚠️ Click intercepted on skills dropdown, using JS click...");
+				js.executeScript("arguments[0].click();", dropdown);
+			}
+		}
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+
+		// 3️⃣ Locate the search input inside the dropdown
+		WebElement searchInput;
+		try {
+			searchInput = dropdown.findElement(By.cssSelector("input[type='search'], input.ant-select-selection-search-input"));
+		} catch (Exception e) {
+			searchInput = dropdown.findElement(By.cssSelector("input"));
+		}
+
+		// 4️⃣ Type the option text using Actions and press Enter
 		actions.moveToElement(searchInput)
 				.click()
 				.sendKeys(optionText)
+				.pause(Duration.ofMillis(1500))
 				.sendKeys(Keys.ENTER)
 				.perform();
 
-		// 4️⃣ Optional: TAB out to close dropdown
+		// 5️⃣ TAB out to close dropdown
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 		actions.sendKeys(Keys.TAB).perform();
 	}
 
@@ -1040,6 +1080,94 @@ public class ElementUtils {
 		WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
 		wait.until(ExpectedConditions.elementToBeClickable(optionLocator));
 		option.click();
+	}
+
+	/**
+	 * Selects a date from an Ant Design date picker.
+	 * Accepts date as MM/dd/yyyy. It opens the picker and clicks the day with matching aria-label.
+	 * Fallback: types the date string directly if the calendar interaction fails.
+	 */
+	public void selectDateInAntPicker(By inputLocator, String mmddyyyy) {
+		try {
+			// Open the date picker
+			safeClick(inputLocator);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+			// Parse date
+			String[] parts = mmddyyyy.split("/");
+			int month = Integer.parseInt(parts[0]);
+			int day = Integer.parseInt(parts[1]);
+			int year = Integer.parseInt(parts[2]);
+
+			// Build aria-label used by Ant: e.g., "January 13, 2026"
+			String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+			String ariaLabel = months[month - 1] + " " + day + ", " + year;
+
+			// Wait for dropdown panel
+			By panel = By.cssSelector(".ant-picker-dropdown");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(panel));
+
+			// Try to click exact day cell by aria-label
+			By dayCell = By.xpath("//div[contains(@class,'ant-picker-cell')]/div[@aria-label='" + ariaLabel + "']");
+			try {
+				WebElement cell = wait.until(ExpectedConditions.elementToBeClickable(dayCell));
+				cell.click();
+				return;
+			} catch (Exception ignore) {}
+
+			// If not visible (different month), navigate months using next/prev buttons
+			By nextBtn = By.cssSelector(".ant-picker-header-super-next-btn, .ant-picker-header-next-btn");
+			By prevBtn = By.cssSelector(".ant-picker-header-super-prev-btn, .ant-picker-header-prev-btn");
+			int navAttempts = 0;
+			boolean selected = false;
+			while (navAttempts < 24) { // up to 2 years navigation
+				try {
+					WebElement cell = driver.findElement(dayCell);
+					((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cell);
+					cell.click();
+					selected = true;
+					break;
+				} catch (Exception e) {
+					// Decide direction using currently displayed header year/month
+					try {
+						WebElement header = driver.findElement(By.cssSelector(".ant-picker-header-view"));
+						String headerText = header.getText(); // e.g., "January 2026"
+						int headerYear = Integer.parseInt(headerText.replaceAll(".*(\\d{4}).*", "$1"));
+						int headerMonthIndex = -1;
+						for (int i = 0; i < months.length; i++) {
+							if (headerText.contains(months[i])) { headerMonthIndex = i + 1; break; }
+						}
+						if (headerYear < year || (headerYear == year && headerMonthIndex < month)) {
+							wait.until(ExpectedConditions.elementToBeClickable(nextBtn)).click();
+						} else {
+							wait.until(ExpectedConditions.elementToBeClickable(prevBtn)).click();
+						}
+					} catch (Exception navEx) {
+						// If header not found, just try next button
+						try { driver.findElement(nextBtn).click(); } catch (Exception ex) {
+							try { driver.findElement(prevBtn).click(); } catch (Exception ex2) { /* no-op */ }
+						}
+					}
+				}
+				navAttempts++;
+			}
+
+			if (!selected) {
+				// Fallback: type the date directly
+				WebElement input = wait.until(ExpectedConditions.elementToBeClickable(inputLocator));
+				input.clear();
+				input.sendKeys(mmddyyyy);
+				input.sendKeys(org.openqa.selenium.Keys.ENTER);
+			}
+		} catch (Exception e) {
+			// Final fallback: type directly
+			try {
+				WebElement input = driver.findElement(inputLocator);
+				input.clear();
+				input.sendKeys(mmddyyyy);
+				input.sendKeys(org.openqa.selenium.Keys.ENTER);
+			} catch (Exception ignored) {}
+		}
 	}
 
 	// Add this method to ElementUtils

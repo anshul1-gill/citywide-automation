@@ -38,7 +38,7 @@ public class CompanySettingsConstant {
 
 	// Add Holiday Data - Custome Holiday
 	public static final String CUSTOM_HOLIDAY_NAME = "New Holiday Test";
-	public static final String CUSTOM_HOLIDAY_START_DATE = "06/15/2025"; // Format: MM/dd/yyyy
+	public static final String CUSTOM_HOLIDAY_START_DATE = "06/15/2026"; // Format: MM/dd/yyyy
 	public static final String CUSTOM_HOLIDAY_START_TIME = "08:00";
 	public static final String CUSTOM_HOLIDAY_END_TIME = "17:00";
 	public static final String CUSTOM_HOLIDAY_RECURRING = "No";
@@ -47,7 +47,7 @@ public class CompanySettingsConstant {
 
 	// Update Custom Holiday
 	public static final String CUSTOM_HOLIDAY_EDIT_NAME = "Custom Holiday Test Updated";
-	public static final String CUSTOM_HOLIDAY_EDIT_START_DATE = "06/14/2025"; // Format: MM/dd/yyyy
+	public static final String CUSTOM_HOLIDAY_EDIT_START_DATE = "06/14/2026"; // Format: MM/dd/yyyy
 	public static final String CUSTOM_HOLIDAY_EDIT_START_TIME = "09:00";
 	public static final String CUSTOM_HOLIDAY_EDIT_END_TIME = "18:00";
 	public static final String CUSTOM_HOLIDAY_EDIT_RECURRING = "Yes";
@@ -55,7 +55,7 @@ public class CompanySettingsConstant {
 	public static final String CUSTOM_HOLIDAY_EDIT_DESCRIPTION = "Updated description for the custom holiday.";
 
 	// Add Leave Data
-	public static final String LEAVE_NAME = "Vacation Leave";
+	public static final String LEAVE_NAME = "Sick Leave test";
 	public static final String NUMBER_OF_DAYS = "10";
 	public static final String LEAVE_DESCRIPTION = "Annual vacation leave for employees";
 
@@ -114,12 +114,12 @@ public class CompanySettingsConstant {
 
 	// Add new template data
 	public static final String ACTIVITY_TEMPLATE_NAME_TEST = "Activity Template Test";
-	public static final String ACTIVITY_CODE_TEST = "Prisoner";
+	public static final String ACTIVITY_CODE_TEST = "11-50";
 	public static final String QUESTION_TYPE_TEST = "LARGE TEXT AREA";
 	public static final String QUESTION_TEXT_TEST = "What are your goals for this year?";
 
 	public static final String ADD_NEW_TEMPLATE_CONTENT = "Sample Template Content";
-	public static final String ACTIVITY_TEMPLATE_SUCCESS_MESSAGE = "Activity template added successfully";
+	public static final String ACTIVITY_TEMPLATE_SUCCESS_MESSAGE = "Template question created successfully";
 
 	// Update Template Data
 
@@ -193,7 +193,7 @@ public class CompanySettingsConstant {
 	public static final String WC_CLASS_CODE_DELETE_SUCCESS_MESSAGE = "WC class code deleted successfully";
 
 	// Employment Type Data
-	public static final String EMPLOYMENT_TYPE_NAME = "Full-Time";
+	public static final String EMPLOYMENT_TYPE_NAME = "Full-Time Test";
 	public static final String ADD_EMPLOYMENT_TYPE_SUCCESS_MESSAGE = "Employment type added successfully";
 
 	public static final String EMPLOYMENT_TYPE_EDIT_NAME = "Full-Time Updated";
@@ -203,7 +203,7 @@ public class CompanySettingsConstant {
 
 	// Team Support Template Data
 	// Template Info
-	public static final String TEMPLATE_NAME = "Patrol Support - Field Interview";
+	public static final String TEMPLATE_NAME = "New Implementation Checkbox Automation";
 	public static final String DEPARTMENT = "Dispatch";
 	public static final String ASSIGNED_TO = "843";
 	public static final String DECISION_MAKER = "898";
@@ -237,6 +237,10 @@ public class CompanySettingsConstant {
 	public static final String RADIO_LABEL_TO_DISPLAY = "What is the condition of your patrol vehicle before starting the shift?";
 	public static final List<String> RADIO_OPTIONS = List.of("Good", "Needs Maintenance", "Not Assigned");
 
+	// Checkbox
+	public static final String CHECKBOX_TEXT_TO_DISPLAY = "I agree to the terms";
+	public static final String CHECKBOX_LABEL_TO_DISPLAY = "Do you agree to the terms and conditions?";
+
 	// Email
 	public static final String EMAIL_TEXT_TO_DISPLAY = "Enter your email";
 	public static final String EMAIL_LABEL_TO_DISPLAY = "Email Address";
@@ -245,74 +249,72 @@ public class CompanySettingsConstant {
 	public static final String FILEUPLOAD_TEXT_TO_DISPLAY = "Upload Patrol Shift Assistance Document";
 	public static final String FILEUPLOAD_LABEL_TO_DISPLAY = "Attach supporting file for Patrol Shift Assistance (PDF only)";
 	public static final String TEMPLATE_SUCCESS_MESSAGE = "Template created successfully";
-	
+
 	// Activity Code Constants
 	public static final String ACTIVITY_CODE_NAMES = "High Alert";
 	public static final String ACTIVITY_CODE_DESCRIPTION = "Test Description for Activity Code";
 	public static final String ACTIVITY_CODE_PRIORITY = "High";
-	
+
 	public static final String ACTIVITY_CODE_EDIT_NAME = "Red Alert";
 	public static final String ACTIVITY_CODE_EDIT_DESCRIPTION = "Updated description for patrol response code.";
 	public static final String ACTIVITY_CODE_EDIT_PRIORITY = "Low";
-	
+
 	public static final String DELETED_ACTIVITY_CODE_SUCCESS_MESSAGE = "Record deleted successfully.";
-	
-	//-----------ServiceTypeName-----------
+
+	// -----------ServiceTypeName-----------
 	public static final String SERVICE_TYPE_NAME = "Normal Patrol Service";
 	public static final String SERVICE_TYPE_CODE = "NP001";
 	public static final String SERVICE_TYPE_DESCRIPTION = "This service type covers standard patrol operations for urban areas";
-	
+
 	// ---------- Service Type (Update Test Data) ----------
 	public static final String SERVICE_TYPE_EDIT_NAME = "Emergency Response Service Updated";
 	public static final String SERVICE_TYPE_EDIT_CODE = "ERS-UPD";
 	public static final String SERVICE_TYPE_EDIT_DESCRIPTION = "Updated description for Emergency Response Service type.";
 
-	
-    // --------- Service Status Dropdown ----------
-    public static final String STATUS_NO = "No";
-    public static final String STATUS_YES = "Yes";
+	// --------- Service Status Dropdown ----------
+	public static final String STATUS_NO = "No";
+	public static final String STATUS_YES = "Yes";
 
-    // --------- Main Service Dropdown ----------
-    public static final String SERVICE_MOBILE_MULTIPLE_SITES = "Mobile/Multiple Sites";
-    public static final String SERVICE_STATIONARY_SINGLE_SITE = "Stationary/Single Site";
+	// --------- Main Service Dropdown ----------
+	public static final String SERVICE_MOBILE_MULTIPLE_SITES = "Mobile/Multiple Sites";
+	public static final String SERVICE_STATIONARY_SINGLE_SITE = "Stationary/Single Site";
 
-    // --------- Department Dropdown ----------
-    public static final String DEPT_ADMIN = "Admin";
-    public static final String DEPT_DISPATCH = "Dispatch";
-    public static final String DEPT_PATROL = "Patrol";
-    public static final String DEPT_FIELD = "Field";
-    
-    public static final String RANK_NAME = "Doctor Sergeant";
-    public static final String RANK_ORDER = "39";
-    public static final String UPDATED_RANK_NAME = "Special OOPS";
-    public static final String UPDATED_RANK_ORDER = "89";
+	// --------- Department Dropdown ----------
+	public static final String DEPT_ADMIN = "Admin";
+	public static final String DEPT_DISPATCH = "Dispatch";
+	public static final String DEPT_PATROL = "Patrol";
+	public static final String DEPT_FIELD = "Field";
 
-    
- // ==============================
- // Rank & Position Constants
- // ==============================
-    public static final String RANK_BRANCH_SELECTALL = "Select all";
- public static final String RANK_BRANCH_RIVERSIDE = "Riverside";
- public static final String RANK_BRANCH_SAN_DIEGO = "Sandiego";
- 
- public static final String ASSIGNMENT_TEMPLATE_NAME = "Security Site Check Template";
- public static final String UPDATED_TEMPLATE_NAME = "Updated Security Site Check Template";
+	public static final String RANK_NAME = "Doctor Sergeant";
+	public static final String RANK_ORDER = "39";
+	public static final String UPDATED_RANK_NAME = "Special OOPS";
+	public static final String UPDATED_RANK_ORDER = "89";
 
- // Dropdown options
- public static final String ASSIGNMENT_ACTIVITY_CODE = "10-1 - Receiving Poorly";
- public static final String BRANCH_NAME = "Riverside";
- public static final String ASSIGNMENT_QUESTION_TYPE = "PHOTO UPLOAD";
+	// ==============================
+	// Rank & Position Constants
+	// ==============================
+	public static final String RANK_BRANCH_SELECTALL = "Select all";
+	public static final String RANK_BRANCH_RIVERSIDE = "Riverside";
+	public static final String RANK_BRANCH_SAN_DIEGO = "Sandiego";
 
- // Question and Description
- public static final String ASSIGNMENT_QUESTION_TEXT = "Is the site perimeter secured?";
- public static final String DESCRIPTION_TEXT = "This question ensures guards check all site entry points.";
- 
- public static final String UPDATED_ASSIGNMENT_NAME = "Updated Night Patrol Routine";
+	public static final String ASSIGNMENT_TEMPLATE_NAME = "Security Site Check Template";
+	public static final String UPDATED_TEMPLATE_NAME = "Updated Security Site Check Template";
 
- public static final String UPDATED_ACTIVITY_CODE = "10-23 - Stand By";
- public static final String UPDATED_QUESTION_TYPE = "LARGE TEXT AREA";
- public static final String UPDATED_QUESTION = "Is the perimeter secure after inspection?";
- public static final String UPDATED_DESCRIPTION = "Ensure the updated procedure covers all checkpoints.";
+	// Dropdown options
+	public static final String ASSIGNMENT_ACTIVITY_CODE = "10-1 - Receiving Poorly";
+	public static final String BRANCH_NAME = "Riverside";
+	public static final String ASSIGNMENT_QUESTION_TYPE = "PHOTO UPLOAD";
+
+	// Question and Description
+	public static final String ASSIGNMENT_QUESTION_TEXT = "Is the site perimeter secured?";
+	public static final String DESCRIPTION_TEXT = "This question ensures guards check all site entry points.";
+
+	public static final String UPDATED_ASSIGNMENT_NAME = "Updated Night Patrol Routine";
+
+	public static final String UPDATED_ACTIVITY_CODE = "10-23 - Stand By";
+	public static final String UPDATED_QUESTION_TYPE = "LARGE TEXT AREA";
+	public static final String UPDATED_QUESTION = "Is the perimeter secure after inspection?";
+	public static final String UPDATED_DESCRIPTION = "Ensure the updated procedure covers all checkpoints.";
 
 	// Add FI-Crime Potential Data
 	public static final String CRIME_NAME = "Crime Potential Test";

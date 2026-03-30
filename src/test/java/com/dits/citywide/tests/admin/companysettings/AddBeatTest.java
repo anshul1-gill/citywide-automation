@@ -18,8 +18,12 @@ public class AddBeatTest extends BaseTest {
 		companySettingsPage = dashboardPage.doClickCompanySettingsTab();
 		beatsPage = companySettingsPage.clickBeatsLink();
 		beatsPage.clickAddNewBeatsButton();
-		beatsPage.fillAddNewBeatsForm(CompanySettingsConstant.BEAT_ID, CompanySettingsConstant.BEAT_NAME,
-				CompanySettingsConstant.SHIFT_TYPE, CompanySettingsConstant.NUMBER_OF_SITES);
+		beatsPage.fillAddNewBeatsForm(
+				CompanySettingsConstant.BEAT_ID, 
+				CompanySettingsConstant.BEAT_NAME,
+				CompanySettingsConstant.SHIFT_TYPE,
+				CompanySettingsConstant.NUMBER_OF_SITES);
+		
 		beatsPage.clickSubmitAddBeatButton();
 
 		softAssert.assertTrue(beatsPage.isBeatsPageVisible(), "Beats page is not displayed.");

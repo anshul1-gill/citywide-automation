@@ -22,7 +22,7 @@ public class ClientModuleTest extends BaseTest {
     }
 
     @Test
-    public void openAllClientSettingsSubModules() {
+    public void openAllClientSettingsSubModules() throws InterruptedException {
         // Profile
         clientSettingsPage.clickReportsLink();
         // Placeholder: Add assertion or back navigation

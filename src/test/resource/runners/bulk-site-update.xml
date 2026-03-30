@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Bulk Site Tab Update Suite">
+
+    <listeners>
+        <listener class-name="com.dits.citywide.listener.ExtentReportListener"/>
+    </listeners>
+
+    <test name="Bulk Site Tab Update" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.operationhub.BulkSiteTabUpdateTest" />
+        </classes>
+    </test>
+
+</suite>

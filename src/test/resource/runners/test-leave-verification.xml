@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Leave Tests Verification" verbose="1">
+    
+    <listeners>
+        <listener class-name="com.dits.citywide.listener.ExtentReportListener"/>
+    </listeners>
+    
+    <test name="Leave CRUD Tests" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.companysettings.AddLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteLeaveTest" />
+        </classes>
+    </test>
+    
+</suite>

@@ -43,7 +43,12 @@ public class TeamSupportTemplateAddTemplateTest extends BaseTest {
 		teamSupportTemplatePage.clickOnRadioGroupToolbox();
 		teamSupportTemplatePage.addRadioGroup(CompanySettingsConstant.RADIO_TEXT_TO_DISPLAY,
 				CompanySettingsConstant.RADIO_LABEL_TO_DISPLAY, CompanySettingsConstant.RADIO_OPTIONS);
-//		teamSupportTemplatePage.clickOnFileUploadToolbox();
+
+		teamSupportTemplatePage.clickOnCheckboxToolbox();
+		teamSupportTemplatePage.addCheckbox(CompanySettingsConstant.CHECKBOX_TEXT_TO_DISPLAY,
+				CompanySettingsConstant.CHECKBOX_LABEL_TO_DISPLAY);
+
+		// teamSupportTemplatePage.clickOnFileUploadToolbox();
 
 		teamSupportTemplatePage.clickOnEmailToolbox();
 		teamSupportTemplatePage.addEmailField(CompanySettingsConstant.EMAIL_TEXT_TO_DISPLAY,

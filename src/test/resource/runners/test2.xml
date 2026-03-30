@@ -1,37 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<suite name="Citywide Regression Suite">
-
-	<!-- 
-	<listeners>
-		<listener class-name=""></listener>
-	</listeners>
-	-->
+<suite name="Form Conversion Regression Suite">
 
 
-	<test
-		name="Employee Shift Management Tests with features Start Shift , Add New Call , My Assignments , Reports , End Shift "
-		preserve-order="true">
-		<classes>
-			<class
-				name="com.dits.citywide.tests.scheduling.AddShiftTest" />
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentStartShiftTest" />
-			<class
-				name="com.dits.citywide.tests.operationhub.AddNewCallTest" />
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentCallActionTest" />
-			<!-- <class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments" /> -->
-			<!-- <class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest" /> -->
-			<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentEndShiftTest" />
-			<!--<class
-				name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest" />  -->
-		</classes>
-	</test>
-
+<test name="Report Coversion Module">
+    <classes>
+        <class name="com.dits.citywide.tests.formconversion.ReactParkingCitationform" />
+        
+        <class name="com.dits.citywide.tests.formconversion.ReactParkingCitationUpdateTest" />
+        
+        <class name="com.dits.citywide.tests.formconversion.ReactParkingCitationDeleteTest" />  
+        
+        
+        <class name="com.dits.citywide.tests.formconversion.ReactFieldInterviewform"/>
+        
+        
+        
+        <class name="com.dits.citywide.tests.formconversion.ReactIncidentReportform" />
+        <class name="com.dits.citywide.tests.formconversion.ReactIncidentReportformUpdateTest"/>
+        
+   
+        <class name="com.dits.citywide.tests.formconversion.ReactTrespassNoticeform" />
+        <class name="com.dits.citywide.tests.formconversion.ReactTrespassNoticeformUpdateTest"/>
+            <class name="com.dits.citywide.tests.formconversion.ReactTrespassNoticeformDeleteTest"/>
+         
+    </classes>
+</test>
 
 </suite> 

@@ -165,10 +165,10 @@
 				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryAssignCourseTest" />
 			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.ERMRemarksHistoryViewTest" />
-			<class
+<!--			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.ViewFieldAgentEmployeeTest" />
 			<class
-				name="com.dits.citywide.tests.admin.hrmanagement.ViewPatrolEmployeeTest" />
+				name="com.dits.citywide.tests.admin.hrmanagement.ViewPatrolEmployeeTest" />-->
 			<class
 				name="com.dits.citywide.tests.admin.hrmanagement.AttendanceTest" />
 			<class

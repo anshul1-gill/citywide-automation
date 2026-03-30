@@ -41,6 +41,7 @@ public class TeamSupportTemplatePage {
 	private By dragandropdropdown = By.xpath("//li[@draggable='true' and normalize-space()='Dropdown']");
 	private By draganddropdatefield = By.xpath("//li[@draggable='true' and normalize-space()='Date Field']");
 	private By draganddropradiogroup = By.xpath("//li[@draggable='true' and normalize-space()='Radio Group']");
+	private By draganddropCheckbox = By.xpath("//li[@draggable='true' and normalize-space()='Checkbox']");
 	private By draganddropfileupload = By.xpath("//li[@draggable='true' and normalize-space()='File Upload']");
 	private By draganddropemail = By.xpath("//li[@draggable='true' and normalize-space()='Email']");
 
@@ -67,9 +68,12 @@ public class TeamSupportTemplatePage {
 	// editRadiogroup
 	private By editRadiogrp = By.xpath("(//div[@class='btn is-isolated']/i[@class='is-isolated fas fa-edit'])[6]");
 	private By checkboxgrp = By.xpath("//input[@id='display-horizontal']");
+	
+	// Checkbox edit button
+	private By editcheckbox = By.xpath("(//div[@class='btn is-isolated']/i[@class='is-isolated fas fa-edit'])[7]");
 
 	// edit email
-	private By editemailbtn = By.xpath("(//div[@class='btn is-isolated']/i[@class='is-isolated fas fa-edit'])[7]");
+	private By editemailbtn = By.xpath("(//div[@class='btn is-isolated']/i[@class='is-isolated fas fa-edit'])[8]");
 
 	// Common for all elements while editing
 	private By txtareatodisplay = By.xpath("(//div[@aria-label='rdw-editor' and @role='textbox'])[1]");
@@ -156,6 +160,9 @@ public class TeamSupportTemplatePage {
 
 	public void clickOnRadioGroupToolbox() {
 		elementUtils.doClickWithActionsAndWait(draganddropradiogroup, Constants.DEFAULT_WAIT);
+	}
+	public void clickOnCheckboxToolbox() {
+		elementUtils.doClickWithActionsAndWait(draganddropCheckbox, Constants.DEFAULT_WAIT);
 	}
 
 	public void clickOnFileUploadToolbox() {
@@ -271,6 +278,16 @@ public class TeamSupportTemplatePage {
 		}
 		// Step 5: Click checkbox (horizontal alignment etc.)
 		elementUtils.doClickWithActionsAndWait(checkboxgrp, Constants.DEFAULT_WAIT);
+	}
+
+	public void addCheckbox(String checkboxTextToDisplay, String checkboxLabelToDisplay) throws InterruptedException {
+		// Implementation for adding Checkbox field can be added here
+		elementUtils.doClickWithActionsAndWait(editcheckbox, Constants.DEFAULT_WAIT);
+			elementUtils.clearTextBoxWithActions(txtareatodisplay);
+			elementUtils.doActionsSendKeys(txtareatodisplay, checkboxTextToDisplay);
+			elementUtils.clearTextBoxWithActions(labeldisplay);
+			elementUtils.doActionsSendKeys(labeldisplay, checkboxLabelToDisplay);	
+							
 	}
 
 	// ================= Email =================

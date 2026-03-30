@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
 
 <suite name="Citywide Smoke Suite">
 
@@ -10,6 +9,10 @@
     <!-- Company Settings Tests -->
     <test name="Company Settings Tests" preserve-order="true">
         <classes>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- 📁 SECTION 1: Organization Settings                    -->
+            <!-- ═══════════════════════════════════════════════════════ -->
 
             <!-- 1️⃣ Service Types -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddServiceTypeTest" />
@@ -26,86 +29,124 @@
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateBreakTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteBreakTest" />
 
-            <!-- 4️⃣ Holidays -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- 📁 SECTION 2: HR & Workforce                          -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+
+            <!-- 4️⃣ Holidays (Custom) -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddCustomHolidayTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateCustomHolidayTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteCustomHolidayTest" />
 
+            <!-- 5️⃣ Holidays (Federal) -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddFederalHolidayTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateFederalHolidayTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteFederalHolidayTest" />
 
-            <!-- 5️⃣ Leaves -->
+            <!-- 6️⃣ Leaves -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddLeaveTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateLeaveTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteLeaveTest" />
 
-            <!-- 6️⃣ Activity Code -->
-            <class name="com.dits.citywide.tests.admin.companysettings.AddActivityCodeTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityCodeTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.DeleteActivityCodeTest" />
-
-            <!-- 7️⃣ Activity Template -->
-            <class name="com.dits.citywide.tests.admin.companysettings.AddNewActivityTemplateTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityTemplateTest" />
-
-            <!-- 8️⃣ Assignment Templates -->
-            <class name="com.dits.citywide.tests.admin.companysettings.AddAssignmentTemplateTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.UpdateAssignmentTemplate" />
-            <class name="com.dits.citywide.tests.admin.companysettings.DeleteAssignmentTemplateTest" />
-
-            <!-- 9️⃣ Violations -->
-            <class name="com.dits.citywide.tests.admin.companysettings.AddViolationTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.UpdateViolationTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.DeleteViolationTest" />
-
-            <class name ="com.dits.citywide.tests.admin.companysettings.AddCrimePotentialTest" />
-            <class name ="com.dits.citywide.tests.admin.companysettings.UpdateCrimePotentialTest" />
-            <class name ="com.dits.citywide.tests.admin.companysettings.DeleteCrimePotentialTest" />
-
-            <class name="com.dits.citywide.tests.admin.companysettings.AddChargesTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.UpdateChargesTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.DeleteChargesTest" />
-
-            <!-- 🔟 Beats -->
-            <class name="com.dits.citywide.tests.admin.companysettings.AddBeatTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.UpdateBeatTest" />
-            <class name="com.dits.citywide.tests.admin.companysettings.DeleteBeatTest" />
-
-            <!-- 11️⃣ HR Configurations -->
+            <!-- 7️⃣ HR Configurations: Allowance Types -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddAllowanceTypeTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateAllowanceTypeTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeletedAllowanceTypeTest" />
 
+            <!-- 8️⃣ HR Configurations: Employment Types -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddEmploymentTypeTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateEmploymentTypeTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteEmploymentTypeTest" />
 
+            <!-- 9️⃣ HR Configurations: Departments -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddDepartmentTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateDepartmentTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteDepartmentTest" />
 
+            <!-- 🔟 HR Configurations: WC Class Codes -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddWCClassCodeTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateWCClassCodeTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteWCClassCodeTest" />
 
-            <!-- 12️⃣ Team Support Templates -->
-            <class name="com.dits.citywide.tests.admin.companysettings.TeamSupportTemplateAddTemplateTest" />
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- 📁 SECTION 3: Beats                                    -->
+            <!-- ═══════════════════════════════════════════════════════ -->
 
-            <!-- 13️⃣ Responding Agencies -->
+            <!-- 1️⃣1️⃣ Beats -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddBeatTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateBeatTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteBeatTest" />
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- 📁 SECTION 4: Operations & Dispatch                    -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+
+            <!-- 1️⃣2️⃣ Activity Code -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddActivityCodeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityCodeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteActivityCodeTest" />
+
+            <!-- 1️⃣3️⃣ Violations -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddViolationTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateViolationTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteViolationTest" />
+
+            <!-- 1️⃣4️⃣ Violations: Crime Potentials -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddCrimePotentialTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateCrimePotentialTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteCrimePotentialTest" />
+
+            <!-- 1️⃣5️⃣ Violations: Charges -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddChargesTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateChargesTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteChargesTest" />
+
+            <!-- 1️⃣6️⃣ Responding Agencies -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTest" />
 
+            <!-- 1️⃣7️⃣ Responding Agency Types -->
             <class name="com.dits.citywide.tests.admin.companysettings.AddRespondingAgencyTypeTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.UpdateRespondingAgencyTypeTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.DeleteRespondingAgencyTypeTest" />
 
-            <!-- 🧾 Extra Utility -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- 📁 SECTION 5: Templates & Activity Configuration       -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+
+            <!-- 1️⃣8️⃣ Activity Templates -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddNewActivityTemplateTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityTemplateTest" />
+
+            <!-- 1️⃣9️⃣ Assignment Templates -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddAssignmentTemplateTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateAssignmentTemplate" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteAssignmentTemplateTest" />
+
+            <!-- 2️⃣0️⃣ Team Support Templates -->
+            <class name="com.dits.citywide.tests.admin.companysettings.TeamSupportTemplateAddTemplateTest" />
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- 📁 SECTION 6: Notifications & Communication            -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+
+            <!-- 2️⃣1️⃣ Notification Type -->
+            <class name="com.dits.citywide.tests.admin.companysettings.AddNotificationTypeTest" />
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- 📁 SECTION 7: System & Technical Settings              -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+
+            <!-- (No tests yet for this section) -->
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- 🧾 Utility / Smoke Verification                       -->
+            <!-- ═══════════════════════════════════════════════════════ -->
             <class name="com.dits.citywide.tests.admin.companysettings.CompanySettingsPageOpenTest" />
             <class name="com.dits.citywide.tests.admin.companysettings.CompanySettingsTest" />
 
         </classes>
     </test>
 
-</suite> 
+</suite>

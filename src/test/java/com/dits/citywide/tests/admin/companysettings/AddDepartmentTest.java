@@ -24,7 +24,6 @@ public class AddDepartmentTest extends BaseTest {
 		hrConfigurationsPage.fillAddDepartmentForm(CompanySettingsConstant.DEPARTMENT_NAME);
 		softAssert.assertEquals(hrConfigurationsPage.getSuccessMessage(),
 				CompanySettingsConstant.ADD_DEPARTMENT_SUCCESS_MESSAGE, "Department was not added successfully");
-		hrConfigurationsPage.clickOnDepartmentTab();
 		softAssert.assertEquals(hrConfigurationsPage.getDepartmentNameData(), CompanySettingsConstant.DEPARTMENT_NAME,
 				"Department name does not match");
 

@@ -26,7 +26,7 @@ public class SchedulingConstant {
 	public static final String ADD_NOTES_ADMIN = "Assigned shift for Admin/Dispatch. Coordinate with field teams.";
 
 	// Shift Date
-	public static final String ADD_SHIFT_DATE = "23";
+	public static final String ADD_SHIFT_DATE = "15";
 
 	// Confirmation Message
 	public static final String ARE_YOU_SURE = "Are you sure?";

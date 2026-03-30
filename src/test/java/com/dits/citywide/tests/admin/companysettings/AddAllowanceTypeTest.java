@@ -23,7 +23,8 @@ public class AddAllowanceTypeTest extends BaseTest {
 		softAssert.assertEquals(hrConfigurationsPage.getSuccessMessage(),
 				CompanySettingsConstant.ADD_ALLOWANCE_TYPE_SUCCESS_MESSAGE,
 				"Allowance Type was not added successfully");
-		hrConfigurationsPage.clickOnAllowanceTypeTab();
+//		hrConfigurationsPage.clickOnAllowanceTypeTab();
+		Thread.sleep(2000);
 		softAssert.assertEquals(hrConfigurationsPage.getAllowanceTypeData(),
 				CompanySettingsConstant.ALLOWANCE_TYPE_NAME, "Allowance Type data does not match the expected value");
 

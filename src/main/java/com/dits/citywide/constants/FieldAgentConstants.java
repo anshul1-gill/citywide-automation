@@ -5,7 +5,7 @@ public class FieldAgentConstants {
 	// Welcome Text
 	public static final String WELCOME_TEXT = "Hope you are doing well. Lets begin your shift, remember shift also includes breaks please dont hesitate for one !!";
 
-// HR Management 
+	// HR Management
 	// Leavve Request Data
 	// Staging data
 	public static final String LEAVE_TYPE = "Marriage leave";
@@ -13,13 +13,13 @@ public class FieldAgentConstants {
 	// Live data
 	// public static final String LEAVE_TYPE = "Vacation";
 
-	public static final String LEAVE_FROM_MONTH = "Dec";
+	public static final String LEAVE_FROM_MONTH = "Jan";
 	public static final String LEAVE_FROM_YEAR = "2025";
-	public static final String LEAVE_FROM_DATE = "10";
+	public static final String LEAVE_FROM_DATE = "15";
 
-	public static final String LEAVE_TO_MONTH = "Dec";
+	public static final String LEAVE_TO_MONTH = "Jan";
 	public static final String LEAVE_TO_YEAR = "2025";
-	public static final String LEAVE_TO_DATE = "11";
+	public static final String LEAVE_TO_DATE = "17";
 
 	public static final String LEAVE_START_TIME = "04:30";
 	public static final String LEAVE_END_TIME = "05:30";
@@ -27,17 +27,17 @@ public class FieldAgentConstants {
 	public static final String LEAVE_DESCRIPTION = "Need to attend a workshop on urban planning and development.";
 
 	// Date Filter Range for Leave Requests (added)
-	public static final String FILTER_START = "12/03/2025";
-	public static final String FILTER_END = "12/30/2025";
+	public static final String FILTER_START = "01/15/2025";
+	public static final String FILTER_END = "01/17/2025";
 
 	// Edit Leave Request Data
 	public static final String EDIT_LEAVE_TYPE = "Study";
 
-	public static final String EDIT_LEAVE_FROM_MONTH = "Dec";
+	public static final String EDIT_LEAVE_FROM_MONTH = "Jan";
 	public static final String EDIT_LEAVE_FROM_YEAR = "2025";
 	public static final String EDIT_LEAVE_FROM_DATE = "15";
 
-	public static final String EDIT_LEAVE_TO_MONTH = "Dec";
+	public static final String EDIT_LEAVE_TO_MONTH = "Jan";
 	public static final String EDIT_LEAVE_TO_YEAR = "2025";
 	public static final String EDIT_LEAVE_TO_DATE = "16";
 
@@ -51,12 +51,12 @@ public class FieldAgentConstants {
 	public static final String LEAVE_CANCEL_CONFIRMATION_MESSAGE = "Leave cancelled successfully";
 
 	public static final String LEAVE_STATUS = "Canceled";
-	
-	//SITESPAGE
-	
-	public static final String ADD_COMMENT_KUDDOS ="Kuddos";
-	public static final String ADD_COMMENT_FEEDBACK ="Great Work BY this site";
-	public static final String SELECT_RESPONSE_AGREE ="Agree";
+
+	// SITESPAGE
+
+	public static final String ADD_COMMENT_KUDDOS = "Kuddos";
+	public static final String ADD_COMMENT_FEEDBACK = "Great Work BY this site";
+	public static final String SELECT_RESPONSE_AGREE = "Agree";
 
 	// Attendance Data
 	public static final String SHIFT_START = "01:30";
@@ -106,33 +106,37 @@ public class FieldAgentConstants {
 
 	public static final String Name_OR_Badge = "John Doe / Badge 1234";
 
-	public static final String INCIDENCE_DATE = "12/22/2025";
-	
-	public static final String ASSIGNED_TO ="1110 - Anshul Gill";
+	public static final String INCIDENCE_DATE = "01/15/2026";
+
+	public static final String ASSIGNED_TO = "1110 - Anshul Gill";
 
 	// Forms
 	// Parking Citation
-	public static final String SITE = "Richmond";
-	public static final String DATE_TIME = "09/08/2025 10:00";
+	public static final String SITE = "1218"; // Just the number to search
+	public static final String DATE_TIME = "09/08/2025 10:00"; // MM/dd/yyyy HH:mm format
 	public static final String ACTIVITY_CODE = "10-16";
 	public static final String VIN_NUMBER = "1HGBH41JXMN109186";
-	public static final String LICENSE_NO = "ABC123";
-	public static final String SELECT_STATE = "CA";
-	public static final String EXPIRE_DATE = "September 2025";
+	public static final String LICENSE_PLATE = "ABC123";
+	public static final String STATE = "CA";
+	public static final String EXPIRATION_DATE = "09/30/2025"; // MM/dd/yyyy format
 	public static final String VEHICLE_COLOR = "Red";
-	public static final String YEAR = "2020";
+	public static final String VEHICLE_YEAR = "2020";
 	public static final String VEHICLE_MAKE = "AUDI";
 	public static final String VEHICLE_MODEL = "A6";
-	public static final String VIOLATION = "Wrong Turn-wrong turn description";
+	public static final String VIOLATION = "Wrong Turn"; // Shortened for search
 	public static final String ADDITIONAL_DETAILS = "Parked in a no-parking zone.";
-	public static final String FILE_PATH = "./src/test/resource/testdata/image.jpeg";
-
-	// Impounded Fields
-	public static final String IMPOUNDED_DATE_TIME = "09/08/2025";
 	public static final String TOWING_COMPANY = "ABC Towing Services";
 
+	// Backward compatibility aliases (old names)
+	public static final String LICENSE_NO = LICENSE_PLATE;
+	public static final String SELECT_STATE = STATE;
+	public static final String EXPIRE_DATE = EXPIRATION_DATE;
+	public static final String YEAR = VEHICLE_YEAR;
+	public static final String IMPOUNDED_DATE_TIME = "09/08/2025";
+	public static final String FILE_PATH = "./src/test/resource/testdata/image.jpeg";
+
 	// Update Parking Citation
-	public static final String UPDATED_SITE = "Richmond";
+	public static final String UPDATED_SITE = "1218";
 	public static final String UPDATE_DATE_TIME = "09/09/2025 11:30";
 	public static final String UPDATE_ACTIVITY_CODE = "10-17";
 	public static final String UPDATE_VIN_NUMBER = "12345";
@@ -196,7 +200,14 @@ public class FieldAgentConstants {
 	// Trespass Narrative
 	public static final String TRESPASS_NARRATIVE = "Trespassing without permission";
 	public static final String TRESPASS_WAS_PD_CONTACTED = "Yes";
-
+	public static final String TRESPASS_RESPONDING_AGENCY = "LAPD";
+	public static final String TRESPASS_TIME_OF_CONTACT = "09/09/2025 10:00";
+	public static final String TRESPASS_DID_THEY_SHOW = "Yes";
+	public static final String TRESPASS_OFFICER_NAME = "Officer John Smith";
+	public static final String TRESPASS_OFFICER_BADGE = "12345";
+	public static final String TRESPASS_INCIDENT_NUMBER_PD = "INC-2025-001";
+	public static final String TRESPASS_WAS_ARRESTED = "Yes";
+	public static final String TRESPASS_CHARGE = "Trespassing";
 	public static final String TRESPASS_FILE_PATH = "./src/test/resource/testdata/image.jpeg";
 
 	// Update Trespass Notice
@@ -305,7 +316,7 @@ public class FieldAgentConstants {
 	// Field Interview Images
 	public static final String FIELD_INTERVIEW_INTERVIEW_IMAGE_PATH = "./src/test/resource/testdata/image.jpeg";
 
-// --- Add New Incident Report ---
+	// --- Add New Incident Report ---
 	// Basic Info
 	public static final String SITE_NUMBER = "Richmond";
 	public static final String INCIDENT_DATE_TIME = "09/12/2025 09:40";
@@ -343,6 +354,11 @@ public class FieldAgentConstants {
 	public static final String OTHER_INCIDENT_NUMBER = "OTH9988";
 	public static final String OTHER_ARRIVAL_TIME = "10:05";
 	public static final String OTHER_DEPARTURE_TIME = "10:45";
+	
+	//Commander notification
+	public static final boolean COMMANDER_NOTIFIED = true;
+	public static final String Dispatcer = "Jenifer Jill";
+	public static final String OnSceneSupervisor = "Michael Scott";
 
 	// Reporting Person
 	public static final String REPORTING_PERSON_NAME = "Michael Roberts";

@@ -1,5 +1,6 @@
 package com.dits.citywide.driverfactory;
 
+import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -44,6 +47,8 @@ public class DriverFactory {
             options.setExperimentalOption("prefs", prefs);
 
             options.addArguments("--start-maximized");
+            options.addArguments("--window-position=0,0");
+            options.addArguments("--window-size=1920,1080");
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-infobars");
             options.addArguments("--incognito");
@@ -66,7 +71,7 @@ public class DriverFactory {
             System.out.println("Driver not exit");
         }
 
-        driver.manage().window().maximize();
+        maximizeBrowserWindow();
         driver.get(prop.getProperty("url").trim());
 
         // store driver in ThreadLocal for global access
@@ -75,6 +80,21 @@ public class DriverFactory {
         return driver;
     }
 
+    private void maximizeBrowserWindow() {
+        if (driver == null) {
+            return;
+        }
+
+        driver.manage().window().maximize();
+
+        try {
+            java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            driver.manage().window().setPosition(new Point(0, 0));
+            driver.manage().window().setSize(new Dimension(screenSize.width, screenSize.height));
+        } catch (Exception e) {
+            System.out.println("Unable to resize browser window to full screen: " + e.getMessage());
+        }
+    }
 
     // Load properties from config file
     public Properties initProperties() {

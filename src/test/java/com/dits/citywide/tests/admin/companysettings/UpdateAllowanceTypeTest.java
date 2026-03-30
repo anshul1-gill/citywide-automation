@@ -28,7 +28,8 @@ public class UpdateAllowanceTypeTest extends BaseTest {
 		softAssert.assertEquals(hrConfigurationsPage.getSuccessMessage(),
 				CompanySettingsConstant.ALLOWANCE_TYPE_UPDATE_SUCCESS_MESSAGE,
 				"Allowance Type was not updated successfully");
-		hrConfigurationsPage.clickOnAllowanceTypeTab();
+//		hrConfigurationsPage.clickOnAllowanceTypeTab();
+		Thread.sleep(2000);
 		softAssert.assertEquals(hrConfigurationsPage.getAllowanceTypeData(),
 				CompanySettingsConstant.ALLOWANCE_TYPE_UPDATED_NAME,
 				"Allowance Type data does not match the expected value");

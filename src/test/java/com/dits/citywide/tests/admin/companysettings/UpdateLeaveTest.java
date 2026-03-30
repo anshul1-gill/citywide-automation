@@ -14,13 +14,14 @@ public class UpdateLeaveTest extends BaseTest {
 	}
 
 	@Test
-	public void updateLeaveTest() {
+	public void updateLeaveTest() throws InterruptedException {
 		companySettingsPage = dashboardPage.doClickCompanySettingsTab();
 		leavesPage = companySettingsPage.clickLeavesLink();
 		leavesPage.clickEditHolidayButton(CompanySettingsConstant.LEAVE_NAME);
 		softAssert.assertTrue(leavesPage.isUpdateLeaveHeaderVisible(), "Update Leave header is not visible.");
 		leavesPage.updateLeaveForm(CompanySettingsConstant.LEAVE_EDIT_NAME,
 				CompanySettingsConstant.LEAVE_EDIT_NUMBER_OF_DAYS, CompanySettingsConstant.LEAVE_EDIT_DESCRIPTION);
+		Thread.sleep(2000);
 		leavesPage.submitUpdateLeaveForm();
 
 		softAssert.assertTrue(leavesPage.isLeavesPageHeaderVisible(), "Leaves page header is not visible.");

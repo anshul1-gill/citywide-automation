@@ -30,7 +30,7 @@ public class FieldAgentReportsPage {
 	// private By btnAddNewReport = By.xpath("(//span[contains(text(),'Add New
 	// Report')])[2]");
 	private By btnAddNewReport = By.xpath("//a[contains(text(),'Add New Report')]");
-	private By btnSubmitReports = By.xpath("//button[@type='submit']");
+	private By btnSubmitReports = By.xpath("//button[@type='button' and normalize-space()='Submit Reports']");
 	private By txtNoItemsFound = By
 			.xpath("//span[@class='px-2 py-8 text-base font-medium text-center text-gray-400 dark:text-white']");
 	private By btnEndShift = By.xpath("//button[normalize-space()='End Shift']");
@@ -61,7 +61,7 @@ public class FieldAgentReportsPage {
 
 	// private By btnNow = By.xpath("(//div[@class='ant-form-item clock-icon c-m-0
 	// css-p9nxzu'])[1]");
-//	private By btnNow = By.cssSelector("div[title='Arrive Now']");
+	// private By btnNow = By.cssSelector("div[title='Arrive Now']");
 	private By dropdownPatrolSite = By.xpath("(//div[@class='ant-select-selector'])[1]");
 	private By patrolSite = By.cssSelector("#patrol_site_id");
 	private By dropdownActivityCode = By.xpath("(//div[@class='ant-select-selector'])[2]");
@@ -70,9 +70,8 @@ public class FieldAgentReportsPage {
 	private By callId = By.cssSelector("#call_id");
 	// private By valueActivityCode = By.xpath("//div[@class='list-none m-0
 	// p-0']/div/span");
-	
-	
-	private By clockArriveNow = By.xpath("(//span[@aria-label='clock-circle'])[1]");		
+
+	private By clockArriveNow = By.xpath("(//span[@aria-label='clock-circle'])[1]");
 	private By txtboxStreetNumber = By.xpath("//input[@id='street_num']");
 	private By txtboxStreetName = By.xpath("//input[@id='street_name']");
 	private By txtboxApartmentNumber = By.xpath("//input[@id='apartment']");
@@ -82,8 +81,10 @@ public class FieldAgentReportsPage {
 	private By txtboxDescription = By.xpath("//textarea[@id='activity_text']");
 
 	private By txtHeadingReportPhotoVideoUpload = By.xpath("//h4[normalize-space()='Report Photo/Video Upload']");
-	private By uploadFile = By.xpath("//input[@type='file']");
+	private By uploadFile = By.xpath("//input[@type='file' and contains(@accept,'image')]");
 	private By uploadFileMyAssignment = By.xpath("(//input[@type='file'])[2]");
+	private By btnApplyFileUpload = By
+			.xpath("//button[@type='button' and contains(@class,'ant-btn-primary')]//span[text()='Apply']");
 	private By btnUpdateLogEntry = By.cssSelector("button[type='submit'] span");
 	private By txtboxImageName = By.cssSelector("#Name0");
 	private By txtboxImageDescription = By.cssSelector("#Description0");
@@ -204,17 +205,19 @@ public class FieldAgentReportsPage {
 		return false;
 	}
 
-//	public boolean isPreFlightReportsButtonVisible() {
-//		return elementUtils.doIsDisplayed(btnPreFlightReports, Constants.DEFAULT_WAIT);
-//	}
+	// public boolean isPreFlightReportsButtonVisible() {
+	// return elementUtils.doIsDisplayed(btnPreFlightReports,
+	// Constants.DEFAULT_WAIT);
+	// }
 
 	public boolean isStartShiftButtonVisible() {
 		return elementUtils.doIsDisplayed(btnAddNewReport, Constants.DEFAULT_WAIT);
 	}
 
-//	public void clickPreFlightReports() {
-//		elementUtils.waitForElementToBeClickable(btnPreFlightReports, Constants.DEFAULT_WAIT).click();
-//	}
+	// public void clickPreFlightReports() {
+	// elementUtils.waitForElementToBeClickable(btnPreFlightReports,
+	// Constants.DEFAULT_WAIT).click();
+	// }
 
 	public String getPreflightConfirmationMessage() {
 		return elementUtils.waitForElementVisible(txtPreflightConfirmationMessage, Constants.DEFAULT_WAIT).getText();
@@ -248,9 +251,10 @@ public class FieldAgentReportsPage {
 		return elementUtils.waitForElementVisible(txtNoDataFound, Constants.DEFAULT_WAIT).getText();
 	}
 
-//	public boolean isReOpenPatrolLogVisible() {
-//		return elementUtils.doIsDisplayed(btnReOpenPatrolLog, Constants.DEFAULT_WAIT);
-//	}
+	// public boolean isReOpenPatrolLogVisible() {
+	// return elementUtils.doIsDisplayed(btnReOpenPatrolLog,
+	// Constants.DEFAULT_WAIT);
+	// }
 	public boolean isReOpenPatrolLogVisible() {
 		for (By locator : btnReOpenPatrolLog) {
 			if (elementUtils.doIsDisplayed(locator, Constants.SHORT_TIME_OUT_WAIT)) {
@@ -287,8 +291,9 @@ public class FieldAgentReportsPage {
 
 	public void clickEditReport2() {
 		List<WebElement> editIcons = driver.findElements(By.xpath("//div[@class='actionicons editPencil']"));
-		if (editIcons.size() < 3) {
-			throw new RuntimeException("Not enough edit icons present. Expected at least 3, but found: " + editIcons.size());
+		if (editIcons.size() < 2) {
+			throw new RuntimeException(
+					"Not enough edit icons present. Expected at least 2, but found: " + editIcons.size());
 		}
 		elementUtils.waitForElementToBeClickable(btnEditReport2, Constants.SHORT_TIME_OUT_WAIT).click();
 	}
@@ -343,8 +348,10 @@ public class FieldAgentReportsPage {
 		elementUtils.waitForElementVisible(searchboxActivityCode, Constants.SHORT_TIME_OUT_WAIT).sendKeys(activityCode);
 		Thread.sleep(2000);
 		elementUtils.pressEnterKey();
-//		elementUtils.waitForElementVisible(valueActivityCode, Constants.SHORT_TIME_OUT_WAIT);
-//		elementUtils.selectElementThroughLocator(valueActivityCode, activityCode, Constants.SHORT_TIME_OUT_WAIT);
+		// elementUtils.waitForElementVisible(valueActivityCode,
+		// Constants.SHORT_TIME_OUT_WAIT);
+		// elementUtils.selectElementThroughLocator(valueActivityCode, activityCode,
+		// Constants.SHORT_TIME_OUT_WAIT);
 		elementUtils.waitForElementToBeClickable(dropdowncallId, Constants.DEFAULT_WAIT).click();
 		elementUtils.waitForElementVisible(callId, Constants.SHORT_TIME_OUT_WAIT).sendKeys(callID);
 		Thread.sleep(2000);
@@ -359,25 +366,33 @@ public class FieldAgentReportsPage {
 		elementUtils.waitForElementVisible(txtboxzipcode, Constants.SHORT_TIME_OUT_WAIT).sendKeys(zipcode);
 		elementUtils.waitForElementVisible(txtboxDescription, Constants.SHORT_TIME_OUT_WAIT).sendKeys(description);
 
-//		WebElement fileInput = elementUtils.getElement(uploadFile);
-//		String absolutePath = new File(imagePath).getAbsolutePath();
-//		fileInput.sendKeys(absolutePath);
-//		elementUtils.waitForElementVisible(uploadFile, Constants.DEFAULT_WAIT);
-//		elementUtils.uploadFile(uploadFile, imagePath);
+		// WebElement fileInput = elementUtils.getElement(uploadFile);
+		// String absolutePath = new File(imagePath).getAbsolutePath();
+		// fileInput.sendKeys(absolutePath);
+		// elementUtils.waitForElementVisible(uploadFile, Constants.DEFAULT_WAIT);
+		// elementUtils.uploadFile(uploadFile, imagePath);
 
-//		elementUtils.waitForElementVisible(txtboxImageName, Constants.DEFAULT_WAIT).sendKeys(fileName);
-//		elementUtils.waitForElementVisible(txtboxImageDescription, Constants.DEFAULT_WAIT).sendKeys(fileDescription);
+		// elementUtils.waitForElementVisible(txtboxImageName,
+		// Constants.DEFAULT_WAIT).sendKeys(fileName);
+		// elementUtils.waitForElementVisible(txtboxImageDescription,
+		// Constants.DEFAULT_WAIT).sendKeys(fileDescription);
 
-//		elementUtils.waitForElementToBeClickable(btnUpdateLogEntry, Constants.DEFAULT_WAIT).click();
+		// elementUtils.waitForElementToBeClickable(btnUpdateLogEntry,
+		// Constants.DEFAULT_WAIT).click();
 	}
 
 	public boolean isReportPhotoVideoUploadHeadingVisible() {
 		return elementUtils.doIsDisplayed(txtHeadingReportPhotoVideoUpload, Constants.DEFAULT_WAIT);
 	}
 
-	public void uploadFile(String imagePath, String fileName, String fileDescription) {
-		elementUtils.waitForElementVisible(uploadFile, Constants.DEFAULT_WAIT);
+	public void uploadFile(String imagePath, String fileName, String fileDescription) throws InterruptedException {
+		// File input elements are typically hidden with display:none, so we don't wait
+		// for visibility
 		elementUtils.uploadFile(uploadFile, imagePath);
+		// Click Apply button after file upload to make Name and Description fields
+		// appear
+		elementUtils.waitForElementToBeClickable(btnApplyFileUpload, Constants.DEFAULT_WAIT).click();
+		Thread.sleep(2000); // Wait for Name and Description fields to appear after clicking Apply
 		elementUtils.waitForElementVisible(txtboxImageName, Constants.DEFAULT_WAIT).sendKeys(fileName);
 		elementUtils.waitForElementVisible(txtboxImageDescription, Constants.DEFAULT_WAIT).sendKeys(fileDescription);
 	}

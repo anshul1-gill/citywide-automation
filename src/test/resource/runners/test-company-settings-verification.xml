@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Company Settings Tests Verification" verbose="1">
+    
+    <listeners>
+        <listener class-name="com.dits.citywide.listener.ExtentReportListener"/>
+    </listeners>
+    
+    <test name="Leave CRUD Tests" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.companysettings.AddLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateLeaveTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteLeaveTest" />
+        </classes>
+    </test>
+    
+    <test name="Activity Code CRUD Tests" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.companysettings.AddActivityCodeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateActivityCodeTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteActivityCodeTest" />
+        </classes>
+    </test>
+    
+    <test name="Beat CRUD Tests" preserve-order="true">
+        <classes>
+            <class name="com.dits.citywide.tests.admin.companysettings.AddBeatTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.UpdateBeatTest" />
+            <class name="com.dits.citywide.tests.admin.companysettings.DeleteBeatTest" />
+        </classes>
+    </test>
+    
+</suite>

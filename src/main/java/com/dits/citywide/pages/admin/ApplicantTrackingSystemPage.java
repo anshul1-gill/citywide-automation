@@ -64,6 +64,12 @@ public class ApplicantTrackingSystemPage {
     private By dropdownjobmode = By.xpath("//input[@id='job_mode']/ancestor::div[contains(@class,'ant-select')]");
     private By dropdownselectform = By.xpath("//input[@id='setting_form_id']/ancestor::div[contains(@class,'ant-select')]");
     private By txtJobDescription = By.xpath("//div[contains(@class,'public-DraftStyleDefault-block public-DraftStyleDefault-ltr')]");
+    private By checkboxPrescreeningQuestions = By.xpath("//span[normalize-space()='Pre-Screening Questions']");
+    private By screeningquestion1 = By.xpath("//input[@name='dq_question_0']");
+    private By scrrenAnswer1 = By.xpath("//span[@class='ant-radio-label' and normalize-space()='Yes']");
+    private By Addsectionbutton = By.xpath("//button[@title='Add section']");
+    private By screeningquestion2 = By.xpath("//input[@name='dq_question_1']");
+    private By scrrenAnswer2 = By.xpath("(//span[@class='ant-radio-label' and normalize-space()='No'])[2]");
 
     private By btnSaveJob = By.xpath("//button[normalize-space()='Save']");
     private By searchfield = By.xpath("//input[@placeholder='Search']");
@@ -134,7 +140,41 @@ public class ApplicantTrackingSystemPage {
     private By btnsubmitArchive = By.xpath("(//span[normalize-space()='Submit'])[2]");
     private By btnconfirm = By.xpath("//button[normalize-space()='OK']");
 
-    // ============================================================
+    // =======================ATS Through the Link=====================================
+    
+    private By applyjob = By.xpath("(//span[normalize-space()='Apply'])[1]");
+    private By firstName  = By.xpath("//input[@id='first_name']");
+    private By lastName  = By.xpath("//input[@id='last_name']");
+    private By Birthdate  = By.xpath("//input[@id='birthdate']");
+    private By email  = By.xpath("//input[@id='email']");
+    private By Alternateemail = By.xpath("//input[@id='email_address_alternate']");
+    private By primaryphone  = By.xpath("(//input[@type='tel'])[1]");
+    private By alternatephone  = By.xpath("(//input[@type='tel'])[2]");
+    private By emergencyName = By.xpath("//input[@id='emergency_contact_name']");
+    private By emergencyNumber = By.xpath("(//input[@type='tel'])[3]");
+    private By emergencyRelation = By.xpath("//input[@id='emergency_contact_relationship']");
+    private By uploadResume = By.xpath("//input[@type='file']");
+    
+    //Residence Address 
+    private By residenceStreet = By.xpath("//input[@id='residence_street_address_1']");
+    private By residenceStreetname = By.xpath("//input[@id='residence_street_address_2']");
+    private By residenceStno = By.xpath("//input[@id='residence_address']");
+    private By residencezipcode = By.xpath("//input[@id='residence_zip_code']");
+    
+    private By sameasabove = By.xpath("(//span[normalize-space()='Same as above'])[1]");
+    
+    //Driver license 
+    private By driverState= By.xpath("//input[@id='state_driver_license']");
+    private By driverLicenseNumber = By.xpath("//input[@id='permit_number_driver_license']");
+    private By dateofIssue = By.xpath("//input[@id='date_of_issue_driver_license']");
+    private By dateofExpiry = By.xpath("//input[@id='date_of_expiry_driver_license']");
+    
+    private By applyjobform = By.xpath("//button[@type='submit']");
+    
+  
+    
+    //===========================================================
+    
     // ✅ Constructor
     // ============================================================
     public ApplicantTrackingSystemPage(WebDriver driver) {
@@ -166,6 +206,7 @@ public class ApplicantTrackingSystemPage {
         elementUtils.waitForElementToBeClickable(tabSkilsAndQualifications, Constants.DEFAULT_WAIT).click();
         elementUtils.waitForElementToBeClickable(btnAddQualification, Constants.DEFAULT_WAIT).click();
         elementUtils.waitForElementVisible(txtQualificationName, Constants.DEFAULT_WAIT).sendKeys(qualification);
+        elementUtils.waitForElementToBeClickable(btnSaveQualification, Constants.DEFAULT_WAIT).click();
         elementUtils.waitForElementToBeClickable(backbtnQualication, Constants.DEFAULT_WAIT).click();
     }
 
@@ -178,7 +219,8 @@ public class ApplicantTrackingSystemPage {
 
     public void createJobPost(String title, String department, String branch, String employmentType,String endDate,
                               String reqSkill, String expLevel, String openings, String salaryRange,
-                              String jobStatus, String jobMode, String form,  String jobDesc , String searchField) throws InterruptedException {
+                              String jobStatus, String jobMode, String form,  String jobDesc , String searchField,
+                              String question1, String question2) throws InterruptedException {
 
         elementUtils.waitForElementToBeClickable(btnAddJob, Constants.DEFAULT_WAIT).click();
         elementUtils.waitForElementVisible(txtJobTitle, Constants.DEFAULT_WAIT).sendKeys(title);
@@ -202,24 +244,67 @@ public class ApplicantTrackingSystemPage {
             .perform();
      
      	Thread.sleep(5000);
-        elementUtils.selectReqSkillOption(dropdownreqskills, reqSkill);
-        Thread.sleep(10000);        
+        WebElement reqSkillInput = elementUtils.waitForElementVisible(By.xpath("//input[@id='required_skill']"), Constants.DEFAULT_WAIT);
+        reqSkillInput.click();
+        Thread.sleep(1000);
+        reqSkillInput.sendKeys(reqSkill);
+        Thread.sleep(2000);
+        reqSkillInput.sendKeys(Keys.ENTER);
+        Thread.sleep(3000);        
         elementUtils.waitForElementVisible(inputExplevel, Constants.DEFAULT_WAIT).sendKeys(expLevel);
         elementUtils.waitForElementVisible(inputnumberopenings, Constants.DEFAULT_WAIT).sendKeys(openings);
         Thread.sleep(3000);
         elementUtils.waitForElementVisible(inputsalaryrange, Constants.DEFAULT_WAIT).sendKeys(salaryRange);
         Thread.sleep(1000);
         elementUtils.selectFromReactDropdown(dropdownjobstatus, jobStatus);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         elementUtils.selectFromReactDropdown(dropdownjobmode, jobMode);
+        Thread.sleep(2000);
         elementUtils.selectFromReactDropdown(dropdownselectform, form);
         elementUtils.waitForElementVisible(txtJobDescription, Constants.DEFAULT_WAIT).sendKeys(jobDesc);
+
+        // Pre-Screening Questions
+        addPreScreeningQuestions(question1, question2);
+
         elementUtils.waitForElementToBeClickable(btnSaveJob, Constants.DEFAULT_WAIT).click();
         
         Thread.sleep(5000);
         elementUtils.waitForElementVisible(searchfield, Constants.DEFAULT_WAIT).sendKeys(searchField);
         Thread.sleep(4000);
         elementUtils.waitForElementToBeClickable(backbtnjOB, Constants.DEFAULT_WAIT).click();
+    }
+
+    public void addPreScreeningQuestions(String question1Text, String question2Text) throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Enable Pre-Screening Questions checkbox
+        System.out.println("📝 Enabling Pre-Screening Questions...");
+        WebElement prescreenCheckbox = elementUtils.waitForElementToBeClickable(checkboxPrescreeningQuestions, Constants.DEFAULT_WAIT);
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", prescreenCheckbox);
+        Thread.sleep(500);
+        prescreenCheckbox.click();
+        Thread.sleep(1000);
+
+        // Fill Question 1
+        System.out.println("📝 Adding Question 1: " + question1Text);
+        elementUtils.waitForElementVisible(screeningquestion1, Constants.DEFAULT_WAIT).sendKeys(question1Text);
+        Thread.sleep(500);
+        elementUtils.waitForElementToBeClickable(scrrenAnswer1, Constants.DEFAULT_WAIT).click();
+        Thread.sleep(500);
+        System.out.println("✅ Question 1 added with answer: Yes");
+
+        // Click Add Section to add second question
+        System.out.println("📝 Adding new section for Question 2...");
+        elementUtils.waitForElementToBeClickable(Addsectionbutton, Constants.DEFAULT_WAIT).click();
+        Thread.sleep(1000);
+
+        // Fill Question 2
+        System.out.println("📝 Adding Question 2: " + question2Text);
+        elementUtils.waitForElementVisible(screeningquestion2, Constants.DEFAULT_WAIT).sendKeys(question2Text);
+        Thread.sleep(500);
+        elementUtils.waitForElementToBeClickable(scrrenAnswer2, Constants.DEFAULT_WAIT).click();
+        Thread.sleep(500);
+        System.out.println("✅ Question 2 added with answer: No");
     }
 
     // ============================================================
@@ -237,7 +322,13 @@ public class ApplicantTrackingSystemPage {
         elementUtils.waitForElementVisible(txtApplicantPhone, Constants.DEFAULT_WAIT).sendKeys(phone);
         elementUtils.selectFromReactDropdown(dropdownPositionApplied, Positon);
         elementUtils.selectFromReactDropdown(dropdownSourceType, Sourcetype);
-        elementUtils.selectFromReactDropdown(dropdownQualification, skills);
+        WebElement skillInput = elementUtils.waitForElementVisible(By.xpath("//input[@id='skill']"), Constants.DEFAULT_WAIT);
+        skillInput.click();
+        Thread.sleep(1000);
+        skillInput.sendKeys(skills);
+        Thread.sleep(2000);
+        skillInput.sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
         elementUtils.waitForElementVisible(inputCurrentemployee, Constants.DEFAULT_WAIT).sendKeys(currentemployer);
         elementUtils.waitForElementVisible(inputcurrentrole, Constants.DEFAULT_WAIT).sendKeys(currentrole);
         elementUtils.selectFromReactDropdown(dropdownStatus, Status);
@@ -329,6 +420,118 @@ public class ApplicantTrackingSystemPage {
     	elementUtils.waitForElementToBeClickable(radiobtnArchived, Constants.DEFAULT_WAIT).click();
     	elementUtils.waitForElementToBeClickable(btnsubmitArchive, Constants.DEFAULT_WAIT).click();
     	elementUtils.waitForElementToBeClickable(btnconfirm, Constants.DEFAULT_WAIT).click();
+    }
+
+    // ============================================================
+    // ✅ ATS Through Public Link Actions
+    // ============================================================
+
+    public boolean verifyJobPostingsVisible(WebDriver driver, String publicLink) throws InterruptedException {
+        driver.get(publicLink);
+        Thread.sleep(5000);
+        try {
+            WebElement heading = elementUtils.waitForElementVisible(
+                    By.xpath("//h2[contains(text(),'Current Openings')] | //h1[contains(text(),'Current Openings')]"),
+                    Constants.DEFAULT_WAIT);
+            return heading.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void clickApplyOnFirstJob() throws InterruptedException {
+        elementUtils.waitForElementToBeClickable(applyjob, Constants.DEFAULT_WAIT).click();
+        Thread.sleep(3000);
+    }
+
+    public void applyThroughLink(String fName, String lName, String birthdate, String emailAddr,
+                                  String altEmail, String phone, String altPhone,
+                                  String emergName, String emergPhone, String emergRelation,
+                                  String street, String streetName, String stNo, String zipCode,
+                                  String dlState, String dlNumber, String dlIssueDate, String dlExpiryDate,
+                                  String resumePath) throws InterruptedException {
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Personal Information
+        System.out.println("📝 Filling Personal Information...");
+        elementUtils.waitForElementVisible(firstName, Constants.DEFAULT_WAIT).sendKeys(fName);
+        elementUtils.waitForElementVisible(lastName, Constants.DEFAULT_WAIT).sendKeys(lName);
+        elementUtils.waitForElementVisible(Birthdate, Constants.DEFAULT_WAIT).sendKeys(birthdate);
+        elementUtils.waitForElementVisible(email, Constants.DEFAULT_WAIT).sendKeys(emailAddr);
+        elementUtils.waitForElementVisible(Alternateemail, Constants.DEFAULT_WAIT).sendKeys(altEmail);
+        elementUtils.waitForElementVisible(primaryphone, Constants.DEFAULT_WAIT).sendKeys(phone);
+        elementUtils.waitForElementVisible(alternatephone, Constants.DEFAULT_WAIT).sendKeys(altPhone);
+        System.out.println("✅ Personal Information filled.");
+
+        // Scroll down to Emergency Contact section
+        js.executeScript("window.scrollBy(0, 400);");
+        Thread.sleep(1000);
+
+        // Emergency Contact
+        System.out.println("📝 Filling Emergency Contact...");
+        elementUtils.waitForElementVisible(emergencyName, Constants.DEFAULT_WAIT).sendKeys(emergName);
+        elementUtils.waitForElementVisible(emergencyNumber, Constants.DEFAULT_WAIT).sendKeys(emergPhone);
+        elementUtils.waitForElementVisible(emergencyRelation, Constants.DEFAULT_WAIT).sendKeys(emergRelation);
+        System.out.println("✅ Emergency Contact filled.");
+
+        // Scroll down to Residence Address section
+        js.executeScript("window.scrollBy(0, 400);");
+        Thread.sleep(1000);
+
+        // Residence Address
+        System.out.println("📝 Filling Residence Address...");
+        elementUtils.waitForElementVisible(residenceStreet, Constants.DEFAULT_WAIT).sendKeys(street);
+        elementUtils.waitForElementVisible(residenceStreetname, Constants.DEFAULT_WAIT).sendKeys(streetName);
+        elementUtils.waitForElementVisible(residenceStno, Constants.DEFAULT_WAIT).sendKeys(stNo);
+        elementUtils.waitForElementVisible(residencezipcode, Constants.DEFAULT_WAIT).sendKeys(zipCode);
+        System.out.println("✅ Residence Address filled.");
+
+        // Scroll down and click "Same as above" checkbox
+        js.executeScript("window.scrollBy(0, 400);");
+        Thread.sleep(1000);
+        try {
+            System.out.println("📝 Clicking 'Same as above' checkbox...");
+            WebElement checkbox = elementUtils.waitForElementToBeClickable(sameasabove, Constants.DEFAULT_WAIT);
+            js.executeScript("arguments[0].scrollIntoView({block:'center'});", checkbox);
+            Thread.sleep(500);
+            checkbox.click();
+            System.out.println("✅ 'Same as above' checkbox clicked.");
+        } catch (Exception e) {
+            System.out.println("⚠️ 'Same as above' checkbox not found or not clickable: " + e.getMessage());
+        }
+        Thread.sleep(1000);
+
+        // Driver License
+        js.executeScript("window.scrollBy(0, 300);");
+        Thread.sleep(1000);
+        System.out.println("📝 Filling Driver License...");
+        elementUtils.waitForElementVisible(driverState, Constants.DEFAULT_WAIT).sendKeys(dlState);
+        elementUtils.waitForElementVisible(driverLicenseNumber, Constants.DEFAULT_WAIT).sendKeys(dlNumber);
+        elementUtils.waitForElementVisible(dateofIssue, Constants.DEFAULT_WAIT).sendKeys(dlIssueDate);
+        elementUtils.waitForElementVisible(dateofExpiry, Constants.DEFAULT_WAIT).sendKeys(dlExpiryDate);
+        System.out.println("✅ Driver License filled.");
+
+        // Scroll down to Resume Upload
+        js.executeScript("window.scrollBy(0, 400);");
+        Thread.sleep(1000);
+
+        // Resume Upload
+        System.out.println("📝 Uploading Resume...");
+        elementUtils.uploadFile(uploadResume, resumePath);
+        Thread.sleep(3000);
+        System.out.println("✅ Resume uploaded.");
+
+        // Scroll to Submit button
+        WebElement submitBtn = elementUtils.waitForElementVisible(applyjobform, Constants.DEFAULT_WAIT);
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", submitBtn);
+        Thread.sleep(1000);
+
+        // Submit Application
+        System.out.println("📝 Submitting Application...");
+        elementUtils.waitForElementToBeClickable(applyjobform, Constants.DEFAULT_WAIT).click();
+        Thread.sleep(10000);
+        System.out.println("✅ Application submitted.");
     }
 
 }

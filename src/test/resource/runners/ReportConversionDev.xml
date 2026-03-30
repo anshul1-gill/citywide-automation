@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+
+<suite name="Citywide Smoke Suite">
+
+ <listeners>
+        <listener class-name="com.dits.citywide.listener.ExtentReportListener"/>
+    </listeners>
+
+    <!-- Company Settings Tests -->
+    <test name="Report Conversion On Dev For Field" preserve-order="true">
+        <classes> 
+        <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyReportsTest" />
+        <class name="com.dits.citywide.tests.fieldagent.FieldAgentMyAssignments" />
+        <class name="com.dits.citywide.tests.fieldagent.FieldAgentAllReportsTest" />    
+        </classes>
+    </test>
+
+</suite> 

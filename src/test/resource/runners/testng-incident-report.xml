@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="IncidentReportSuite" verbose="2">
+  <test name="ReactIncidentReportTests">
+    <classes>
+      <class name="com.dits.citywide.tests.formconversion.ReactIncidentReportform"/>
+      <class name="com.dits.citywide.tests.formconversion.ReactIncidentReportformUpdateTest"/>
+    </classes>
+  </test>
+</suite>

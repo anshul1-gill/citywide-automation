@@ -24,7 +24,6 @@ public class UpdateDepartmentTest extends BaseTest {
 		softAssert.assertTrue(hrConfigurationsPage.updateDepartmentButtonVisible(),
 				"Update Department button is not visible");
 		hrConfigurationsPage.updateDepartmentName(CompanySettingsConstant.DEPARTMENT_UPDATED_NAME);
-		hrConfigurationsPage.clickOnDepartmentTab();
 		softAssert.assertEquals(hrConfigurationsPage.getSuccessMessage(),
 				CompanySettingsConstant.DEPARTMENT_UPDATE_SUCCESS_MESSAGE, "Department was not updated successfully");
 

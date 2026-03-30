@@ -24,6 +24,7 @@ public class BeatsPage {
 	private By dropdwonNumberOfSites = By.xpath("(//div[@class='ant-select-selector'])[2]");
 	private By searchNumberOfSites = By.xpath("//span[normalize-space()='Number of Sites']");
 	private By searchNumberOfSitesUpdate = By.xpath("//div[@class='ant-select-selection-search']");
+	private By selectEmployee = By.xpath("//input[@id='agent_ids']/ancestor::div[contains(@class,'ant-select-selector')]");
 
 	// private By btnSubmitAddBeat = By.xpath("//button[contains(@type,'submit')]");
 	private List<By> btnSubmitAddBeat = Arrays.asList(By.cssSelector("button[type='submit']"),
@@ -56,8 +57,17 @@ public class BeatsPage {
 		elementUtils.waitForElementToBeClickable(btnAddNewBeats, Constants.DEFAULT_WAIT).click();
 	}
 
+	/**
+	 * Backward-compatible overload: Add Beat without explicitly passing employee.
+	 * Some tests only provide the first 4 parameters.
+	 */
 	public void fillAddNewBeatsForm(String beatID, String beatName, String shiftType, String numberOfSites)
 			throws InterruptedException {
+		fillAddNewBeatsForm(beatID, beatName, shiftType, numberOfSites, null);
+	}
+
+	public void fillAddNewBeatsForm(String beatID, String beatName, String shiftType, String numberOfSites,
+			String employee) throws InterruptedException {
 		elementUtils.waitForElementVisible(txtboxBeatID, Constants.DEFAULT_WAIT).sendKeys(beatID);
 		elementUtils.waitForElementVisible(txtboxBeatName, Constants.DEFAULT_WAIT).sendKeys(beatName);
 		elementUtils.waitForElementVisible(dropdownShiftType, Constants.DEFAULT_WAIT).click();
@@ -65,14 +75,17 @@ public class BeatsPage {
 		elementUtils.doClickWithActionsAndWait(dropdwonNumberOfSites, Constants.DEFAULT_WAIT);
 		elementUtils.waitForElementVisible(searchNumberOfSites, Constants.DEFAULT_WAIT);
 		elementUtils.doActionsSendKeys(searchNumberOfSites, numberOfSites);
-		Thread.sleep(3000);
-		elementUtils.pressEnterKey();
-		Thread.sleep(2000);
-	}
 
-//	public void clickSubmitAddBeatButton() {
-//		elementUtils.waitForElementToBeClickable(btnSubmitAddBeat, Constants.DEFAULT_WAIT).click();
-//	}
+		// Employee selection is optional (React/Ant select might auto-pick based on site)
+		if (employee != null && !employee.trim().isEmpty()) {
+			elementUtils.waitForElementVisible(selectEmployee, Constants.DEFAULT_WAIT).click();
+			elementUtils.doActionsSendKeys(selectEmployee, employee);
+		}
+
+		Thread.sleep(1000);
+		elementUtils.pressEnterKey();
+		Thread.sleep(1000);
+	}
 
 	public void clickSubmitAddBeatButton() {
 		for (By locator : btnSubmitAddBeat) {
